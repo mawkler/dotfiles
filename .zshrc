@@ -113,6 +113,7 @@ alias vimrc-save='cp ~/.vimrc ~/Dropbox/Software/.vimrc'
 alias settings-save='cp ~/.zshrc /run/media/melker/Windows\ 7/Users/Melker/Dropbox/Software/.zshrc'
 alias mouse-speed='echo 255 | sudo tee /sys/devices/platform/i8042/serio1/serio2/speed && echo 255 | sudo tee /sys/devices/platform/i8042/serio1/serio2/sensitivity'
 alias uu='cd ~/burgers/'
+
 #Git:
 alias g='git'
 alias gs='git status'
