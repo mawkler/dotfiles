@@ -129,8 +129,8 @@ alias installed='pacman -Qqettm'
 # prompt_context () { }
 #DEFAULT_USER="melker"
 
-export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
+#export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 export LESS=" -R "
 alias less='less -m -N -g -i -J --underline-special --SILENT'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias dfs='dotfiles'
+alias dot='dotfiles'
