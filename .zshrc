@@ -125,6 +125,8 @@ alias gw='git whatchanged'
 alias gcam='git commit -am'
 alias src='source ~/.zshrc'
 alias installed='pacman -Qqettm'
+alias zshrc='gvim ~/.zshrc'
+alias src='source ~/.zshrc'
 
 # prompt_context () { }
 #DEFAULT_USER="melker"
