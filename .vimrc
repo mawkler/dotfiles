@@ -38,6 +38,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'mhinz/vim-startify'
 Plugin 'tpope/vim-repeat'
 Plugin 'tmhedberg/matchit'
+Plugin 'ihacklog/HiCursorWords'
 
 "For SnipMate
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -47,6 +48,11 @@ Plugin 'honza/vim-snippets'
 "SnipMate ends here
 
 Plugin 'ryanoasis/nerd-fonts'
+
+"Ericsson
+Plugin 'Yggdroot/indentLine'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'vim-scripts/capslock.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -68,14 +74,16 @@ set shiftwidth=2 "On pressing tab, insert 2 spaces
 
 "Search insensetive
 set ignorecase
-set smartcase 
+set smartcase
 
 "Key mapping
 set hidden
 let mapleader = "\<Space>"
 map <C-Tab> :bnext<CR>
 map <C-S-Tab> :bprevious<CR>
-nmap § :NERDTreeToggle<CR>
+nmap <silent> § :NERDTreeToggle<CR>
+nmap <C-'> <leader>c<space>
+vmap <C-'> <leader>c<space>
 nmap <C-CR> <leader>c<space>
 vmap <C-CR> <leader>c<space>
 imap <C-CR> <Up><End><CR>
@@ -83,20 +91,22 @@ map <leader>y "+y
 map <leader>Y "+Y
 map <leader>p "+p
 map <leader>P "+P
-map <leader><C-w> :bdelete<CR>
+map <leader><C-w> :NERDTreeClose<CR>:bdelete<CR>
 map <C-Q> :qa<CR>
 nmap <Tab> ==
-vmap <Tab> ==
+vmap <Tab> =gv
+nmap <S-Tab> <<
+vmap <S-Tab> <gv
+imap <S-Tab> <C-o><<
 map <CR> <C-w><C-w>
 map <S-CR> <C-w>W
 nmap <C-j> o<Esc>
 nmap <C-k> O<Esc>
 map <C-s> :w<CR>
-imap <C-BS> <C-w>
-nmap <C-BS> db
-nmap <A-BS> dw
-imap <C-Del> <C-o>de
-map <C-Del> dw
+map! <A-BS> <C-w>
+imap <A-S-BS> <C-o>de
+nmap <A-BS> db
+nmap <A-S-BS> dw
 map <M-d> dw
 map <C-Space> <Esc>
 imap <C-Space> <Esc>
@@ -107,6 +117,31 @@ imap <M-b> <C-Left>
 map <M-j> :move +1<CR>
 map <M-k> :move -2<CR>
 imap <C-j> <CR>
+autocmd FileType Python nmap <Tab> >>
+autocmd FileType Python vmap <Tab> >gv
+nmap ö ciw
+nmap Ö ciW
+nmap ä viw
+nmap Ä viW
+nmap å ci(
+nmap Å ci"
+nmap <C-c> <Nop>
+"vim-surround
+vmap s <Plug>VSurround
+vmap S <Plug>VgSurround
+nmap s ys
+nmap S yS
+"------------
+vmap < <gv
+vmap > >gv
+map <Leader>v :source ~/.vimrc<CR>
+map <Leader>V :edit ~/.vimrc<CR>
+imap <M-h> <Left>
+imap <M-j> <Down>
+imap <M-k> <Up>
+imap <M-l> <Right>
+imap <M-o> <C-o>o
+imap <M-O> <C-o>O
 
 "Enable numbering
 set number
@@ -154,7 +189,7 @@ set guioptions-=L
 
 "Start in maximized window
 if has("gui_running")
-	set lines=999 columns=999
+    set lines=999 columns=999
 endif
 
 "YouCompleteMe
@@ -199,7 +234,7 @@ let g:syntastic_check_on_wq = 0
 
 "Supertab
 "let g:SuperTabCrMapping = 1
-let g:SuperTabMappingForward = '<C-S-space>' 
+let g:SuperTabMappingForward = '<C-S-space>'
 let g:SuperTabDefaultCompletionType = 'context'
 smap <Tab> <Plug>snipMateNextOrTrigger
 imap <Tab> <Plug>snipMateNextOrTrigger
@@ -211,7 +246,52 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|svn)$',
   \ 'file': '\v\.(exe|svn|swp|swo|dll)$',
   \ }
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_max_depth = 100
+let g:ctrlp_working_path_mode = ""
 
 set guicursor=n:blinkwait0 "Disables cursor blinking in visual mode
 "set guicursor=i:blinkwait700-blinkon700-blinkoff450
 "set guicursor=i:ver25-iCursor "Doesn't work for some reason
+
+
+
+"Ericsson
+set swapfile
+set directory^=~/.vim/tmp//
+
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
+":set list lcs=tab:\|\
+set autoindent noexpandtab tabstop=4 shiftwidth=4 "use tabs instead of spaces 
+"set autoindent expandtab tabstop=4 shiftwidth=2  "use spaces instead of tabs
+set autoread
+let g:syntastic_python_pylint_args = '--rcfile=./.pylintrc'
+"set autochdir
+set backspace=indent,eol,start
+autocmd FileType python set expandtab
+
+"indentLine
+autocmd FileType json let g:indentLine_enabled = 0
+autocmd FileType python let g:indentLine_enabled = 1
+"let g:indentLine_setColors = 0
+let g:indentLine_color_term = 239
+let g:indentLine_color_gui = '#4b5263'
+let g:indentLine_char = '|'
+"let g:syntastic_python_checkers=["flake8"]
+"""g:vim_json_syntax_conceal = 0
+set incsearch "Search while typing
+
+"" Visual-at.vim
+"noremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+"function! ExecuteMacroOverVisualRange()
+  "echo "@".getcmdline()
+  "execute ":'<,'>normal @".nr2char(getchar())
+"endfunction
+
+"Underlines AutoHighligted word:
+"highlight Search guibg=NONE guifg=NONE gui=underline
+let g:HiCursorWords_delay = 1 "Delay after highlighting current word, low dealy may cause lag
+
+imap <C-c> <Plug>CapsLockToggle
