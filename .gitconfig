@@ -1,14 +1,16 @@
 [user]
-	email = melker.annat@gmail.com
-	name  = Melkster
+	email  = melker.annat@gmail.com
+	name   = Melker Osterberg
 [alias]
-	co    = checkout
-	s     = status
-	p     = pull
-	c     = commit
-	cam   = commit -am
-	l     = log
-  	w     = whatchanged
-	d     = diff
+	co     = checkout
+	s      = status
+	p      = pull
+	c      = commit
+	cam    = commit -am
+	l      = log
+  	w      = whatchanged
+	d      = diff
 [core]
 	editor = vim
+[github]
+	user   = Melkster
