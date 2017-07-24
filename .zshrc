@@ -128,6 +128,8 @@ alias src='source ~/.zshrc'
 alias installed='pacman -Qqettm'
 alias zshrc='gvim ~/.zshrc'
 alias src='source ~/.zshrc'
+alias gu='git diff HEAD@{1} HEAD'
+alias gly='git log --since="yesterday"'
 
 # prompt_context () { }
 #DEFAULT_USER="melker"
@@ -137,3 +139,12 @@ export LESS=" -R "
 alias less='less -m -N -g -i -J --underline-special --SILENT'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dot='dotfiles'
+
+
+#Ericsson
+alias xclip='xclip -selection c'
+alias ls='ls -F --color'
+alias lsa='ls -Fa --color'
+alias mless="/usr/bin/less"
+alias m='make'
+alias tree='tree -C'
