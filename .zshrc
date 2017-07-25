@@ -1,15 +1,23 @@
+if [ $HOSTNAME = "esekilxv7127" ]; then
+	source ~/.zshrc.ericsson
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/melker/.oh-my-zsh
+if [ $HOSTNAME != "esekilxv7127" ]; then
+    export ZSH=/home/melker/.oh-my-zsh
+fi
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="random"
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
+if [ $HOSTNAME != "esekilxv7127" ]; then
+    ZSH_THEME="agnoster"
+fi
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -22,7 +30,7 @@ ZSH_THEME="agnoster"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=1
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -31,10 +39,10 @@ ZSH_THEME="agnoster"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -128,6 +136,8 @@ alias src='source ~/.zshrc'
 alias installed='pacman -Qqettm'
 alias zshrc='gvim ~/.zshrc'
 alias src='source ~/.zshrc'
+alias gu='git diff HEAD@{1} HEAD'
+alias gly='git log --since="yesterday"'
 
 # prompt_context () { }
 #DEFAULT_USER="melker"
@@ -137,3 +147,11 @@ export LESS=" -R "
 alias less='less -m -N -g -i -J --underline-special --SILENT'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dot='dotfiles'
+
+
+#Ericsson
+alias xclip='xclip -selection c'
+alias ls='ls -F --color'
+alias lsa='ls -Fa --color'
+alias m='make'
+alias tree='tree -C'
