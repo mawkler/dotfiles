@@ -1,4 +1,4 @@
-if [ $HOSTNAME = "esekilxv7127" ]; then
+if [[ $HOSTNAME = "esekilxv7127" ]]; then
 	source ~/.zshrc.ericsson
 fi
 
@@ -6,7 +6,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-if [ $HOSTNAME = "ArchBerbert" ]; then
+if [[ $HOSTNAME = "ArchBerbert" ]]; then
     export ZSH=/home/melker/.oh-my-zsh
 fi
 
@@ -15,7 +15,7 @@ fi
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="random"
 #ZSH_THEME="robbyrussell"
-if [ $HOSTNAME = "ArchBerbert" ]; then
+if [[ $HOSTNAME = "ArchBerbert" ]]; then
     ZSH_THEME="agnoster"
 fi
 
