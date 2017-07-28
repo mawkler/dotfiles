@@ -103,57 +103,58 @@ source $ZSH/oh-my-zsh.sh
 #chattr +i filename.ext
 #chattr -i filename.ext
 
-export VISUAL        = vim
-export EDITOR        = $VISUAL
+export VISUAL=vim
+export EDITOR=$VISUAL
 
-alias settings       = 'gvim ~/.zshrc'
-alias vimrc          = 'gvim ~/.vimrc'
-alias ..             = 'cd .. && ls'
-alias ...            = 'cd ../.. && ls'
-alias ....           = 'cd ../../.. && ls'
-alias plugg          = 'cd ~/Plugg'
-alias grep           = 'grep -Ii --color'
-alias grepr          = 'grep -rIi --color'
-alias mdi            = 'cd ~/plugg/mdi-wp/'
-alias s              = 'search'
-alias search         = 'find . -iname'
-alias vimrc-save     = 'cp ~/.vimrc ~/Dropbox/Software/.vimrc'
-alias settings-save  = 'cp ~/.zshrc /run/media/melker/Windows\ 7/Users/Melker/Dropbox/Software/.zshrc'
-alias mouse-speed    = 'echo 255 | sudo tee /sys/devices/platform/i8042/serio1/serio2/speed && echo 255 | sudo tee /sys/devices/platform/i8042/serio1/serio2/sensitivity'
-alias uu             = 'cd ~/burgers/'
-alias countfiles     = 'du -a | cut -d/ -f2 | sort | uniq -c | sort -nr'
-alias listfiles      = 'find . -iname "*"'
+alias settings='gvim ~/.zshrc'
+alias vimrc='gvim ~/.vimrc'
+alias ..='cd .. && ls'
+alias ...='cd ../.. && ls'
+alias ....='cd ../../.. && ls'
+alias plugg='cd ~/Plugg'
+alias grep='grep -Ii --color'
+alias grepr='grep -rIi --color'
+alias mdi='cd ~/plugg/mdi-wp/'
+alias s='search'
+alias search='find . -iname'
+alias vimrc-save='cp ~/.vimrc ~/Dropbox/Software/.vimrc'
+alias settings-save='cp ~/.zshrc /run/media/melker/Windows\ 7/Users/Melker/Dropbox/Software/.zshrc'
+alias mouse-speed='echo 255 | sudo tee /sys/devices/platform/i8042/serio1/serio2/speed && echo 255 | sudo tee /sys/devices/platform/i8042/serio1/serio2/sensitivity'
+alias uu='cd ~/burgers/'
+alias countfiles='du -a | cut -d/ -f2 | sort | uniq -c | sort -nr'
+alias listfiles='find . -iname "*"'
+alias xs='xargs -I % sh -c'
 
 #Git:
-alias g              = 'git'
-alias gs             = 'git status'
-alias gl             = 'git log'
-alias gd             = 'git diff'
-alias gco            = 'git checkout'
-alias gp             = 'git pull'
-alias gb             = 'git branch'
-alias gw             = 'git whatchanged'
-alias gcam           = 'git commit -am'
-alias src            = 'source ~/.zshrc'
-alias installed      = 'pacman -Qqettm'
-alias zshrc          = 'gvim ~/.zshrc'
-alias src            = 'source ~/.zshrc'
-alias gu             = 'git diff HEAD@{1} HEAD'
-alias gly            = 'git log --since="yesterday"'
+alias g='git'
+alias gs='git status'
+alias gl='git log'
+alias gd='git diff'
+alias gco='git checkout'
+alias gp='git pull'
+alias gb='git branch'
+alias gw='git whatchanged'
+alias gcam='git commit -am'
+alias src='source ~/.zshrc'
+alias installed='pacman -Qqettm'
+alias zshrc='gvim ~/.zshrc'
+alias src='source ~/.zshrc'
+alias gu='git diff HEAD@{1} HEAD'
+alias gly='git log --since="yesterday"'
 
 # prompt_context () { }
 #DEFAULT_USER="melker"
 
 #export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
-export LESS          = " -R "
-alias less           = 'less -m -N -g -i -J --underline-special --SILENT'
-alias dotfiles       = '/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias dot            = 'dotfiles'
+export LESS=" -R "
+alias less='less -m -N -g -i -J --underline-special --SILENT'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dot='dotfiles'
 
 
 #Ericsson
-alias xclip          = 'xclip -selection c'
-alias ls             = 'ls -F --color'
-alias lsa            = 'ls -Fa --color'
-alias m              = 'make'
-alias tree           = 'tree -C'
+alias xclip='xclip -selection c'
+alias ls='ls -F --color'
+alias lsa='ls -Fa --color'
+alias m='make'
+alias tree='tree -C'
