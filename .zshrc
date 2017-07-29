@@ -142,6 +142,12 @@ alias src='source ~/.zshrc'
 alias gu='git diff HEAD@{1} HEAD'
 alias gly='git log --since="yesterday"'
 
+#Powerline
+if [[ -r /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+    source /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+fi
+
+
 # prompt_context () { }
 #DEFAULT_USER="melker"
 
