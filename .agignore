@@ -20,7 +20,6 @@ chromium/
 .emacs.d/
 .pki/
 !.atom/packages/split-diff/
-.vim/
 .oh-my-zsh/
 Dropbox/
 
