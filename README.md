@@ -8,7 +8,6 @@ echo ".dotfiles" >> .gitignore
 git clone --bare https://github.com/Melkster/dotfiles.git $HOME/.dotfiles
 dotfiles checkout
 ```
----
 # Dependencides
  - git (obviously)
  - pip (for installing Powerline)
