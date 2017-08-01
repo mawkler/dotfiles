@@ -61,7 +61,11 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git pip colorize colored-man-pages extract)
+if [[ `hostname` = "esekilxv7127" ]]; then
+  plugins=(git pip colorize colored-man-pages extract)
+else
+  plugins=(git pip colorize colored-man-pages extract zsh-syntax-highlighting) # zsh-syntax-highlighting must be the last plugin
+fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -156,6 +160,7 @@ export LESS=" -R "
 alias less='less -m -N -g -i -J --underline-special --SILENT'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dot='dotfiles'
+alias dots='dot status'
 
 
 #Ericsson
