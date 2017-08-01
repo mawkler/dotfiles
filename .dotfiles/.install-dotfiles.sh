@@ -1,4 +1,5 @@
 cd
+echo ".dotfiles" >> $HOME/.gitignore
 echo "Cloning dotfiles repo.";
 git clone --bare https://github.com/Melkster/dotfiles.git $HOME/.dotfiles
 
@@ -23,6 +24,11 @@ mkdir $HOME/.vim/.backup $HOME/.vim/.swp $HOME/.vim/.undo #Create Vim swap file 
 echo "Removing README.md and setting it to 'assume-unchanged'.";
 dotfiles update-index --assume-unchanged $HOME/README.md
 rm $HOME/README.md
+
+if [[ `cat $HOME/.gitignore 2>/dev/null` = ".dotfiles" ]]; then
+  echo "Removing ~/.gitignore."
+  rm $HOME/.gitignore
+fi
 
 echo "Installing Powerline.";
 pip install https://github.com/Lokaltog/powerline/tarball/develop #Install powerline
