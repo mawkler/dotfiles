@@ -6,9 +6,10 @@
 	s      = status
 	p      = pull
 	c      = commit
+	cm     = commit -m
 	cam    = commit -am
 	l      = log
-  	w      = whatchanged
+	w      = whatchanged
 	d      = diff
 [core]
 	editor = vim
