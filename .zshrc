@@ -63,8 +63,8 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 if [[ `hostname` = "esekilxv7127" ]]; then
   plugins=(git pip colorize colored-man-pages extract)
-else
-  plugins=(git pip colorize colored-man-pages extract zsh-syntax-highlighting) # zsh-syntax-highlighting must be the last plugin
+elif [[ -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]]; then
+  plugins=(git pip colorize colored-man-pages extract zsh-output-highlighting zsh-syntax-highlighting) # zsh-syntax-highlighting must be the last plugin
 fi
 
 source $ZSH/oh-my-zsh.sh
