@@ -19,7 +19,8 @@ echo "Hiding untracked files.";
 dotfiles config status.showUntrackedFiles no
 
 echo "Creating Vim swap file directories.";
-mkdir $HOME/.vim/.backup $HOME/.vim/.swp $HOME/.vim/.undo #Create Vim swap file directories
+mkdir $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo    #Create Vim swap file directories
+chmod +x $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo #And make them executable (at least backup needs this)
 
 echo "Removing README.md and setting it to 'assume-unchanged'.";
 dotfiles update-index --assume-unchanged $HOME/README.md
