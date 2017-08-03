@@ -8,7 +8,7 @@
   c      = commit
   cm     = commit -m
   cam    = commit -am
-  l      = log
+  l      = log --decorate
   w      = whatchanged
   d      = diff
 [core]
