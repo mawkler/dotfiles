@@ -117,7 +117,7 @@ alias ...='cd ../.. && ls'
 alias ....='cd ../../.. && ls'
 alias plugg='cd ~/Plugg'
 #alias --='cd -'
-alias grep='grep -Iin --color'
+alias grep='grep -Iin --color=always'
 alias grepr='grep -r'
 alias mdi='cd ~/plugg/mdi-wp/'
 alias s='search'
@@ -139,7 +139,8 @@ alias gco='git checkout'
 alias gp='git pull'
 alias gb='git branch'
 alias gw='git whatchanged'
-alias gcam='git commit -am'
+alias gcm='git commit -m'
+alias gcam='gcm -a'
 alias src='source ~/.zshrc'
 alias installed='pacman -Qqettm'
 alias zshrc='gvim ~/.zshrc'
@@ -156,8 +157,10 @@ fi
 # prompt_context () { }
 #DEFAULT_USER="melker"
 
+#Syntax highligting in less:
 #export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
-export LESS=" -R "
+#export LESS=" -R "
+
 alias less='less -m -N -g -i -J --underline-special --SILENT'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dot='dotfiles'
