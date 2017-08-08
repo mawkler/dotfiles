@@ -41,3 +41,4 @@ Dropbox/
 *.plist
 *.pdf
 *.log
+__init__.py
