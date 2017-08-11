@@ -13,13 +13,12 @@
   d      = diff
   grep   = grep -ni
   g      = grep -ni
+  plog = log --pretty=format:'%Cred%h%Creset %s -%C(yellow)%d%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  subupd = submodule update --recursive --init
 [core]
   editor = vim
 [github]
   user   = Melkster
 [color]
   ui = true
-[alias]
-  plog = log --pretty=format:'%Cred%h%Creset %s -%C(yellow)%d%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  lol = log --graph --decorate --pretty=oneline --abbrev-commit
-  subupd = submodule update --recursive --init
