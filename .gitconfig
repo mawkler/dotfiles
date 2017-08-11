@@ -11,6 +11,8 @@
   l      = log --decorate
   w      = whatchanged
   d      = diff
+  grep   = grep -ni
+  g      = grep -ni
 [core]
   editor = vim
 [github]
