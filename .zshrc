@@ -173,3 +173,5 @@ alias ls='ls -F --color'
 alias lsa='ls -Fa --color'
 alias m='make'
 alias tree='tree -C'
+
+neofetch # Os information as start page
