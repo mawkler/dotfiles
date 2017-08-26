@@ -31,14 +31,11 @@ Dropbox/
 *.csv
 *.tsv
 *.tmp*
-*.js
-*.css
-*.scss
 *.old
-*.json
-*.xml
-*.html
 *.plist
 *.pdf
 *.log
+*.jpg
+*.jpeg
+*.png
 __init__.py
