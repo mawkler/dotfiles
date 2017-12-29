@@ -5,6 +5,8 @@ set bellvolume=0
 set novisualbell
 set relativenumber
 set jkdenotative
+set autoindent
+set nocursorblink
 
 map [noremap] s ys
 map [noremap] S yS
