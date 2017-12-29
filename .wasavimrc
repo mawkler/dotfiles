@@ -22,6 +22,7 @@ map <space>p "+p
 map <space>P "+P
 map <Tab> ==
 map <C-s> :w<enter>
+map <C-q> :q<enter>
 map <C-j> o<Esc>
 map <C-k> O<Esc>
 
