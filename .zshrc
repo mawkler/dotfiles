@@ -110,22 +110,27 @@ source $ZSH/oh-my-zsh.sh
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-alias settings='gvim ~/.zshrc'
+alias zshrc='gvim ~/.zshrc'
 alias vimrc='gvim ~/.vimrc'
+alias src='source ~/.zshrc'
 alias ..='cd .. && ls'
 alias ...='cd ../.. && ls'
 alias ....='cd ../../.. && ls'
-#alias --='cd -'
 alias grep='grep -Iin --color=always'
 alias grepr='grep -r'
 alias s='search'
 alias search='find . -iname'
-alias vimrc-save='cp ~/.vimrc ~/Dropbox/Software/.vimrc'
-alias settings-save='cp ~/.zshrc /run/media/melker/Windows\ 7/Users/Melker/Dropbox/Software/.zshrc'
-alias mouse-speed='echo 150 | sudo tee /sys/devices/platform/i8042/serio1/serio2/speed && echo 150 | sudo tee /sys/devices/platform/i8042/serio1/serio2/sensitivity'
 alias countfiles='du -a | cut -d/ -f2 | sort | uniq -c | sort -nr'
 alias listfiles='find . -type f -iname "*"'
 alias xs='xargs -I % sh -c'
+alias mouse-speed='echo 150 | sudo tee /sys/devices/platform/i8042/serio1/serio2/speed && echo 150 | sudo tee /sys/devices/platform/i8042/serio1/serio2/sensitivity'
+alias less='less -m -N -g -i -J --underline-special --SILENT'
+alias xclip='xclip -selection c'
+alias ls='ls -F --color'
+alias lsa='ls -Fa --color'
+alias m='make'
+alias tree='tree -C'
+alias installed='yaourt -Qqe'
 
 #Uppsala
 alias uu='cd ~/ta-booking/'
@@ -143,12 +148,13 @@ alias gb='git branch'
 alias gw='git whatchanged'
 alias gcm='git commit -m'
 alias gcam='git commit -am'
-alias src='source ~/.zshrc'
-alias installed='yaourt -Qqe'
-alias zshrc='gvim ~/.zshrc'
-alias src='source ~/.zshrc'
 alias gu='git diff HEAD@{1} HEAD'
 alias gly='git log --since="yesterday"'
+
+#Dotfiles
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dot='dotfiles'
+alias dots='dot status'
 
 #Powerline
 if [[ -r /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
@@ -162,19 +168,6 @@ fi
 #Syntax highligting in less:
 #export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 #export LESS=" -R "
-
-alias less='less -m -N -g -i -J --underline-special --SILENT'
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias dot='dotfiles'
-alias dots='dot status'
-
-
-#Ericsson
-alias xclip='xclip -selection c'
-alias ls='ls -F --color'
-alias lsa='ls -Fa --color'
-alias m='make'
-alias tree='tree -C'
 
 #Swap behaviour of <Up>/<Down> keys and Ctrl + P/N
 bindkey '^P'  up-line-or-search
