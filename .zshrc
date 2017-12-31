@@ -176,4 +176,12 @@ alias lsa='ls -Fa --color'
 alias m='make'
 alias tree='tree -C'
 
+#Swap behaviour of <Up>/<Down> keys and Ctrl + P/N
+bindkey '^P'  up-line-or-search
+bindkey '^N'  down-line-or-search
+bindkey '^[[A' up-line-or-history
+bindkey '^[[B' down-line-or-history
+#last two don't seem to work though
+
+
 neofetch # Os information as start page
