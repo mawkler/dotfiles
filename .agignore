@@ -21,6 +21,10 @@ chromium/
 .pki/
 !.atom/packages/split-diff/
 .oh-my-zsh/
+.mozilla
+.eclipse
+.mysql
+.tmux
 Dropbox/
 
 *.sw?
