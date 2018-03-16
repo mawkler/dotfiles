@@ -61,11 +61,19 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-if [[ `hostname` = "esekilxv7127" ]]; then
-  plugins=(git pip colorize colored-man-pages extract)
-elif [[ -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]]; then
-  plugins=(git pip colorize colored-man-pages extract zsh-output-highlighting zsh-syntax-highlighting) # zsh-syntax-highlighting must be the last plugin
-fi
+
+plugins=(
+  git
+  pip
+  colorize colored-man-pages
+  extract
+  bd
+  autoupdate
+  zsh-autopair
+  zsh-autosuggestions
+  zsh-output-highlighting
+  zsh-syntax-highlighting # zsh-syntax-highlighting must be the last plugin
+)
 
 source $ZSH/oh-my-zsh.sh
 
