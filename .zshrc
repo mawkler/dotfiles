@@ -1,5 +1,5 @@
-if [[ `hostname` = "esekilxv7127" ]]; then
-  source ~/.zshrc.ericsson
+if [[ -r .zshrc.private ]]; then
+  source ~/.zshrc.private
 fi
 
 # If you come from bash you might have to change your $PATH.
@@ -139,11 +139,8 @@ alias lsa='ls -Fa --color'
 alias m='make'
 alias tree='tree -C'
 alias installed='yaourt -Qqe'
-
-#Uppsala
-alias uu='cd ~/ta-booking/'
-alias plugg='cd ~/Plugg'
-alias uni='ssh meos6185@beurling.it.uu.se'
+alias b='bd 1'
+alias open='xdg-open'
 
 #Git:
 alias g='git'
@@ -174,8 +171,8 @@ fi
 #DEFAULT_USER="melker"
 
 #Syntax highligting in less:
-#export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
-#export LESS=" -R "
+export LESSOPEN="| /bin/src-hilite-lesspipe.sh %s"
+export LESS=" -R "
 
 #Swap behaviour of <Up>/<Down> keys and Ctrl + P/N
 bindkey '^P'  up-line-or-search
