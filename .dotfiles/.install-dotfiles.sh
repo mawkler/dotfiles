@@ -34,4 +34,7 @@ fi
 echo "Installing Powerline.";
 pip install https://github.com/Lokaltog/powerline/tarball/develop #Install powerline
 
+echo "Adding npm dependencies";
+sudo npm install -g prettier eslint-plugin-prettier eslint-config-prettier
+
 echo "Done."
