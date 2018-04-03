@@ -13,10 +13,12 @@
   d      = diff
   grep   = grep -ni
   g      = grep -ni
+  u      = diff HEAD@{1} HEAD
   plog   = log --pretty=format:'%Cred%h%Creset %s -%C(yellow)%d%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   lol    = log --graph --decorate --pretty=oneline --abbrev-commit
   subupd = submodule update --recursive --init
   ignore = update-index --assume-unchanged
+  unignore = update-index --no-assume-unchanged
   store  = config credential.helper store
 [core]
   editor = vim
