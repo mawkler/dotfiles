@@ -11,3 +11,4 @@ dotfiles checkout
 # Dependencides
  - git (obviously)
  - pip (for installing Powerline)
+ - npm (for some Vim dependencies)
