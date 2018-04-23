@@ -26,3 +26,5 @@
   user   = Melkster
 [color]
   ui     = true
+[dude]
+  interval = 10
