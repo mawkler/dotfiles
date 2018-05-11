@@ -1,3 +1,5 @@
+PATH=$PATH:~/.gem/ruby/2.5.0/bin
+
 if [[ -r .zshrc.private ]]; then
   source ~/.zshrc.private
 fi
@@ -90,6 +92,7 @@ alias installed='yaourt -Qqe'
 alias b='bd 1'
 alias open='xdg-open'
 alias errorlogs='journalctl --since=today'
+alias screenkey='screenkey -t 1.5 -s small'
 
 #Git:
 alias g='git'
