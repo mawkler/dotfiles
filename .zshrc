@@ -9,13 +9,6 @@ if [[ `hostname` = "ArchBerbert" ]]; then
   export ZSH=/home/melker/.oh-my-zsh
 fi
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-if [[ `hostname` = "ArchBerbert" ]]; then
-  ZSH_THEME="agnoster"
-fi
-
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
  HYPHEN_INSENSITIVE="true"
@@ -32,7 +25,7 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
- DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -56,6 +49,13 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+if [[ `hostname` = "ArchBerbert" ]]; then
+  ZSH_THEME="agnoster"
+fi
 
 #echo 255 | sudo tee /sys/devices/platform/i8042/serio1/serio2/speed
 #echo 255 | sudo tee /sys/devices/platform/i8042/serio1/serio2/sensitivity
