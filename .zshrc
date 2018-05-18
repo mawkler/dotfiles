@@ -50,13 +50,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-if [[ `hostname` = "ArchBerbert" ]]; then
-  ZSH_THEME="agnoster"
-fi
-
 #echo 255 | sudo tee /sys/devices/platform/i8042/serio1/serio2/speed
 #echo 255 | sudo tee /sys/devices/platform/i8042/serio1/serio2/sensitivity
 #sudo chmod -R a+rw /sys/devices/platform/i8042/serio1/serio2/
@@ -115,7 +108,9 @@ alias dots='dot status'
 
 #Powerline
 if [[ -r /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
-    source /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+  source /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+else
+  ZSH_THEME="agnoster"
 fi
 
 # prompt_context () { }
@@ -133,4 +128,4 @@ bindkey '^[[B' down-line-or-history
 #last two don't seem to work though
 
 
-neofetch # Os information as start page
+# neofetch # Os information as start page
