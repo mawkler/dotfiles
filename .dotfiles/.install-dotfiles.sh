@@ -32,7 +32,7 @@ if [[ `cat $HOME/.gitignore 2>/dev/null` = ".dotfiles" ]]; then
 fi
 
 echo "Installing Powerline.";
-pip install https://github.com/Lokaltog/powerline/tarball/develop #Install powerline
+pip install --user powerline-status
 
 echo "Adding npm dependencies";
 sudo npm install -g prettier eslint-plugin-prettier eslint-config-prettier javascript-typescript-langserver
