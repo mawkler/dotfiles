@@ -1,26 +1,24 @@
 PATH=$PATH:~/.gem/ruby/2.5.0/bin
 
-if [[ -r .zshrc.private ]]; then
+if [[ -r ~/.zshrc.private ]]; then
   source ~/.zshrc.private
 fi
 
 # Path to oh-my-zsh installation
-if [[ `hostname` = "ArchBerbert" ]]; then
+if [[ -d /home/melker/.oh-my-zsh ]]; then
   export ZSH=/home/melker/.oh-my-zsh
+else echo "Oh-my-zsh not installed"
 fi
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
- HYPHEN_INSENSITIVE="true"
+ZSH_THEME="agnoster" # Default theme (should be overwritten by Powerline theme)
 
-# Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=1
+HYPHEN_INSENSITIVE="true" # Use hyphen-insensitive completion.
 
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+export UPDATE_ZSH_DAYS=1 # How often to auto-update (in days).
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+ENABLE_CORRECTION="true" # Enables command auto-correction.
+
+COMPLETION_WAITING_DOTS="true" # Displays red dots whilst waiting for completion.
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -31,9 +29,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 
 plugins=(
   git
@@ -50,9 +45,12 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-#echo 255 | sudo tee /sys/devices/platform/i8042/serio1/serio2/speed
-#echo 255 | sudo tee /sys/devices/platform/i8042/serio1/serio2/sensitivity
-#sudo chmod -R a+rw /sys/devices/platform/i8042/serio1/serio2/
+#Powerline theme (has to come after `source $ZSH/oh-my-zsh.sh`)
+if [[ -r `python -m site --user-site`/powerline/bindings/zsh/powerline.zsh ]]; then
+  source `python -m site --user-site`/powerline/bindings/zsh/powerline.zsh
+else
+  echo "Powerline theme doesn't exists, using default theme \"$ZSH_THEME\""
+fi
 
 #För att ta bort (+i) skrivrättigheter fran en fil, resp lagga till (-i)
 #chattr +i filename.ext
@@ -107,13 +105,6 @@ alias gly='git log --since="yesterday"'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dot='dotfiles'
 alias dots='dot status'
-
-#Powerline
-if [[ -r /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
-  source /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
-else
-  ZSH_THEME="agnoster"
-fi
 
 # prompt_context () { }
 #DEFAULT_USER="melker"
