@@ -37,4 +37,7 @@ pip install --user powerline-status
 echo "Adding npm dependencies";
 sudo npm install -g prettier eslint-plugin-prettier eslint-config-prettier javascript-typescript-langserver
 
+echo "Installing less configuration based on ~/.lesskey";
+lesskey
+
 echo "Done."
