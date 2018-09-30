@@ -40,4 +40,7 @@ sudo npm install -g prettier eslint-plugin-prettier eslint-config-prettier javas
 echo "Installing less configuration based on ~/.lesskey";
 lesskey
 
+echo "To change Numix Frost to dark theme run the following:"
+echo "sudo mv /usr/share/themes/Numix-Frost/gtk-3.20/gtk-dark.css /usr/share/themes/Numix-Frost/gtk-3.20/gtk.css"
+
 echo "Done."
