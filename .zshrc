@@ -5,10 +5,37 @@ if [[ -r ~/.zshrc.private ]]; then
 fi
 
 # Path to oh-my-zsh installation
-if [[ -d /home/melker/.oh-my-zsh ]]; then
-  export ZSH=/home/melker/.oh-my-zsh
-else echo "Oh-my-zsh not installed"
-fi
+# if [[ -d /home/melker/.oh-my-zsh ]]; then
+#   export ZSH=/home/melker/.oh-my-zsh
+# else echo "Oh-my-zsh not installed"
+# fi
+
+# -- Antigen --
+
+source ~/.zsh/antigen.zsh
+
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen bundle git
+antigen bundle pip
+antigen bundle lein
+antigen bundle command-not-found
+antigen bundle colorize
+antigen bundle colored-man-pages
+antigen bundle extract
+antigen bundle Tarrasch/zsh-bd
+antigen bundle TamCore/autoupdate-oh-my-zsh-plugins
+antigen bundle hlissner/zsh-autopair
+antigen bundle zsh-autosuggestions
+antigen bundle l4u/zsh-output-highlighting
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Tell Antigen that you're done.
+antigen apply
+
+# ------------
 
 ZSH_THEME="agnoster" # Default theme (should be overwritten by Powerline theme)
 
@@ -30,20 +57,20 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
-plugins=(
-  git
-  pip
-  colorize colored-man-pages
-  extract
-  bd
-  autoupdate
-  zsh-autopair
-  zsh-autosuggestions
-  zsh-output-highlighting
-  zsh-syntax-highlighting # zsh-syntax-highlighting must be the last plugin
-)
+# plugins=(
+#   git
+#   pip
+#   colorize colored-man-pages
+#   extract
+#   bd
+#   autoupdate
+#   zsh-autopair
+#   zsh-autosuggestions
+#   zsh-output-highlighting
+#   zsh-syntax-highlighting # zsh-syntax-highlighting must be the last plugin
+# )
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 #Powerline theme (has to come after `source $ZSH/oh-my-zsh.sh`)
 if [[ -r `python -m site --user-site`/powerline/bindings/zsh/powerline.zsh ]]; then
