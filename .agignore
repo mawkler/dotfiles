@@ -43,3 +43,5 @@ Dropbox/
 *.jpeg
 *.png
 __init__.py
+*.tar.gz
+*.zip

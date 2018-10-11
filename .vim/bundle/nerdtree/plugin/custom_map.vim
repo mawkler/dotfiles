@@ -1,5 +1,11 @@
 call NERDTreeAddKeyMap({
-      \ 'key': '§',
+      \ 'key': '½',
+      \ 'callback': 'NERDTreeCloseHandler',
+      \ 'quickhelpText': 'Close NERDTree'
+      \ })
+
+call NERDTreeAddKeyMap({
+      \ 'key': '<Esc>',
       \ 'callback': 'NERDTreeCloseHandler',
       \ 'quickhelpText': 'Close NERDTree'
       \ })
