@@ -147,5 +147,10 @@ bindkey '^[[A' up-line-or-history
 bindkey '^[[B' down-line-or-history
 #last two don't seem to work though
 
+# Create a new directory and enter it
+function mkcd() {
+  mkdir -p "$@" && cd "$@"
+}
+
 
 # neofetch # Os information as start page
