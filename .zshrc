@@ -86,8 +86,8 @@ fi
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-alias zshrc='gvim ~/.zshrc'
-alias vimrc='gvim ~/.vimrc'
+alias zshrc='nvim ~/.zshrc'
+alias vimrc='nvim ~/.vimrc'
 alias src='source ~/.zshrc'
 alias ..='cd .. && ls'
 alias ...='cd ../.. && ls'
@@ -110,7 +110,7 @@ alias m='make'
 alias tree='tree -C'
 alias installed='yaourt -Qqe'
 alias b='bd 1'
-alias open='xdg-open'
+alias open='xdg-open &>/dev/null'
 alias errorlogs='journalctl --since=today'
 alias screenkey='screenkey -t 1.5 -s small'
 
