@@ -26,13 +26,13 @@ command-not-found
 colorize
 colored-man-pages
 extract
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting
+l4u/zsh-output-highlighting
 Tarrasch/zsh-bd
 TamCore/autoupdate-oh-my-zsh-plugins
 hlissner/zsh-autopair
-l4u/zsh-output-highlighting
-zsh-users/zsh-autosuggestions
-zsh-users/zsh-syntax-highlighting
-
+unixorn/autoupdate-antigen.zshplugin
 EOBUNDLES
 
 # Tell Antigen that you're done.
