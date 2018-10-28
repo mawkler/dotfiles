@@ -21,7 +21,7 @@
   store  = config credential.helper store
 [core]
   editor = vim
-  ; autocrlf = true
+  autocrlf = input
 [github]
   user   = Melkster
 [color]
