@@ -18,19 +18,22 @@ source ~/.zsh/antigen.zsh
 antigen use oh-my-zsh
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle git
-antigen bundle pip
-antigen bundle lein
-antigen bundle command-not-found
-antigen bundle colorize
-antigen bundle colored-man-pages
-antigen bundle extract
-antigen bundle Tarrasch/zsh-bd
-antigen bundle TamCore/autoupdate-oh-my-zsh-plugins
-antigen bundle hlissner/zsh-autopair
-antigen bundle zsh-autosuggestions
-antigen bundle l4u/zsh-output-highlighting
-antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundles << EOBUNDLES
+git
+pip
+lein
+command-not-found
+colorize
+colored-man-pages
+extract
+Tarrasch/zsh-bd
+TamCore/autoupdate-oh-my-zsh-plugins
+hlissner/zsh-autopair
+l4u/zsh-output-highlighting
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting
+
+EOBUNDLES
 
 # Tell Antigen that you're done.
 antigen apply
