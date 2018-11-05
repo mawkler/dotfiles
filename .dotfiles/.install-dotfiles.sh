@@ -36,6 +36,7 @@ if [[ `cat $HOME/.gitignore 2>/dev/null` = ".dotfiles" ]]; then
 fi
 
 echo "Installing Antigen";
+mkdir .zsh
 curl -L git.io/antigen > .zsh/antigen.zsh
 
 echo "Installing Powerline.";
