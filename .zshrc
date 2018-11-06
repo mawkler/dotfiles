@@ -116,6 +116,7 @@ alias b='bd 1'
 alias open='xdg-open &>/dev/null'
 alias errorlogs='journalctl --since=today'
 alias screenkey='screenkey -t 1.5 -s small'
+alias wifi='nmcli'
 
 #Git:
 alias g='git'
