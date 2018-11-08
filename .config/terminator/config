@@ -1,5 +1,6 @@
 [global_config]
   extra_styling = False
+  inactive_color_offset = 0.9
   suppress_multiple_term_dialog = True
 [keybindings]
   layout_launcher = None
