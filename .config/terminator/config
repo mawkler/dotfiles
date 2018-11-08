@@ -1,0 +1,32 @@
+[global_config]
+  extra_styling = False
+  suppress_multiple_term_dialog = True
+[keybindings]
+  layout_launcher = None
+  switch_to_tab_1 = <Alt>1
+  switch_to_tab_2 = <Alt>2
+  switch_to_tab_3 = <Alt>3
+  switch_to_tab_4 = <Alt>4
+  switch_to_tab_5 = <Alt>5
+  switch_to_tab_6 = <Alt>6
+  switch_to_tab_7 = <Alt>7
+  switch_to_tab_8 = <Alt>8
+  switch_to_tab_9 = <Alt>9
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#2e3436"
+    background_darkness = 0.89
+    background_type = transparent
+    cursor_blink = False
+    cursor_color = "#aaaaaa"
+    cursor_shape = ibeam
+    show_titlebar = False
