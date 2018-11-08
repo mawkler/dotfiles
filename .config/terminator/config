@@ -4,6 +4,7 @@
 [keybindings]
   layout_launcher = None
   switch_to_tab_1 = <Alt>1
+  switch_to_tab_10 = None
   switch_to_tab_2 = <Alt>2
   switch_to_tab_3 = <Alt>3
   switch_to_tab_4 = <Alt>4
@@ -29,4 +30,5 @@
     cursor_blink = False
     cursor_color = "#aaaaaa"
     cursor_shape = ibeam
+    foreground_color = "#d3d7cf"
     show_titlebar = False
