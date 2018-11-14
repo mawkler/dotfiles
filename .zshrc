@@ -75,18 +75,18 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # source $ZSH/oh-my-zsh.sh
 
-#Powerline theme (has to come after `source $ZSH/oh-my-zsh.sh`)
+# Powerline theme (has to come after `source $ZSH/oh-my-zsh.sh`)
 if [[ -r `python -m site --user-site`/powerline/bindings/zsh/powerline.zsh ]]; then
   source `python -m site --user-site`/powerline/bindings/zsh/powerline.zsh
 else
   echo "Powerline theme doesn't exists, using default theme \"$ZSH_THEME\""
 fi
 
-#För att ta bort (+i) skrivrättigheter fran en fil, resp lagga till (-i)
-#chattr +i filename.ext
-#chattr -i filename.ext
+# För att ta bort (+i) skrivrättigheter fran en fil, resp lagga till (-i)
+# chattr +i filename.ext
+# chattr -i filename.ext
 
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR=$VISUAL
 
 alias zshrc='nvim ~/.zshrc'
@@ -118,7 +118,7 @@ alias errorlogs='journalctl --since=today'
 alias screenkey='screenkey -t 1.5 -s small'
 alias wifi='nmcli'
 
-#Git:
+# Git:
 alias g='git'
 alias gs='git status'
 alias gl='git log --decorate'
@@ -132,24 +132,27 @@ alias gcam='git commit -am'
 alias gu='git diff HEAD@{1} HEAD'
 alias gly='git log --since="yesterday"'
 
-#Dotfiles
+# Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dot='dotfiles'
 alias dots='dot status'
 
 # prompt_context () { }
-#DEFAULT_USER="melker"
+# DEFAULT_USER="melker"
 
-#Syntax highligting in less:
+# Syntax highligting in less:
 export LESSOPEN="| /bin/src-hilite-lesspipe.sh %s"
 export LESS=" -R "
 
-#Swap behaviour of <Up>/<Down> keys and Ctrl + P/N
+# Keybindings
+bindkey -s '^[[2~' '^X^E' # `Insert` key opens $EDITOR
+
+# Swap behaviour of <Up>/<Down> keys and Ctrl + P/N
 bindkey '^P'  up-line-or-search
 bindkey '^N'  down-line-or-search
 bindkey '^[[A' up-line-or-history
 bindkey '^[[B' down-line-or-history
-#last two don't seem to work though
+# last two don't seem to work though
 
 # Create a new directory and enter it
 function mkcd() {
