@@ -4,20 +4,13 @@ if [[ -r ~/.zshrc.private ]]; then
   source ~/.zshrc.private
 fi
 
-# Path to oh-my-zsh installation
-# if [[ -d /home/melker/.oh-my-zsh ]]; then
-#   export ZSH=/home/melker/.oh-my-zsh
-# else echo "Oh-my-zsh not installed"
-# fi
-
-# -- Antigen --
+# ------------- Antigen -------------
 
 source ~/.zsh/antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
 antigen bundles << EOBUNDLES
 git
 pip
@@ -38,7 +31,7 @@ EOBUNDLES
 # Tell Antigen that you're done.
 antigen apply
 
-# ------------
+# -----------------------------------
 
 ZSH_THEME="agnoster" # Default theme (should be overwritten by Powerline theme)
 
@@ -48,32 +41,14 @@ export UPDATE_ZSH_DAYS=1 # How often to auto-update (in days).
 
 ENABLE_CORRECTION="true" # Enables command auto-correction.
 
+setopt MENU_COMPLETE # Always insert first tab completion after pressing `<Tab>`
+
 COMPLETION_WAITING_DOTS="true" # Displays red dots whilst waiting for completion.
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# plugins=(
-#   git
-#   pip
-#   colorize colored-man-pages
-#   extract
-#   bd
-#   autoupdate
-#   zsh-autopair
-#   zsh-autosuggestions
-#   zsh-output-highlighting
-#   zsh-syntax-highlighting # zsh-syntax-highlighting must be the last plugin
-# )
-
-# source $ZSH/oh-my-zsh.sh
 
 # Powerline theme (has to come after `source $ZSH/oh-my-zsh.sh`)
 if [[ -r `python -m site --user-site`/powerline/bindings/zsh/powerline.zsh ]]; then
@@ -82,10 +57,6 @@ else
   echo "Powerline theme doesn't exists, using default theme \"$ZSH_THEME\""
 fi
 
-# För att ta bort (+i) skrivrättigheter fran en fil, resp lagga till (-i)
-# chattr +i filename.ext
-# chattr -i filename.ext
-
 export VISUAL=nvim
 export EDITOR=$VISUAL
 
@@ -93,8 +64,6 @@ alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.vimrc'
 alias src='source ~/.zshrc'
 alias ..='cd .. && ls'
-alias ...='cd ../.. && ls'
-alias ....='cd ../../.. && ls'
 alias grep='grep -Iin --color=always'
 alias grepr='grep -r'
 alias s='search'
@@ -137,9 +106,6 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dot='dotfiles'
 alias dots='dot status'
 
-# prompt_context () { }
-# DEFAULT_USER="melker"
-
 # Syntax highligting in less:
 export LESSOPEN="| /bin/src-hilite-lesspipe.sh %s"
 export LESS=" -R "
@@ -158,6 +124,3 @@ bindkey '^[[B' down-line-or-history
 function mkcd() {
   mkdir -p "$@" && cd "$@"
 }
-
-
-# neofetch # Os information as start page
