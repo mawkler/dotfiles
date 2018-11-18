@@ -3,6 +3,8 @@
   inactive_color_offset = 0.9
   suppress_multiple_term_dialog = True
 [keybindings]
+  cycle_next = <Shift>Tab
+  cycle_prev = None
   layout_launcher = None
   switch_to_tab_1 = <Alt>1
   switch_to_tab_10 = None
