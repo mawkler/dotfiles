@@ -1,8 +1,6 @@
 PATH=$PATH:~/.gem/ruby/2.5.0/bin
 
-if [[ -r ~/.zshrc.private ]]; then
-  source ~/.zshrc.private
-fi
+ZSH_THEME="agnoster" # Backup theme (gets overwritten by Powerline theme if available)
 
 # ------------- Antigen -------------
 
@@ -28,12 +26,13 @@ hlissner/zsh-autopair
 unixorn/autoupdate-antigen.zshplugin
 EOBUNDLES
 
+antigen theme $ZSH_THEME
+
 # Tell Antigen that you're done.
 antigen apply
 
 # -----------------------------------
 
-ZSH_THEME="agnoster" # Default theme (should be overwritten by Powerline theme)
 
 HYPHEN_INSENSITIVE="true" # Use hyphen-insensitive completion.
 
@@ -55,6 +54,10 @@ if [[ -r `python -m site --user-site`/powerline/bindings/zsh/powerline.zsh ]]; t
   source `python -m site --user-site`/powerline/bindings/zsh/powerline.zsh
 else
   echo "Powerline theme doesn't exists, using default theme \"$ZSH_THEME\""
+fi
+
+if [[ -r ~/.zshrc.private ]]; then
+  source ~/.zshrc.private
 fi
 
 export VISUAL=nvim
