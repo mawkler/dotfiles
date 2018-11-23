@@ -1,0 +1,15 @@
+--theme="TwoDark"
+
+--style="numbers,changes,header,grid"
+
+# Use italic text on the terminal (not supported on all terminals)
+--italic-text=always
+
+# Add some additional less features
+--pager="less -Fmgi --underline-special --SILENT"
+
+# Use C++ syntax (instead of C) for .h header files
+--map-syntax h:cpp
+
+# Use "gitignore" highlighting for ".ignore" files
+--map-syntax .ignore:.gitignore
