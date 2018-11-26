@@ -1,0 +1,10 @@
+set surround
+set multiple-cursors
+set showmode
+set scrolloff=5
+set relativenumber
+set smartcase
+
+nmap <C-j> o<Esc>
+map! <M-j> <Down>
+map! <M-k> <Up>
