@@ -20,7 +20,6 @@
   unignore = update-index --no-assume-unchanged
   store  = config credential.helper store
 [core]
-  editor = vim
   autocrlf = input
 [github]
   user   = Melkster
