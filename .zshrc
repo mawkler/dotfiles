@@ -56,16 +56,16 @@ else
   echo "Powerline theme doesn't exists, using default theme \"$ZSH_THEME\""
 fi
 
-if [[ -r ~/.zshrc.private ]]; then
-  source ~/.zshrc.private
-fi
-
 if type nvim > /dev/null; then
   export VISUAL=nvim # Use NeoVim if installed, otherwise Vim
 else
   export VISUAL=vim
 fi
 export EDITOR=$VISUAL
+
+if [[ -r ~/.zshrc.private ]]; then
+  source ~/.zshrc.private
+fi
 
 alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.vimrc'
