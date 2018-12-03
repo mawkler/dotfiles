@@ -9,8 +9,7 @@ git clone --bare https://github.com/Melkster/dotfiles.git $HOME/.dotfiles
 dotfiles checkout
 ```
 # Dependencides
- - git (obviously)
- - powerline
- - pip (for installing powerline-status)
- - ctags (for Vim)
- - npm (for some Vim dependencies)
+ - [git](https://git-scm.com/) (obviously)
+ - [powerline](https://github.com/powerline/powerline) and [pip](https://pypi.org/project/pip/) (for installing powerline-status)
+ - [ctags](https://ctags.io/) (for Vim)
+ - [npm](https://www.npmjs.com/) (for some Vim dependencies)
