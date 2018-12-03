@@ -12,4 +12,5 @@ dotfiles checkout
  - git (obviously)
  - powerline
  - pip (for installing powerline-status)
+ - ctags (for Vim)
  - npm (for some Vim dependencies)
