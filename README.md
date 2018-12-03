@@ -1,5 +1,5 @@
 # Installation
-To clone and set everything up, run [this script](.dotfiles/.install-dotfiles.sh) based on [this article](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/).
+To clone and set everything up, run [this script](.dotfiles/install-dotfiles.sh) based on [this article](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/).
 
 The following is basically what the script does, plus backing up previous dotfiles, adding Vim swap file directories, installing Powerline and removing some unwanted files:
 ```sh
