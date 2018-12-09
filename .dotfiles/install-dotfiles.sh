@@ -19,8 +19,8 @@ echo "Hiding untracked files.";
 dotfiles config status.showUntrackedFiles no
 
 echo "Creating Vim swap file directories.";
-mkdir -p $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo    #Create Vim swap file directories
-chmod +x $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo #And make them executable (at least backup needs this)
+mkdir -p $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo $HOME/.vim/tags # Create Vim directories
+chmod +x $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo                 # And make them executable (at least backup needs this)
 
 echo "Installing Vundle and Vundle plugins for Vim";
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim

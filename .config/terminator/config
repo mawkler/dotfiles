@@ -36,4 +36,5 @@
     cursor_color = "#aaaaaa"
     cursor_shape = ibeam
     foreground_color = "#d3d7cf"
+    scrollback_lines = 2000
     show_titlebar = False
