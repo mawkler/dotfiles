@@ -25,6 +25,7 @@ chmod +x $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo                 # And 
 echo "Installing Vundle and Vundle plugins for Vim";
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 vim +PluginInstall +qa
+sudo pip install autopep8 flake8 # For Python linting and autoformatting
 
 echo "Removing README.md and setting it to 'assume-unchanged'.";
 dotfiles update-index --assume-unchanged $HOME/README.md
