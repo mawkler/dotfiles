@@ -33,10 +33,26 @@ antigen apply
 
 # -----------------------------------
 
+# Vi-mode config
+
+bindkey -v # Vi-mode
+bindkey '^F' forward-char
+bindkey '^[f' forward-word
+bindkey '^B' backward-char
+bindkey '^[b' backward-word
+bindkey '^E' end-of-line
+bindkey '^A' beginning-of-line
+bindkey '^_' undo
+
+bindkey -M vicmd -s '^[l' 'ccls^J'
+bindkey -M vicmd -s '^[L' 'ccls -a^J'
+bindkey -M vicmd -s '_' '^'
+
+export KEYTIMEOUT=1
 
 HYPHEN_INSENSITIVE="true" # Use hyphen-insensitive completion.
 
-export UPDATE_ZSH_DAYS=1 # How often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=1 # How often to auto-update (in days). # Not needed with Antigen
 
 ENABLE_CORRECTION="true" # Enables command auto-correction.
 
@@ -119,7 +135,9 @@ export LESSOPEN="| /bin/src-hilite-lesspipe.sh %s"
 export LESS=" -R "
 
 # Keybindings
-bindkey -s '^[[2~' '^X^E' # `Insert` key opens $EDITOR
+bindkey -s '^[l' '^K^Uls^J'    # Alt-L clears text before running `ls`
+bindkey -s '^[L' '^K^Uls -a^J' # Alt-Shift-L also shows hidden files
+bindkey -s '^[[2~' '^X^E'      # `Insert` key opens $EDITOR
 
 # Swap behaviour of <Up>/<Down> keys and Ctrl + P/N
 bindkey '^P'  up-line-or-search
