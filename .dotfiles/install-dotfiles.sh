@@ -12,11 +12,14 @@ if [ $? = 0 ]; then
   echo "Checked out dotfiles.";
 else
   echo "Backing up pre-existing dot files.";
-dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I % sh -c 'mkdir --parents .dotfiles-backup/%; mv % .dotfiles-backup/%;'
-dotfiles checkout
+  dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I % sh -c 'mkdir --parents .dotfiles-backup/%; mv % .dotfiles-backup/%;'
+  dotfiles checkout
 fi;
-echo "Hiding untracked files.";
+
+echo "Configuring repository.";
 dotfiles config status.showUntrackedFiles no
+dotfiles config --add remote.origin.fetch "refs/heads/*:refs/remotes/origin/*"
+dotfiles push --set-upstream origin master
 
 echo "Creating Vim swap file directories.";
 mkdir -p $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo $HOME/.vim/tags # Create Vim directories
