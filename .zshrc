@@ -24,6 +24,7 @@ Tarrasch/zsh-bd
 TamCore/autoupdate-oh-my-zsh-plugins
 hlissner/zsh-autopair
 unixorn/autoupdate-antigen.zshplugin
+zsh-users/zsh-history-substring-search
 EOBUNDLES
 
 antigen theme $ZSH_THEME
@@ -32,23 +33,6 @@ antigen theme $ZSH_THEME
 antigen apply
 
 # -----------------------------------
-
-# Vi-mode config
-
-bindkey -v # Vi-mode
-bindkey '^F' forward-char
-bindkey '^[f' forward-word
-bindkey '^B' backward-char
-bindkey '^[b' backward-word
-bindkey '^E' end-of-line
-bindkey '^A' beginning-of-line
-bindkey '^_' undo
-
-bindkey -M vicmd -s '^[l' 'ccls^J'
-bindkey -M vicmd -s '^[L' 'ccls -a^J'
-bindkey -M vicmd -s '_' '^'
-
-export KEYTIMEOUT=1
 
 HYPHEN_INSENSITIVE="true" # Use hyphen-insensitive completion.
 
@@ -82,6 +66,42 @@ export EDITOR=$VISUAL
 if [[ -r ~/.zshrc.private ]]; then
   source ~/.zshrc.private
 fi
+
+bindkey -v # Vi-mode
+export KEYTIMEOUT=1
+
+# Keybindings
+bindkey -s '^[l' '^K^Uls^J'    # Alt-L clears text before running `ls`
+bindkey -s '^[L' '^K^Uls -a^J' # Alt-Shift-L also shows hidden files
+bindkey -s '^[[2~' '^X^E'      # `Insert` key opens $EDITOR
+
+bindkey '^P'  up-line-or-beginning-search
+bindkey '^N'  down-line-or-beginning-search
+bindkey '^[p' history-substring-search-up
+bindkey '^[n' history-substring-search-down
+bindkey '^U'  kill-whole-line
+
+# Vi-mode config
+bindkey '^F' forward-char
+bindkey '^[f' forward-word
+bindkey '^B' backward-char
+bindkey '^[b' backward-word
+bindkey '^E' end-of-line
+bindkey '^A' beginning-of-line
+bindkey '^_' undo
+
+bindkey -M vicmd -s '^[l' 'ccls^J'
+bindkey -M vicmd -s '^[L' 'ccls -a^J'
+bindkey -M vicmd -s '_' '^'
+bindkey -M vicmd '^P' up-line-or-beginning-search
+bindkey -M vicmd '^N' down-line-or-beginning-search
+bindkey -M vicmd '^[p' history-substring-search-up
+bindkey -M vicmd '^[n' history-substring-search-down
+
+# Create a new directory and enter it
+function mkcd() {
+  mkdir -p "$@" && cd "$@"
+}
 
 alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.vimrc'
@@ -133,20 +153,3 @@ alias dots='dot status'
 # Syntax highligting in less:
 export LESSOPEN="| /bin/src-hilite-lesspipe.sh %s"
 export LESS=" -R "
-
-# Keybindings
-bindkey -s '^[l' '^K^Uls^J'    # Alt-L clears text before running `ls`
-bindkey -s '^[L' '^K^Uls -a^J' # Alt-Shift-L also shows hidden files
-bindkey -s '^[[2~' '^X^E'      # `Insert` key opens $EDITOR
-
-# Swap behaviour of <Up>/<Down> keys and Ctrl + P/N
-bindkey '^P'  up-line-or-search
-bindkey '^N'  down-line-or-search
-bindkey '^[[A' up-line-or-history
-bindkey '^[[B' down-line-or-history
-# last two don't seem to work though
-
-# Create a new directory and enter it
-function mkcd() {
-  mkdir -p "$@" && cd "$@"
-}
