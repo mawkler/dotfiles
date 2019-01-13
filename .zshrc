@@ -67,19 +67,23 @@ if [[ -r ~/.zshrc.private ]]; then
   source ~/.zshrc.private
 fi
 
-bindkey -v # Vi-mode
-export KEYTIMEOUT=1
+if [ -z $VIMRUNTIME ]; then # Don't run Vi-mode inside Vim-sessions
+  bindkey -v # Vi-mode
+  export KEYTIMEOUT=1
+fi
 
 # Keybindings
-bindkey -s '^[l' '^K^Uls^J'    # Alt-L clears text before running `ls`
-bindkey -s '^[L' '^K^Uls -a^J' # Alt-Shift-L also shows hidden files
+bindkey -s '^[l' '^Uls^J'    # Alt-L clears text before running `ls`
+bindkey -s '^[L' '^Uls -a^J' # Alt-Shift-L also shows hidden files
 bindkey -s '^[[2~' '^X^E'      # `Insert` key opens $EDITOR
 
-bindkey '^P'  up-line-or-beginning-search
-bindkey '^N'  down-line-or-beginning-search
-bindkey '^[p' history-substring-search-up
-bindkey '^[n' history-substring-search-down
-bindkey '^U'  kill-whole-line
+bindkey '^P'     up-line-or-beginning-search
+bindkey '^N'     down-line-or-beginning-search
+bindkey '^[p'    history-substring-search-up
+bindkey '^[n'    history-substring-search-down
+bindkey '^U'     kill-whole-line
+bindkey '^K'     kill-line
+bindkey '\e\C-?' backward-kill-word # Alt-backspace
 
 # Vi-mode config
 bindkey '^F' forward-char
@@ -97,6 +101,7 @@ bindkey -M vicmd '^P' up-line-or-beginning-search
 bindkey -M vicmd '^N' down-line-or-beginning-search
 bindkey -M vicmd '^[p' history-substring-search-up
 bindkey -M vicmd '^[n' history-substring-search-down
+bindkey -M vicmd '\e\C-?' backward-kill-word
 
 # Create a new directory and enter it
 function mkcd() {
