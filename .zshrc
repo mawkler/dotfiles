@@ -25,6 +25,7 @@ TamCore/autoupdate-oh-my-zsh-plugins
 hlissner/zsh-autopair
 unixorn/autoupdate-antigen.zshplugin
 zsh-users/zsh-history-substring-search
+vi-mode
 EOBUNDLES
 
 antigen theme $ZSH_THEME
@@ -83,15 +84,14 @@ bindkey '^[p'    history-substring-search-up
 bindkey '^[n'    history-substring-search-down
 bindkey '^U'     kill-whole-line
 bindkey '^K'     kill-line
-bindkey '\e\C-?' backward-kill-word # Alt-backspace
+bindkey '\e\C-?' backward-kill-word    # Alt-backspace
+bindkey '^[[Z'   reverse-menu-complete # Shift-tab completes backwards
 
 # Vi-mode config
 bindkey '^F' forward-char
 bindkey '^[f' forward-word
 bindkey '^B' backward-char
 bindkey '^[b' backward-word
-bindkey '^E' end-of-line
-bindkey '^A' beginning-of-line
 bindkey '^_' undo
 
 bindkey -M vicmd -s '^[l' 'ccls^J'

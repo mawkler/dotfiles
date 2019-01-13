@@ -6,6 +6,7 @@
   broadcast_off = None
   cycle_next = <Alt>Return
   cycle_prev = <Shift><Alt>Return
+  edit_window_title = None
   layout_launcher = None
   new_window = None
   switch_to_tab_1 = <Alt>1
