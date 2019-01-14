@@ -68,15 +68,25 @@ if [[ -r ~/.zshrc.private ]]; then
   source ~/.zshrc.private
 fi
 
-if [ -z $VIMRUNTIME ]; then # Don't run Vi-mode inside Vim-sessions
-  bindkey -v # Vi-mode
-  export KEYTIMEOUT=1
-fi
+# Vi-mode
+bindkey -v # This is also enabled by vi-mode plugin
+KEYTIMEOUT=1
+
+# Change cursor shape for different vi modes
+function zle-keymap-select {
+  if [[ $KEYMAP == vicmd ]] || [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ $KEYMAP == main ]] || [[ $KEYMAP == viins ]] || [[ $KEYMAP = '' ]] || [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() { zle-keymap-select 'beam'} # Start with beam shape cursor on zsh startup and after every command.
 
 # Keybindings
-bindkey -s '^[l' '^Uls^J'    # Alt-L clears text before running `ls`
-bindkey -s '^[L' '^Uls -a^J' # Alt-Shift-L also shows hidden files
-bindkey -s '^[[2~' '^X^E'      # `Insert` key opens $EDITOR
+bindkey -s '^[l' '^Qls^J'    # Alt-L clears text before running `ls`
+bindkey -s '^[L' '^Qls -a^J' # Alt-Shift-L also shows hidden files
+bindkey -s '^[[2~' '^X^E'    # `Insert` key opens $EDITOR
 
 bindkey '^P'     up-line-or-beginning-search
 bindkey '^N'     down-line-or-beginning-search
@@ -86,6 +96,7 @@ bindkey '^U'     kill-whole-line
 bindkey '^K'     kill-line
 bindkey '\e\C-?' backward-kill-word    # Alt-backspace
 bindkey '^[[Z'   reverse-menu-complete # Shift-tab completes backwards
+bindkey '^Q'     push-line             # Clears the command line and restores after new command
 
 # Vi-mode config
 bindkey '^F' forward-char
