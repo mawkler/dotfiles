@@ -6,8 +6,7 @@ ZSH_THEME="agnoster" # Backup theme (gets overwritten by Powerline theme if avai
 
 source ~/.zsh/antigen.zsh
 
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
+antigen use oh-my-zsh # Load the oh-my-zsh's library.
 
 antigen bundles << EOBUNDLES
 git
@@ -30,8 +29,7 @@ EOBUNDLES
 
 antigen theme $ZSH_THEME
 
-# Tell Antigen that you're done.
-antigen apply
+antigen apply # Tell Antigen that you're done.
 
 # -----------------------------------
 
@@ -84,34 +82,34 @@ zle -N zle-keymap-select
 zle-line-init() { zle-keymap-select 'beam'} # Start with beam shape cursor on zsh startup and after every command.
 
 # Keybindings
-bindkey -s '^[l' '^Qls^J'    # Alt-L clears text before running `ls`
-bindkey -s '^[L' '^Qls -a^J' # Alt-Shift-L also shows hidden files
-bindkey -s '^[[2~' '^X^E'    # `Insert` key opens $EDITOR
+bindkey -s '^[l'   '^Qls^J'    # Alt-L clears text before running `ls`
+bindkey -s '^[L'   '^Qls -a^J' # Alt-Shift-L also shows hidden files
+bindkey -s '^[[2~' '^X^E'      # `Insert` key opens $EDITOR
 
 bindkey '^P'     up-line-or-beginning-search
 bindkey '^N'     down-line-or-beginning-search
 bindkey '^[p'    history-substring-search-up
 bindkey '^[n'    history-substring-search-down
-bindkey '^U'     kill-whole-line
-bindkey '^K'     kill-line
 bindkey '\e\C-?' backward-kill-word    # Alt-backspace
 bindkey '^[[Z'   reverse-menu-complete # Shift-tab completes backwards
-bindkey '^Q'     push-line             # Clears the command line and restores after new command
 
 # Vi-mode config
-bindkey '^F' forward-char
+bindkey '^F'  forward-char
 bindkey '^[f' forward-word
-bindkey '^B' backward-char
+bindkey '^B'  backward-char
 bindkey '^[b' backward-word
-bindkey '^_' undo
+bindkey '^_'  undo
+bindkey '^U'  kill-whole-line
+bindkey '^K'  kill-line
+bindkey '^Q'  push-line # Clears the command line and restores after new command
 
 bindkey -M vicmd -s '^[l' 'ccls^J'
 bindkey -M vicmd -s '^[L' 'ccls -a^J'
 bindkey -M vicmd -s '_' '^'
-bindkey -M vicmd '^P' up-line-or-beginning-search
-bindkey -M vicmd '^N' down-line-or-beginning-search
-bindkey -M vicmd '^[p' history-substring-search-up
-bindkey -M vicmd '^[n' history-substring-search-down
+bindkey -M vicmd '^P'     up-line-or-beginning-search
+bindkey -M vicmd '^N'     down-line-or-beginning-search
+bindkey -M vicmd '^[p'    history-substring-search-up
+bindkey -M vicmd '^[n'    history-substring-search-down
 bindkey -M vicmd '\e\C-?' backward-kill-word
 
 # Create a new directory and enter it
@@ -136,7 +134,6 @@ alias xclip='xclip -selection c'
 alias c='xclip -selection clipboard'
 alias v='xclip -o'
 alias ls='ls -F --color'
-alias lsa='ls -Fa --color'
 alias m='make'
 alias tree='tree -C'
 alias installed='yaourt -Qqe'
