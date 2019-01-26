@@ -39,8 +39,6 @@ HYPHEN_INSENSITIVE="true" # Use hyphen-insensitive completion.
 
 ENABLE_CORRECTION="true" # Enables command auto-correction.
 
-setopt MENU_COMPLETE # Always insert first tab completion after pressing `<Tab>`
-
 COMPLETION_WAITING_DOTS="true" # Displays red dots whilst waiting for completion.
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -81,7 +79,24 @@ function zle-keymap-select {
 zle -N zle-keymap-select
 zle-line-init() { zle-keymap-select 'beam'} # Start with beam shape cursor on zsh startup and after every command.
 
+function expand-or-complete-or-cd() {
+    if [[ $#BUFFER == 0 ]]; then
+        BUFFER="cd "
+        CURSOR=3
+        # zle list-choices
+        setopt MENU_COMPLETE # Always insert first tab completion after pressing `<Tab>`
+        zle expand-or-complete
+        unsetopt MENU_COMPLETE
+    else
+        zle expand-or-complete
+    fi
+}
+zle -N expand-or-complete-or-cd
+# bind to tab
+bindkey '^I' expand-or-complete-or-cd
+
 # Keybindings
+# For list of keybindings run `man zshzle`, `zle -al` or `bindkey`
 bindkey -s '^[l'   '^Qls^J'    # Alt-L clears text before running `ls`
 bindkey -s '^[L'   '^Qls -a^J' # Alt-Shift-L also shows hidden files
 bindkey -s '^[[2~' '^X^E'      # `Insert` key opens $EDITOR
@@ -92,6 +107,9 @@ bindkey '^[p'    history-substring-search-up
 bindkey '^[n'    history-substring-search-down
 bindkey '\e\C-?' backward-kill-word    # Alt-backspace
 bindkey '^[[Z'   reverse-menu-complete # Shift-tab completes backwards
+
+bindkey -M menuselect '^P' up-history
+bindkey -M menuselect '^N' down-history
 
 # Vi-mode config
 bindkey '^F'  forward-char
