@@ -27,6 +27,56 @@ zsh-users/zsh-history-substring-search
 vi-mode
 EOBUNDLES
 
+# hchbaw/auto-fu.zsh
+
+# 1) source this file.
+# source ~/.antigen/bundles/hchbaw/auto-fu.zsh/auto-fu.zsh
+# # 2) establish `zle-line-init' containing `auto-fu-init' something like below.
+# zle-line-init () {auto-fu-init;}; zle -N zle-line-init
+# # 3) use the _oldlist completer something like below.
+# zstyle ':completion:*' completer _oldlist _complete
+# # (If you have a lot of completer, please insert _oldlist before _complete.)
+# # 4) establish `zle-keymap-select' containing `auto-fu-zle-keymap-select'.
+# zle -N zle-keymap-select auto-fu-zle-keymap-select
+# # (This enables the afu-vicmd keymap switching coordinates a bit.)
+
+# *Optionally* you can use the zcompiled file for a little faster loading on
+# every shell startup, if you zcompile the necessary functions.
+# *1) zcompile the defined functions. (generates ~/.zsh/auto-fu.zwc)
+# A=/path/to/auto-fu.zsh; (zsh -c "source $A ; auto-fu-zcompile $A ~/.zsh")
+# *2) source the zcompiled file instead of this file and some tweaks.
+# source ~/.zsh/auto-fu; auto-fu-install
+# *3) establish `zle-line-init' and such (same as a few lines above).
+
+
+# ci"
+autoload -U select-quoted
+zle -N select-quoted
+for m in visual viopp; do
+  for c in {a,i}{\',\",\`}; do
+    bindkey -M $m $c select-quoted
+  done
+done
+
+# ci{, ci(
+autoload -U select-bracketed
+zle -N select-bracketed
+for m in visual viopp; do
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+    bindkey -M $m $c select-bracketed
+  done
+done
+
+# surround
+autoload -Uz surround
+zle -N delete-surround surround
+zle -N add-surround surround
+zle -N change-surround surround
+bindkey -a cs change-surround
+bindkey -a ds delete-surround
+bindkey -a ys add-surround
+bindkey -M visual S add-surround
+
 antigen theme $ZSH_THEME
 
 antigen apply # Tell Antigen that you're done.
@@ -129,6 +179,13 @@ bindkey -M vicmd '^N'     down-line-or-beginning-search
 bindkey -M vicmd '^[p'    history-substring-search-up
 bindkey -M vicmd '^[n'    history-substring-search-down
 bindkey -M vicmd '\e\C-?' backward-kill-word
+
+# ZSH-vimode-visual
+# bindkey -M vivis 's ' vi-visual-surround-space
+# bindkey -M vivis "s'" vi-visual-surround-squote
+# bindkey -M vivis 's"' vi-visual-surround-dquote
+# bindkey -M vivis 's(' vi-visual-surround-parenthesis
+# bindkey -M vivis 's)' vi-visual-surround-parenthesis
 
 # Create a new directory and enter it
 function mkcd() {
