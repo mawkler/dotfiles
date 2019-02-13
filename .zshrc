@@ -170,8 +170,8 @@ bindkey '^U'  kill-whole-line
 bindkey '^K'  kill-line
 bindkey '^Q'  push-line # Clears the command line and restores after new command
 
-bindkey -M vicmd -s '^[l' 'ccls^J'
-bindkey -M vicmd -s '^[L' 'ccls -a^J'
+bindkey -M vicmd -s '^[l' 'A^Qls^J'
+bindkey -M vicmd -s '^[L' 'A^Qls -a^J'
 bindkey -M vicmd -s '_' '^'
 bindkey -M vicmd '^P'     up-line-or-beginning-search
 bindkey -M vicmd '^N'     down-line-or-beginning-search
