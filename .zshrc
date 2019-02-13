@@ -1,5 +1,3 @@
-PATH=$PATH:~/.gem/ruby/2.5.0/bin
-
 ZSH_THEME="agnoster" # Backup theme (gets overwritten by Powerline theme if available)
 
 # ------------- Antigen -------------
