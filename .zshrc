@@ -85,6 +85,7 @@ antigen apply # Tell Antigen that you're done.
 
 HYPHEN_INSENSITIVE="true" # Use hyphen-insensitive completion.
 
+DISABLE_AUTO_UPDATE="true"
 # export UPDATE_ZSH_DAYS=1 # How often to auto-update (in days). # Not needed with Antigen
 
 ENABLE_CORRECTION="true" # Enables command auto-correction.
