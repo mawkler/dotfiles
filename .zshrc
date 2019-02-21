@@ -217,6 +217,7 @@ alias errorlogs='journalctl --since=today'
 alias screenkey='screenkey -t 1.5 -s small'
 alias wifi='nmcli'
 alias bats='bat --pager="less -mgi --underline-special --SILENT"'
+alias myip='hostname -i'
 
 # Git:
 alias g='git'

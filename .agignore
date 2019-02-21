@@ -25,6 +25,12 @@ chromium/
 .eclipse
 .mysql
 .tmux
+.cargo/
+.FlashPrint/
+.wine/
+.technic/
+.vim/
+.antigen/
 Dropbox/
 
 *.sw?
