@@ -1,5 +1,8 @@
 ZSH_THEME="agnoster" # Backup theme (gets overwritten by Powerline theme if available)
 
+DISABLE_AUTO_UPDATE="true"
+
+
 # ------------- Antigen -------------
 
 source ~/.zsh/antigen.zsh
@@ -18,7 +21,6 @@ zsh-users/zsh-autosuggestions
 zsh-users/zsh-syntax-highlighting
 l4u/zsh-output-highlighting
 Tarrasch/zsh-bd
-TamCore/autoupdate-oh-my-zsh-plugins
 hlissner/zsh-autopair
 unixorn/autoupdate-antigen.zshplugin
 zsh-users/zsh-history-substring-search
@@ -82,9 +84,6 @@ antigen apply # Tell Antigen that you're done.
 # -----------------------------------
 
 HYPHEN_INSENSITIVE="true" # Use hyphen-insensitive completion.
-
-DISABLE_AUTO_UPDATE="true"
-# export UPDATE_ZSH_DAYS=1 # How often to auto-update (in days). # Not needed with Antigen
 
 ENABLE_CORRECTION="true" # Enables command auto-correction.
 
