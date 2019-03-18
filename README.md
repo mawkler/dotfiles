@@ -6,8 +6,10 @@ To clone and set everything up, run the following:
 alias dotfiles="/mingw64/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 echo ".dotfiles" >> .gitignore
 git clone --bare https://github.com/Melkster/dotfiles.git $HOME/.dotfiles
-dotfiles update-index --assume-unchanged $HOME/README.md
 dotfiles checkout
+dotfiles config status.showUntrackedFiles no
+dotfiles config --add remote.origin.fetch "refs/heads/*:refs/remotes/origin/*"
+dotfiles push --set-upstream origin master
 mkdir -p $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo $HOME/.vim/tags
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 vim +PluginInstall +qa
