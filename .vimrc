@@ -17,7 +17,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'unblevable/quick-scope'
-Plugin 'Valloric/MatchTagAlways'       " Highlight matching HTML tags
+" Plugin 'Valloric/MatchTagAlways'       " Highlight matching HTML tags
 Plugin 'tmhedberg/matchit'             " Ads `%` command for HTML tags
 Plugin 'andymass/vim-matchup'          " Ads additional `%` commands
 " Plugin 'Shougo/deoplete.nvim'

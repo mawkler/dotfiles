@@ -1,12 +1,16 @@
-# Installation
-To clone and set everything up, run [this script](.dotfiles/install-dotfiles.sh) based on [this article](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/).
+# This is the Windows-version
 
-The following is basically what the script does, plus backing up previous dotfiles, adding Vim swap file directories, installing Powerline and removing some unwanted files:
+# Installation
+To clone and set everything up, run the following:
 ```sh
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias dotfiles="/mingw64/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 echo ".dotfiles" >> .gitignore
 git clone --bare https://github.com/Melkster/dotfiles.git $HOME/.dotfiles
+dotfiles update-index --assume-unchanged $HOME/README.md
 dotfiles checkout
+mkdir -p $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo $HOME/.vim/tags
+git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+vim +PluginInstall +qa
 ```
 # Dependencides
  - [git](https://git-scm.com/) (obviously)
