@@ -94,6 +94,8 @@ COMPLETION_WAITING_DOTS="true" # Displays red dots whilst waiting for completion
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+# autoload predict-on && predict-on # Always shows completions and suggestions
+
 # Powerline theme (has to come after `source $ZSH/oh-my-zsh.sh`)
 if [[ -r `python -m site --user-site`/powerline/bindings/zsh/powerline.zsh ]]; then
   source `python -m site --user-site`/powerline/bindings/zsh/powerline.zsh
