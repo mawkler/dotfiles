@@ -9,6 +9,7 @@
   c      = commit
   cm     = commit -m
   cam    = commit -am
+  com    = checkout master
   l      = log --decorate
   w      = whatchanged
   d      = diff
