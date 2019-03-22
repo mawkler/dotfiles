@@ -3,7 +3,8 @@
 # Installation
 To clone and set everything up, run the following:
 ```sh
-alias dotfiles="/mingw64/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+echo 'alias dotfiles="/mingw64/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"' >> .bashrc
+echo 'alias dot="dotfiles"' >> .bashrc
 echo ".dotfiles" >> .gitignore
 git clone --bare https://github.com/Melkster/dotfiles.git $HOME/.dotfiles
 dotfiles checkout
