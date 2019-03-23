@@ -9,6 +9,8 @@
   edit_window_title = None
   layout_launcher = None
   new_window = None
+  next_tab = <Primary>Tab
+  prev_tab = <Primary><Shift>Tab
   switch_to_tab_1 = <Alt>1
   switch_to_tab_10 = None
   switch_to_tab_2 = <Alt>2
