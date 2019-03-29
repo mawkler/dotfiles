@@ -1,7 +1,8 @@
+export PATH=/opt/processing-3.5.3:$PATH
+
 ZSH_THEME="agnoster" # Backup theme (gets overwritten by Powerline theme if available)
 
 DISABLE_AUTO_UPDATE="true"
-
 
 # ------------- Antigen -------------
 
@@ -98,7 +99,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Powerline theme (has to come after `source $ZSH/oh-my-zsh.sh`)
 if [[ -r `python -m site --user-site`/powerline/bindings/zsh/powerline.zsh ]]; then
-  source `python -m site --user-site`/powerline/bindings/zsh/powerline.zsh
+  export POWERLINE_SOURCE=`python -m site --user-site`/powerline
+  source $POWERLINE_SOURCE/bindings/zsh/powerline.zsh
 else
   echo "Powerline theme doesn't exists, using default theme \"$ZSH_THEME\""
 fi
