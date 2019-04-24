@@ -21,13 +21,18 @@ dotfiles config status.showUntrackedFiles no
 dotfiles config --add remote.origin.fetch "refs/heads/*:refs/remotes/origin/*"
 dotfiles push --set-upstream origin master
 
+echo "Adding npm dependencies";
+# sudo npm install -g prettier eslint-plugin-prettier eslint-config-prettier javascript-typescript-langserver # Probably not needed with coc.nvim
+sudo npm install -g yarn # For coc.nvim
+
 echo "Creating Vim swap file directories.";
 mkdir -p $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo $HOME/.vim/tags # Create Vim directories
 chmod +x $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo                 # And make them executable (at least backup needs this)
 
 echo "Installing Vundle and Vundle plugins for Vim";
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
-vim +PluginInstall +qa
+vim +PluginInstall +"call coc#util#build()" +"CocInstall coc-syntax coc-tag coc-python coc-java coc-ccls coc-html coc-css coc-prettier coc-highlight coc-json" +qa
+
 sudo pip install autopep8 flake8 # For Python linting and autoformatting
 
 echo "Removing README.md and setting it to 'assume-unchanged'.";
@@ -49,9 +54,6 @@ pip install --user powerline-status
 # the block with `"function": "powerline.segments.shell.mode"` from the file
 # `~/.local/lib/python3.7/site-packages/powerline/config_files/themes/shell/default.json`
 
-
-echo "Adding npm dependencies";
-sudo npm install -g prettier eslint-plugin-prettier eslint-config-prettier javascript-typescript-langserver
 
 echo "Installing less configuration based on ~/.lesskey";
 lesskey
