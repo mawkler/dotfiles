@@ -3,5 +3,7 @@
   "suggest.noselect": false,
   "suggest.minTriggerInputLength": 0,
   "suggest.enablePreview": true,
-  "suggest.maxCompleteItemCount": 30
+  "suggest.maxCompleteItemCount": 30,
+  "java.home": "/usr/lib/jvm/java-11-openjdk/",
+  "java.errors.incompleteClasspath.severity": "ignore"
 }
