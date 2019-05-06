@@ -31,7 +31,7 @@ chmod +x $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo                 # And 
 
 echo "Installing Vundle and Vundle plugins for Vim";
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
-vim +PluginInstall +"call coc#util#build()" +"CocInstall coc-syntax coc-tag coc-python coc-java coc-ccls coc-html coc-css coc-prettier coc-highlight coc-json" +qa
+vim +PluginInstall +"call coc#util#build()" +"CocInstall coc-syntax coc-tag coc-snippets coc-python coc-java coc-ccls coc-html coc-css coc-prettier coc-highlight coc-json" +qa
 
 sudo pip install autopep8 flake8 # For Python linting and autoformatting
 
