@@ -21,6 +21,10 @@ dotfiles config status.showUntrackedFiles no
 dotfiles config --add remote.origin.fetch "refs/heads/*:refs/remotes/origin/*"
 dotfiles push --set-upstream origin master
 
+echo "Installing packages in 'pkglist.txt'";
+pacman -S yay
+yay -S --needed --noconfirm - < .dotfiles/pkglist.txt
+
 echo "Adding npm dependencies";
 # sudo npm install -g prettier eslint-plugin-prettier eslint-config-prettier javascript-typescript-langserver # Probably not needed with coc.nvim
 sudo npm install -g yarn # For coc.nvim
