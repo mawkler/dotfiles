@@ -37,7 +37,12 @@ echo "Installing Vundle and Vundle plugins for Vim";
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 vim +PluginInstall +"call coc#util#build()" +"CocInstall coc-syntax coc-tag coc-snippets coc-python coc-java coc-ccls coc-html coc-css coc-prettier coc-highlight coc-json" +qa
 
-sudo pip install autopep8 flake8 # For Python linting and autoformatting
+pip install --user autopep8 flake8 # For Python linting and autoformatting
+
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts && curl -fLo "Deja Vu Sans Mono Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DejaVuSansMono/Regular/complete/DejaVu%20Sans%20Mono%20Nerd%20Font%20Complete.ttf
+fc-cache
+cd -
 
 echo "Removing README.md and setting it to 'assume-unchanged'.";
 dotfiles update-index --assume-unchanged $HOME/README.md
@@ -49,7 +54,7 @@ if [[ `cat $HOME/.gitignore 2>/dev/null` = ".dotfiles" ]]; then
 fi
 
 echo "Installing Antigen";
-mkdir .zsh
+mkdir -p .zsh
 curl -L git.io/antigen > .zsh/antigen.zsh
 
 echo "Installing Powerline.";
