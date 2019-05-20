@@ -9,7 +9,9 @@ make
 neovim
 nodejs
 npm
+python-pip
 plotinus-git
+powerline
 ranger
 screenkey
 shutter
