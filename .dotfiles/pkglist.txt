@@ -1,7 +1,6 @@
 bat
 caprine
 chrome-gnome-shell
-dropbox
 gcc
 gimp
 google-chrome
