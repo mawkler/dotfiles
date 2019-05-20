@@ -1,0 +1,5 @@
+[/]
+maximize=['<Primary><Super>a']
+minimize=['<Primary><Shift><Super>s']
+show-desktop=['<Super>d']
+unmaximize=['<Primary><Shift><Super>a']

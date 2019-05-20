@@ -1,0 +1,8 @@
+[/]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+home='<Super>e'
+
+[custom-keybindings/custom0]
+binding='<Primary><Shift>Escape'
+command='gnome-system-monitor'
+name='System Monitor'
