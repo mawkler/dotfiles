@@ -5,6 +5,7 @@ gcc
 gimp
 google-chrome
 gvim
+jdk-openjdk
 make
 neovim
 nodejs
@@ -15,6 +16,7 @@ powerline
 ranger
 screenkey
 shutter
+silver-searcher-git
 slack-desktop
 splix
 spotify

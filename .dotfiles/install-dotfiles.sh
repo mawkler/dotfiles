@@ -35,9 +35,10 @@ chmod +x $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo                 # And 
 
 echo "Installing Vundle and Vundle plugins for Vim";
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
-vim +PluginInstall +"call coc#util#build()" +"CocInstall coc-syntax coc-tag coc-snippets coc-python coc-java coc-ccls coc-html coc-css coc-prettier coc-highlight coc-json" +qa
+vim +PluginInstall +"call coc#util#install()" +"CocInstall coc-syntax coc-tag coc-snippets coc-python coc-java coc-ccls coc-html coc-css coc-prettier coc-json" +qa
 
 pip install --user autopep8 flake8 # For Python linting and autoformatting
+pip install --user neovim
 
 mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts && curl -fLo "Deja Vu Sans Mono Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DejaVuSansMono/Regular/complete/DejaVu%20Sans%20Mono%20Nerd%20Font%20Complete.ttf
