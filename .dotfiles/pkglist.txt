@@ -2,6 +2,7 @@ bat
 caprine
 chrome-gnome-shell
 gcc
+gdm
 gimp
 google-chrome
 gvim

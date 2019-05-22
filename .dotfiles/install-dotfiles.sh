@@ -72,6 +72,7 @@ echo "Adding various Gnome settings"
 dconf load /org/gnome/settings-daemon/plugins/media-keys/ < .dotfiles/media-keys.dconf
 dconf load /org/gnome/desktop/wm/keybindings/ < .dotfiles/keybindings.dconf
 dconf load /org/gnome/gnome/shell/extensions < .dotfiles/gnome-extensions.dconf
+dconf load /org/gnome/desktop/interface/ < .dotfiles/interface.dconf
 
 echo "To change Numix Frost to dark theme run the following:"
 echo "sudo mv /usr/share/themes/Numix-Frost/gtk-3.20/gtk-dark.css /usr/share/themes/Numix-Frost/gtk-3.20/gtk.css"
