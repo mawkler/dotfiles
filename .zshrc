@@ -132,17 +132,32 @@ function zle-keymap-select {
 zle -N zle-keymap-select
 zle-line-init() { zle-keymap-select 'beam'} # Start with beam shape cursor on zsh startup and after every command.
 
+# Changes color of the matching string when completing
+zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==90=01}:${(s.:.)LS_COLORS}")'
+
+LISTMAX=0
+unsetopt LIST_AMBIGUOUS MENU_COMPLETE COMPLETE_IN_WORD
+setopt AUTO_MENU AUTO_LIST LIST_PACKED
+
 function expand-or-complete-or-cd() {
-    if [[ $#BUFFER == 0 ]]; then
-        BUFFER="cd "
-        CURSOR=3
-        # zle list-choices
-        setopt MENU_COMPLETE # Always insert first tab completion after pressing `<Tab>`
-        zle expand-or-complete
-        unsetopt MENU_COMPLETE
-    else
-        zle expand-or-complete
-    fi
+  if [[ $#BUFFER == 0 ]]; then
+    BUFFER="cd "
+    CURSOR=3
+    # zle list-choices
+    setopt MENU_COMPLETE # Always insert first tab completion after pressing `<Tab>`
+    zle expand-or-complete
+    unsetopt MENU_COMPLETE
+  else
+    echo -n "\e[31m...\e[0m"
+    # avoid opening the list on the first expand
+    unsetopt AUTO_LIST
+    zle expand-or-complete
+    setopt AUTO_LIST
+    zle magic-space
+    zle backward-delete-char
+    zle expand-or-complete
+    zle redisplay
+  fi
 }
 zle -N expand-or-complete-or-cd
 # bind to tab
