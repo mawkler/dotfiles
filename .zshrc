@@ -259,5 +259,5 @@ alias dot='dotfiles'
 alias dots='dot status'
 
 # Syntax highligting in less:
-export LESSOPEN="| /bin/src-hilite-lesspipe.sh %s"
-export LESS=" -R "
+# export LESSOPEN="| /bin/src-hilite-lesspipe.sh %s"
+# export LESS=" -R "
