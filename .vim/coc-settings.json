@@ -6,5 +6,6 @@
   "suggest.maxCompleteItemCount": 30,
   "java.home": "/usr/lib/jvm/java-11-openjdk/",
   "java.errors.incompleteClasspath.severity": "ignore",
-  "suggest.snippetIndicator": " ►"
+  "suggest.snippetIndicator": " ►",
+  "yank.highlight.duration": 150
 }
