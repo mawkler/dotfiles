@@ -3,9 +3,12 @@
   "suggest.noselect": false,
   "suggest.minTriggerInputLength": 0,
   "suggest.enablePreview": true,
-  "suggest.maxCompleteItemCount": 30,
-  "java.home": "/usr/lib/jvm/java-11-openjdk/",
+  "suggest.maxCompleteItemCount": 200,
   "java.errors.incompleteClasspath.severity": "ignore",
   "suggest.snippetIndicator": " ►",
-  "yank.highlight.duration": 150
+  "yank.highlight.duration": 150,
+  "python.jediEnabled": false,
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "coc.preferences.formatOnSaveFiletypes": ["python", "java", "javascript", "css"]
 }
