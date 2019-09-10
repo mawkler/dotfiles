@@ -10,5 +10,5 @@
   "python.jediEnabled": false,
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
-  "coc.preferences.formatOnSaveFiletypes": ["python", "java", "javascript", "css"]
+  "coc.preferences.formatOnSaveFiletypes": ["*"]
 }
