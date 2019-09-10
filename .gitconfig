@@ -25,6 +25,7 @@
   countlines = !git ls-files | xargs wc -l
 [core]
   autocrlf = input
+  excludesfile = /home/melker/.gitignore-global
 [github]
   user   = Melkster
 [color]
