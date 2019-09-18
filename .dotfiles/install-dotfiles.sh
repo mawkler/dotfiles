@@ -7,7 +7,7 @@ function dotfiles {
   /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
 }
 mkdir -p $HOME/.dotfiles-backup
-dotfiles checkout
+dotfiles checkout 2> /dev/null
 if [ $? = 0 ]; then
   echo "Checked out dotfiles.";
 else
@@ -22,8 +22,10 @@ dotfiles config --add remote.origin.fetch "refs/heads/*:refs/remotes/origin/*"
 dotfiles push --set-upstream origin master
 
 echo "Installing packages in 'pkglist.txt'";
-pacman -S yay
-yay -S --needed --noconfirm - < .dotfiles/pkglist.txt
+if type pacman > /dev/null; then
+  pacman -S yay
+  yay -S --needed --noconfirm - < .dotfiles/pkglist.txt
+fi
 
 echo "Adding npm dependencies";
 # sudo npm install -g prettier eslint-plugin-prettier eslint-config-prettier javascript-typescript-langserver # Probably not needed with coc.nvim
@@ -68,13 +70,16 @@ pip install --user powerline-status
 echo "Installing less configuration based on ~/.lesskey";
 lesskey
 
-echo "Adding various Gnome settings"
-dconf load /org/gnome/settings-daemon/plugins/media-keys/ < .dotfiles/media-keys.dconf
-dconf load /org/gnome/desktop/wm/keybindings/ < .dotfiles/keybindings.dconf
-dconf load /org/gnome/gnome/shell/extensions/ < .dotfiles/gnome-extensions.dconf
-dconf load /org/gnome/desktop/interface/ < .dotfiles/interface.dconf
 
-echo "To change Numix Frost to dark theme run the following:"
-echo "sudo mv /usr/share/themes/Numix-Frost/gtk-3.20/gtk-dark.css /usr/share/themes/Numix-Frost/gtk-3.20/gtk.css"
+if [ ! -z $XDG_CURRENT_DESKTOP ]; then
+  echo "Adding various Gnome settings"
+  dconf load /org/gnome/settings-daemon/plugins/media-keys/ < .dotfiles/media-keys.dconf
+  dconf load /org/gnome/desktop/wm/keybindings/ < .dotfiles/keybindings.dconf
+  dconf load /org/gnome/gnome/shell/extensions/ < .dotfiles/gnome-extensions.dconf
+  dconf load /org/gnome/desktop/interface/ < .dotfiles/interface.dconf
+
+  echo "To change Numix Frost to dark theme run the following:"
+  echo "sudo mv /usr/share/themes/Numix-Frost/gtk-3.20/gtk-dark.css /usr/share/themes/Numix-Frost/gtk-3.20/gtk.css"
+fi
 
 echo "Done."

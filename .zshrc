@@ -99,11 +99,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # autoload predict-on && predict-on # Always shows completions and suggestions
 
 # Powerline theme (has to come after `source $ZSH/oh-my-zsh.sh`)
-if [[ -r `python -m site --user-site`/powerline/bindings/zsh/powerline.zsh ]]; then
-  export POWERLINE_SOURCE=`python -m site --user-site`/powerline
+if [[ -r `python3 -m site --user-site 2> /dev/null`/powerline/bindings/zsh/powerline.zsh ]]; then
+  export POWERLINE_SOURCE=`python3 -m site --user-site`/powerline
   source $POWERLINE_SOURCE/bindings/zsh/powerline.zsh
-else
-  echo "Powerline theme doesn't exists, using default theme \"$ZSH_THEME\""
 fi
 
 if type nvim > /dev/null; then

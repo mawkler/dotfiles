@@ -18,6 +18,5 @@ dotfiles checkout
 # Dependencides
  - [git](https://git-scm.com/) (obviously)
  - [python](https://www.python.org/downloads/) for some Vim plugins
- - [powerline](https://github.com/powerline/powerline) and [pip](https://pypi.org/project/pip/) (for installing powerline-status)
- - [ctags](https://ctags.io/) (for Vim)
+ - [powerline](https://github.com/powerline/powerline) and [pip](https://pypi.org/project/pip/) (for installing powerline-status for ZSH)
  - [npm](https://www.npmjs.com/) (for some Vim dependencies)
