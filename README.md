@@ -2,8 +2,7 @@
 To clone and set everything up, run the following:
 
 ```sh
-sudo bash <(wget -qO- https://raw.githubusercontent.com/Melkster/dotfiles/master/.dotfiles/install-dotfiles.sh)
-
+sudo su -c "bash <(wget -qO- https://raw.githubusercontent.com/Melkster/dotfiles/master/.dotfiles/install-dotfiles.sh)" root
 ```
 
 which downloads and runs [this script](https://raw.githubusercontent.com/Melkster/dotfiles/master/.dotfiles/install-dotfiles.sh) which is based on [this article](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/).
