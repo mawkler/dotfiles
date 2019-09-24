@@ -1,5 +1,4 @@
-export PATH=/opt/processing-3.5.3:$PATH
-if type yarn &> /dev/null; then export PATH="$(yarn global bin):$PATH"; fi
+if type yarn &> /dev/null; then export PATH="$(yarn global bin):$PATH" &> /dev/null; fi
 
 ZSH_THEME="agnoster" # Backup theme (gets overwritten by Powerline theme if available)
 
