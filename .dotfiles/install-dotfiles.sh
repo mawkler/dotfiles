@@ -21,8 +21,8 @@ dotfiles config status.showUntrackedFiles no
 dotfiles config --add remote.origin.fetch "refs/heads/*:refs/remotes/origin/*"
 dotfiles push --set-upstream origin master
 
-echo "Installing packages in 'pkglist.txt'";
-if type pacman > /dev/null; then
+if type pacman &> /dev/null; then
+  echo "Installing packages in 'pkglist.txt'";
   pacman -S yay
   yay -S --needed --noconfirm - < .dotfiles/pkglist.txt
 fi
@@ -81,5 +81,7 @@ if [ ! -z $XDG_CURRENT_DESKTOP ]; then
   echo "To change Numix Frost to dark theme run the following:"
   echo "sudo mv /usr/share/themes/Numix-Frost/gtk-3.20/gtk-dark.css /usr/share/themes/Numix-Frost/gtk-3.20/gtk.css"
 fi
+
+echo "To change shell to ZSH, run 'chsh -s $(which zsh) $USER'."
 
 echo "Done."
