@@ -1,5 +1,5 @@
 export PATH=/opt/processing-3.5.3:$PATH
-if type yarn > /dev/null; then export PATH="$(yarn global bin):$PATH"; fi
+if type yarn &> /dev/null; then export PATH="$(yarn global bin):$PATH"; fi
 
 ZSH_THEME="agnoster" # Backup theme (gets overwritten by Powerline theme if available)
 
@@ -104,7 +104,7 @@ if [[ -r `python3 -m site --user-site 2> /dev/null`/powerline/bindings/zsh/power
   source $POWERLINE_SOURCE/bindings/zsh/powerline.zsh
 fi
 
-if type nvim > /dev/null; then
+if type nvim &> /dev/null; then
   export VISUAL=nvim # Use NeoVim if installed, otherwise Vim
 else
   export VISUAL=vim
