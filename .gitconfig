@@ -23,6 +23,7 @@
   store  = config credential.helper store
   prune-local = !git checkout master && git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d
   countlines = !git ls-files | xargs wc -l
+  panic = pull --ff --rebase
 [core]
   autocrlf = input
   excludesfile = /home/melker/.gitignore-global
