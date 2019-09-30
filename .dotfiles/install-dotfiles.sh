@@ -13,13 +13,12 @@ if [ $? = 0 ]; then
 else
   echo "Backing up pre-existing dot files.";
   dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I % sh -c 'mkdir --parents .dotfiles-backup/%; mv % .dotfiles-backup/%;'
-  dotfiles checkout
 fi;
 
 echo "Configuring repository.";
 dotfiles config status.showUntrackedFiles no
 dotfiles config --add remote.origin.fetch "refs/heads/*:refs/remotes/origin/*"
-dotfiles push --set-upstream origin master
+dotfiles config --local push.default current # Should set upstream like `dotfiles push --set-upstream origin master` does, but without using `push`?
 
 if type pacman &> /dev/null; then
   echo "Installing packages in 'pkglist.txt'";
