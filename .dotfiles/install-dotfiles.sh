@@ -37,9 +37,9 @@ chmod +x $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo                 # And 
 echo "Installing Vundle and Vundle plugins for Vim";
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 if type nvim &> /dev/null; then
-  nvim +PluginInstall +"call coc#util#install()" +qa
+  nvim +PluginInstall +"call coc#util#install()" +qa 2> /dev/null
 else
-  vim +PluginInstall +"call coc#util#install()" +qa
+  yes | vim +PluginInstall +"call coc#util#install()" +qa 2> /dev/null
 fi
 
 pip install --user autopep8 flake8 # For Python linting and autoformatting
