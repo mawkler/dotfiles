@@ -28,7 +28,7 @@ fi
 
 echo "Adding npm dependencies";
 # sudo npm install -g prettier eslint-plugin-prettier eslint-config-prettier javascript-typescript-langserver # Probably not needed with coc.nvim
-sudo npm install -g yarn # For coc.nvim
+sudo npm install -gy yarn # For coc.nvim
 
 echo "Creating Vim swap file directories.";
 mkdir -p $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo $HOME/.vim/tags # Create Vim directories
