@@ -33,3 +33,5 @@
   ui     = true
 [dude]
   interval = 10
+[credential]
+  helper = cache --timeout=1800
