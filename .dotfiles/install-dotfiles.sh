@@ -1,7 +1,11 @@
 cd
 echo ".dotfiles" >> $HOME/.gitignore
+
 echo "Cloning dotfiles repo.";
-git clone --bare https://github.com/Melkster/dotfiles.git $HOME/.dotfiles
+yes | git clone --bare git@github.com:Melkster/dotfiles.git $HOME/.dotfiles 2> /dev/null
+if [ $? -ne 0 ]; then # If cloning with SSH doesn't work, use HTTP
+  git clone --bare https://github.com/Melkster/dotfiles.git $HOME/.dotfiles
+fi
 
 function dotfiles {
   /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
@@ -19,16 +23,6 @@ echo "Configuring repository.";
 dotfiles config status.showUntrackedFiles no
 dotfiles config --add remote.origin.fetch "refs/heads/*:refs/remotes/origin/*"
 dotfiles config --local push.default current # Should set upstream like `dotfiles push --set-upstream origin master` does, but without using `push`?
-
-if type pacman &> /dev/null; then
-  echo "Installing packages in 'pkglist.txt'";
-  pacman -S yay
-  yay -S --needed --noconfirm - < .dotfiles/pkglist.txt
-fi
-
-echo "Adding npm dependencies";
-# sudo npm install -g prettier eslint-plugin-prettier eslint-config-prettier javascript-typescript-langserver # Probably not needed with coc.nvim
-sudo npm install -gy yarn # For coc.nvim
 
 echo "Creating Vim swap file directories.";
 mkdir -p $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo $HOME/.vim/tags # Create Vim directories
@@ -69,12 +63,10 @@ pip install --user powerline-status
 # the block with `"function": "powerline.segments.shell.mode"` from the file
 # `~/.local/lib/python3.7/site-packages/powerline/config_files/themes/shell/default.json`
 
-
 echo "Installing less configuration based on ~/.lesskey";
 lesskey
 
-
-if [ ! -z $XDG_CURRENT_DESKTOP ]; then
+if [ $XDG_CURRENT_DESKTOP == "GNOME" ]; then
   echo "Adding various Gnome settings"
   dconf load /org/gnome/settings-daemon/plugins/media-keys/ < .dotfiles/media-keys.dconf
   dconf load /org/gnome/desktop/wm/keybindings/ < .dotfiles/keybindings.dconf
