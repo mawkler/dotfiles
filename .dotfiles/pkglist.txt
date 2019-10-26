@@ -9,6 +9,7 @@ gvim
 jdk-openjdk
 make
 neovim
+neovim-qt
 nodejs
 npm
 python-pip

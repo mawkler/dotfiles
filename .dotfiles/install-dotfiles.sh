@@ -40,8 +40,12 @@ pip install --user autopep8 flake8 # For Python linting and autoformatting
 pip install --user neovim
 
 mkdir -p ~/.local/share/fonts
-cd ~/.local/share/fonts && curl -fLo "Deja Vu Sans Mono Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DejaVuSansMono/Regular/complete/DejaVu%20Sans%20Mono%20Nerd%20Font%20Complete.ttf
-fc-cache
+# cd ~/.local/share/fonts && curl -fLo "Deja Vu Sans Mono Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DejaVuSansMono/Regular/complete/DejaVu%20Sans%20Mono%20Nerd%20Font%20Complete.ttf
+cd ~/.local/share/fonts
+curl -fLO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/DejaVuSansMono.zip
+unzip DejaVuSansMono.zip
+rm DejaVuSansMono.zip
+fc-cache -fv
 cd -
 
 echo "Removing README.md and setting it to 'assume-unchanged'.";
