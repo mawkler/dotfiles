@@ -39,6 +39,7 @@ Plugin 'ingo-library'                  " Required by visualrepeat
 Plugin 'capslock.vim'                  " Adds caps lock mapping to insert mode
 Plugin 'StripWhiteSpaces'
 " Plugin 'dense-analysis/ale'            " Use either ALE or Syntastic
+Plugin 'ton/vim-bufsurf'
 
 " Plugin 'ap/vim-buftabline'             " Better vim 'tabs'
 " Plugin 'drmingdrmer/vim-tabbar'
@@ -249,7 +250,7 @@ map      <leader>T        :set tabstop=4 shiftwidth=4 noexpandtab<CR>
 map      <leader>t        :set tabstop=4 shiftwidth=2 expandtab<CR>
 map      Q                @@
 map      <leader>q        qqqqq
-nnoremap §                <C-^>
+nnoremap §                :call BufSurfHop(v:count)<CR>
 tnoremap <Esc>            <C-\><C-n>
 nmap     cg*              *Ncgn
 nmap     <leader>z        1z=
@@ -261,6 +262,21 @@ augroup END
 
 function! VisualAppend(char) " Appends `char` to visual selection
   exe "normal! A" . a:char
+endfunction
+
+let g:command = "BufSurfBack"
+function! BufSurfHop(jumps) " Appends `char` to visual selection
+  let i = 0
+  while i <= a:jumps
+    " exe ':echo ' . '"' . g:command . '"' . a:jumps
+    exe ':' . g:command
+    let i += 1
+  endwhile
+  if g:command == "BufSurfBack"
+    let g:command = "BufSurfForward"
+  else
+    let g:command = "BufSurfBack"
+  endif
 endfunction
 
 " Start in maximized window
