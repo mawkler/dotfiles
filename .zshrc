@@ -235,6 +235,8 @@ alias screenkey='screenkey -t 1.5 -s small'
 alias wifi='nmcli'
 alias bats='bat --pager="less -mgi --underline-special --SILENT"'
 alias myip='hostname -i'
+alias yaz='yay -Slq | fzf -m --preview "yay -Si {1}"| xargs -ro yay -S --noconfirm'
+alias yaz-remove='yay -Qeq | fzf -m --preview "yay -Qi {1}" | xargs -ro yay -Rs'
 
 # Git:
 alias g='git'
@@ -256,6 +258,10 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dot='dotfiles'
 alias dots='dot status'
 
-# Syntax highligting in less:
-# export LESSOPEN="| /bin/src-hilite-lesspipe.sh %s"
-# export LESS=" -R "
+# Fzf
+export FZF_DEFAULT_OPTS='--bind ctrl-o:accept --history=.fzf_history'
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+[ -f /usr/share/fzf/completion.zsh   ] && source /usr/share/fzf/completion.zsh
+
+
+

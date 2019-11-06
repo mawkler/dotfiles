@@ -61,6 +61,8 @@ echo "Installing Antigen";
 mkdir -p .zsh
 curl -L git.io/antigen > .zsh/antigen.zsh
 
+touch ~/.fzf_history # History file required by fzf-configuration in ~/.zshrc
+
 echo "Installing Powerline.";
 pip install --user powerline-status
 # To remove the vi-mode indicator (because it slows down) mode switching remove

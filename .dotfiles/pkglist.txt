@@ -4,6 +4,7 @@ chrome-gnome-shell
 diff-so-fancy
 exa
 fd
+fzf
 gcc
 gdm
 gimp
