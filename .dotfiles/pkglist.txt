@@ -1,6 +1,9 @@
 bat
 caprine
 chrome-gnome-shell
+diff-so-fancy
+exa
+fd
 gcc
 gdm
 gimp
