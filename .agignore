@@ -32,6 +32,10 @@ chromium/
 .vim/
 .antigen/
 Dropbox/
+.[Aa]ndroid*/
+Android*/
+.gradle/
+.gnome/apps/
 
 *.sw?
 *~
