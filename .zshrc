@@ -242,7 +242,15 @@ alias yaz-remove='yay -Qeq | fzf -m --preview "yay -Qi {1}" | xargs -ro yay -Rs'
 alias g='git'
 alias gs='git status'
 alias gl='git log --decorate'
-alias gd='git diff -- ":!*package-lock.json" ":!*yarn.lock"'
+
+# Like git diff, but ignores package-lock.json and yarn.lock in any subdirectory
+function gd() {
+  if  [[ -n "$1" ]]; then
+    git diff "$1" -- ':!**/package-lock.json' ':!**/yarn.lock'
+  else
+    git diff -- ':!**/package-lock.json' ':!**/yarn.lock'
+  fi
+}
 
 alias gco='git checkout'
 alias gcom='git checkout master'
