@@ -24,6 +24,8 @@
 	prune-local = !git checkout master && git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d
 	countlines = !git ls-files | xargs wc -l
 	panic = pull --ff --rebase
+	unique = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative \
+		$1..$(git rev-parse --abbrev-ref HEAD)
 [core]
 	autocrlf = input
 	excludesfile = /home/melker/.gitignore-global
