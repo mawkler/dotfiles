@@ -254,6 +254,7 @@ function gd() {
 
 alias gco='git checkout'
 alias gcom='git checkout master'
+alias gmm='git merge master'
 alias gp='git pull'
 alias gb='git branch'
 alias gw='git whatchanged'
