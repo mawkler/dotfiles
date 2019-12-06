@@ -26,6 +26,7 @@
 	panic = pull --ff --rebase
 	unique = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative \
 		$1..$(git rev-parse --abbrev-ref HEAD)
+	make = !make --directory $(git rev-parse --show-toplevel)
 [core]
 	autocrlf = input
 	excludesfile = /home/melker/.gitignore-global
