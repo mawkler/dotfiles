@@ -16,9 +16,9 @@ neovim
 neovim-qt
 nodejs
 npm
-python-pip
 plotinus-git
 powerline
+python-pip
 ranger
 screenkey
 shutter
@@ -33,6 +33,7 @@ tree
 ttf-dejavu-sans-mono-powerline-git
 ufw
 valgrind
+vifm
 vlc
 xclip
 zsh
