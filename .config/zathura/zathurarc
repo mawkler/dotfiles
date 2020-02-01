@@ -1,3 +1,6 @@
+set recolor-lightcolor "#282c34" # Use Atom dark theme gray as background in night mode
+set recolor
+
 set synctex true
 set synctex-editor-command "nvim-qt --remote-silent %f -c %l"
 
@@ -11,4 +14,4 @@ map [fullscreen] <Esc> quit
 set guioptions none
 set highlight-transparency 0.1
 
-set sandbox none " Fixes bug that prevents links from opening in web browser
+set sandbox none # Fixes bug that prevents links from opening in web browser
