@@ -1,0 +1,14 @@
+set synctex true
+set synctex-editor-command "nvim-qt --remote-silent %f -c %l"
+
+map [fullscreen] d scroll half-down
+map [normal]     d scroll half-down
+map [fullscreen] u scroll half-up
+map [normal]     u scroll half-up
+map [normal]     <Esc> quit
+map [fullscreen] <Esc> quit
+
+set guioptions none
+set highlight-transparency 0.1
+
+set sandbox none " Fixes bug that prevents links from opening in web browser

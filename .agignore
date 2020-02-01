@@ -32,7 +32,6 @@ chromium/
 .technic/
 .vim/
 .antigen/
-Dropbox/
 .[Aa]ndroid*/
 Android*/
 .gradle/

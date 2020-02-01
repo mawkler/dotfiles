@@ -1,4 +1,7 @@
 if type yarn &> /dev/null; then export PATH="$(yarn global bin):$PATH" &> /dev/null; fi
+# export PATH="/opt/texlive/2020/bin/x86_64-linux:$PATH"
+# export MANPATH="/opt/texlive/2020/texmf-dist/doc/man:$PATH"
+# export INFOPATH="/opt/texlive/2020/texmf-dist/doc/info:$PATH"
 
 ZSH_THEME="agnoster" # Backup theme (gets overwritten by Powerline theme if available)
 
