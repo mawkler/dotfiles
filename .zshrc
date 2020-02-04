@@ -210,6 +210,16 @@ function mkcd() {
   mkdir -p "$@" && cd "$@"
 }
 
+# cd to selected directory using FZF using Alt-T
+cdz() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+  zle reset-prompt
+}
+zle -N cdz{,}
+bindkey '^[t' cdz
+
 alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.vimrc'
 alias src='source ~/.zshrc'
