@@ -32,6 +32,7 @@ trash-cli
 tree
 ttf-dejavu-sans-mono-powerline-git
 ufw
+unp
 valgrind
 vifm
 vlc
