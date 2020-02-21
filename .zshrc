@@ -250,6 +250,8 @@ alias bats='bat --pager="less -mgi --underline-special --SILENT"'
 alias myip='hostname -i'
 alias yaz='yay -Slq | fzf -m --preview "yay -Si {1}"| xargs -ro yay -S --noconfirm'
 alias yaz-remove='yay -Qeq | fzf -m --preview "yay -Qi {1}" | xargs -ro yay -Rs'
+alias mv='mv -i'
+alias pdf_clip='curl -Ls `xclip -o` | zathura - &'
 
 # Git:
 alias g='git'
