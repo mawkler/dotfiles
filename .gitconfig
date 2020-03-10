@@ -1,31 +1,41 @@
 [user]
-  email  = melkerosterberg@gmail.com
-  name   = Melker Österberg
+	email  = melkerosterberg@gmail.com
+	name   = Melker Österberg
 [alias]
-  co     = checkout
-  s      = status
-  p      = pull
-  b      = branch
-  c      = commit
-  cm     = commit -m
-  cam    = commit -am
-  com    = checkout master
-  l      = log --decorate
-  w      = whatchanged
-  d      = diff
-  g      = grep -ni
-  u      = diff HEAD@{1} HEAD
-  plog   = log --pretty=format:'%Cred%h%Creset %s -%C(yellow)%d%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  lol    = log --graph --decorate --pretty=oneline --abbrev-commit
-  subupd = submodule update --recursive --init
-  ignore = update-index --assume-unchanged
-  unignore = update-index --no-assume-unchanged
-  store  = config credential.helper store
+	co     = checkout
+	s      = status
+	p      = pull
+	b      = branch
+	c      = commit
+	cm     = commit -m
+	cam    = commit -am
+	com    = checkout master
+	l      = log --decorate
+	w      = whatchanged
+	d      = diff
+	g      = grep -ni
+	u      = diff HEAD@{1} HEAD
+	plog   = log --pretty=format:'%Cred%h%Creset %s -%C(yellow)%d%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lol    = log --graph --decorate --pretty=oneline --abbrev-commit
+	subupd = submodule update --recursive --init
+	ignore = update-index --assume-unchanged
+	unignore = update-index --no-assume-unchanged
+	store  = config credential.helper store
+	prune-local = !git checkout master && git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d
+	countlines = !git ls-files | xargs wc -l
+	panic = pull --ff --rebase
+	unique = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative \
+		$1..$(git rev-parse --abbrev-ref HEAD)
+	make = !make --directory $(git rev-parse --show-toplevel)
 [core]
-  autocrlf = input
+	autocrlf = input
+	excludesfile = /home/melker/.gitignore-global
+	pager = "if type diff-so-fancy &> /dev/null; then diff-so-fancy --set-defaults | less --tabs=4 -R; else less; fi"
 [github]
-  user   = Melkster
+	user   = Melkster
 [color]
-  ui     = true
+	ui     = true
 [dude]
-  interval = 10
+	interval = 10
+[credential]
+	helper = cache --timeout=1800

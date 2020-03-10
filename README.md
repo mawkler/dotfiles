@@ -15,8 +15,17 @@ mkdir -p $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo $HOME/.vim/tags
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 vim +PluginInstall +qa
 ```
+
+If you have `pacman` installed and want to install all dependencies and additional programs listed [here](.dotfiles/pkglist.txt), run this:
+
+```sh
+curl -s https://raw.githubusercontent.com/Melkster/dotfiles/master/.dotfiles/install-dependencies.sh | sudo bash
+curl -s https://raw.githubusercontent.com/Melkster/dotfiles/master/.dotfiles/install-dotfiles.sh | bash
+```
+
 # Dependencides
- - [git](https://git-scm.com/) (obviously)
- - [powerline](https://github.com/powerline/powerline) and [pip](https://pypi.org/project/pip/) (for installing powerline-status)
- - [ctags](https://ctags.io/) (for Vim)
- - [npm](https://www.npmjs.com/) (for some Vim dependencies)
+
+- [git](https://git-scm.com/) (obviously)
+- [python](https://www.python.org/downloads/) for some Vim plugins
+- [powerline](https://github.com/powerline/powerline) and [pip](https://pypi.org/project/pip/) (for installing powerline-status for ZSH)
+- [npm](https://www.npmjs.com/) (for some Vim dependencies)

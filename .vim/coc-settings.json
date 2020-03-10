@@ -1,0 +1,18 @@
+{
+    "suggest.echodocSupport": true,
+    "suggest.noselect": false,
+    "suggest.minTriggerInputLength": 0,
+    "suggest.enablePreview": true,
+    "suggest.maxCompleteItemCount": 200,
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "suggest.snippetIndicator": " ►",
+    "yank.highlight.duration": 150,
+    "python.jediEnabled": false,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "coc.preferences.formatOnSaveFiletypes": ["*"],
+    "explorer.icon.enableNerdfont": true,
+    "explorer.keyMappings": {
+        "o": "expand"
+    }
+}
