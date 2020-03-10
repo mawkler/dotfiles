@@ -63,7 +63,7 @@ Plugin 'wsdjeg/vim-fetch'                    " Process line and column jump spec
 Plugin 'yuttie/comfortable-motion.vim'       " Smooth scrolling
 Plugin 'markonm/traces.vim'                  " Better highlighting when searching/replacing
 Plugin 'MaxMEllon/vim-jsx-pretty'
-Plugin 'ryanoasis/vim-devicons'              " vim-devicons should be loaded last
+" Plugin 'ryanoasis/vim-devicons'              " vim-devicons should be loaded last
 Plugin 'meain/vim-printer'
 call vundle#end()
 
@@ -488,7 +488,7 @@ if !exists("g:gui_oni") " ----------------------- Oni excluded stuff below -----
 
 " -- Airline --
 set laststatus=2 " Always display status line
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 let g:airline_theme           = 'onedark'
 let g:Powerline_symbols       = 'unicode'
 let g:airline_section_x       = '%{&filetype}' " Don't shorten file type on small window
