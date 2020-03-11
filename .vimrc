@@ -21,6 +21,7 @@ Plugin 'andymass/vim-matchup'                " Ads additional `%` commands
 Plugin 'jiangmiao/auto-pairs'                " Add matching brackets, quotes, etc
 Plugin 'neoclide/coc.nvim'
 " Plugin 'dense-analysis/ale'                " Use either ALE or Syntastic
+Plugin 'honza/vim-snippets'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'maxbrunsfeld/vim-yankstack'
@@ -35,6 +36,9 @@ Plugin 'visualrepeat'                        " Allows repeating using `.` over v
 Plugin 'ingo-library'                        " Required by visualrepeat
 Plugin 'capslock.vim'                        " Adds caps lock mapping to insert mode
 Plugin 'StripWhiteSpaces'
+Plugin 'ConflictMotions'                     " Adds motions for Git conflicts
+Plugin 'restore_view.vim'
+Plugin 'inkarkat/vim-CountJump'              " Dependency for ConflictMotions
 Plugin 'MarcWeber/vim-addon-commandline-completion'
 Plugin 'milkypostman/vim-togglelist'         " Adds mapping to toggle QuickFix window
 Plugin 'kana/vim-textobj-user'
@@ -65,6 +69,7 @@ Plugin 'markonm/traces.vim'                  " Better highlighting when searchin
 Plugin 'MaxMEllon/vim-jsx-pretty'
 " Plugin 'ryanoasis/vim-devicons'              " vim-devicons should be loaded last
 Plugin 'meain/vim-printer'
+Plugin 'lervag/vimtex'
 call vundle#end()
 
 " -- File imports --
@@ -92,12 +97,14 @@ set swapfile
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swp//
 set undodir=~/.vim/undo//
+set viewoptions=cursor,folds,slash,unix
 
 " -- Menu autocompletion --
 set completeopt=longest,preview " menuone seems to be causing bug error with multiple-cursors
 set wildmenu                    " List and cycle through autocomplete suggestions on Tab
 set wildcharm=<Tab>             " Allows remapping of <Down> in wildmenu
 set wildignorecase              " Case insensitive file- and directory name completion
+set path+=**                    " Let's `find` search recursively into subfolders
 
 " -- Searching --
 set ignorecase " Case insensitive searching
@@ -110,6 +117,7 @@ call yankstack#setup() " Has to be called before remap of any yankstack_yank_key
 
 " -- Key mappings --
 let mapleader = "\<Space>"
+let maplocalleader = "\<Space>"
 
 map      <C-Tab>          :bnext<CR>
 map      <C-S-Tab>        :bprevious<CR>
@@ -117,6 +125,7 @@ map      <leader><C-w>    :Bdelete<CR>
 map      <leader><C-M-w>  :Bdelete!<CR>
 map      <CR>             <leader>c<space>
 nnoremap Y                y$
+nnoremap yp               yyp
 map      <leader>y        "+y
 map      <leader>Y        "+Y
 map      <leader>d        "+d
@@ -125,9 +134,10 @@ map      <leader>p        "+p
 map      <leader>P        "+P
 map!     <M-v>            <C-r>+
 map      <C-q>            :qa<CR>
+inoremap <Tab>            <C-t>
 nnoremap <S-Tab>          <<
 vnoremap <S-Tab>          <gv
-inoremap <S-Tab>          <C-o><<
+imap     <S-Tab>          <C-d>
 nnoremap <M-o>            <C-i>
 map      <S-CR>           <C-w>W
 map      -                3<C-W><
@@ -139,7 +149,7 @@ nnoremap <C-j>            o<Esc>
 nmap     g<C-j>           i<CR><Esc>
 nmap     <C-k>            O<Esc>
 nmap     g<C-k>           DO<Esc>P_
-nmap     gK               kjddkPJ
+nmap     gK               kjddkPJ<C-y>
 nmap     <C-s>            :w<CR>
 imap     <C-s>            <C-o>:w<CR>
 vmap     <C-s>            <Esc>:w<CR>gv
@@ -178,7 +188,8 @@ map      <C-¨>            <C-]>
 map      <C-W><C-]>       <C-w>v<Plug>(coc-definition)
 map      <C-W>¨           <C-w><C-]>
 map      ¨                ]
-map      å                [
+map      ¨¨               ]]
+map      åå               [[
 nmap     ö                ;
 nmap     Ö                :
 nmap     <C-c>            <Nop>
@@ -207,6 +218,8 @@ map      <leader>G        :edit ~/.config/nvim/ginit.vim<CR>
 map      <leader>Z        :edit ~/.zshrc<CR>
 map      <leader>I        :edit ~/.dotfiles/install-dotfiles.sh<CR>
 map      <leader>u        :cd ~/Dropbox/Uppsala/<CR>
+map      <leader>M        :cd ~/Dropbox/Dokument/Markdowns/<CR>
+map      <leader>E        :cd ~/Dropbox/Exjobb/<CR>
 map      <leader>~        :cd ~<CR>
 map      gX               :exec 'silent !google-chrome-stable % &'<CR>
 nmap     gF               :e <C-r>+<CR>
@@ -232,6 +245,7 @@ nnoremap §                <C-^>
 tnoremap <Esc>            <C-\><C-n>
 nmap     cg*              *Ncgn
 nmap     <leader>z        1z=
+xnoremap g.               .
 
 augroup vertical_help " Open :help in vertical instead of horizontal split
   autocmd!
@@ -274,22 +288,21 @@ let g:netrw_browse_split = 0
 " let g:netrw_altv = 1
 autocmd filetype netrw nmap <buffer> o <CR>
 
-
 " -- Lines and cursor --
 set number relativenumber
 hi  CursorLineNr term=bold gui=bold
 set cursorline                    " Cursor highlighting
 set scrolloff=8                   " Cursor margin
 set textwidth=0                   " Disable auto line breaking
-set nrformats+=hex,bin,alpha      " Allow Ctrl-A/X for hex, binary and letters
+set nrformats+=hex,bin            " Allow Ctrl-A/X for hex and binary
 set guicursor+=n:blinkwait0       " Disables cursor blinking in normal mode
 set guicursor+=i:ver25-blinkwait0 " And in insert mode
 set mouse=a                       " Enable mouse
 set conceallevel=2                " Hide concealed characters completely
 set concealcursor=nic             " Conceal characters on the cursor line
 
-autocmd filetype markdown setlocal concealcursor="" " Except for in markdown files
-
+" Except for in markdown and LaTeX files (LaTeX files' config don't seem to be overwritten though)
+autocmd Filetype markdown,latex,tex setlocal concealcursor=""
 
 " -- Tab characters --
 filetype plugin indent on
@@ -374,6 +387,13 @@ map <leader>C <plug>NERDCommenterToEOL
 " -- Gitgutter --
 set updatetime=100
 
+" -- AutoPairs --
+let g:AutoPairsShortcutToggle     = '' " Disables some mappings
+let g:AutoPairsShortcutBackInsert = ''
+let g:AutoPairsShortcutFastWrap   = ''
+let g:AutoPairsShortcutJump       = ''
+let g:AutoPairsMoveCharacter      = ''
+
 " -- For editing multiple files with `*` --
 com! -complete=file -nargs=* Edit silent! exec "!vim --servername " . v:servername . " --remote-silent <args>"
 
@@ -391,8 +411,10 @@ let g:sleuth_automatic = 1
 nmap <silent> <C-]> <Plug>(coc-definition)
 nmap <silent> <leader>rn <Plug>(coc-rename)
 " Use `<CR>` to confirm completion
-imap <expr> <NL> pumvisible() ? "\<C-y>" : "\<CR>"
 imap <C-j> <NL>
+imap <expr> <NL> pumvisible() ? "\<C-y>" : "\<CR>"
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
 set statusline+=%{coc#status()}
 
 let g:coc_snippet_next = '<Tab>'   " Use Tab to jump to next place in snippet
@@ -417,7 +439,8 @@ let g:coc_global_extensions = [
   \ 'coc-tslint',
   \ 'coc-tslint-plugin',
   \ 'coc-explorer',
-  \ 'coc-pairs'
+  \ 'coc-vimtex',
+  \ 'coc-omnisharp'
   \]
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -431,7 +454,10 @@ function! s:show_documentation()
 endfunction
 
 " coc-explorer
-noremap <silent> ½ :execute 'CocCommand explorer --file-columns=selection,icon,clip,indent,filename,size'<CR>
+noremap <silent> ½ :execute 'CocCommand explorer --file-columns=selection,icon,clip,indent,filename,size ' . expand('%:p:h')<CR>
+
+" coc-snippets
+vmap gs <Plug>(coc-snippets-select)
 
 " -- Commentary --
 nmap cm <Plug>Commentary
@@ -441,10 +467,10 @@ autocmd VimEnter * SwapList BOOLEANS TRUE FALSE
 
 " -- textobj-function --
 let g:textobj_function_no_default_key_mappings = 1
-vmap     aF               <Plug>(textobj-function-A)
-omap     aF               <Plug>(textobj-function-A)
-vmap     iF               <Plug>(textobj-function-i)
-omap     iF               <Plug>(textobj-function-i)
+vmap aF <Plug>(textobj-function-A)
+omap aF <Plug>(textobj-function-A)
+vmap iF <Plug>(textobj-function-i)
+omap iF <Plug>(textobj-function-i)
 
 " -- Cool.vim --
 if has('nvim') || has('gui_running')
@@ -478,11 +504,38 @@ let g:comfortable_motion_air_drag = 0.0
 
 " -- Fzf --
 autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
-let $FZF_DEFAULT_OPTS='--bind ctrl-o:accept --history=' . $HOME . '/.fzf_history'
+let $FZF_DEFAULT_OPTS='--bind ctrl-j:accept,alt-k:up,alt-j:down --history=' . $HOME . '/.fzf_history'
+" Preview window
+command! -bang -nargs=? -complete=dir Files
+      \ call fzf#vim#files(<q-args>, {
+      \ 'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {}']
+      \ }, <bang>0)
 
 " -- vim-printer --
 let g:vim_printer_print_below_keybinding = 'gp'
 let g:vim_printer_print_above_keybinding = 'gP'
+
+" -- Vimtex --
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura' " Zathura automatically reloads documents
+let g:surround_{char2nr('c')} = "\\\1command\1{\r}" " Add vim-surround noun `c`
+
+" -- textobj-entire --
+let g:textobj_entire_no_default_key_mappings=1
+omap aE <Plug>(textobj-entire-a)
+xmap aE <Plug>(textobj-entire-a)
+omap iE <Plug>(textobj-entire-i)
+xmap iE <Plug>(textobj-entire-i)
+
+" Disable custom warnings based on regexp
+let g:vimtex_quickfix_ignore_filters = [
+      \ 'Underfull \\hbox',
+      \]
+
+" -- togglelist.vim --
+let g:toggle_list_no_mappings=1
+nmap <script> <silent> <leader>L :call ToggleLocationList()<CR>
+nmap <script> <silent> <leader>Q :call ToggleQuickfixList()<CR>
 
 if !exists("g:gui_oni") " ----------------------- Oni excluded stuff below -----------------------
 
@@ -531,7 +584,7 @@ let g:acp_completeOption = '.,w,b,k,u,t'
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
-autocmd CompleteDone * pclose " Auto close `scratch` window after autocompletion
+" autocmd CompleteDone * pclose " Auto close `scratch` window after autocompletion
 
 " -- CtrlP --
 map <C-M-p> :CtrlPMRUFiles<CR>
@@ -550,7 +603,9 @@ else
     \ }
 endif
 let g:ctrlp_prompt_mappings = {
-  \ 'AcceptSelection("e")': ['<C-o>', '<CR>'],
+  \ 'AcceptSelection("e")': ['<C-j>', '<CR>'],
+  \ 'PrtSelectMove("j")':   ['<m-j>', '<down>'],
+  \ 'PrtSelectMove("k")':   ['<m-k>', '<up>'],
   \ } " Open files with Ctrl-O
 
 set grepprg=ag\ --nogroup\ --nocolor
@@ -570,23 +625,23 @@ if exists('g:loaded_webdevicons')
   call webdevicons#refresh() " Fixes bug with `[]` appearing around icons after `source ~/.vimrc`
 endif
 
-" -- ALE --
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_python_prospector_executable = 'python' " Use Python 2. Change to 'python3' for Python 3
-let g:ale_python_autopep8_options = '--aggressive --max-line-length 160'
-let g:ale_fixers  = {
-\   '*':          ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['prettier', 'eslint'],
-\   'python':     ['autopep8']
-\}
-let g:ale_linters = {
-\   'python': ['flake8'],
-\   'c':      ['gcc -fopenmp'],
-\   'cpp':    ['g++ -fopenmp']
-\}
-command! ALEDisableFixOnSave let g:ale_fix_on_save=0
-command! ALEEnableFixOnSave let g:ale_fix_on_save=1
+" " -- ALE --
+" let g:ale_fix_on_save = 1
+" let g:ale_lint_on_text_changed = 'normal'
+" let g:ale_python_prospector_executable = 'python' " Use Python 2. Change to 'python3' for Python 3
+" let g:ale_python_autopep8_options = '--aggressive --max-line-length 160'
+" let g:ale_fixers  = {
+" \   '*':          ['remove_trailing_lines', 'trim_whitespace'],
+" \   'javascript': ['prettier', 'eslint'],
+" \   'python':     ['autopep8']
+" \}
+" let g:ale_linters = {
+" \   'python': ['flake8'],
+" \   'c':      ['gcc -fopenmp'],
+" \   'cpp':    ['g++ -fopenmp']
+" \}
+" command! ALEDisableFixOnSave let g:ale_fix_on_save=0
+" command! ALEEnableFixOnSave let g:ale_fix_on_save=1
 
 " " -- Gutentags --
 " let g:gutentags_modules = ['ctags']

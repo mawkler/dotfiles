@@ -6,7 +6,7 @@
     "suggest.maxCompleteItemCount": 200,
     "java.errors.incompleteClasspath.severity": "ignore",
     "suggest.snippetIndicator": " ►",
-    "yank.highlight.duration": 150,
+    "yank.highlight.duration": 350,
     "python.jediEnabled": false,
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,

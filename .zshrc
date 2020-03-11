@@ -1,4 +1,7 @@
 if type yarn &> /dev/null; then export PATH="$(yarn global bin):$PATH" &> /dev/null; fi
+# export PATH="/opt/texlive/2020/bin/x86_64-linux:$PATH"
+# export MANPATH="/opt/texlive/2020/texmf-dist/doc/man:$PATH"
+# export INFOPATH="/opt/texlive/2020/texmf-dist/doc/info:$PATH"
 
 ZSH_THEME="agnoster" # Backup theme (gets overwritten by Powerline theme if available)
 
@@ -207,6 +210,16 @@ function mkcd() {
   mkdir -p "$@" && cd "$@"
 }
 
+# cd to selected directory using FZF using Alt-T
+cdz() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+  zle reset-prompt
+}
+zle -N cdz{,}
+bindkey '^[t' cdz
+
 alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.vimrc'
 alias src='source ~/.zshrc'
@@ -237,6 +250,8 @@ alias bats='bat --pager="less -mgi --underline-special --SILENT"'
 alias myip='hostname -i'
 alias yaz='yay -Slq | fzf -m --preview "yay -Si {1}"| xargs -ro yay -S --noconfirm'
 alias yaz-remove='yay -Qeq | fzf -m --preview "yay -Qi {1}" | xargs -ro yay -Rs'
+alias mv='mv -i'
+alias pdf_clip='curl -Ls `xclip -o` | zathura - &'
 
 # Git:
 alias g='git'
@@ -269,7 +284,7 @@ alias dot='dotfiles'
 alias dots='dot status'
 
 # Fzf
-export FZF_DEFAULT_OPTS="--bind ctrl-o:accept --history=$HOME/.fzf_history"
+export FZF_DEFAULT_OPTS="--bind ctrl-j:accept,alt-k:up,alt-j:down --history=$HOME/.fzf_history"
 export FZF_CTRL_T_COMMAND='ag --hidden --ignore .git -g ""'
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh   ] && source /usr/share/fzf/completion.zsh
