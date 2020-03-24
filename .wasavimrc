@@ -4,12 +4,10 @@ set nolaunchbell
 set bellvolume=0
 set novisualbell
 set relativenumber
-set jkdenotative
+set number
+" set jkdenotative " Swaps j with gj, etc.
 set autoindent
 set nocursorblink
-
-map [noremap] s ys
-map [noremap] S yS
 
 " From .vimrc
 set ignorecase
@@ -27,6 +25,11 @@ map <C-s> :w<enter>
 map <C-q> :q<enter>
 map <C-j> o<Esc>
 map <C-k> O<Esc>
+
+map [noremap] s ys
+map [noremap] S ys$
+map [noremap] ds ds
+map [noremap] cs cs
 
 map     <BS>            X
 map     <S-BS>          x
@@ -47,3 +50,5 @@ map     ä               viw
 map     Ä               viW
 map     å               ci(
 map     Å               ci"
+map     zt              zzLzz''
+map     zb              zzHzz''
