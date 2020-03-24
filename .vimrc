@@ -225,9 +225,9 @@ map      <leader>N        :edit ~/.config/nvim/init.vim<CR>
 map      <leader>G        :edit ~/.config/nvim/ginit.vim<CR>
 map      <leader>Z        :edit ~/.zshrc<CR>
 map      <leader>I        :edit ~/.dotfiles/install-dotfiles.sh<CR>
-map      <leader>u        :cd ~/Dropbox/Uppsala/<CR>
-map      <leader>M        :cd ~/Dropbox/Dokument/Markdowns/<CR>
-map      <leader>E        :cd ~/Dropbox/Exjobb/<CR>
+map      <leader>u        :cd $DROPBOX/Uppsala/<CR>
+map      <leader>M        :cd $DROPBOX/Dokument/Markdowns/<CR>
+map      <leader>E        :cd $DROPBOX/Exjobb/<CR>
 map      <leader>~        :cd ~<CR>
 map      gX               :exec 'silent !google-chrome-stable % &'<CR>
 nmap     gF               :e <C-r>+<CR>
@@ -437,7 +437,6 @@ let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-python',
   \ 'coc-java',
-  \ 'coc-ccls',
   \ 'coc-html',
   \ 'coc-css',
   \ 'coc-prettier',
@@ -531,7 +530,7 @@ let g:vim_printer_print_above_keybinding = 'gP'
 
 " -- Vimtex --
 let g:tex_flavor='latex'
-let g:vimtex_view_method='zathura' " Zathura automatically reloads documents
+let g:vimtex_view_general_viewer = 'SumatraPDF'
 let g:surround_{char2nr('c')} = "\\\1command\1{\r}" " Add vim-surround noun `c`
 
 " Disable custom warnings based on regexp
@@ -625,8 +624,6 @@ let g:ctrlp_prompt_mappings = {
   \ 'PrtSelectMove("j")':   ['<m-j>', '<down>'],
   \ 'PrtSelectMove("k")':   ['<m-k>', '<up>'],
   \ } " Open files with Ctrl-O
-
-set grepprg=ag\ --nogroup\ --nocolor
 
 " -- vim-devicons --
 let g:webdevicons_enable                      = 1
