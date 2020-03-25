@@ -14,5 +14,6 @@
     "explorer.icon.enableNerdfont": true,
     "explorer.keyMappings": {
         "o": "expand"
-    }
+    },
+    "latex.lint.onSave": false
 }
