@@ -1,7 +1,5 @@
 if type yarn &> /dev/null; then export PATH="$(yarn global bin):$PATH" &> /dev/null; fi
-# export PATH="/opt/texlive/2020/bin/x86_64-linux:$PATH"
-# export MANPATH="/opt/texlive/2020/texmf-dist/doc/man:$PATH"
-# export INFOPATH="/opt/texlive/2020/texmf-dist/doc/info:$PATH"
+export PATH="/usr/bin/dotnet:$PATH"
 
 ZSH_THEME="agnoster" # Backup theme (gets overwritten by Powerline theme if available)
 
@@ -251,7 +249,8 @@ alias myip='hostname -i'
 alias yaz='yay -Slq | fzf -m --preview "yay -Si {1}"| xargs -ro yay -S --noconfirm'
 alias yaz-remove='yay -Qeq | fzf -m --preview "yay -Qi {1}" | xargs -ro yay -Rs'
 alias mv='mv -i'
-alias pdf_clip='curl -Ls `xclip -o` | zathura - &'
+alias pdf_clip='curl -Ls `xclip -o` | (zathura - &)'
+alias ag="ag --pager='less -R'"
 
 # Git:
 alias g='git'
