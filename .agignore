@@ -4,9 +4,11 @@ __pycache__
 node_modules/
 .npm/
 chromium/
+google-chrome/
 .java/
 .cache/
-.config/
+*[Cc]ache/
+*-cache*
 .local/
 .gikraken/
 .dotfiles/
@@ -30,12 +32,16 @@ chromium/
 .FlashPrint/
 .wine/
 .technic/
-.vim/
 .antigen/
 .[Aa]ndroid*/
 Android*/
 .gradle/
 .gnome/apps/
+.e/
+coc/extensions/
+.electron-gyp/
+.nuget/
+.vscode-oss/
 
 *.sw?
 *~
