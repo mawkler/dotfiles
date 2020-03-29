@@ -15,5 +15,6 @@
     "explorer.keyMappings": {
         "o": "expand"
     },
-    "latex.lint.onSave": false
+    "latex.lint.onSave": false,
+    "diagnostic.warningSign": "△"
 }
