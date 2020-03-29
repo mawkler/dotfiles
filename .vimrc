@@ -91,7 +91,7 @@ set vb t_vb=      " Disable error bells
 set ttyfast       " Speed up drawing
 set shortmess+=A  " Ignores swapfiles when opening file
 set autoread      " Automatically read in the file when changed externally
-autocmd! FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif " Check if any file has changed
+autocmd! FocusGained,BufEnter * if mode() != 'c' | checktime | endif " Check if any file has changed
 set termguicolors " Use GUI colors in terminal as well
 set noshowmode    " Don't write out `--INSERT--`, etc.
 set linebreak     " Don't break lines in the middle of a word
@@ -219,9 +219,9 @@ map      <leader>;        :call VisualAppend(";")<CR>
 map      <leader>,        :call VisualAppend(",")<CR>
 map      <leader>.        :call VisualAppend(".")<CR>
 map      <leader>?        :call VisualAppend("?")<CR>
-map      <leader>v        :source ~/.vimrc<CR>
+map      <leader>v        :source ~/AppData/Local/nvim/init.vim<CR>
 map      <leader>V        :edit ~/.vimrc<CR>
-map      <leader>N        :edit ~/.config/nvim/init.vim<CR>
+map      <leader>N        :edit ~/AppData/Local/nvim/init.vim<CR>
 map      <leader>G        :edit ~/.config/nvim/ginit.vim<CR>
 map      <leader>Z        :edit ~/.zshrc<CR>
 map      <leader>I        :edit ~/.dotfiles/install-dotfiles.sh<CR>
@@ -254,6 +254,8 @@ tnoremap <Esc>            <C-\><C-n>
 nmap     cg*              *Ncgn
 nmap     <leader>z        1z=
 xnoremap g.               .
+nmap     dage             viw<Esc>bhdaw
+nmap     cage             viw<Esc>bhcaw
 
 augroup vertical_help " Open :help in vertical instead of horizontal split
   autocmd!
@@ -453,6 +455,7 @@ let g:coc_global_extensions = [
   \ 'coc-bibtex',
   \ 'coc-texlab',
   \ 'coc-omnisharp',
+  \ 'coc-tabnine',
   \]
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -476,7 +479,11 @@ vmap gs <Plug>(coc-snippets-select)
 nmap cm <Plug>Commentary
 
 " -- swapit --
-autocmd VimEnter * SwapList BOOLEANS TRUE FALSE
+autocmd VimEnter * SwapList BOOLEANS "TRUE FALSE"
+autocmd VimEnter * SwapList numbers
+      \ "zero one two three four five six seven eight nine ten eleven twelve"
+autocmd VimEnter * SwapList nummer
+      \ "noll en ett två tre fyra fem sex sju åtta nio tio elva tolv"
 
 " -- textobj-function --
 let g:textobj_function_no_default_key_mappings = 1
@@ -532,6 +539,9 @@ let g:vim_printer_print_above_keybinding = 'gP'
 let g:tex_flavor='latex'
 let g:vimtex_view_general_viewer = 'SumatraPDF'
 let g:surround_{char2nr('c')} = "\\\1command\1{\r}" " Add vim-surround noun `c`
+let g:vimtex_toc_config = {
+      \ 'layer_status': { 'label': 0 }
+      \ }
 
 " Disable custom warnings based on regexp
 let g:vimtex_quickfix_ignore_filters = [
@@ -604,7 +614,8 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 " autocmd CompleteDone * pclose " Auto close `scratch` window after autocompletion
 
 " -- CtrlP --
-map <C-M-p> :CtrlPMRUFiles<CR>
+map <C-M-p>       :CtrlPMRUFiles<CR>
+map <leader><C-p> :CtrlPMRUFiles<CR>
 let g:ctrlp_show_hidden       = 1
 let g:ctrlp_max_depth         = 100
 let g:ctrlp_working_path_mode = ''
