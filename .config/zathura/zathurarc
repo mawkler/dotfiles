@@ -9,9 +9,7 @@ map [fullscreen] d scroll half-down
 map [normal]     d scroll half-down
 map [fullscreen] u scroll half-up
 map [normal]     u scroll half-up
-# map [normal]     <Esc> quit
-# map [fullscreen] <Esc> quit
-
+map D toggle_page_mode
 map <C-l> toggle_statusbar
 
 set guioptions none
