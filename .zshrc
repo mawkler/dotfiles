@@ -1,8 +1,4 @@
-if type yarn &> /dev/null; then export PATH="$(yarn global bin):$PATH" &> /dev/null; fi
-export PATH="/usr/bin/dotnet:$PATH"
-
 ZSH_THEME="agnoster" # Backup theme (gets overwritten by Powerline theme if available)
-
 DISABLE_AUTO_UPDATE="true"
 
 # ------------- Antigen -------------
