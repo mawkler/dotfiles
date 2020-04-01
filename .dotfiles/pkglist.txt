@@ -1,4 +1,5 @@
 bat
+broot
 caprine
 chrome-gnome-shell
 diff-so-fancy
