@@ -1,5 +1,6 @@
 [/]
-maximize=['<Primary><Super>a']
-minimize=['<Primary><Shift><Super>s']
+maximize=['<Primary><Super>a', '<Super>Up']
+minimize=['<Primary><Shift><Super>s', '<Super>Down']
 show-desktop=['<Super>d']
 unmaximize=['<Primary><Shift><Super>a']
+close=['<Super>q', '<Alt>F4']
