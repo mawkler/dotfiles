@@ -13,7 +13,8 @@
     "coc.preferences.formatOnSaveFiletypes": ["*"],
     "explorer.icon.enableNerdfont": true,
     "explorer.keyMappings": {
-        "o": "expand"
+        "o": ["expandable?", "expandOrCollapse", "open"]
     },
-    "latex.lint.onSave": false
+    "latex.lint.onSave": false,
+    "diagnostic.warningSign": "△"
 }

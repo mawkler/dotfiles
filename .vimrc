@@ -74,8 +74,9 @@ Plugin 'meain/vim-printer'
 Plugin 'lervag/vimtex'
 Plugin 'rhysd/git-messenger.vim'
 " Plugin 'camspiers/animate.vim'             " Causes bug with window sizes when opening :help
-Plugin 'camspiers/lens.vim'
+Plugin 'camspiers/lens.vim'                  " An automatic window resizing plugin
 Plugin 'itchyny/vim-highlighturl'            " Highlights URLs everywhere
+
 call vundle#end()
 
 " -- File imports --
@@ -129,7 +130,6 @@ map      <C-Tab>          :bnext<CR>
 map      <C-S-Tab>        :bprevious<CR>
 map      <leader><C-w>    :Bdelete<CR>
 map      <leader><C-M-w>  :Bdelete!<CR>
-map      <CR>             <leader>c<space>
 nnoremap Y                y$
 nnoremap yp               yyp
 map      <leader>y        "+y
@@ -258,6 +258,9 @@ xnoremap g.               .
 nmap     dage             viw<Esc>bhdaw
 nmap     cage             viw<Esc>bhcaw
 
+map <expr> o    &modifiable ? "o" : "\<CR>"
+map <expr> <CR> &modifiable ? "\<Plug>NERDCommenterToggle" : "\<CR>"
+
 augroup vertical_help " Open :help in vertical instead of horizontal split
   autocmd!
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
@@ -291,9 +294,6 @@ autocmd  filetype *      nnoremap <buffer> <Tab> ==
 autocmd  filetype *      vnoremap <buffer> <Tab> =gv
 autocmd  filetype python nmap <buffer> <Tab> >>
 autocmd  filetype python vmap <buffer> <Tab> >gv
-
-" -- Quickfix window map --
-autocmd filetype qf noremap <buffer> o <CR>
 
 " -- netrw --
 let g:netrw_silent = 1
@@ -456,7 +456,7 @@ let g:coc_global_extensions = [
   \ 'coc-bibtex',
   \ 'coc-texlab',
   \ 'coc-omnisharp',
-  \ 'coc-tabnine',
+  \ 'coc-tabnine'
   \]
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -557,17 +557,21 @@ xmap aE <Plug>(textobj-entire-a)
 omap iE <Plug>(textobj-entire-i)
 xmap iE <Plug>(textobj-entire-i)
 
-" -- togglelist.vim --
-let g:toggle_list_no_mappings=1
-nmap <script> <silent> <leader>L :call ToggleLocationList()<CR>
-nmap <script> <silent> <leader>Q :call ToggleQuickfixList()<CR>
-
+" -- textobj-user --
 call textobj#user#plugin('datetime', {
       \   'date': {
       \     'pattern': '\<\d\d\d\d-\d\d-\d\d\>',
       \     'select': ['ad', 'id'],
       \   }
       \ })
+
+" -- togglelist.vim --
+let g:toggle_list_no_mappings=1
+nmap <script> <silent> <leader>L :call ToggleLocationList()<CR>
+nmap <script> <silent> <leader>Q :call ToggleQuickfixList()<CR>
+
+" -- lens.vim --
+let g:lens#disabled_filetypes = ['coc-explorer', 'fzf']
 
 if !exists("g:gui_oni") " ----------------------- Oni excluded stuff below -----------------------
 
@@ -634,10 +638,10 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""' "  Use ag in CtrlP for listing files
   let g:ctrlp_use_caching = 0                                    "  ag doesn't need to cache
 else
-  let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/](\.(git|dotfiles|vim/bundle|npm|config|chromium|cargo)|node_modules)$',
-    \ 'file': '\v(\.(exe|sw.|dll|pyc)|__init__.py)$',
-    \ }
+  " let g:ctrlp_custom_ignore = {
+  "   \ 'dir': '\v[\/](\.(git||vim/bundle|npm|config|chromium|cargo)|node_modules)$',
+  "   \ 'file': '\v(\.(exe|sw.|dll|pyc)|__init__.py)$',
+  "   \ }
 endif
 let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("e")': ['<C-j>', '<CR>'],

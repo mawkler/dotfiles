@@ -1,0 +1,29 @@
+set recolor-lightcolor "#282c34" # Use Atom dark theme gray as background in night mode
+set recolor-darkcolor  "#d0d4db"
+set recolor
+
+set synctex true
+set synctex-editor-command "nvim-qt --remote-silent %f -c %l"
+
+map [fullscreen] d scroll half-down
+map [normal]     d scroll half-down
+map [fullscreen] u scroll half-up
+map [normal]     u scroll half-up
+map D toggle_page_mode
+map <C-l> toggle_statusbar
+
+set guioptions none
+set highlight-transparency 0.1
+
+set sandbox none # Fixes bug that prevents links from opening in web browser
+
+set window-height 1000
+set window-width 800
+
+set adjust-open "width" # Open document in fit-width mode by default
+
+# set selection-clipboard clipboard # Text is copied to system clipboard [causes crash?]
+
+# Show scrollbars
+set show-v-scrollbar
+set show-h-scrollbar
