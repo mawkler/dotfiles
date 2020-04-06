@@ -480,11 +480,11 @@ vmap gs <Plug>(coc-snippets-select)
 nmap cm <Plug>Commentary
 
 " -- swapit --
-autocmd VimEnter * SwapList BOOLEANS "TRUE FALSE"
+autocmd VimEnter * SwapList BOOLEANS TRUE FALSE
 autocmd VimEnter * SwapList numbers
-      \ "zero one two three four five six seven eight nine ten eleven twelve"
+      \ zero one two three four five six seven eight nine ten eleven twelve
 autocmd VimEnter * SwapList nummer
-      \ "noll en ett två tre fyra fem sex sju åtta nio tio elva tolv"
+      \ noll en ett två tre fyra fem sex sju åtta nio tio elva tolv
 
 " -- textobj-function --
 let g:textobj_function_no_default_key_mappings = 1
