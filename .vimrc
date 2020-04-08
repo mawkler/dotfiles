@@ -571,7 +571,7 @@ nmap <script> <silent> <leader>L :call ToggleLocationList()<CR>
 nmap <script> <silent> <leader>Q :call ToggleQuickfixList()<CR>
 
 " -- lens.vim --
-let g:lens#disabled_filetypes = ['coc-explorer', 'fzf']
+let g:lens#disabled_filetypes = ['coc-explorer', 'fzf', '']
 
 if !exists("g:gui_oni") " ----------------------- Oni excluded stuff below -----------------------
 
