@@ -7,3 +7,4 @@ source /home/melker/.config/broot/launcher/bash/br
 export PATH="$(yarn global bin):$PATH"
 export PATH="/usr/bin/dotnet:$PATH"
 
+export DROPBOX="~/Dropbox/"
