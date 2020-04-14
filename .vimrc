@@ -79,6 +79,7 @@ Plugin 'camspiers/lens.vim'                  " An automatic window resizing plug
 Plugin 'itchyny/vim-highlighturl'            " Highlights URLs everywhere
 Plugin 'AndrewRadev/bufferize.vim'           " Execute a :command and show the output in a temporary buffer
 Plugin 'benshuailyu/online-thesaurus-vim'    " Retrieves the synonyms and antonyms of a given word
+Plugin 'mbbill/undotree'
 call vundle#end()
 
 " -- File imports --
@@ -95,7 +96,7 @@ set vb t_vb=      " Disable error bells
 set ttyfast       " Speed up drawing
 set shortmess+=A  " Ignores swapfiles when opening file
 set autoread      " Automatically read in the file when changed externally
-autocmd! FocusGained,BufEnter * if mode() != 'c' | checktime | endif " Check if any file has changed
+autocmd FocusGained * silent! checktime " Check if any file has changed
 set termguicolors " Use GUI colors in terminal as well
 set noshowmode    " Don't write out `--INSERT--`, etc.
 set linebreak     " Don't break lines in the middle of a word
@@ -228,9 +229,8 @@ map      <leader>N        :edit ~/AppData/Local/nvim/init.vim<CR>
 map      <leader>G        :edit ~/.config/nvim/ginit.vim<CR>
 map      <leader>Z        :edit ~/.zshrc<CR>
 map      <leader>I        :edit ~/.dotfiles/install-dotfiles.sh<CR>
-map      <leader>u        :cd $DROPBOX/Uppsala/<CR>
-map      <leader>M        :cd $DROPBOX/Dokument/Markdowns/<CR>
-map      <leader>E        :cd $DROPBOX/Exjobb/<CR>
+map      <leader>M        :cd $DROPBOX/Dokument/Markdowns/<CR>:echo "cd " . $DROPBOX . "Dokument/Markdowns/"<CR>
+map      <leader>E        :cd $DROPBOX/Exjobb/<CR>:echo "cd " . $DROPBOX . "Exjobb/"<CR>
 map      <leader>~        :cd ~<CR>
 map      gX               :exec 'silent !google-chrome-stable % &'<CR>
 nmap     gF               :e <C-r>+<CR>
@@ -258,12 +258,13 @@ nmap     dage             viw<Esc>bhdaw
 nmap     cage             viw<Esc>bhcaw
 
 nmap <silent> <expr> <leader>z &spell ? "1z=" : ":setlocal spell!<CR>1z="
-map           <expr> o         &modifiable ? "o" : "\<CR>"
-map           <expr> <CR>      &modifiable ? "\<Plug>NERDCommenterToggle" : "\<CR>"
+map      <expr> o     &modifiable ? "o" : "<CR>"
+map      <expr> <CR>  &modifiable ? "<Plug>NERDCommenterToggle" : "<CR>"
+nnoremap <expr> <C-j> bufexists('[Command Line]') ? "<CR>" : "o<Esc>"
 
 augroup vertical_help " Open :help in vertical instead of horizontal split
   autocmd!
-  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+  autocmd FileType help wincmd L | vertical resize 78
 augroup END
 
  " Appends `char` to current line or visual selection
@@ -281,6 +282,19 @@ function! SynStack()
 endfunc
 map <leader>H :call SynStack()<CR>
 
+" Tries to perform a regular `gf`, if that doesn't work try to call
+" vim-markdown's Markdown_EditUrlUnderCursor
+function MarkdownGf()
+  set path-=**
+  try
+    normal! gf
+  catch:
+    execute "normal \<Plug>Markdown_EditUrlUnderCursor"
+  endtry
+  set path+=**
+endfunc
+noremap gf :call MarkdownGf()<CR>
+
 if has("gui_running") " Gvim specific configuration
   set lines=999 columns=999 " Start in maximized window
   set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
@@ -289,8 +303,9 @@ endif
 if has('nvim')
   " Because NeoVim's menu completions are in a vertical pum
   cmap <expr> <C-p> pumvisible() ? "\<C-p>" : "\<Up>"
+  cmap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<Down>"
   cmap <expr> <C-j> pumvisible() ? "\<Down>" : "\<CR>"
-  cunmap <C-n>
+  cmap <expr> <C-f> pumvisible() ? "\<C-e>" : "\<Right>"
 endif
 
 if exists('$TMUX')
@@ -364,6 +379,9 @@ let g:onedark_termcolors = 256
 set encoding=utf-8
 set fillchars+=vert:▏ " Adds nicer lines for vertical splits
 
+" -- Vundle --
+cnoreabbrev PlugInstall PluginInstall
+
 " -- IndentLine --
 autocmd BufEnter,BufRead * let b:indentLine_enabled = 1
 autocmd BufEnter,BufRead *.json
@@ -418,8 +436,8 @@ let g:AutoPairsMoveCharacter      = ''
 " -- For editing multiple files with `*` --
 com! -complete=file -nargs=* Edit silent! exec "!vim --servername " . v:servername . " --remote-silent <args>"
 
-" -- Targets.vim --
-let g:targets_nl   = 'nN'   " Uses `N` instead of `l` for moving targeting backwards
+" " -- Targets.vim --
+" let g:targets_nl   = 'nN'   " Uses `N` instead of `l` for moving targeting backwards
 let g:targets_aiAI = 'aIAi' " Swaps meaning of `I` and `i`
 
 " -- Vim Fugitive --
@@ -487,11 +505,13 @@ vmap gs <Plug>(coc-snippets-select)
 nmap cm <Plug>Commentary
 
 " -- swapit --
-autocmd VimEnter * SwapList BOOLEANS TRUE FALSE
-autocmd VimEnter * SwapList numbers
-      \ zero one two three four five six seven eight nine ten eleven twelve
-autocmd VimEnter * SwapList nummer
-      \ noll en ett två tre fyra fem sex sju åtta nio tio elva tolv
+fun SwapLists()
+  ClearSwapList
+  SwapList BOOLEANS TRUE FALSE
+  SwapList numbers zero one two three four five six seven eight nine ten eleven twelve
+  SwapList nummer noll en ett två tre fyra fem sex sju åtta nio tio elva tolv
+endfun
+autocmd BufEnter * call SwapLists()
 
 " -- textobj-function --
 let g:textobj_function_no_default_key_mappings = 1
@@ -499,6 +519,13 @@ vmap aF <Plug>(textobj-function-A)
 omap aF <Plug>(textobj-function-A)
 vmap iF <Plug>(textobj-function-i)
 omap iF <Plug>(textobj-function-i)
+
+" --- vim-textobj-line ---
+let g:textobj_line_no_default_key_mappings = 1
+vmap aL <Plug>(textobj-line-a)
+omap aL <Plug>(textobj-line-a)
+vmap iL <Plug>(textobj-line-i)
+omap iL <Plug>(textobj-line-i)
 
 " -- Cool.vim --
 if has('nvim') || has('gui_running')
@@ -558,7 +585,14 @@ let g:vimtex_quickfix_ignore_filters = [
       \]
 
 " -- textobj-entire --
-let g:textobj_entire_no_default_key_mappings=1
+let g:textobj_entire_no_default_key_mappings = 1
+" Allow `ie` and `ae` in all file types except `tex` files
+omap <expr> ae &filetype=='tex' ? "<Plug>(vimtex-ae)" : "<Plug>(textobj-entire-a)"
+xmap <expr> ae &filetype=='tex' ? "<Plug>(vimtex-ae)" : "<Plug>(textobj-entire-a)"
+omap <expr> ie &filetype=='tex' ? "<Plug>(vimtex-ie)" : "<Plug>(textobj-entire-i)"
+xmap <expr> ie &filetype=='tex' ? "<Plug>(vimtex-ie)" : "<Plug>(textobj-entire-i)"
+
+" `iE` and `aE` work in all file types
 omap aE <Plug>(textobj-entire-a)
 xmap aE <Plug>(textobj-entire-a)
 omap iE <Plug>(textobj-entire-i)
@@ -582,8 +616,20 @@ let g:lens#disabled_filetypes = ['coc-explorer', 'fzf', '']
 
 " -- vim-markdown --
 let g:vim_markdown_folding_disabled = 1
-" Makes sure that italic words actually look italic in Markdown
+" Make italic words actually look italic in Markdown
 hi htmlItalic cterm=italic gui=italic
+" Underline link names in Markdown in-line links
+hi mkdLink cterm=underline gui=underline
+" Underline Markdown URLs
+hi mkdInlineURL guifg=#61AFEF gui=underline
+
+" --- vim-highlighturl ---
+" Disable vim-highlighturl in Markdown files
+augroup highlighturl_filetype
+  autocmd!
+  autocmd FileType markdown call highlighturl#disable_local()
+augroup END
+let g:highlighturl_guifg = '#61AFEF'
 
 if !exists("g:gui_oni") " ----------------------- Oni excluded stuff below -----------------------
 
