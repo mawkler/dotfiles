@@ -10,6 +10,7 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'bling/vim-airline'
+Plugin 'enricobacis/vim-airline-clock'
 Plugin 'powerline/fonts'
 Plugin 'joshdick/onedark.vim'                " Atom dark theme for vim
 Plugin 'scrooloose/nerdtree'
@@ -205,7 +206,10 @@ map      ¨                ]
 map      å                [
 map      ¨¨               ]]
 map      åå               [[
+map      ^                }
+map      Å                {
 nmap     ö                ;
+nmap     gö               g;
 nmap     Ö                :
 nmap     <C-c>            <Nop>
 " vim-surround----------------------------------
@@ -257,6 +261,8 @@ nmap     cg*              *Ncgn
 xnoremap g.               .
 nmap     dage             viw<Esc>bhdaw
 nmap     cage             viw<Esc>bhcaw
+map      g)               w)ge
+map      g(               (ge
 
 nmap <silent> <expr> <leader>z &spell ? "1z=" : ":setlocal spell!<CR>1z="
 map      <expr> o     &modifiable ? "o" : "<CR>"
@@ -483,8 +489,12 @@ let g:coc_global_extensions = [
   \ 'coc-bibtex',
   \ 'coc-texlab',
   \ 'coc-omnisharp',
-  \ 'coc-tabnine'
+  \ 'coc-tabnine',
+  \ 'coc-sh',
+  \ 'coc-terminal'
   \]
+  " \ 'coc-sql'
+  " \ 'coc-docker',
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -573,8 +583,8 @@ let g:vim_printer_print_below_keybinding = 'gp'
 let g:vim_printer_print_above_keybinding = 'gP'
 
 " -- LaTeX and Vimtex --
-let g:tex_flavor='latex'
-let g:tex_comment_nospell=1
+let g:tex_flavor = 'latex'
+let g:tex_comment_nospell = 1
 let g:vimtex_view_general_viewer = 'SumatraPDF'
 let g:surround_{char2nr('c')} = "\\\1command\1{\r}" " Add vim-surround noun `c`
 let g:vimtex_toc_config = {
@@ -654,6 +664,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tabs = 0
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#close_symbol = '✕'
+let g:airline#extensions#tabline#disable_refresh = 1 " Fixes glitching when swithcing buffers
+let airline#extensions#tabline#middle_click_preserves_windows = 1
 let g:airline#extensions#tabline#left_alt_sep = ''
 " let g:airline#extensions#tabline#left_sep = ' '
 map <leader>1 <Plug>AirlineSelectTab1
@@ -696,7 +708,7 @@ let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("e")': ['<C-j>', '<CR>'],
   \ 'PrtSelectMove("j")':   ['<m-j>', '<down>'],
   \ 'PrtSelectMove("k")':   ['<m-k>', '<up>'],
-  \ } " Open files with Ctrl-O
+  \ }
 
 " -- vim-devicons --
 let g:webdevicons_enable                      = 1
