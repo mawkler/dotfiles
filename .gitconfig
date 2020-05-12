@@ -8,6 +8,7 @@
 	b      = branch
 	c      = commit
 	cm     = commit -m
+	ca     = commit -a
 	cam    = commit -am
 	com    = checkout master
 	l      = log --decorate
