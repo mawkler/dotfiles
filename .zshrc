@@ -270,6 +270,7 @@ alias gb='git branch'
 alias gw='git whatchanged'
 alias gcm='git commit -m'
 alias gcam='git commit -am'
+alias gca='git commit -a'
 alias gu='git diff HEAD@{1} HEAD'
 alias gly='git log --since="yesterday"'
 
