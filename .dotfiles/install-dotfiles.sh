@@ -28,12 +28,12 @@ echo "Creating Vim swap file directories.";
 mkdir -p $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo $HOME/.vim/tags # Create Vim directories
 chmod +x $HOME/.vim/backup $HOME/.vim/swp $HOME/.vim/undo                 # And make them executable (at least backup needs this)
 
-echo "Installing Vundle and Vundle plugins for Vim";
-git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+echo "Installing vim-plug and plugins for Vim";
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 if type nvim &> /dev/null; then
-  nvim +PluginInstall +"call coc#util#install()" +qa 2> /dev/null
+  nvim +PlugInstall +qa 2> /dev/null
 else
-  yes | vim +PluginInstall +"call coc#util#install()" +qa 2> /dev/null
+  vim +PlugInstall +qa 2> /dev/null
 fi
 
 pip install --user autopep8 flake8 # For Python linting and autoformatting
