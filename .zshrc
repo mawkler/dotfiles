@@ -247,6 +247,7 @@ alias yaz-remove='yay -Qeq | fzf -m --preview "yay -Qi {1}" | xargs -ro yay -Rs'
 alias mv='mv -i'
 alias pdf_clip='curl -Ls `xclip -o` | (zathura - &)'
 alias ag="ag --pager='less -R'"
+alias dump-dconf="dconf dump /org/gnome/shell/extensions/ > .dotfiles/gnome-extensions.dconf"
 
 # Git:
 alias g='git'
