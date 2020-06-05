@@ -11,6 +11,7 @@ gdm
 gimp
 google-chrome
 gvim
+interception-caps2esc-nocaps-git
 jdk-openjdk
 make
 neovim
