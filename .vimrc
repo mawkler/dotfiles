@@ -24,6 +24,7 @@ Plugin 'jiangmiao/auto-pairs'                " Add matching brackets, quotes, et
 Plugin 'neoclide/coc.nvim'
 " Plugin 'dense-analysis/ale'                " Use either ALE or Syntastic
 Plugin 'honza/vim-snippets'
+Plugin 'rbonvall/snipmate-snippets-bib'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'maxbrunsfeld/vim-yankstack'
@@ -261,7 +262,9 @@ tnoremap <Esc>            <C-\><C-n>
 nmap     cg*              *Ncgn
 xnoremap g.               .
 nmap     dage             viw<Esc>bhdaw
+nmap     dagE             viw<Esc>bhdaW
 nmap     cage             viw<Esc>bhcaw
+nmap     cagE             viw<Esc>bhcaW
 map      g)               w)ge
 map      g(               (ge
 
@@ -272,9 +275,9 @@ nmap <silent> <C-j> :call Enter()<CR>
 
 
 function Enter()
-  if bufexists('Table of contents (vimtex)')
+  if bufname() == 'Table of contents (vimtex)'
     call b:toc.activate_current(1)
-  elseif bufexists('undotree_2')
+  elseif bufname() == 'undotree_2'
     exe "normal \<Plug>UndotreeEnter"
   elseif !&modifiable || bufexists('[Command Line]')
     try
@@ -298,7 +301,7 @@ augroup vertical_help " Open :help in 80 character wide vertical instead of hori
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | vertical resize 80 | endif
 augroup END
 
- " Appends `char` to current line or visual selection
+" Appends `char` to current line or visual selection
 function! VisualAppend(char)
   exe "normal! m0"
   exe "normal! A" . a:char
@@ -465,8 +468,8 @@ let g:AutoPairsShortcutFastWrap   = ''
 let g:AutoPairsShortcutJump       = ''
 let g:AutoPairsMoveCharacter      = ''
 let g:AutoPairsMapSpace           = 0
-autocmd Filetype markdown let b:AutoPairs = {"*": "*"}
-autocmd Filetype tex      let b:AutoPairs = {"$": "$"}
+autocmd Filetype markdown let b:AutoPairs = g:AutoPairs | let b:AutoPairs["*"] = "*"
+autocmd Filetype tex      let b:AutoPairs = g:AutoPairs | let b:AutoPairs["$"] = "$"
 " TODO: Perhaps use snippets instead to allow `$$` and `**`
 
 " -- For editing multiple files with `*` --
@@ -488,7 +491,7 @@ nmap <silent> <leader>rn <Plug>(coc-rename)
 " Use `<CR>` to confirm completion
 imap <C-j> <NL>
 imap <expr> <NL> pumvisible() ? "\<C-y>" : "\<CR>"
-autocmd CursorMoved,CursorMovedI * call coc#util#float_hide() " TODO: remove this when floating window bug is fixed for coc.nvim
+" autocmd CursorMoved,CursorMovedI * call coc#util#float_hide() " TODO: remove this when floating window bug is fixed for coc.nvim
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 set statusline+=%{coc#status()}
@@ -530,6 +533,7 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+    " TODO: catch and display errors
   else
     call CocAction('doHover')
   endif
@@ -748,6 +752,10 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor                           "  Use ag over grep
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""' "  Use ag in CtrlP for listing files
   let g:ctrlp_use_caching = 0                                    "  ag doesn't need to cache
+elseif executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
 else
   let g:ctrlp_custom_ignore = {
     \ 'dir': '\v[\/](\.(git||vim/bundle|npm|config|chromium|cargo)|node_modules)$',
