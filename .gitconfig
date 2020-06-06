@@ -29,9 +29,9 @@
 		$1..$(git rev-parse --abbrev-ref HEAD)
 	make = !make --directory $(git rev-parse --show-toplevel)
 [core]
-	autocrlf = input
 	excludesfile = /home/melker/.gitignore-global
 	pager = "if type diff-so-fancy &> /dev/null; then diff-so-fancy --set-defaults | less --tabs=4 -R; else less; fi"
+	eol = lf
 [github]
 	user   = Melkster
 [color]
