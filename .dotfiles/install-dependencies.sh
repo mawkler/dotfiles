@@ -24,7 +24,7 @@ fi
 
 # From https://dev.to/darksmile92/get-emojis-working-on-arch-linux-with-noto-fonts-emoji-2a9
 echo "Setting up Noto Emoji font"
-pacman -S noto-fonts-emoji --needed
+sudo pacman -S noto-fonts-emoji --needed
 echo "<?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
@@ -63,4 +63,8 @@ echo "<?xml version="1.0"?>
 # " > ~/.config/fontconfig/fonts.conf # If the privous line doesn't work
 fc-cache
 echo "Noto Emoji Font installed! You may need to restart applications like Chrome. If Chrome displays no symbols or no letters, your default font contains emojis."
+
+echo "Installing rust and devicon-lookup"
+sudo pacman -S rust
+cargo install devicon-lookup
 

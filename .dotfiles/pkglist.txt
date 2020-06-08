@@ -28,6 +28,7 @@ silver-searcher-git
 slack-desktop
 splix
 spotify
+sshfs
 terminator
 tmux
 trash-cli
