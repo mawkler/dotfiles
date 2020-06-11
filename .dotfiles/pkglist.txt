@@ -29,6 +29,7 @@ slack-desktop
 splix
 spotify
 sshfs
+sush
 terminator
 tmux
 trash-cli
