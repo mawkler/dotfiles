@@ -281,7 +281,8 @@ alias dot='dotfiles'
 alias dots='dot status'
 
 # Fzf
-export FZF_DEFAULT_OPTS="--bind ctrl-j:accept,alt-k:up,alt-j:down --history=$HOME/.fzf_history --preview 'bat --style=numbers --color=always --line-range :60 {}' --height 100%"
+export FZF_DEFAULT_OPTS="--bind ctrl-j:accept,alt-k:up,alt-j:down --history=$HOME/.fzf_history --height 50%"
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :100 {}'"
 export FZF_CTRL_T_COMMAND='ag --hidden --ignore .git -g ""'
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh   ] && source /usr/share/fzf/completion.zsh
