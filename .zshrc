@@ -283,7 +283,26 @@ alias dots='dot status'
 # bat config in ~/.config/bat/config
 
 # Fzf
-export FZF_DEFAULT_OPTS="--bind ctrl-j:accept,alt-k:up,alt-j:down --history=$HOME/.fzf_history --height 50%"
+export FZF_DEFAULT_OPTS="
+  --bind ctrl-j:accept,alt-k:up,alt-j:down
+  --history=$HOME/.fzf_history
+  --height 50%
+
+  --color=fg:-1
+  --color=fg+:#61afef
+  --color=bg:-1
+  --color=bg+:#444957
+  --color=hl:#E06C75
+  --color=hl+:#E06C75
+  --color=gutter:-1
+  --color=pointer:#61afef
+  --color=marker:#98C379
+  --color=header:#61afef
+  --color=info:#98C379
+  --color=spinner:#61afef
+  --color=prompt:#c678dd
+"
+
 export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :100 {}'"
 export FZF_CTRL_T_COMMAND='ag --hidden --ignore .git -g ""'
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
