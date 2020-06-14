@@ -280,6 +280,8 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dot='dotfiles'
 alias dots='dot status'
 
+# bat config in ~/.config/bat/config
+
 # Fzf
 export FZF_DEFAULT_OPTS="--bind ctrl-j:accept,alt-k:up,alt-j:down --history=$HOME/.fzf_history --height 50%"
 export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :100 {}'"

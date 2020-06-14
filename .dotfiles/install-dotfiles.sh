@@ -64,6 +64,11 @@ curl -L git.io/antigen > .zsh/antigen.zsh
 
 touch ~/.fzf_history # History file required by fzf-configuration in ~/.zshrc
 
+echo "Installing onedark theme for bat"
+mkdir -p "$(bat --config-dir)/themes"
+cp .dotfiles/base16-onedark.tmTheme "$(bat --config-dir)/themes"
+bat cache --build # Update the binary cache
+
 echo "Installing Powerline.";
 pip install --user powerline-status
 # To remove the vi-mode indicator (because it slows down) mode switching remove
