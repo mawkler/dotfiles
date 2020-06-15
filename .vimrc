@@ -570,7 +570,9 @@ fun SwapLists()
   ClearSwapList
   SwapList BOOLEANS TRUE FALSE
   SwapList numbers zero one two three four five six seven eight nine ten eleven twelve
+  SwapList Numbers Zero One Two Three Four Five Six Seven Eight Nine Ten Eleven Twelve
   SwapList nummer noll en ett två tre fyra fem sex sju åtta nio tio elva tolv
+  SwapList Nummer Noll En Ett Två Tre Fyra Fem Sex Sju Åtta Nio Tio Elva Tolv
   SwapList a a an
   SwapList and and or
   SwapList is is are
@@ -665,7 +667,7 @@ let g:vimtex_toc_config = {
       \ 'show_help': 0,
       \ 'layer_status': { 'label': 0, 'todo': 0},
       \ }
-autocmd FileType latex,tex map <buffer> <leader>T <Plug>(vimtex-toc-toggle)
+autocmd FileType latex,tex map <buffer> <leader>T <Plug>(vimtex-toc-open)
 
 " -- textobj-entire --
 let g:textobj_entire_no_default_key_mappings = 1
@@ -711,7 +713,7 @@ hi mkdLink cterm=underline gui=underline
 " Underline Markdown URLs
 hi mkdInlineURL guifg=#61AFEF gui=underline
 autocmd FileType markdown map <buffer> <leader>T :Toc<CR>
-autocmd FileType markdown setlocal keywordprg=:help
+autocmd FileType markdown setlocal keywordprg=:help commentstring=<!--%s-->
 
 " --- vim-highlighturl ---
 " Disable vim-highlighturl in Markdown files
