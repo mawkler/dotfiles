@@ -25,11 +25,13 @@ Plug 'jiangmiao/auto-pairs'                " Add matching brackets, quotes, etc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'dense-analysis/ale'                " Use either ALE or Syntastic
 Plug 'honza/vim-snippets'
+Plug 'rbonvall/snipmate-snippets-bib'
 Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'maxbrunsfeld/vim-yankstack'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install.ps1 --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 Plug 'airblade/vim-gitgutter'              " Shows git status for each line
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
@@ -209,9 +211,9 @@ map      ¨¨               ]]
 map      åå               [[
 map      ^                }
 map      Å                {
-nmap     ö                ;
-nmap     gö               g;
-nmap     Ö                :
+map      ö                ;
+map      gö               g;
+map      Ö                :
 nmap     <C-c>            <Nop>
 " vim-surround----------------------------------
 vmap     s                <Plug>VSurround
@@ -253,7 +255,6 @@ map      <leader>gd       <C-w>v<C-w>lgdzt<C-w><C-p>
 map      Q                @@
 map      <leader>q        qqqqq
 nnoremap §                <C-^>
-tnoremap <Esc>            <C-\><C-n>
 nmap     cg*              *Ncgn
 xnoremap g.               .
 nmap     dage             viw<Esc>bhdaw
@@ -432,6 +433,7 @@ set encoding=utf-8
 set fillchars+=vert:▏ " Adds nicer lines for vertical splits
 
 " -- IndentLine --
+let g:indentLine_enabled = 0
 autocmd BufEnter,BufRead * let b:indentLine_enabled = 1
 autocmd BufEnter,BufRead *.json
       \ let b:indentLine_enabled = 0 |
@@ -506,6 +508,7 @@ nmap <silent> <leader>rn <Plug>(coc-rename)
 imap <C-j> <NL>
 imap <expr> <NL> pumvisible() ? "\<C-y>" : "\<CR>"
 " autocmd CursorMoved * call coc#util#float_hide() " TODO: remove this when floating window bug is fixed for coc.nvim
+
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 set statusline+=%{coc#status()}
@@ -582,6 +585,7 @@ fun SwapLists()
 endfun
 autocmd BufEnter * call SwapLists()
 
+
 " -- textobj-function --
 let g:textobj_function_no_default_key_mappings = 1
 vmap aF <Plug>(textobj-function-A)
@@ -625,13 +629,48 @@ let g:java_highlight_functions = 1
 let g:java_highlight_all = 1
 
 " -- Fzf --
-autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
-let $FZF_DEFAULT_OPTS='--bind ctrl-j:accept,alt-k:up,alt-j:down --history=' . $HOME . '/.fzf_history'
-" Preview window
-command! -bang -nargs=? -complete=dir Files
-      \ call fzf#vim#files(<q-args>, {
-      \ 'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {}']
-      \ }, <bang>0)
+function FZF_files()
+  echohl Comment
+  echo 'Directory: ' . fnamemodify(getcwd(), ':~')
+  echohl None
+  exe 'FilesWithDevicons'
+endf
+
+if has('nvim')
+  let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8, 'highlight': 'SpecialKey', 'border': 'rounded' } }
+endif
+map <silent> <C-p> :Files<CR>
+map <silent> <leader>m :History<CR>
+tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
+" let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+let $FZF_DEFAULT_OPTS='--bind ctrl-j:accept,alt-k:up,alt-j:down --multi --prompt ">>> " --history=/C/Users/Melker/.fzf_history'
+
+" Disable statusbar, numbers and IndentLines in FZF
+autocmd! FileType fzf              set laststatus=0 ruler! nonumber norelativenumber
+      \| exe 'IndentLinesDisable'
+      \| autocmd BufLeave <buffer> set laststatus=2 ruler! number   relativenumber
+      \| exe 'IndentLinesEnable'
+
+let g:fzf_colors = {
+      \ "fg":      ["fg", "Normal"],
+      \ "fg+":     ["fg", "SpecialKey", "CursorColumn", "Normal"],
+      \ "bg":      ["bg", "Normal"],
+      \ "bg+":     ["bg", "CursorLine", "CursorColumn"],
+      \ "hl":      ["fg", "ErrorMsg"],
+      \ "hl+":     ["fg", "ErrorMsg"],
+      \ "gutter":  ["bg", "Normal"],
+      \ "pointer": ["fg", "SpecialKey"],
+      \ "marker":  ["fg", "Title"],
+      \ "border":  ["fg", "VisualNC"],
+      \ "header":  ["fg", "WildMenu"],
+      \ "info":    ["fg", "ErrorMsg"],
+      \ "spinner": ["fg", "SpecialKey"],
+      \ "prompt":  ["fg", "Question"]
+      \ }
+
+" -- vim-clap --
+let g:clap_insert_mode_only = 1
+hi default link ClapDisplay CursorColumn
 
 " -- vim-printer --
 let g:vim_printer_print_below_keybinding = 'gp'
@@ -778,47 +817,32 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 " autocmd CompleteDone * pclose " Auto close `scratch` window after autocompletion
 
 " -- CtrlP --
-map <C-M-p>       :CtrlPMRUFiles<CR>
-map <leader><C-p> :CtrlPMRUFiles<CR>
-let g:ctrlp_show_hidden       = 1
-let g:ctrlp_max_depth         = 100
-let g:ctrlp_working_path_mode = ''
-let g:ctrlp_max_height        = 12
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor                           "  Use ag over grep
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""' "  Use ag in CtrlP for listing files
-  let g:ctrlp_use_caching = 0                                    "  ag doesn't need to cache
-elseif executable('rg')
-  set grepprg=rg\ --color=never
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-  let g:ctrlp_use_caching = 0
-else
-  let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/](\.(git||vim/bundle|npm|config|chromium|cargo)|node_modules)$',
-    \ 'file': '\v(\.(exe|sw.|dll|pyc)|__init__.py)$',
-    \ }
-endif
-let g:ctrlp_prompt_mappings = {
-  \ 'AcceptSelection("e")': ['<C-j>', '<CR>'],
-  \ 'PrtSelectMove("j")':   ['<m-j>', '<down>'],
-  \ 'PrtSelectMove("k")':   ['<m-k>', '<up>'],
-  \ 'PrtDeleteWord()':      ['<c-w>', '<M-BS>'],
-  \ }
-
-" -- vim-devicons --
-let g:webdevicons_enable                      = 1
-let g:webdevicons_enable_ctrlp                = 1
-let g:webdevicons_enable_nerdtree             = 1
-let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-let g:WebDevIconsUnicodeDecorateFolderNodes   = 0 " Disabled because of bug with spacing after icon
-let g:DevIconsEnableNERDTreeRedraw            = 1
-let g:WebDevIconsNerdTreeBeforeGlyphPadding   = ''
-if has("gui_running")
-  let g:WebDevIconsNerdTreeAfterGlyphPadding  = ''
-endif
-if exists('g:loaded_webdevicons')
-  call webdevicons#refresh() " Fixes bug with `[]` appearing around icons after `source ~/.vimrc`
-endif
+" map <C-M-p>       :CtrlPMRUFiles<CR>
+" map <leader><C-p> :CtrlPMRUFiles<CR>
+" let g:ctrlp_show_hidden       = 1
+" let g:ctrlp_max_depth         = 100
+" let g:ctrlp_working_path_mode = ''
+" let g:ctrlp_max_height        = 12
+" if executable('ag')
+"   set grepprg=ag\ --nogroup\ --nocolor                           "  Use ag over grep
+"   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""' "  Use ag in CtrlP for listing files
+"   let g:ctrlp_use_caching = 0                                    "  ag doesn't need to cache
+" elseif executable('rg')
+"   set grepprg=rg\ --color=never
+"   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+"   let g:ctrlp_use_caching = 0
+" else
+"   let g:ctrlp_custom_ignore = {
+"     \ 'dir': '\v[\/](\.(git||vim/bundle|npm|config|chromium|cargo)|node_modules)$',
+"     \ 'file': '\v(\.(exe|sw.|dll|pyc)|__init__.py)$',
+"     \ }
+" endif
+" let g:ctrlp_prompt_mappings = {
+"   \ 'AcceptSelection("e")': ['<C-j>', '<CR>'],
+"   \ 'PrtSelectMove("j")':   ['<m-j>', '<down>'],
+"   \ 'PrtSelectMove("k")':   ['<m-k>', '<up>'],
+"   \ 'PrtDeleteWord()':      ['<c-w>', '<M-BS>'],
+"   \ }
 
 " " -- ALE --
 " let g:ale_fix_on_save = 1
