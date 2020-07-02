@@ -12,8 +12,17 @@
     "python.linting.flake8Enabled": true,
     "coc.preferences.formatOnSaveFiletypes": ["*"],
     "explorer.icon.enableNerdfont": true,
+    "explorer.icon.customIcons": {
+        "icons": {
+            "markdown": {
+                "code": "",
+                "color": "#7fa5d4"
+            }
+        }
+    },
     "explorer.keyMappings": {
-        "o": ["expandable?", "expandOrCollapse", "open"]
+        "o": ["expandable?", "expandOrCollapse", "open"],
+        "<esc>": "quit"
     },
     "latex.lint.onSave": false,
     "diagnostic.warningSign": "△"

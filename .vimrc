@@ -85,11 +85,13 @@ Plug 'AndrewRadev/bufferize.vim'           " Execute a :command and show the out
 Plug 'benshuailyu/online-thesaurus-vim'    " Retrieves the synonyms and antonyms of a given word
 Plug 'mbbill/undotree'
 Plug 'semanser/vim-outdated-plugins'
+" Plug 'liuchengxu/vista.vim'
+" Plug 'puremourning/vimspector', { 'do': './install_gadget.py --all' } " Multi language graphical debugger
+
 call plug#end()
 
 " -- File imports --
 source ~/.vim/visual-at.vim
-autocmd VimEnter * source ~/.vim/nerdtree_custom_map.vim
 
 if !empty(glob('~/.vimrc-private'))
   source ~/.vimrc-private
@@ -100,8 +102,6 @@ syntax on
 set vb t_vb=      " Disable error bells
 set ttyfast       " Speed up drawing
 set shortmess+=A  " Ignores swapfiles when opening file
-set autoread      " Automatically read in the file when changed externally
-autocmd FocusGained * silent! checktime " Check if any file has changed
 set termguicolors " Use GUI colors in terminal as well
 set noshowmode    " Don't write out `--INSERT--`, etc.
 set linebreak     " Don't break lines in the middle of a word
@@ -113,6 +113,11 @@ set backupdir=~/.vim/backup//
 set directory=~/.vim/swp//
 set undodir=~/.vim/undo//
 set viewoptions=cursor,folds,slash,unix
+set autoread        " Automatically read in the file when changed externally
+augroup filechanged " Check if any file has changed
+  autocmd!
+  autocmd FocusGained * silent! checktime
+augroup end
 
 " -- Menu autocompletion --
 set completeopt=longest,preview " menuone seems to be causing bug error with multiple-cursors
@@ -306,11 +311,18 @@ function PrintError(message)
   endtry
 endf
 
+augroup dir_changed
+  autocmd!
+  autocmd DirChanged * if &runtimepath =~ 'notifications.vim' | exe 'Echo  ⟶' getcwd() | endif
+augroup end
+
 function Enter()
   if bufname() == 'Table of contents (vimtex)'
     call b:toc.activate_current(1)
   elseif bufname() == 'undotree_2'
     exe "normal \<Plug>UndotreeEnter"
+  elseif bufname() == '[coc-explorer]-1'
+    exe "normal \<Plug>(coc-explorer-action-n-[cr])"
   elseif !&modifiable || bufexists('[Command Line]')
     try
       exe "normal! \<CR>"
@@ -325,7 +337,7 @@ nmap <silent> <C-j> :call Enter()<CR>
 
 augroup vertical_help " Open :help in 80 character wide vertical instead of horizontal split
   autocmd!
-  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | vertical resize 80 | endif
+  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | vertical resize 82 | endif
 augroup END
 
 " Appends `char` to current line or visual selection
@@ -374,18 +386,29 @@ if exists('$TMUX')
   set notermguicolors " Tmux screws up the colors if `set termguicolors` is used
 endif
 
-" -- Language specific mappings --
-autocmd filetype *           nnoremap <buffer> <Tab> ==
-autocmd filetype *           vnoremap <buffer> <Tab> =gv
-autocmd filetype python,markdown nmap <buffer> <Tab> >>
-autocmd filetype python,markdown vmap <buffer> <Tab> >gv
+" -- Language specific settings --
+nnoremap <expr> <Tab> index(['python', 'markdown'], &filetype) >= 0 ?
+      \ ">>" : "=="
+vnoremap <expr> <Tab> index(['python', 'markdown'], &filetype) >= 0 ?
+      \ ">gv" : "=gv"
+
+augroup language_specific
+  autocmd!
+  " Don't conceal current line in some file formatr (LaTeX files' configs don't seem to be overwritten though)
+  autocmd FileType markdown,latex,tex setlocal concealcursor=""
+  " Custom filetype indent settings
+  autocmd FileType css,python setlocal sw=4 ts=4
+augroup end
 
 " -- netrw --
 let g:netrw_silent = 1
 " let g:netrw_preview = 1
 let g:netrw_browse_split = 0
 " let g:netrw_altv = 1
-autocmd filetype netrw nmap <buffer> o <CR>
+augroup netrw
+  autocmd!
+  autocmd FileType netrw nmap <buffer> o <CR>
+augroup end
 
 " -- Lines and cursor --
 set number relativenumber
@@ -399,8 +422,6 @@ set guicursor+=i:ver25-blinkwait0 " And in insert mode
 set mouse=a                       " Enable mouse
 set conceallevel=2                " Hide concealed characters completely
 set concealcursor=nic             " Conceal characters on the cursor line
-" Except for in markdown and LaTeX files (LaTeX files' config don't seem to be overwritten though)
-autocmd Filetype markdown,latex,tex setlocal concealcursor=""
 
 " -- Tab characters --
 filetype plugin indent on
@@ -411,7 +432,6 @@ set list listchars=tab:\▏\                 " Show line for each tab indentatio
 set autoindent                             " Follow previous line's indenting
 set backspace=indent,eol,start             " Better backspace behaviour
 set cinkeys-=0#                            " Indent lines starting with `#`
-au  filetype css,python setlocal sw=4 ts=4 " Custom filetype indent settings
 
 " Disable toolbar, scrollbar and menubar
 set guioptions-=T
@@ -441,17 +461,12 @@ let g:onedark_termcolors = 256
 set encoding=utf-8
 set fillchars+=vert:▏ " Adds nicer lines for vertical splits
 
-" -- IndentLine --
-let g:indentLine_enabled = 0
-autocmd BufEnter,BufRead * let b:indentLine_enabled = 1
-autocmd BufEnter,BufRead *.json
-      \ let b:indentLine_enabled = 0 |
-      \ setlocal conceallevel=1 |
-      \ setlocal concealcursor=""
-autocmd BufEnter *.txt if &buftype == 'help' | let b:indentLine_enabled = 0
-let g:indentLine_color_gui = '#4b5263'
+" -- IndentLine and indent_blankline --
 let g:indentLine_char = '▏'
-let g:indentLine_setConceal = 0 " Doesn't hide quotes in JSON files
+let g:indentLine_color_gui = '#4b5263'
+let g:indentLine_setConceal = 0 " Don't overwrite concealcursor and conceallevel
+let g:indentLine_fileTypeExclude = ['json']
+let g:indent_blankline_buftype_exclude = ['help']
 
 " For toggling caps lock in insert mode
 imap <C-C> <Plug>CapsLockToggle
@@ -493,8 +508,8 @@ let g:AutoPairsShortcutFastWrap   = ''
 let g:AutoPairsShortcutJump       = ''
 let g:AutoPairsMoveCharacter      = ''
 let g:AutoPairsMapSpace           = 0
-autocmd Filetype markdown let b:AutoPairs = g:AutoPairs | let b:AutoPairs["*"] = "*"
-autocmd Filetype tex      let b:AutoPairs = g:AutoPairs | let b:AutoPairs["$"] = "$"
+autocmd FileType markdown let b:AutoPairs = g:AutoPairs | let b:AutoPairs["*"] = "*"
+autocmd FileType tex      let b:AutoPairs = g:AutoPairs | let b:AutoPairs["$"] = "$"
 " TODO: Perhaps use snippets instead to allow `$$` and `**`
 
 " -- For editing multiple files with `*` --
@@ -760,6 +775,7 @@ hi htmlItalic cterm=italic gui=italic
 hi mkdLink cterm=underline gui=underline
 " Underline Markdown URLs
 hi mkdInlineURL guifg=#61AFEF gui=underline
+
 autocmd FileType markdown map <buffer> <leader>T :Toc<CR>
 autocmd FileType markdown setlocal keywordprg=:help commentstring=<!--%s-->
 
@@ -772,17 +788,12 @@ augroup END
 let g:highlighturl_guifg = '#61AFEF'
 
 " -- undotree --
-map <leader>u :UndotreeToggle<CR>
+map <leader>u :UndotreeShow<CR>
 
 " -- bullets --
-" autocmd BufEnter,BufNewFile *.md,*.txt map <buffer> <leader>X :ToggleCheckbox<CR>
 map <silent> <leader>X :ToggleCheckbox<CR>
 let g:bullets_nested_checkboxes = 0 " Don't toggle parent and child boxes automatically
 let g:bullets_checkbox_markers  = ' x'
-
-" -- sexy_scroller --
-let g:SexyScroller_EasingStyle = 2
-let g:SexyScroller_MaxTime = 250
 
 if !exists("g:gui_oni") " ----------------------- Oni excluded stuff below -----------------------
 
@@ -792,10 +803,6 @@ set laststatus=2 " Always display status line
 let g:airline_theme           = 'onedark'
 let g:Powerline_symbols       = 'unicode'
 let g:airline_section_x       = '%{&filetype}' " Don't shorten file type on small window
-" let g:airline_left_sep = "\ue0bc"
-" let g:airline_right_sep = "\ue0be"
-" let g:airline_left_alt_sep = "\ue0bd"
-" let g:airline_right_alt_sep = "\ue0bf"
 
 " -- Airline Tabline --
 let g:airline#extensions#tabline#enabled = 1
@@ -816,64 +823,8 @@ map <leader>7 <Plug>AirlineSelectTab7
 map <leader>8 <Plug>AirlineSelectTab8
 map <leader>9 :blast<CR>
 
-" -- AutoComplPop --
-let g:acp_completeOption = '.,w,b,k,u,t'
-
-" YouCompleteMe
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-
-" autocmd CompleteDone * pclose " Auto close `scratch` window after autocompletion
-
-" -- CtrlP --
-" map <C-M-p>       :CtrlPMRUFiles<CR>
-" map <leader><C-p> :CtrlPMRUFiles<CR>
-" let g:ctrlp_show_hidden       = 1
-" let g:ctrlp_max_depth         = 100
-" let g:ctrlp_working_path_mode = ''
-" let g:ctrlp_max_height        = 12
-" if executable('ag')
-"   set grepprg=ag\ --nogroup\ --nocolor                           "  Use ag over grep
-"   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""' "  Use ag in CtrlP for listing files
-"   let g:ctrlp_use_caching = 0                                    "  ag doesn't need to cache
-" elseif executable('rg')
-"   set grepprg=rg\ --color=never
-"   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-"   let g:ctrlp_use_caching = 0
-" else
-"   let g:ctrlp_custom_ignore = {
-"     \ 'dir': '\v[\/](\.(git||vim/bundle|npm|config|chromium|cargo)|node_modules)$',
-"     \ 'file': '\v(\.(exe|sw.|dll|pyc)|__init__.py)$',
-"     \ }
-" endif
-" let g:ctrlp_prompt_mappings = {
-"   \ 'AcceptSelection("e")': ['<C-j>', '<CR>'],
-"   \ 'PrtSelectMove("j")':   ['<m-j>', '<down>'],
-"   \ 'PrtSelectMove("k")':   ['<m-k>', '<up>'],
-"   \ 'PrtDeleteWord()':      ['<c-w>', '<M-BS>'],
-"   \ }
-
-" " -- ALE --
-" let g:ale_fix_on_save = 1
-" let g:ale_lint_on_text_changed = 'normal'
-" let g:ale_python_prospector_executable = 'python' " Use Python 2. Change to 'python3' for Python 3
-" let g:ale_python_autopep8_options = '--aggressive --max-line-length 160'
-" let g:ale_fixers  = {
-" \   '*':          ['remove_trailing_lines', 'trim_whitespace'],
-" \   'javascript': ['prettier', 'eslint'],
-" \   'python':     ['autopep8']
-" \}
-" let g:ale_linters = {
-" \   'python': ['flake8'],
-" \   'c':      ['gcc -fopenmp'],
-" \   'cpp':    ['g++ -fopenmp']
-" \}
-" command! ALEDisableFixOnSave let g:ale_fix_on_save=0
-" command! ALEEnableFixOnSave let g:ale_fix_on_save=1
-
-" -- Vim-lsc --
-let g:lsc_server_commands = { 'javascript': 'javascript-typescript-stdio' }
-let g:lsc_auto_map        = { 'GoToDefinition': '<leader>g' }
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
 
 " -- Vim-javascript --
 hi clear jsStorageClass " Change color of 'var'
