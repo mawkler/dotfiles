@@ -667,7 +667,7 @@ map <silent> <C-p> :Files<CR>
 map <silent> <leader>m :History<CR>
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 " let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-let $FZF_DEFAULT_OPTS='--bind ctrl-j:accept,alt-k:up,alt-j:down --multi --prompt ">>> " --history=/C/Users/Melker/.fzf_history'
+let $FZF_DEFAULT_OPTS='--bind ctrl-j:accept,alt-k:up,alt-j:down --multi --prompt ">>> " --history=C:/Users/Melker/.fzf_history'
 
 " Disable statusbar, numbers and IndentLines in FZF
 autocmd! FileType fzf              set laststatus=0 ruler! nonumber norelativenumber
