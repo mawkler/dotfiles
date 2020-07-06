@@ -1,0 +1,86 @@
+set number relativenumber
+
+nnoremap Y                y$
+nnoremap yp               yyp
+map      <leader>y        "+y
+map      <leader>Y        "+Y
+map      <leader>d        "+d
+map      <leader>D        "+D
+map      <leader>p        "+p
+map      <leader>P        "+P
+nnoremap d_               d^
+map!     <C-f>            <Right>
+map!     <C-b>            <Left>
+imap     <C-j>            <CR>
+map      <M-j>            }
+map      <M-k>            {
+omap     <M-j>            V}
+omap     <M-k>            V{
+map      <C-Space>        zt
+map      ¨                ]
+map      å                [
+map      ¨¨               ]]
+map      åå               [[
+map      ^                }
+map      Å                {
+map      ö                ;
+map      gö               g;
+map      Ö                :
+map      ¤                $
+imap     ¤                $
+map      ´                =
+imap     ´                =
+map      Ä                @
+map      ÄÖ               @:
+map      <leader>;        m0A;`0
+map      <leader>,        m0A,`0
+map      <leader>.        m0A.`0
+map      <leader>?        m0A?`0
+vnoremap .                :normal .<CR>
+vnoremap //               y/<C-R>"<CR>
+noremap  /                ms/
+noremap  *                ms*
+map      '/               `s
+map      Q                @@
+map      <leader>q        qqqqq
+nnoremap §                <C-^>
+nmap     cg*              *Ncgn
+xnoremap g.               .
+nmap     dage             viw<Esc>bhdaw
+nmap     dagE             viw<Esc>bhdaW
+nmap     cage             viw<Esc>bhcaw
+nmap     cagE             viw<Esc>bhcaW
+
+" -- Surround simulating bindings --
+nnoremap siw) ciw(<C-r>")<Esc>
+nnoremap siw] ciw[<C-r>"]<Esc>
+nnoremap siw} ciw{<C-r>"}<Esc>
+nnoremap siw> ciw<lt><C-r>"><Esc>
+nnoremap siw" ciw"<C-r>""<Esc>
+nnoremap siw' ciw'<C-r>"'<Esc>
+nnoremap sw)  ciW(<C-r>")<Esc>
+nnoremap sw]  ciW[<C-r>"]<Esc>
+nnoremap sw}  ciW{<C-r>"}<Esc>
+nnoremap sw>  ciW<lt><C-r>"><Esc>
+nnoremap sw"  ciW"<C-r>""<Esc>
+nnoremap sw'  ciW'<C-r>"'<Esc>
+" Surround delete bindings
+nnoremap ds) vi(dvhp
+nnoremap ds] vi[dvhp
+nnoremap ds} vi{dvhp
+nnoremap ds> vi<dvhp
+nnoremap ds" vi"dvhp
+nnoremap ds' vi'dvhp
+" Surround change bindings
+nnoremap cs"' vi"oh<Esc>msvi"l<Esc>cl'<Esc>`scl'<Esc>
+nnoremap cs'" vi'oh<Esc>msvi'l<Esc>cl"<Esc>`scl"<Esc>
+" Surround visual selected text
+vnoremap s" c"<C-r>""<Esc>
+vnoremap s' c"<C-r>"'<Esc>
+vnoremap s) c(<C-r>")<Esc>
+vnoremap s] c[<C-r>"]<Esc>
+vnoremap s} c{<C-r>"}<Esc>
+vnoremap s> c<lt><C-r>"><Esc>
+vnoremap s* c/*<C-r>"*/<Esc>
+" Surround in div tag and edit tag
+
