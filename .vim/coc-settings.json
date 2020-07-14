@@ -27,6 +27,7 @@
     "latex.lint.onSave": false,
     "diagnostic.warningSign": "△",
     "list.insertMappings": {
+        "<C-j>": "action:open",
         "<C-r>": "do:refresh",
         "<C-f>": "do:right",
         "<C-b>": "do:left",
