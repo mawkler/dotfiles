@@ -2,6 +2,6 @@
   "tabWidth": 2,
   "overrides": [{
       "files": ["coc-settings.json"],
-      "options": { "tabWidth": 4 }
+      "options": { "tabWidth": 2 }
     }]
 }
