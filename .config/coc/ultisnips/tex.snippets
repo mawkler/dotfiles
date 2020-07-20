@@ -24,33 +24,30 @@
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
-# Increases priority of all snippets to ensure overriding default snippets with
-# the same name
 priority 1
 
-snippet ch "Check box list" b
-- [${2: }] $1
+snippet cite "\cite{}" b
+~\cite\{${1:source}\}${2:. }
 endsnippet
 
-snippet nch "Numbered check box list" b
-1. [${2: }] $1
+snippet autoref "\autoref{}" b
+\autoref\{${2:sec:${1:reference}}\} $3
 endsnippet
 
-snippet cbl "Codeblock" b
-\`\`\`$1
-${2:code}
-\`\`\`
-$3
+snippet sec "\section" b
+\\section{${1:section name}}
+\\label{sec:${2:${1/\s/-/g}}}
+${0}
 endsnippet
 
-snippet mvh "Med vänliga hälsningar" b
-${1:Mvh}${2:,}
-
-Melker${3: Österberg}
+snippet sub "\subsection" b
+\\subsection{${1:subsection name}}
+\\label{sub:${2:${1/\s/-/g}}}
+${0}
 endsnippet
 
-snippet br "Best regards" b
-${1:BR}$2
-
-Melker${3: Österberg}
+snippet ssub "\subsubsection" b
+\\subsection{${1:subsubsection name}}
+\\label{ssub:${2:${1/\s/-/g}}}
+${0}
 endsnippet
