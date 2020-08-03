@@ -1,4 +1,29 @@
+" -- General --
+set laststatus=2 " Always display status line
+set showcmd       " Write out commands typed in status line
+
+" -- Searching --
+set ignorecase " Case insensitive searching
+set smartcase  " Except for when searching in CAPS
+set incsearch  " Search while typing
+set hlsearch   " Highligt all search matches
+"
+" -- Lines and cursor --
 set number relativenumber
+set cursorline                    " Cursor highlighting
+set scrolloff=8                   " Cursor margin
+set textwidth=0                   " Disable auto line breaking
+
+" -- Tab characters --
+set expandtab                              " Use spaces for indentation
+set shiftwidth=4                           " Width of indentation
+set tabstop=4                              " Width of <Tab> characters
+set backspace=indent,eol,start             " Better backspace behaviour
+set autoindent                             " Follow previous line's indenting
+
+" -- Key mappings --
+let mapleader = "\<Space>"
+let maplocalleader = "\<Space>"
 
 nnoremap Y                y$
 nnoremap yp               yyp
@@ -8,9 +33,20 @@ map      <leader>d        "+d
 map      <leader>D        "+D
 map      <leader>p        "+p
 map      <leader>P        "+P
+map!     <M-v>            <C-r>+
+nmap     <C-s>            :w<CR>
+imap     <C-s>            <Esc>:w<CR>
+vmap     <C-s>            <Esc>:w<CR>gv
 nnoremap d_               d^
+nmap     <BS>             X
+nmap     <S-BS>           x
+nmap     <M-BS>           db
+map!     <M-BS>           <C-w>
+nmap     <M-S-BS>         dw
+imap     <M-S-BS>         <C-o>dw
 map!     <C-f>            <Right>
 map!     <C-b>            <Left>
+map      <C-j>            o<Esc>
 imap     <C-j>            <CR>
 map      <M-j>            }
 map      <M-k>            {
@@ -32,10 +68,10 @@ map      ´                =
 imap     ´                =
 map      Ä                @
 map      ÄÖ               @:
-map      <leader>;        m0A;`0
-map      <leader>,        m0A,`0
-map      <leader>.        m0A.`0
-map      <leader>?        m0A?`0
+map      <leader>;        mzA;<Esc>`z
+map      <leader>,        mzA,<Esc>`z
+map      <leader>.        mzA.<Esc>`z
+map      <leader>?        mzA?<Esc>`z
 vnoremap .                :normal .<CR>
 vnoremap //               y/<C-R>"<CR>
 noremap  /                ms/
@@ -51,24 +87,41 @@ nmap     dagE             viw<Esc>bhdaW
 nmap     cage             viw<Esc>bhcaw
 nmap     cagE             viw<Esc>bhcaW
 
+" -- VsVim specific mappings --
+map <Esc> :nohlsearch<CR>
+map <leader>v :source ~/.vsvimrc<CR>
+map g; u<C-r>
+
 " -- Surround simulating bindings --
 nnoremap siw) ciw(<C-r>")<Esc>
+nnoremap siwb ciw(<C-r>")<Esc>
 nnoremap siw] ciw[<C-r>"]<Esc>
+nnoremap siwr ciw[<C-r>"]<Esc>
 nnoremap siw} ciw{<C-r>"}<Esc>
+nnoremap siwB ciw{<C-r>"}<Esc>
 nnoremap siw> ciw<lt><C-r>"><Esc>
+nnoremap siwa ciw<lt><C-r>"><Esc>
 nnoremap siw" ciw"<C-r>""<Esc>
 nnoremap siw' ciw'<C-r>"'<Esc>
-nnoremap sw)  ciW(<C-r>")<Esc>
-nnoremap sw]  ciW[<C-r>"]<Esc>
-nnoremap sw}  ciW{<C-r>"}<Esc>
-nnoremap sw>  ciW<lt><C-r>"><Esc>
-nnoremap sw"  ciW"<C-r>""<Esc>
-nnoremap sw'  ciW'<C-r>"'<Esc>
+nnoremap siW) ciW(<C-r>")<Esc>
+nnoremap siWb ciW(<C-r>")<Esc>
+nnoremap siW] ciW[<C-r>"]<Esc>
+nnoremap siWr ciW[<C-r>"]<Esc>
+nnoremap siW} ciW{<C-r>"}<Esc>
+nnoremap siWB ciW{<C-r>"}<Esc>
+nnoremap siW> ciW<lt><C-r>"><Esc>
+nnoremap siWa ciW<lt><C-r>"><Esc>
+nnoremap siW" ciW"<C-r>""<Esc>
+nnoremap siW' ciW'<C-r>"'<Esc>
 " Surround delete bindings
 nnoremap ds) vi(dvhp
+nnoremap dsb vi(dvhp
 nnoremap ds] vi[dvhp
+nnoremap dsr vi[dvhp
 nnoremap ds} vi{dvhp
+nnoremap dsB vi{dvhp
 nnoremap ds> vi<dvhp
+nnoremap dsa vi<dvhp
 nnoremap ds" vi"dvhp
 nnoremap ds' vi'dvhp
 " Surround change bindings
@@ -78,9 +131,13 @@ nnoremap cs'" vi'oh<Esc>msvi'l<Esc>cl"<Esc>`scl"<Esc>
 vnoremap s" c"<C-r>""<Esc>
 vnoremap s' c"<C-r>"'<Esc>
 vnoremap s) c(<C-r>")<Esc>
+vnoremap sb c(<C-r>")<Esc>
 vnoremap s] c[<C-r>"]<Esc>
+vnoremap sr c[<C-r>"]<Esc>
 vnoremap s} c{<C-r>"}<Esc>
+vnoremap sB c{<C-r>"}<Esc>
 vnoremap s> c<lt><C-r>"><Esc>
+vnoremap sa c<lt><C-r>"><Esc>
 vnoremap s* c/*<C-r>"*/<Esc>
 " Surround in div tag and edit tag
 
