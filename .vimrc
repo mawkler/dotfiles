@@ -87,7 +87,6 @@ Plug 'mbbill/undotree'
 Plug 'semanser/vim-outdated-plugins'
 " Plug 'liuchengxu/vista.vim'
 " Plug 'puremourning/vimspector', { 'do': './install_gadget.py --all' } " Multi language graphical debugger
-
 call plug#end()
 
 " -- File imports --
@@ -179,10 +178,10 @@ vmap     <C-s>            <Esc>:w<CR>gv
 nnoremap d_               d^
 nmap     <BS>             X
 nmap     <S-BS>           x
-nmap     <A-BS>           db
-map!     <A-BS>           <C-w>
-nmap     <A-S-BS>         dw
-imap     <A-S-BS>         <C-o>dw
+nmap     <M-BS>           db
+map!     <M-BS>           <C-w>
+nmap     <M-S-BS>         dw
+imap     <M-S-BS>         <C-o>dw
 map      <M-d>            dw
 imap     <C-j>            <CR>
 imap     <C-.>            <C-r>.
@@ -465,7 +464,7 @@ set fillchars+=vert:▏ " Adds nicer lines for vertical splits
 let g:indentLine_char = '▏'
 let g:indentLine_color_gui = '#4b5263'
 let g:indentLine_setConceal = 0 " Don't overwrite concealcursor and conceallevel
-let g:indentLine_fileTypeExclude = ['json', 'coc-explorer']
+let g:indentLine_fileTypeExclude = ['json', 'coc-explorer', 'markdown']
 let g:indent_blankline_buftype_exclude = ['help']
 
 " For toggling caps lock in insert mode
@@ -652,13 +651,11 @@ xmap if <Plug>DsfTextObjectI
 let g:java_highlight_functions = 1
 let g:java_highlight_all = 1
 
-" -- Fzf --
-function FZF_files()
-  echohl Comment
-  echo 'Directory: ' . fnamemodify(getcwd(), ':~')
-  echohl None
-  exe 'FilesWithDevicons'
-endf
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'cat {}']}, <bang>0)
+
+command! -bang -nargs=? History
+    \ call fzf#vim#history({'options': ['--info=inline', '--preview', 'cat {}']}, <bang>0)
 
 if has('nvim')
   let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8, 'highlight': 'SpecialKey', 'border': 'rounded' } }
@@ -691,6 +688,8 @@ let g:fzf_colors = {
       \ "spinner": ["fg", "SpecialKey"],
       \ "prompt":  ["fg", "Question"]
       \ }
+
+command! -nargs=* -complete=dir Cd call fzf#run(fzf#wrap( {'source': 'find '.(empty(<f-args>) ? '.' : <f-args>).' -type d', 'sink': 'cd'}))
 
 " -- vim-clap --
 let g:clap_insert_mode_only = 1
@@ -730,7 +729,7 @@ let g:vimtex_toc_config = {
       \ 'show_help': 0,
       \ 'layer_status': { 'label': 0, 'todo': 0},
       \ }
-autocmd FileType latex,tex map <buffer> <leader>T <Plug>(vimtex-toc-open)
+autocmd FileType latex,tex map <buffer> <silent> <leader>T <Plug>(vimtex-toc-open)
 
 " -- textobj-entire --
 let g:textobj_entire_no_default_key_mappings = 1
