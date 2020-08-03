@@ -14,7 +14,7 @@ Plug 'bling/vim-airline'
 Plug 'enricobacis/vim-airline-clock'
 Plug 'powerline/fonts'
 Plug 'joshdick/onedark.vim'                " Atom dark theme for vim
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'scrooloose/nerdcommenter'
 Plug 'unblevable/quick-scope'
@@ -26,7 +26,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'dense-analysis/ale'                " Use either ALE or Syntastic
 Plug 'honza/vim-snippets'
 Plug 'rbonvall/snipmate-snippets-bib'
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install.ps1 --all' }
@@ -87,6 +87,7 @@ Plug 'mbbill/undotree'
 Plug 'semanser/vim-outdated-plugins'
 " Plug 'liuchengxu/vista.vim'
 " Plug 'puremourning/vimspector', { 'do': './install_gadget.py --all' } " Multi language graphical debugger
+Plug 'j5shi/CommandlineComplete.vim'
 call plug#end()
 
 " -- File imports --
@@ -138,6 +139,7 @@ call yankstack#setup() " Has to be called before remap of any yankstack_yank_key
 " -- Key mappings --
 let mapleader = "\<Space>"
 let maplocalleader = "\<Space>"
+map <S-space> <space>
 
 map      <C-Tab>          :bnext<CR>
 map      <C-S-Tab>        :bprevious<CR>
@@ -279,7 +281,7 @@ map      g(               (ge
 nmap     <leader>K        :vertical Man <C-R><C-W><CR>
 vmap     <leader>K        y:vertical Man <C-R>"<CR>
 
-map  <silent> <leader>M :call CD('$DROPBOX/Dokument/Markdowns/')<CR>
+map  <silent> <leader>M :Files $DROPBOX/Dokument/Markdowns/<CR>
 map  <silent> <leader>E :call CD('$DROPBOX/Exjobb/')<CR>
 nmap <silent> <leader>F :let @+ = expand("%:p")<CR>:call Print("Yanked file path <C-r>+")<CR>
 map  <silent> <leader>S :setlocal spell!<CR>
@@ -288,7 +290,7 @@ nmap <silent> <expr> <leader>z &spell ? "1z=" : ":setlocal spell!<CR>1z="
 map  <silent> <expr> <CR> &modifiable && !bufexists('[Command Line]') ? "<Plug>NERDCommenterToggle" : ":call Enter()<CR>"
 
 function! CD(path)
-  exe 'cd' a:path
+  exe 'tcd' a:path
   call Print('cd ' . getcwd())
 endf
 
@@ -391,24 +393,6 @@ nnoremap <expr> <Tab> index(['python', 'markdown'], &filetype) >= 0 ?
 vnoremap <expr> <Tab> index(['python', 'markdown'], &filetype) >= 0 ?
       \ ">gv" : "=gv"
 
-augroup language_specific
-  autocmd!
-  " Don't conceal current line in some file formatr (LaTeX files' configs don't seem to be overwritten though)
-  autocmd FileType markdown,latex,tex setlocal concealcursor=""
-  " Custom filetype indent settings
-  autocmd FileType css,python setlocal sw=4 ts=4
-augroup end
-
-" -- netrw --
-let g:netrw_silent = 1
-" let g:netrw_preview = 1
-let g:netrw_browse_split = 0
-" let g:netrw_altv = 1
-augroup netrw
-  autocmd!
-  autocmd FileType netrw nmap <buffer> o <CR>
-augroup end
-
 " -- Lines and cursor --
 set number relativenumber
 hi  CursorLineNr term=bold gui=bold
@@ -448,11 +432,27 @@ command! JSONFormat %!python -m json.tool
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 augroup qs_colors
   autocmd!
-  autocmd ColorScheme * highlight default link QuickScopePrimary EasyMotionTarget
-  autocmd ColorScheme * highlight default link QuickScopeSecondary markdownBold
-  autocmd ColorScheme * highlight default link QuickScopePrimary EasyMotionTarget
-  autocmd ColorScheme * highlight default link QuickScopeSecondary markdownBold
+  autocmd ColorScheme * highlight QuickScopePrimary   cterm=bold ctermfg=204 gui=bold guifg=#E06C75
+  autocmd ColorScheme * highlight QuickScopeSecondary cterm=bold ctermfg=173 gui=bold guifg=#D19A66
 augroup END
+
+augroup language_specific
+  autocmd!
+  " Don't conceal current line in some file formatr (LaTeX files' configs don't seem to be overwritten though)
+  autocmd FileType markdown,latex,tex,json setlocal concealcursor=""
+  " Custom filetype indent settings
+  autocmd FileType css,python setlocal shiftwidth=4 tabstop=4
+augroup end
+
+" -- netrw --
+let g:netrw_silent = 1
+" let g:netrw_preview = 1
+let g:netrw_browse_split = 0
+" let g:netrw_altv = 1
+augroup netrw
+  autocmd!
+  autocmd FileType netrw nmap <buffer> o <CR>
+augroup end
 
 " -- Themes --
 colorscheme onedark   " Atom color scheme
@@ -465,6 +465,7 @@ let g:indentLine_char = '▏'
 let g:indentLine_color_gui = '#4b5263'
 let g:indentLine_setConceal = 0 " Don't overwrite concealcursor and conceallevel
 let g:indentLine_fileTypeExclude = ['json', 'coc-explorer', 'markdown']
+let g:indentLine_bufTypeExclude = ['fzf', 'help']
 let g:indent_blankline_buftype_exclude = ['help']
 
 " For toggling caps lock in insert mode
@@ -600,13 +601,17 @@ fun SwapLists()
   SwapList nummer noll en ett två tre fyra fem sex sju åtta nio tio elva tolv
   SwapList Nummer Noll En Ett Två Tre Fyra Fem Sex Sju Åtta Nio Tio Elva Tolv
   SwapList a a an
-  SwapList and and or
+  SwapList andor and or
+  SwapList andorsymbols && ||
   SwapList is is are
   SwapList do do does
   SwapList isnt isn aren
   SwapList dont don doesn
 endfun
-autocmd BufEnter * call SwapLists()
+augroup SwapList
+  autocmd!
+  autocmd BufEnter * call SwapLists()
+augroup end
 
 
 " -- textobj-function --
@@ -668,9 +673,7 @@ let $FZF_DEFAULT_OPTS='--bind ctrl-j:accept,alt-k:up,alt-j:down --multi --prompt
 
 " Disable statusbar, numbers and IndentLines in FZF
 autocmd! FileType fzf              set laststatus=0 ruler! nonumber norelativenumber
-      \| exe 'IndentLinesDisable'
       \| autocmd BufLeave <buffer> set laststatus=2 ruler! number   relativenumber
-      \| exe 'IndentLinesEnable'
 
 let g:fzf_colors = {
       \ "fg":      ["fg", "Normal"],
@@ -793,6 +796,10 @@ map <leader>u :UndotreeShow<CR>
 map <silent> <leader>X :ToggleCheckbox<CR>
 let g:bullets_nested_checkboxes = 0 " Don't toggle parent and child boxes automatically
 let g:bullets_checkbox_markers  = ' x'
+
+" -- CommandlineComplete --
+cmap <M-k> <Plug>CmdlineCompleteBackward
+cmap <M-j> <Plug>CmdlineCompleteForward
 
 if !exists("g:gui_oni") " ----------------------- Oni excluded stuff below -----------------------
 
