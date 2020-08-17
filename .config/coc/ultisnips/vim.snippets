@@ -28,5 +28,5 @@ priority 1
 
 # Pastes from clipboard and extract GitHub author and repo name
 snippet plug "vim-plug Paste Plugin" b
-Plug '${1:`!v substitute(@+, '\([^\:]*\:\/\/[^.]*\.com\/\)\([^/]*\/[^/]*\)\(.*\)', '\2', '' )`}'
+Plug '${1:`!v substitute(@+, '\([^\/]*\/\/[^\/]*\/\)\([^/]*\/[^/]*\)\(.*\)', '\2', '' )`}'
 endsnippet
