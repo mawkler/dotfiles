@@ -63,7 +63,7 @@ map      ö                ;
 map      gö               g;
 map      Ö                :
 map      ¤                $
-imap     ¤                $
+map!     ¤                $
 map      ´                =
 imap     ´                =
 map      Ä                @
@@ -91,6 +91,8 @@ nmap     cagE             viw<Esc>bhcaW
 map <Esc> :nohlsearch<CR>
 map <leader>v :source ~/.vsvimrc<CR>
 map g; u<C-r>
+map dar da]
+map dir di]
 
 " -- Surround simulating bindings --
 nnoremap siw) ciw(<C-r>")<Esc>
@@ -103,6 +105,7 @@ nnoremap siw> ciw<lt><C-r>"><Esc>
 nnoremap siwa ciw<lt><C-r>"><Esc>
 nnoremap siw" ciw"<C-r>""<Esc>
 nnoremap siw' ciw'<C-r>"'<Esc>
+nnoremap siw` ciw`<C-r>"`<Esc>
 nnoremap siW) ciW(<C-r>")<Esc>
 nnoremap siWb ciW(<C-r>")<Esc>
 nnoremap siW] ciW[<C-r>"]<Esc>
@@ -113,6 +116,11 @@ nnoremap siW> ciW<lt><C-r>"><Esc>
 nnoremap siWa ciW<lt><C-r>"><Esc>
 nnoremap siW" ciW"<C-r>""<Esc>
 nnoremap siW' ciW'<C-r>"'<Esc>
+nnoremap siW` ciW`<C-r>"`<Esc>
+nnoremap sib" %cib"<C-r>""<Esc>
+nnoremap siB" %ciB"<C-r>""<Esc>
+nnoremap siBb %ciB(<C-r>")<Esc>
+
 " Surround delete bindings
 nnoremap ds) vi(dvhp
 nnoremap dsb vi(dvhp
@@ -121,12 +129,20 @@ nnoremap dsr vi[dvhp
 nnoremap ds} vi{dvhp
 nnoremap dsB vi{dvhp
 nnoremap ds> vi<dvhp
+nnoremap ds< vi<dvhp
 nnoremap dsa vi<dvhp
 nnoremap ds" vi"dvhp
 nnoremap ds' vi'dvhp
+nnoremap ds` vi`dvhp
 " Surround change bindings
 nnoremap cs"' vi"oh<Esc>msvi"l<Esc>cl'<Esc>`scl'<Esc>
 nnoremap cs'" vi'oh<Esc>msvi'l<Esc>cl"<Esc>`scl"<Esc>
+nnoremap csbB viboh<Esc>msvibl<Esc>cl}<Esc>`scl{<Esc>
+nnoremap csBb viBoh<Esc>msviBl<Esc>cl)<Esc>`scl(<Esc>
+nnoremap csrb vi]oh<Esc>msvi]l<Esc>cl)<Esc>`scl(<Esc>
+nnoremap csbr viboh<Esc>msvibl<Esc>cl]<Esc>`scl[<Esc>
+nnoremap csrB vi]oh<Esc>msvi]l<Esc>cl}<Esc>`scl{<Esc>
+nnoremap csBr viBoh<Esc>msviBl<Esc>cl]<Esc>`scl[<Esc>
 " Surround visual selected text
 vnoremap s" c"<C-r>""<Esc>
 vnoremap s' c"<C-r>"'<Esc>
@@ -137,7 +153,6 @@ vnoremap sr c[<C-r>"]<Esc>
 vnoremap s} c{<C-r>"}<Esc>
 vnoremap sB c{<C-r>"}<Esc>
 vnoremap s> c<lt><C-r>"><Esc>
+vnoremap s< c<lt><C-r>"><Esc>
 vnoremap sa c<lt><C-r>"><Esc>
 vnoremap s* c/*<C-r>"*/<Esc>
-" Surround in div tag and edit tag
-
