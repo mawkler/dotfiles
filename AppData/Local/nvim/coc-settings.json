@@ -1,20 +1,21 @@
 {
-    "suggest.echodocSupport": true,
-    "suggest.noselect": false,
-    "suggest.minTriggerInputLength": 0,
-    "suggest.enablePreview": true,
-    "suggest.maxCompleteItemCount": 200,
-    "java.errors.incompleteClasspath.severity": "ignore",
-    "suggest.snippetIndicator": " ►",
-    "yank.highlight.duration": 350,
-    "python.jediEnabled": false,
-    "python.linting.pylintEnabled": false,
-    "python.linting.flake8Enabled": true,
-    "coc.preferences.formatOnSaveFiletypes": ["*"],
-    "explorer.icon.enableNerdfont": false,
-    "explorer.keyMappings": {
-        "o": "expand"
-    },
-    "latex.lint.onSave": false,
-    "tabnine.priority": 1
+  "suggest.echodocSupport": true,
+  "suggest.noselect": false,
+  "suggest.minTriggerInputLength": 0,
+  "suggest.enablePreview": true,
+  "suggest.maxCompleteItemCount": 200,
+  "java.errors.incompleteClasspath.severity": "ignore",
+  "suggest.snippetIndicator": " ►",
+  "snippets.userSnippetsDirectory": "~/.config/coc/ultisnips",
+  "yank.highlight.duration": 350,
+  "python.jediEnabled": false,
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "coc.preferences.formatOnSaveFiletypes": ["*"],
+  "explorer.icon.enableNerdfont": false,
+  "explorer.keyMappings": {
+    "o": "expand"
+  },
+  "latex.lint.onSave": false,
+  "tabnine.priority": 1
 }
