@@ -668,7 +668,6 @@ endif
 map <silent> <C-p> :Files<CR>
 map <silent> <leader>m :History<CR>
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
-" let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 let $FZF_DEFAULT_OPTS='--bind ctrl-j:accept,alt-k:up,alt-j:down --multi --prompt ">>> " --history=C:/Users/Melker/.fzf_history'
 
 " Disable statusbar, numbers and IndentLines in FZF
@@ -732,7 +731,7 @@ let g:vimtex_toc_config = {
       \ 'show_help': 0,
       \ 'layer_status': { 'label': 0, 'todo': 0},
       \ }
-autocmd FileType latex,tex map <buffer> <silent> <leader>T <Plug>(vimtex-toc-open)
+autocmd FileType latex,tex map <buffer> <silent> <leader>t <Plug>(vimtex-toc-open)
 
 " -- textobj-entire --
 let g:textobj_entire_no_default_key_mappings = 1
@@ -762,7 +761,7 @@ nmap <script> <silent> <leader>L :call ToggleLocationList()<CR>
 nmap <script> <silent> <leader>Q :call ToggleQuickfixList()<CR>
 
 " -- lens.vim --
-let g:lens#disabled_filetypes = ['coc-explorer', 'fzf', '']
+let g:lens#disabled_filetypes = ['coc-explorer', 'fzf', 'fugitiveblame']
 
 " -- markdown --
 let g:vim_markdown_folding_disabled = 1
@@ -778,7 +777,7 @@ hi mkdLink cterm=underline gui=underline
 " Underline Markdown URLs
 hi mkdInlineURL guifg=#61AFEF gui=underline
 
-autocmd FileType markdown map <buffer> <leader>T :Toc<CR>
+autocmd FileType markdown map <buffer> <leader>t :Toc<CR>
 autocmd FileType markdown setlocal keywordprg=:help commentstring=<!--%s-->
 
 " --- vim-highlighturl ---
@@ -800,6 +799,10 @@ let g:bullets_checkbox_markers  = ' x'
 " -- CommandlineComplete --
 cmap <M-k> <Plug>CmdlineCompleteBackward
 cmap <M-j> <Plug>CmdlineCompleteForward
+
+" -- Online Thesaurus --
+let g:use_default_key_map = 0
+nnoremap <silent> <leader>T :call Thesaurus_LookCurrentWord()<CR>
 
 if !exists("g:gui_oni") " ----------------------- Oni excluded stuff below -----------------------
 

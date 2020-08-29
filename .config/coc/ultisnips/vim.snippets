@@ -24,38 +24,9 @@
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
-# Increases priority of all snippets to ensure overriding default snippets with
-# the same name
 priority 1
 
-snippet ch "Check box list" b
-- [${2: }] $1
+# Pastes from clipboard and extract GitHub author and repo name
+snippet plug "vim-plug Paste Plugin" b
+Plug '${1:`!v substitute(@+, '\([^\/]*\/\/[^\/]*\/\)\([^/]*\/[^/]*\)\(.*\)', '\2', '' )`}'
 endsnippet
-
-snippet nch "Numbered check box list" b
-1. [${2: }] $1
-endsnippet
-
-snippet cbl "Codeblock" b
-\`\`\`$1
-${2:code}
-\`\`\`
-$3
-endsnippet
-
-snippet mvh "Med vänliga hälsningar" b
-${1:Mvh}${2:,}
-
-Melker${3: Österberg}
-endsnippet
-
-snippet br "Best regards" b
-${1:BR}$2
-
-Melker${3: Österberg}
-endsnippet
-
-snippet link "Link (clipboard)" b
-[${1:Text}](${2:`!v @+`}) ${0}
-endsnippet
-
