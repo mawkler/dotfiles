@@ -822,10 +822,6 @@ nnoremap <silent> <leader>T :call Thesaurus_LookCurrentWord()<CR>
 map <silent> <leader>a <Plug>(cosco-commaOrSemiColon)
 
 " -- Startify --
-" Add devicsons in front of file names
-function! StartifyEntryFormat()
-  return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
-endfunction
 let g:startify_lists = [
       \   {'type': 'files',     'header': ['   MRU']      },
       \   {'type': 'sessions',  'header': ['   Sessions'] },
