@@ -88,6 +88,7 @@ Plug 'semanser/vim-outdated-plugins'
 " Plug 'liuchengxu/vista.vim'
 " Plug 'puremourning/vimspector', { 'do': './install_gadget.py --all' } " Multi language graphical debugger
 Plug 'j5shi/CommandlineComplete.vim'
+Plug 'tyru/open-browser.vim'
 call plug#end()
 
 " -- File imports --
@@ -253,7 +254,7 @@ map      <leader>G        :edit ~/.config/nvim/ginit.vim<CR>
 map      <leader>Z        :edit ~/.zshrc<CR>
 map      <leader>I        :edit ~/.dotfiles/install-dotfiles.sh<CR>
 map      <leader>~        :cd ~<CR>
-map      gX               :exec 'silent !google-chrome-stable % &'<CR>
+map      gX               :OpenBrowserCurrent<CR>
 nmap     gF               :e <C-r>+<CR>
 xnoremap .                :normal .<CR>
 xnoremap //               y/<C-R>"<CR>
@@ -732,7 +733,10 @@ let g:vimtex_toc_config = {
       \ 'show_help': 0,
       \ 'layer_status': { 'label': 0, 'todo': 0},
       \ }
-autocmd FileType latex,tex map <buffer> <silent> <leader>T <Plug>(vimtex-toc-open)
+augroup toc
+  autocmd!
+  autocmd FileType latex,tex map <buffer> <silent> <leader>T <Plug>(vimtex-toc-open)
+augroup END
 
 " -- textobj-entire --
 let g:textobj_entire_no_default_key_mappings = 1
@@ -778,8 +782,11 @@ hi mkdLink cterm=underline gui=underline
 " Underline Markdown URLs
 hi mkdInlineURL guifg=#61AFEF gui=underline
 
-autocmd FileType markdown map <buffer> <leader>T :Toc<CR>
-autocmd FileType markdown setlocal keywordprg=:help commentstring=<!--%s-->
+augroup toc
+  autocmd!
+  autocmd FileType markdown map <buffer> <leader>T :Toc<CR>
+  autocmd FileType markdown setlocal keywordprg=:help commentstring=<!--%s-->
+augroup END
 
 " --- vim-highlighturl ---
 " Disable vim-highlighturl in Markdown files
@@ -800,6 +807,9 @@ let g:bullets_checkbox_markers  = ' x'
 " -- CommandlineComplete --
 cmap <M-k> <Plug>CmdlineCompleteBackward
 cmap <M-j> <Plug>CmdlineCompleteForward
+
+" -- OpenBrowser
+command! OpenBrowserCurrent execute "OpenBrowser" "file:///" . expand('%:p:gs?\\?/?')
 
 if !exists("g:gui_oni") " ----------------------- Oni excluded stuff below -----------------------
 
