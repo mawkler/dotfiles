@@ -9,4 +9,4 @@ export PATH="/usr/bin/dotnet:$PATH"
 export PATH="/home/melker/.cargo/bin:$PATH"
 
 export DROPBOX="~/Dropbox/"
-export MARKDOWN="~/Dropbox/Dokument/Markdowns/"
+export MARKDOWNS="~/Dropbox/Dokument/Markdowns/"
