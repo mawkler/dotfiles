@@ -669,7 +669,6 @@ endif
 map <silent> <C-p> :Files<CR>
 map <silent> <leader>m :History<CR>
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
-" let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 let $FZF_DEFAULT_OPTS='--bind ctrl-j:accept,alt-k:up,alt-j:down --multi --prompt ">>> " --history=C:/Users/Melker/.fzf_history'
 
 " Disable statusbar, numbers and IndentLines in FZF
@@ -735,7 +734,7 @@ let g:vimtex_toc_config = {
       \ }
 augroup toc
   autocmd!
-  autocmd FileType latex,tex map <buffer> <silent> <leader>T <Plug>(vimtex-toc-open)
+  autocmd FileType latex,tex map <buffer> <silent> <leader>t <Plug>(vimtex-toc-open)
 augroup END
 
 " -- textobj-entire --
@@ -766,7 +765,7 @@ nmap <script> <silent> <leader>L :call ToggleLocationList()<CR>
 nmap <script> <silent> <leader>Q :call ToggleQuickfixList()<CR>
 
 " -- lens.vim --
-let g:lens#disabled_filetypes = ['coc-explorer', 'fzf', '']
+let g:lens#disabled_filetypes = ['coc-explorer', 'fzf', 'fugitiveblame']
 
 " -- markdown --
 let g:vim_markdown_folding_disabled = 1
@@ -784,7 +783,7 @@ hi mkdInlineURL guifg=#61AFEF gui=underline
 
 augroup toc
   autocmd!
-  autocmd FileType markdown map <buffer> <leader>T :Toc<CR>
+  autocmd FileType markdown map <buffer> <leader>t :Toc<CR>
   autocmd FileType markdown setlocal keywordprg=:help commentstring=<!--%s-->
 augroup END
 
@@ -810,6 +809,10 @@ cmap <M-j> <Plug>CmdlineCompleteForward
 
 " -- OpenBrowser
 command! OpenBrowserCurrent execute "OpenBrowser" "file:///" . expand('%:p:gs?\\?/?')
+
+" -- Online Thesaurus --
+let g:use_default_key_map = 0
+nnoremap <silent> <leader>T :call Thesaurus_LookCurrentWord()<CR>
 
 if !exists("g:gui_oni") " ----------------------- Oni excluded stuff below -----------------------
 
