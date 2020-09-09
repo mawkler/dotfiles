@@ -849,6 +849,7 @@ let g:startify_custom_header = [
       \ ]
 
 " -- vim-session --
+let g:session_directory = '~/.vim/sessions'
 let g:session_autosave = 'no'
 let g:session_autoload = 'no'
 let g:session_lock_enabled = 0
