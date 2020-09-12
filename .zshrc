@@ -18,7 +18,7 @@ extract
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-syntax-highlighting
 l4u/zsh-output-highlighting
-Tarrasch/zsh-bd
+Melkster/zsh-bd
 hlissner/zsh-autopair
 unixorn/autoupdate-antigen.zshplugin
 zsh-users/zsh-history-substring-search
