@@ -11,6 +11,8 @@
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
   "coc.preferences.formatOnSaveFiletypes": ["*"],
+  "coc.source.around.firstMatch": false,
+  "coc.source.buffer.firstMatch": false,
   "explorer.icon.enableNerdfont": true,
   "explorer.icon.customIcons": {
     "icons": {
