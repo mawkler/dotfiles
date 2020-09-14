@@ -233,6 +233,7 @@ map!     ¤                $
 map      ´                =
 imap     ´                =
 map      Ä                @
+map      ÄÄ               @@
 map      ÄÖ               @:
 nmap     <C-c>            <Nop>
 " vim-surround----------------------------------
@@ -395,6 +396,9 @@ if exists('$TMUX')
   set notermguicolors " Tmux screws up the colors if `set termguicolors` is used
 endif
 
+" -- Windows specific settings --
+" command! -bang Terminal terminal<bang> "/usr/bin/bash"
+
 " -- Language specific settings --
 nnoremap <expr> <Tab> index(['python', 'markdown'], &filetype) >= 0 ?
       \ ">>" : "=="
@@ -455,8 +459,11 @@ augroup language_specific
   autocmd!
   " Don't conceal current line in some file formatr (LaTeX files' configs don't seem to be overwritten though)
   autocmd FileType markdown,latex,tex,json setlocal concealcursor=""
+  autocmd BufReadPost *.tex SexyScrollerToggle " Disables Sexy Scroller for LaTeX files
   " Custom filetype indent settings
   autocmd FileType css,python,cs setlocal shiftwidth=4 tabstop=4
+  " For adding a horizontal line below and entering insert mode below it
+  autocmd FileType markdown nnoremap <buffer> <leader>- o<Esc>0Do<Esc>0C---<CR><CR>
 augroup end
 
 " -- netrw --

@@ -17,5 +17,15 @@
     "o": "expand"
   },
   "latex.lint.onSave": false,
+  "list": {
+    "source": {
+      "bibtex": {
+        "citation": {
+          "before": "cite{",
+          "after": "}"
+        }
+      }
+    }
+  },
   "tabnine.priority": 1
 }
