@@ -14,7 +14,6 @@ Plug 'bling/vim-airline'
 Plug 'enricobacis/vim-airline-clock'
 Plug 'powerline/fonts'
 Plug 'joshdick/onedark.vim'                " Atom dark theme for vim
-" Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'scrooloose/nerdcommenter'
 Plug 'unblevable/quick-scope'
@@ -26,7 +25,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'dense-analysis/ale'                " Use either ALE or Syntastic
 Plug 'honza/vim-snippets'
 Plug 'rbonvall/snipmate-snippets-bib'
-" Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install.ps1 --all' }
@@ -93,6 +91,7 @@ Plug 'lfilho/cosco.vim'                    " For appending commas and semicolons
 Plug 'xolox/vim-misc'                      " Required by vim-session
 Plug 'xolox/vim-session'                   " Extened session management
 Plug 'mhinz/vim-startify'                  " Nicer start screen
+Plug 'breuckelen/vim-resize'               " For resizing with arrow keys
 call plug#end()
 
 " -- File imports --
@@ -243,8 +242,10 @@ sunmap   s
 sunmap   S
 nmap     s                ys
 nmap     S                ys$
-onoremap ir               i]
-onoremap ar               a]
+omap     ir               i]
+omap     ar               a]
+vmap     ir               i]
+vmap     ar               a]
 " ----------------------------------------------
 map      <leader>v        :source ~/AppData/Local/nvim/init.vim<CR>
 map      <leader>V        :edit ~/.vimrc<CR>
@@ -283,7 +284,7 @@ map  <silent> <leader>, :call VisualAppend(",")<CR>
 map  <silent> <leader>. :call VisualAppend(".")<CR>
 map  <silent> <leader>? :call VisualAppend("?")<CR>
 map  <silent> <leader>M :Files $DROPBOX/Dokument/Markdowns/<CR>
-map  <silent> <leader>E :call CD('$DROPBOX/Exjobb/')<CR>
+map  <silent> <leader>E :cd $DROPBOX/Exjobb/<CR>
 nmap <silent> <leader>F :let @+ = expand("%:p")<CR>:call Print("Yanked file path <C-r>+")<CR>
 map  <silent> <leader>S :setlocal spell!<CR>
 map           g)        w)ge
@@ -298,9 +299,10 @@ map  <expr> <CR> &modifiable && !bufexists('[Command Line]') ? "<Plug>NERDCommen
 nnoremap <expr> ; getcharsearch().forward ? ';' : ','
 nnoremap <expr> , getcharsearch().forward ? ',' : ';'
 
+" Does `cd path` and prints the command using notifications.vim
 function! CD(path)
   exe 'tcd' a:path
-  call Print('cd ' . getcwd())
+  call Print('cd ' . fnamemodify(getcwd(), ":~"))
 endf
 
 function! Print(message)
@@ -321,9 +323,16 @@ function PrintError(message)
   endtry
 endf
 
+" Prints the new directory after working path changes
 augroup dir_changed
+" Ignoring 'nofile' and 'terminal' deals with fzf doing cd twice on trigger
+" for some reasone
+let blacklist = ['nofile', 'terminal']
   autocmd!
-  autocmd DirChanged * if &runtimepath =~ 'notifications.vim' | exe 'Echo  ⟶' getcwd() | endif
+  autocmd DirChanged *
+        \ if &runtimepath =~ 'notifications.vim' && index(blacklist, &buftype) < 0 |
+        \   exe 'Echo  ⟶' fnamemodify(getcwd(), ":~") |
+        \ endif
 augroup end
 
 function Enter()
@@ -333,6 +342,8 @@ function Enter()
     exe "normal \<Plug>UndotreeEnter"
   elseif bufname() == '[coc-explorer]-1'
     exe "normal \<Plug>(coc-explorer-action-n-[cr])"
+  elseif &filetype == 'startify'
+    call startify#open_buffers()
   elseif !&modifiable || bufexists('[Command Line]')
     try
       exe "normal! \<CR>"
@@ -435,7 +446,7 @@ set guioptions-=m
 set guioptions-=L
 
 " Command to change directory to the current file's
-command! CDHere call CD('%:p:h')
+command! CDHere cd %:p:h
 
 " Format JSON file to readable form
 command! JSONFormat %!python -m json.tool
@@ -498,16 +509,6 @@ imap <C-C> <Plug>CapsLockToggle
 xmap ga <Plug>(EasyAlign)
 " Start for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
-" -- Vim-easymoion --
-" <leader>f{char} to move to {char}:
-map  <leader>f <Plug>(easymotion-bd-f)
-nmap <leader>f <Plug>(easymotion-overwin-f)
-" s{char}{char} to move to {char}{char}:
-nmap <leader>s <Plug>(easymotion-overwin-f2)
-" Move to word:
-map  <leader>w <Plug>(easymotion-bd-w)
-nmap <leader>w <Plug>(easymotion-overwin-w)
 
 " -- NERDCommenter --
 let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters by default
@@ -839,11 +840,13 @@ map <silent> <leader>a <Plug>(cosco-commaOrSemiColon)
 
 " -- Startify --
 let g:startify_session_dir = '~/.vim/sessions'
+let g:startify_enable_special = 0 " Dont' show <empty buffer> or <quit>
+let g:startify_custom_indices = ['a', 's', 'd', 'f', 'g', 'h', 'l', 'c', 'v', 'n']
 let g:startify_lists = [
-      \   {'type': 'files',     'header': ['   MRU']      },
-      \   {'type': 'sessions',  'header': ['   Sessions'] },
+      \   {'type': 'files',     'header': ['   Recent files']},
+      \   {'type': 'sessions',  'header': ['   Sessions']},
       \   {'type': 'bookmarks', 'header': ['   Bookmarks']},
-      \   {'type': 'commands',  'header': ['   Commands'] },
+      \   {'type': 'commands',  'header': ['   Commands']},
       \ ]
 let g:startify_custom_header = [
       \ '    _____   __                                      ',
@@ -860,6 +863,14 @@ let g:session_directory = '~/.vim/sessions'
 let g:session_autosave = 'no'
 let g:session_autoload = 'no'
 let g:session_lock_enabled = 0
+
+" -- vim-resize --
+let g:vim_resize_disable_auto_mappings = 1
+let g:resize_count = 3
+nnoremap <silent> <Left>  :CmdResizeLeft<CR>
+nnoremap <silent> <Right> :CmdResizeRight<CR>
+nnoremap <silent> <Up>    :CmdResizeUp<CR>
+nnoremap <silent> <Down>  :CmdResizeDown<CR>
 
 if !exists("g:gui_oni") " ----------------------- Oni excluded stuff below -----------------------
 
@@ -891,6 +902,7 @@ map <leader>9 :blast<CR>
 
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
 
 " -- Vim-javascript --
 hi clear jsStorageClass " Change color of 'var'
