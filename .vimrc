@@ -229,6 +229,7 @@ map      gö               g;
 map      Ö                :
 map      ¤                $
 map!     ¤                $
+map      g¤               g$
 map      ´                =
 imap     ´                =
 map      Ä                @
@@ -280,7 +281,9 @@ omap <silent> g)        :silent normal vg)h<CR>
 map           g(        (ge
 omap <silent> g(        :silent normal vg(oh<CR>
 
-nmap <expr> <leader>z &spell ? "1z=" : ":setlocal spell!<CR>1z="
+nmap <expr> <leader>z &spell ? "1z=" : ":setlocal spell<CR>1z=:setlocal nospell<CR>"
+nmap <expr> ]s &spell ? "]s" : ":setlocal spell<CR>]s"
+nmap <expr> [s &spell ? "[s" : ":setlocal spell<CR>[s"
 map  <expr> <CR> &modifiable && !bufexists('[Command Line]') ? "<Plug>NERDCommenterToggle" : ":call Enter()<CR>"
 
 " `;`/`,` always seach forward/backward, respectively
@@ -856,7 +859,8 @@ map <silent> <leader>a <Plug>(cosco-commaOrSemiColon)
 " -- Startify --
 let g:startify_session_dir = '~/.vim/sessions'
 let g:startify_enable_special = 0 " Dont' show <empty buffer> or <quit>
-let g:startify_custom_indices = ['a', 's', 'd', 'f', 'g', 'h', 'l', 'c', 'v', 'n']
+let g:startify_custom_indices = 'asdfghlcvnmcyturieowpqxz' " Use letters instead of numbers
+let g:startify_files_number = 8
 let g:startify_lists = [
       \   {'type': 'files',     'header': ['   Recent files']},
       \   {'type': 'sessions',  'header': ['   Sessions']},
