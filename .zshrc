@@ -216,7 +216,7 @@ bindkey '^[t' cdz
 
 alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.vimrc'
-alias src='source ~/.zshrc'
+alias src='exec zsh'
 alias ..='cd .. && ls'
 alias grep='grep -Iin --color=always'
 alias grepr='grep -r'
