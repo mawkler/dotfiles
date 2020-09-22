@@ -12,20 +12,11 @@
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
   "coc.preferences.formatOnSaveFiletypes": ["*"],
+  "coc.preferences.jumpCommand": "drop",
   "explorer.icon.enableNerdfont": false,
   "explorer.keyMappings": {
     "o": "expand"
   },
   "latex.lint.onSave": false,
-  "list": {
-    "source": {
-      "bibtex": {
-        "citation": {
-          "before": "cite{",
-          "after": "}"
-        }
-      }
-    }
-  },
   "tabnine.priority": 1
 }
