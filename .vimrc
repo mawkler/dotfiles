@@ -93,6 +93,9 @@ Plug 'xolox/vim-session'                   " Extened session management
 Plug 'mhinz/vim-startify'                  " Nicer start screen
 Plug 'breuckelen/vim-resize'               " For resizing with arrow keys
 " Plug 'Xuyuanp/scrollbar.nvim'
+Plug 'bogado/file-line'
+" Plug 'rhysd/vim-grammarous'
+Plug 'dpelle/vim-LanguageTool'
 call plug#end()
 
 " -- File imports --
@@ -864,6 +867,9 @@ cmap <M-j> <Plug>CmdlineCompleteForward
 " -- Online Thesaurus --
 let g:use_default_key_map = 0
 nnoremap <silent> <leader>T :call thesaurusPy2Vim#Thesaurus_LookCurrentWord()<CR>
+
+" " Grammarous
+" let g:grammarous#languagetool_cmd = 'languagetool --autoDetect'
 
 " -- Cosco --
 map <silent> <leader>a <Plug>(cosco-commaOrSemiColon)
