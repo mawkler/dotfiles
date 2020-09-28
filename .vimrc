@@ -495,7 +495,7 @@ augroup language_specific
   " Custom filetype indent settings
   autocmd FileType css,python,cs setlocal shiftwidth=4 tabstop=4
   " For adding a horizontal line below and entering insert mode below it
-  autocmd FileType markdown nnoremap <buffer> <leader>- o<Esc>0Do<Esc>0C---<CR><CR>
+  autocmd FileType markdown nnoremap <buffer> <leader>- o<Esc>0"_Do<Esc>0"_C---<CR><CR><Esc>i
 augroup end
 
 " -- netrw --
