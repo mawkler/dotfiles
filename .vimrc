@@ -282,6 +282,7 @@ map           g)        w)ge
 omap <silent> g)        :silent normal vg)h<CR>
 map           g(        (ge
 omap <silent> g(        :silent normal vg(oh<CR>
+nmap <silent> <C-W>N    :tabe<CR>
 
 nmap <expr> <leader>z &spell ? "1z=" : ":setlocal spell<CR>1z=:setlocal nospell<CR>"
 nmap <expr> ]s &spell ? "]s" : ":setlocal spell<CR>]s"
@@ -401,6 +402,7 @@ if exists('$TMUX')
 endif
 
 " -- Windows specific settings --
+" set shellslash " Use `/` when expanding file names
 " command! -bang Terminal terminal<bang> "/usr/bin/bash"
 
 " -- Language specific settings --
@@ -512,7 +514,6 @@ augroup end
 colorscheme onedark   " Atom color scheme
 let g:onedark_termcolors = 256
 set encoding=utf-8
-set fillchars+=vert:▏ " Adds nicer lines for vertical splits
 
 " -- IndentLine and indent_blankline --
 let g:indentLine_char = '▏'
@@ -574,12 +575,18 @@ cnoreabbrev Gdiff Gvdiff
 let g:sleuth_automatic = 1
 
 " -- Coc.nvim --
+" let g:coc_config_home = '~/.config/nvim'
 nmap <silent> <C-]> <Plug>(coc-definition)
 nmap <silent> gd    <Plug>(coc-definition)
 nmap <silent> <leader>rn <Plug>(coc-rename)
 " Use `<CR>` to confirm completion
 imap <C-j> <NL>
 imap <expr> <NL> pumvisible() ? "\<C-y>" : "\<CR>"
+augroup coc_nvim_custom
+  autocmd!
+  " TODO: remove this when floating window bug is fixed for coc.nvim
+  autocmd InsertLeave,CursorMoved * call coc#util#float_hide()
+augroup end
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
