@@ -84,6 +84,7 @@ if [ $XDG_CURRENT_DESKTOP == "GNOME" ]; then
   dconf load /org/gnome/desktop/wm/keybindings/ < .dotfiles/keybindings.dconf
   dconf load /org/gnome/shell/extensions/ < .dotfiles/gnome-extensions.dconf
   dconf load /org/gnome/desktop/interface/ < .dotfiles/interface.dconf
+  dconf load /org/gnome/mutter/keybindings/ < .dotfiles/mutter-keybindings.dconf
 
   echo "To change Numix Frost to dark theme run the following:"
   echo "sudo mv /usr/share/themes/Numix-Frost/gtk-3.20/gtk-dark.css /usr/share/themes/Numix-Frost/gtk-3.20/gtk.css"

@@ -1,0 +1,4 @@
+[/]
+toggle-tiled-left=['<Shift><Super>h', '<Super>Left']
+toggle-tiled-right=['<Shift><Super>l', '<Super>Right']
+

@@ -28,6 +28,7 @@
 	unique = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative \
 		$1..$(git rev-parse --abbrev-ref HEAD)
 	make = !make --directory $(git rev-parse --show-toplevel)
+	ls = ls-tree -r HEAD --name-only
 [core]
 	excludesfile = /home/melker/.gitignore-global
 	pager = "if type diff-so-fancy &> /dev/null; then diff-so-fancy --set-defaults | less --tabs=4 -R; else less; fi"
