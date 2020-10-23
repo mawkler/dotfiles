@@ -6,10 +6,10 @@
 	s      = status
 	p      = pull
 	b      = branch
-	c      = commit
-	cm     = commit -m
-	ca     = commit -a
-	cam    = commit -am
+	c      = commit -v
+	cm     = commit -mv
+	ca     = commit -av
+	cam    = commit -amv
 	com    = checkout master
 	l      = log --decorate
 	w      = whatchanged
