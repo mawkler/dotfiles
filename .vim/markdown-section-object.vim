@@ -7,16 +7,27 @@ function! s:inSection()
   call search('^---*$\n$', 'bceW')
   normal! 2j
   normal! 0v
-  call search('$\n^---*$', 'ceW')
-  normal! 2kg_
+  if search('$\n^---*$', 'ceW') != 0
+    normal! 2kg_
+  else
+    " If we are in the last section of the buffer
+    normal! Gg_
+  endif
 endfunction
 
 " All text inside two `---`, including the trailing `---`
 function! s:aroundSection()
   call search('^---.*$', 'bcW')
   normal! j
-  normal! v$
-  call search('^---.*$', 'eW')
+  normal! V
+  if search('^---.*$', 'eW') == 0
+    " If we are in the last section of the buffer
+    echo 'foo'
+    normal! Gg_ok
+    call search('^[^$]', 'bW')
+    normal! j
+  endif
+  normal! v
 endfunction
 
 autocmd Filetype markdown xnoremap <silent> iP :<c-u>call <SID>inSection()<CR>
