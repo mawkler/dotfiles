@@ -33,7 +33,7 @@
 	pager = "if type diff-so-fancy &> /dev/null; then diff-so-fancy --set-defaults | less --tabs=4 -R; else less; fi"
 	eol = lf
 	editor = vim -u NONE -c ':syntax on'
-	autocrlf = false
+	autocrlf = input
 [github]
 	user   = Melkster
 [color]

@@ -27,7 +27,7 @@ Plug 'honza/vim-snippets'
 Plug 'rbonvall/snipmate-snippets-bib'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'maxbrunsfeld/vim-yankstack'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install.ps1 --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 Plug 'airblade/vim-gitgutter'              " Shows git status for each line

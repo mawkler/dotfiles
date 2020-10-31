@@ -60,7 +60,6 @@ map      åå               [[
 map      ^                }
 map      Å                {
 map      ö                ;
-map      gö               g;
 map      Ö                :
 map      ¤                $
 map!     ¤                $
@@ -86,13 +85,16 @@ nmap     dage             viw<Esc>bhdaw
 nmap     dagE             viw<Esc>bhdaW
 nmap     cage             viw<Esc>bhcaw
 nmap     cagE             viw<Esc>bhcaW
+vmap     v                $h
 
 " -- VsVim specific mappings --
-map <Esc> :nohlsearch<CR>
+nmap <Esc> :nohlsearch<CR>
+omap <Esc> <Esc>
 map <leader>v :source ~/.vsvimrc<CR>
 map g; u<C-r>
-map dar da]
-map dir di]
+map gö u<C-r>
+nmap dar da]
+nmap dir di]
 
 " -- Surround simulating bindings --
 nnoremap siw) ciw(<C-r>")<Esc>
