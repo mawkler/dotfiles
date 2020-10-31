@@ -162,6 +162,7 @@ bindkey '^I' expand-or-complete-or-cd
 bindkey -s '^[l'   '^Qls^J'    # Alt-L clears text before running `ls`
 bindkey -s '^[L'   '^Qls -a^J' # Alt-Shift-L also shows hidden files
 bindkey -s '^[[2~' '^X^E'      # `Insert` key opens $EDITOR
+bindkey -s '¤'     '$'         # `¤` means `$`
 
 bindkey '^P'     up-line-or-beginning-search
 bindkey '^N'     down-line-or-beginning-search
@@ -216,7 +217,7 @@ bindkey '^[t' cdz
 
 alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.vimrc'
-alias src='source ~/.zshrc'
+alias src='exec zsh'
 alias ..='cd .. && ls'
 alias grep='grep -Iin --color=always'
 alias grepr='grep -r'
@@ -269,9 +270,9 @@ alias gmm='git merge master'
 alias gp='git pull'
 alias gb='git branch'
 alias gw='git whatchanged'
-alias gcm='git commit -m'
-alias gcam='git commit -am'
-alias gca='git commit -a'
+alias gcm='git commit -mv'
+alias gcam='git commit -amv'
+alias gca='git commit -av'
 alias gu='git diff HEAD@{1} HEAD'
 alias gly='git log --since="yesterday"'
 

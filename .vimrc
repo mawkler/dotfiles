@@ -2,6 +2,8 @@
 call plug#begin('~/.vim/bundle')
 if has('nvim')
   Plug 'wsdjeg/notifications.vim'
+  Plug 'coreyja/fzf.devicon.vim'
+  Plug 'Xuyuanp/scrollbar.nvim'
 endif
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
@@ -65,12 +67,13 @@ Plug 'romainl/vim-cool'                    " Highlights all search matches until
 Plug 'haya14busa/incsearch.vim'            " Better incsearch
 Plug 'dkarter/bullets.vim'                 " Autocomplete markdown lists, etc.
 Plug 'plasticboy/vim-markdown'             " Adds extra features to markdown
+Plug 'coachshea/vim-textobj-markdown'
 Plug 'mjbrownie/swapit'                    " For toggling words like `true` to `false`, etc.
 Plug 'tommcdo/vim-exchange'                " For swapping the place of two text objects
 Plug 'moll/vim-bbye'                       " Adds `Bdelete` and `Bwipeout` that preserve window layout
 Plug 'Julian/vim-textobj-variable-segment' " Adds camel case and snake case text objects
 Plug 'wsdjeg/vim-fetch'                    " Process line and column jump specification in file path
-Plug 'joeytwiddle/sexy_scroller.vim'
+Plug 'psliwka/vim-smoothie'                " Smooth scrolling animations
 Plug 'markonm/traces.vim'                  " Better highlighting when searching/replacing
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'meain/vim-printer'
@@ -92,11 +95,16 @@ Plug 'xolox/vim-misc'                      " Required by vim-session
 Plug 'xolox/vim-session'                   " Extened session management
 Plug 'mhinz/vim-startify'                  " Nicer start screen
 Plug 'breuckelen/vim-resize'               " For resizing with arrow keys
-Plug 'Xuyuanp/scrollbar.nvim'
 call plug#end()
 
 " -- File imports --
-source ~/.vim/visual-at.vim
+if !empty(glob('~/.vim/visual-at.vim'))
+  source ~/.vim/visual-at.vim
+endif
+
+if !empty(glob('~/.vim/markdown-section-object.vim'))
+  source ~/.vim/markdown-section-object.vim
+endif
 
 if !empty(glob('~/.vimrc-private'))
   source ~/.vimrc-private
@@ -138,6 +146,9 @@ set ignorecase " Case insensitive searching
 set smartcase  " Except for when searching in CAPS
 set incsearch  " Search while typing
 set hlsearch   " Highligt all search matches
+
+" -- Custom filetypes --
+autocmd BufNewFile,BufRead *.dconf set syntax=sh
 
 " -- Yankstack --
 call yankstack#setup() " Has to be called before remap of any yankstack_yank_keys
@@ -183,6 +194,8 @@ nmap     gK               kjddkPJ<C-y>
 nmap     <C-s>            :w<CR>
 imap     <C-s>            <Esc>:w<CR>
 vmap     <C-s>            <Esc>:w<CR>gv
+smap     <C-s>            <Esc>:w<CR>
+vmap     v                $h
 nnoremap d_               d^
 nmap     <BS>             X
 nmap     <S-BS>           x
@@ -230,6 +243,7 @@ map      ö                ;
 map      gö               g;
 map      Ö                :
 map      ¤                $
+imap     ¤                $
 map!     ¤                $
 map      g¤               g$
 map      ´                =
@@ -239,6 +253,7 @@ map      ÄÄ               @@
 map      ÄÖ               @:
 nmap     <C-c>            <Nop>
 map      <leader>v        :source ~/AppData/Local/nvim/init.vim<CR>
+nmap     <Leader><Esc>    <Nop>
 map      <leader>V        :edit ~/.vimrc<CR>
 map      <leader>N        :edit ~/AppData/Local/nvim/init.vim<CR>
 map      <leader>G        :edit ~/.config/nvim/ginit.vim<CR>
@@ -262,6 +277,7 @@ map      Q                @@
 map      <leader>q        qqqqq
 nnoremap §                <C-^>
 nmap     cg*              *Ncgn
+nmap     dg*              *Ndgn
 xnoremap g.               .
 nmap     dage             viw<Esc>bhdaw
 nmap     dagE             viw<Esc>bhdaW
@@ -319,9 +335,9 @@ endf
 
 " Prints the new directory after working path changes
 augroup dir_changed
-" Ignoring 'nofile' and 'terminal' deals with fzf doing cd twice on trigger
-" for some reasone
-let blacklist = ['nofile', 'terminal']
+  " Ignoring 'nofile' and 'terminal' deals with fzf doing cd twice on trigger
+  " for some reasone
+  let blacklist = ['nofile', 'terminal']
   autocmd!
   autocmd DirChanged *
         \ if &runtimepath =~ 'notifications.vim' && index(blacklist, &buftype) < 0 |
@@ -413,7 +429,6 @@ vnoremap <expr> <Tab> index(['python', 'markdown'], &filetype) >= 0 ?
 
 " -- Lines and cursor --
 set number relativenumber
-hi  CursorLineNr term=bold gui=bold
 set cursorline                    " Cursor highlighting
 set scrolloff=8                   " Cursor margin
 set textwidth=0                   " Disable auto line breaking
@@ -497,7 +512,7 @@ augroup language_specific
   " Custom filetype indent settings
   autocmd FileType css,python,cs setlocal shiftwidth=4 tabstop=4
   " For adding a horizontal line below and entering insert mode below it
-  autocmd FileType markdown nnoremap <buffer> <leader>- o<Esc>0"_Do<Esc>0"_C---<CR><CR><Esc>i
+  autocmd FileType markdown nnoremap <buffer> <leader>- o<Esc>0Do<Esc>0C---<CR><CR>
 augroup end
 
 " -- netrw --
@@ -617,7 +632,8 @@ let g:coc_global_extensions = [
   \ 'coc-omnisharp',
   \ 'coc-tabnine',
   \ 'coc-sh',
-  \ 'coc-terminal'
+  \ 'coc-terminal',
+  \ 'coc-vimlsp',
   \]
   " \ 'coc-vimtex', " Clashes with coc-texlab
   " \ 'coc-ccls',
@@ -670,24 +686,25 @@ augroup end
 
 " -- textobj-function --
 let g:textobj_function_no_default_key_mappings = 1
-vmap aF <Plug>(textobj-function-A)
+xmap aF <Plug>(textobj-function-A)
 omap aF <Plug>(textobj-function-A)
-vmap iF <Plug>(textobj-function-i)
+xmap iF <Plug>(textobj-function-i)
 omap iF <Plug>(textobj-function-i)
 
 " --- vim-textobj-line ---
 let g:textobj_line_no_default_key_mappings = 1
-vmap aL <Plug>(textobj-line-a)
+xmap aL <Plug>(textobj-line-a)
 omap aL <Plug>(textobj-line-a)
-vmap iL <Plug>(textobj-line-i)
+xmap iL <Plug>(textobj-line-i)
 omap iL <Plug>(textobj-line-i)
 
 " -- Cool.vim --
 if has('nvim') || has('gui_running')
   " Causes regular Vim to launch in replace mode for some reason
   nnoremap <silent> <expr> <Esc>
-        \ &modifiable && !bufexists('[Command Line]') \|\| &buftype == 'help'
-        \ ? ":nohlsearch<CR>" : "<C-w>c"
+        \ v:hlsearch \|\| &modifiable && !bufexists('[Command Line]')
+        \ ? ":nohlsearch<CR>"
+        \ : "<C-w>c"
 endif
 
 " -- exchange.vim --
@@ -843,7 +860,21 @@ augroup toc_markdown
   autocmd FileType markdown setlocal keywordprg=:help commentstring=<!--%s-->
 augroup END
 
-" --- vim-highlighturl ---
+" -- vim-textobj-markdown --
+let g:__textobj_markdown_no_mappings = 1
+augroup markdown
+  autocmd!
+  autocmd FileType markdown omap <buffer> ac <plug>(textobj-markdown-chunk-a)
+  autocmd FileType markdown xmap <buffer> ac <plug>(textobj-markdown-chunk-a)
+  autocmd FileType markdown omap <buffer> ic <plug>(textobj-markdown-chunk-i)
+  autocmd FileType markdown xmap <buffer> ic <plug>(textobj-markdown-chunk-i)
+  autocmd FileType markdown omap <buffer> aC <plug>(textobj-markdown-Bchunk-a)
+  autocmd FileType markdown xmap <buffer> aC <plug>(textobj-markdown-Bchunk-a)
+  autocmd FileType markdown omap <buffer> iC <plug>(textobj-markdown-Bchunk-i)
+  autocmd FileType markdown xmap <buffer> iC <plug>(textobj-markdown-Bchunk-i)
+augroup END
+
+" -- vim-highlighturl --
 " Disable vim-highlighturl in Markdown files
 augroup highlighturl_filetype
   autocmd!
@@ -875,6 +906,9 @@ command! OpenBrowserCurrent execute "OpenBrowser" "file:///" . expand('%:p:gs?\\
 " -- Online Thesaurus --
 let g:use_default_key_map = 0
 nnoremap <silent> <leader>T :call thesaurusPy2Vim#Thesaurus_LookCurrentWord()<CR>
+
+" Looks up the provided word(s) in a thesaurus
+command! -nargs=+ -bar Thesaurus call thesaurusPy2Vim#Thesaurus_LookWord('<args>')
 
 " -- Cosco --
 map <silent> <leader>a <Plug>(cosco-commaOrSemiColon)
@@ -915,30 +949,45 @@ nnoremap <silent> <Up>    :CmdResizeUp<CR>
 nnoremap <silent> <Down>  :CmdResizeDown<CR>
 
 " -- scrollbar --
-augroup scrollbar
-  autocmd!
-  autocmd WinEnter    * silent! lua require('scrollbar').show()
-  autocmd WinLeave    * silent! lua require('scrollbar').clear()
+if has('nvim')
+  let g:scrollbar_right_offset = 0
+  let g:scrollbar_highlight = {
+        \ 'head': 'NonText',
+        \ 'body': 'NonText',
+        \ 'tail': 'NonText',
+        \ }
+  let g:scrollbar_shape = {
+        \ 'head': '▖',
+        \ 'body': '▌',
+        \ 'tail': '▘',
+        \ }
 
-  autocmd CursorMoved * silent! lua require('scrollbar').show()
-  autocmd VimResized  * silent! lua require('scrollbar').show()
+  augroup configure_scrollbar
+    autocmd!
+    autocmd BufEnter                                         * call OnBufEnter()
+    autocmd CursorMoved                                      * call ScrollbarShow()
+    autocmd CursorHold,BufLeave,FocusLost,VimResized,QuitPre * call ScrollbarClear()
+  augroup end
 
-  autocmd FocusGained * silent! lua require('scrollbar').show()
-  autocmd FocusLost   * silent! lua require('scrollbar').clear()
-augroup end
+  function! ScrollbarShow()
+    if !exists('b:previous_first_visible_linenum') | return | endif
+    let first_visible_linenum = line('w0')
+    if first_visible_linenum != b:previous_first_visible_linenum
+      silent! lua require('scrollbar').show()
+    end
+    let b:previous_first_visible_linenum = first_visible_linenum
+  endf
 
-let g:scrollbar_right_offset = 0
-let g:scrollbar_highlight = {
-      \ 'head': 'NonText',
-      \ 'body': 'NonText',
-      \ 'tail': 'NonText',
-      \ }
+  function! OnBufEnter()
+    if !exists('b:previous_first_visible_linenum')
+      let b:previous_first_visible_linenum = line('w0')
+    endif
+  endf
 
-let g:scrollbar_shape = {
-      \ 'head': '▖',
-      \ 'body': '▌',
-      \ 'tail': '▘',
-      \ }
+  function! ScrollbarClear() abort
+    silent! lua require('scrollbar').clear()
+  endf
+endif
 
 if !exists("g:gui_oni") " ----------------------- Oni excluded stuff below -----------------------
 
@@ -957,6 +1006,7 @@ let g:airline#extensions#tabline#close_symbol = '✕'
 let g:airline#extensions#tabline#disable_refresh = 1 " Fixes glitching when swithcing buffers
 let airline#extensions#tabline#middle_click_preserves_windows = 1
 let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#clock#updatetime = 200 " Has to be greater than updatetime for scrollbar.nvim to work
 " let g:airline#extensions#tabline#left_sep = ' '
 map <leader>1 <Plug>AirlineSelectTab1
 map <leader>2 <Plug>AirlineSelectTab2
