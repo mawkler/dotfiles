@@ -1,0 +1,820 @@
+﻿# For documentation, see https://www.sumatrapdfreader.org/settings/settings3.2.html
+
+MainWindowBackground = #282c34
+EscToExit = false
+ReuseInstance = false
+UseSysColors = false
+RestoreSession = true
+TabWidth = 300
+
+FixedPageUI [
+	TextColor = #d0d4db
+	BackgroundColor = #282c34
+	SelectionColor = #f5fc0c
+	WindowMargin = 2 4 2 4
+	PageSpacing = 4 4
+]
+EbookUI [
+	FontName = Georgia
+	FontSize = 12.5
+	TextColor = #5f4b32
+	BackgroundColor = #fbf0d9
+	UseFixedPageUI = false
+]
+ComicBookUI [
+	WindowMargin = 0 0 0 0
+	PageSpacing = 4 4
+	CbxMangaMode = false
+]
+ChmUI [
+	UseFixedPageUI = false
+]
+ExternalViewers [
+]
+ShowMenubar = true
+ReloadModifiedDocuments = true
+FullPathInTitle = false
+ZoomLevels = 8.33 12.5 18 25 33.33 50 66.67 75 100 125 150 200 300 400 600 800 1000 1200 1600 2000 2400 3200 4800 6400
+ZoomIncrement = 0
+
+PrinterDefaults [
+	PrintScale = shrink
+]
+ForwardSearch [
+	HighlightOffset = 0
+	HighlightWidth = 15
+	HighlightColor = #6581ff
+	HighlightPermanent = false
+]
+CustomScreenDPI = 0
+
+RememberStatePerDocument = true
+UiLanguage = en
+ShowToolbar = false
+ShowFavorites = false
+AssociateSilently = false
+CheckForUpdates = true
+RememberOpenedFiles = true
+InverseSearchCmdLine = pythonw C:\Users\Melker\.vim\connect-to-nvim.py "%f" %l
+EnableTeXEnhancements = true
+DefaultDisplayMode = automatic
+DefaultZoom = 200
+WindowState = 2
+WindowPos = 2560 92 1280 1024
+ShowToc = true
+SidebarDx = 273
+TocDy = 0
+ShowStartPage = true
+UseTabs = true
+
+FileStates [
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\vmcai05.purity.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 5
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = 46 119
+		PageNo = 1
+		Zoom = 150
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\Dynamic purity analysis for java programs.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 6
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 682
+		PageNo = 30
+		Zoom = 125
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+		TocState = 15 21 26
+	]
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\verifiable functional purity in java.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 6
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 283
+		PageNo = 12
+		Zoom = 125
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\purity.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 7
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = 46 71
+		PageNo = 12
+		Zoom = 150
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+		TocState = 1
+	]
+	[
+		FilePath = D:\Melker\Dropbox\Exjobb\LaTeXs\report\main.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 14
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 402
+		PageNo = 26
+		Zoom = 125
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+		TocState = 2 6 12 17
+	]
+	[
+		FilePath = D:\Skriv ut\Tillgodo.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 1
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = 62 40
+		PageNo = 1
+		Zoom = 200
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Skriv ut\[Extra] F4 Tabellen ytanalys.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = 12 -1
+		PageNo = 1
+		Zoom = 66.67
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Skriv ut\Table performance 200914 YTAVBILDNING.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = 11 -1
+		PageNo = 1
+		Zoom = 100
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\Pearce2011_Chapter_JPureAModularPuritySystemForJa.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 -1
+		PageNo = 1
+		Zoom = 125
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2712 238 603 518
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+		TocState = 1
+	]
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\Essential_Csharp_4.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 1
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 3
+		PageNo = 57
+		Zoom = fit width
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2712 238 603 518
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\C#_6.0_in_a_Nutshell_THE_DEFINITIVE_REFER.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 1
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 338
+		PageNo = 93
+		Zoom = 125
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2712 238 603 518
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\vmcai05.purity (1).pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 -1
+		PageNo = 1
+		Zoom = 200
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 3254 83 603 518
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\Pea11_CC_preprint.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 -1
+		PageNo = 1
+		Zoom = 100
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 3254 83 603 518
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Melker\other-code\test.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 -1
+		PageNo = 1
+		Zoom = fit width
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = C:\Users\Melker\AppData\Local\Temp\Temp1_attskrivaut.zip\ESCA-lab ht20.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 439
+		PageNo = 4
+		Zoom = 200
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Melker\Dropbox\Exjobb\Papper att maila in till exjobbskoordinator\Ansökan om examensarbete.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 113
+		PageNo = 1
+		Zoom = fit width
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\Arbetsuppgifter och ansvar för handledare.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 35
+		PageNo = 1
+		Zoom = 200
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\Arbetsuppgifter och ansvar för ämnesgranskare.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 -1
+		PageNo = 1
+		Zoom = 200
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\c_613056-l_3-k_exj-bilaga-4-1805.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 -1
+		PageNo = 1
+		Zoom = 200
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\c_613056-l_3-k_exj-bilaga-3-1805.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 -1
+		PageNo = 1
+		Zoom = 200
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Melker\Dropbox\Dokument\Paper Scans\Avtal för exjobb Consid.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 233
+		PageNo = 1
+		Zoom = 200
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Melker\Dropbox\Dokument\Paper Scans\Collaboration agreement - exjobb.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 634
+		PageNo = 1
+		Zoom = 125
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Melker\Dropbox\Dokument\Paper Scans\Lönespecifikation Uppsala Universitet.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 -1
+		PageNo = 1
+		Zoom = 200
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = C:\Users\Melker\Desktop\CV.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 -1
+		PageNo = 1
+		Zoom = 200
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 57 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Melker\Dropbox\Dokument\Pengar och sånt\CV\CV - Melker Österberg.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 -1
+		PageNo = 1
+		Zoom = 200
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 57 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Melker\Dropbox\Dokument\Paper Scans\Ansökan om examensarbete (med Kostis signatur).pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 27
+		PageNo = 1
+		Zoom = 75
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2552 92 1296 1032
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Melker\Dropbox\Dokument\Markdowns\report-notes\jpure-modular-purity-java.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 385
+		PageNo = 4
+		Zoom = fit width
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+		TocState = 1
+	]
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\main.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 385
+		PageNo = 20
+		Zoom = 150
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+		TocState = 2 19
+	]
+	[
+		FilePath = D:\Program Files\Blizzard\Destiny 2\BURNING_TOWER_README.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = 107 71
+		PageNo = 1
+		Zoom = 200
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Melker\Dropbox\Dokument\Markdowns\report-notes\jpure.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = 107 -1
+		PageNo = 1
+		Zoom = 200
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = true
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+		TocState = 1
+	]
+	[
+		FilePath = C:\Users\Melker\Desktop\Report.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = 161 254
+		PageNo = 2
+		Zoom = 200
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\A_posteriori_soundness_for_non-determini.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 240
+		PageNo = 49
+		Zoom = 300
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\1455770.1455793.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 -1
+		PageNo = 9
+		Zoom = 150
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 395 12 2560 1440
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
+		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\Purity and Side Effect Analysisfor Java Programs.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = true
+		OpenCount = 0
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 -1
+		PageNo = 1
+		Zoom = fit page
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+]
+SessionData [
+	[
+		TabStates [
+			[
+				FilePath = D:\Melker\Dropbox\Exjobb\LaTeXs\report\main.pdf
+				DisplayMode = continuous
+				PageNo = 26
+				Zoom = 125
+				Rotation = 0
+				ScrollPos = -1 402
+				ShowToc = false
+				TocState = 2 6 12 17
+			]
+			[
+				FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\purity.pdf
+				DisplayMode = continuous
+				PageNo = 12
+				Zoom = 150
+				Rotation = 0
+				ScrollPos = 46 71
+				ShowToc = false
+				TocState = 1
+			]
+			[
+				FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\verifiable functional purity in java.pdf
+				DisplayMode = continuous
+				PageNo = 12
+				Zoom = 125
+				Rotation = 0
+				ScrollPos = -1 283
+				ShowToc = false
+			]
+			[
+				FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\Dynamic purity analysis for java programs.pdf
+				DisplayMode = continuous
+				PageNo = 30
+				Zoom = 125
+				Rotation = 0
+				ScrollPos = -1 682
+				ShowToc = false
+				TocState = 15 21 26
+			]
+			[
+				FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\vmcai05.purity.pdf
+				DisplayMode = continuous
+				PageNo = 1
+				Zoom = 150
+				Rotation = 0
+				ScrollPos = 46 119
+				ShowToc = false
+			]
+		]
+		TabIndex = 1
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		SidebarDx = 273
+	]
+]
+TimeOfLastUpdateCheck = 0 0
+OpenCountWeek = 512
+
+# Settings after this line have not been recognized by the current version
