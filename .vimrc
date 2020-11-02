@@ -508,7 +508,6 @@ augroup language_specific
   autocmd!
   " Don't conceal current line in some file formatr (LaTeX files' configs don't seem to be overwritten though)
   autocmd FileType markdown,latex,tex,json setlocal concealcursor=""
-  autocmd BufReadPost *.tex SexyScrollerToggle " Disables Sexy Scroller for LaTeX files
   " Custom filetype indent settings
   autocmd FileType css,python,cs setlocal shiftwidth=4 tabstop=4
   " For adding a horizontal line below and entering insert mode below it
