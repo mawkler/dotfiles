@@ -600,7 +600,7 @@ imap <expr> <NL> pumvisible() ? "\<C-y>" : "\<CR>"
 augroup coc_nvim_custom
   autocmd!
   " TODO: remove this when floating window bug is fixed for coc.nvim
-  autocmd InsertLeave,CursorMoved * call coc#util#float_hide()
+  autocmd InsertLeave * call coc#util#float_hide()
 augroup end
 
 " Use <c-space> to trigger completion.
