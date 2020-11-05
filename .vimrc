@@ -956,9 +956,9 @@ if has('nvim')
         \ 'tail': 'NonText',
         \ }
   let g:scrollbar_shape = {
-        \ 'head': '▖',
+        \ 'head': '▌',
         \ 'body': '▌',
-        \ 'tail': '▘',
+        \ 'tail': '▌',
         \ }
 
   augroup configure_scrollbar
