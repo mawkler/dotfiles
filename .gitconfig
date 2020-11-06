@@ -7,9 +7,9 @@
 	p      = pull
 	b      = branch
 	c      = commit -v
-	cm     = commit -mv
-	ca     = commit -av
-	cam    = commit -amv
+	cm     = commit -vm
+	ca     = commit -va
+	cam    = commit -vam
 	com    = checkout master
 	l      = log --decorate
 	w      = whatchanged
