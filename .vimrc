@@ -992,7 +992,7 @@ let g:smoothie_base_speed = 18
 " -- barbar.nvim --
 if (!exists('g:bufferline'))
   " Prevents overriding the config on reload of .vimrc
-  let g:bufferline = { 'closable': v:false }
+  let g:bufferline = { 'closable': v:false, 'icons': v:false }
 endif
 hi TabLineFill guifg=Normal guibg=#21242b
 hi BufferVisible guifg=#888888
