@@ -23,7 +23,7 @@
       }
     }
   },
-  "explorer.keyMappings": {
+  "explorer.keyMappings.global": {
     "o": ["expandable?", "expandOrCollapse", "open"],
     "<esc>": "quit"
   },

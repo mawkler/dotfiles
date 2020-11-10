@@ -4,6 +4,8 @@ if has('nvim')
   Plug 'wsdjeg/notifications.vim'
   Plug 'coreyja/fzf.devicon.vim'
   Plug 'Xuyuanp/scrollbar.nvim'
+  Plug 'kyazdani42/nvim-web-devicons'      " Required by barbar.nvim
+  Plug 'romgrk/barbar.nvim'                " Sexiest buffer tabline
 endif
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
@@ -82,7 +84,7 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'camspiers/lens.vim'                  " An automatic window resizing plugin
 Plug 'itchyny/vim-highlighturl'            " Highlights URLs everywhere
 Plug 'AndrewRadev/bufferize.vim'           " Execute a :command and show the output in a temporary buffer
-Plug 'benshuailyu/online-thesaurus-vim'    " Retrieves the synonyms and antonyms of a given word
+Plug 'Ron89/thesaurus_query.vim'           " Retrieves the synonyms and antonyms of a given word
 Plug 'mbbill/undotree'
 Plug 'semanser/vim-outdated-plugins'       " Gives notification on startup with number of outdated plugins
 " Plug 'liuchengxu/vista.vim'
@@ -94,8 +96,6 @@ Plug 'xolox/vim-misc'                      " Required by vim-session
 Plug 'xolox/vim-session'                   " Extened session management
 Plug 'mhinz/vim-startify'                  " Nicer start screen
 Plug 'breuckelen/vim-resize'               " For resizing with arrow keys
-Plug 'kyazdani42/nvim-web-devicons'        " Required by barbar.nvim
-Plug 'romgrk/barbar.nvim'                  " Sexiest buffer tabline
 call plug#end()
 
 " -- File imports --
@@ -116,6 +116,7 @@ syntax on
 set vb t_vb=      " Disable error bells
 set ttyfast       " Speed up drawing
 set shortmess+=A  " Ignores swapfiles when opening file
+set shortmess+=c  " Disable completion menu messages like 'match 1 of 2'
 set termguicolors " Use GUI colors in terminal as well
 set noshowmode    " Don't write out `--INSERT--`, etc.
 set linebreak     " Don't break lines in the middle of a word
@@ -129,6 +130,7 @@ set undodir=~/.vim/undo//
 set viewoptions=cursor,folds,slash,unix
 set fileformat=unix fileformats=unix,dos " Use Unix eol format
 set autoread        " Automatically read in the file when changed externally
+set spelllang=en,sv
 augroup filechanged " Check if any file has changed
   autocmd!
   autocmd FocusGained * silent! checktime
@@ -193,6 +195,7 @@ imap     <C-s>            <Esc>:w<CR>
 vmap     <C-s>            <Esc>:w<CR>gv
 smap     <C-s>            <Esc>:w<CR>
 vmap     v                $h
+nnoremap c_               c^
 nnoremap d_               d^
 nmap     <BS>             X
 nmap     <S-BS>           x
@@ -228,8 +231,9 @@ omap     <M-k>            V{
 map      <C-Space>        zt
 map      <leader>¨        <C-]>
 map      <C-¨>            <C-]>
-map      <C-W><C-]>       <C-w>v<Plug>(coc-definition)
-map      <C-W>¨           <C-w><C-]>
+map      <C-w><C-]>       <C-w>v<Plug>(coc-definition)
+map      <C-w>¨           <C-w><C-]>
+nnoremap <C-w>T           :tab split<CR>
 map      ¨                ]
 map      å                [
 map      ¨¨               ]]
@@ -491,7 +495,31 @@ omap i¤  i$
 omap a¤  a$
 vmap i¤  i$
 vmap a¤  a$
-let g:surround_164 = "$\r$"
+let g:surround_{char2nr('¤')} = "$\r$"
+
+" surround noun `q` means `'`
+nmap csq cs'
+nmap dsq ds'
+" noun `q` already means any quotes i.e. `/"/'
+let g:surround_{char2nr('q')} = "'\r'"
+
+" surround noun `Q` means `"`
+nmap csQ cs"
+nmap dsQ ds"
+omap iQ  i"
+omap aQ  a"
+vmap iQ  i"
+vmap aQ  a"
+let g:surround_{char2nr('Q')} = "\"\r\""
+
+" surround noun `A` means `
+nmap csA cs`
+nmap dsA ds`
+omap iA  i`
+omap aA  a`
+vmap iA  i`
+vmap aA  a`
+let g:surround_{char2nr('A')} = "`\r`"
 
 " -- Quickscope (highlight settings have to come before setting `colorscheme`) --
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -772,13 +800,17 @@ let g:vim_printer_print_below_keybinding = 'gp'
 let g:vim_printer_print_above_keybinding = 'gP'
 
 " -- LaTeX and Vimtex --
-autocmd FileType latex,tex setlocal iskeyword-=:
+augroup latex
+  autocmd!
+  autocmd FileType latex,tex setlocal iskeyword-=:                               " `:` counts as a separator
+  autocmd FileType latex,tex let b:surround_{char2nr('c')} = "\\\1command\1{\r}" " Add vim-surround noun `c`
+  autocmd FileType latex,tex nmap <buffer> <silent> <leader>t <Plug>(vimtex-toc-open)
+augroup END
 let g:tex_flavor = 'latex'
 let g:tex_indent_items=0        " Disables indent before new `\item`
 let g:vimtex_indent_enabled = 0 " Disables indent before new `\item` by vimtex
 let g:tex_comment_nospell = 1
 let g:vimtex_view_general_viewer = 'SumatraPDF'
-let g:surround_{char2nr('c')} = "\\\1command\1{\r}" " Add vim-surround noun `c`
 let g:vimtex_complete_bib = {'simple': 1}
 let g:vimtex_toc_config = {
       \ 'layer_status': { 'label': 0 }
@@ -804,10 +836,6 @@ let g:vimtex_toc_config = {
       \ 'show_help': 0,
       \ 'layer_status': { 'label': 0, 'todo': 0},
       \ }
-augroup toc_tex
-  autocmd!
-  autocmd FileType latex,tex nmap <buffer> <silent> <leader>t <Plug>(vimtex-toc-open)
-augroup END
 
 " -- textobj-entire --
 let g:textobj_entire_no_default_key_mappings = 1
@@ -830,6 +858,12 @@ call textobj#user#plugin('datetime', {
       \     'select': ['ad', 'id'],
       \   }
       \ })
+
+augroup markdown_surround
+  autocmd!
+  " Surround noun `c` turns target into markdown code block
+  autocmd FileType markdown let b:surround_{char2nr('c')} = "```\n\r\n```"
+augroup END
 
 " -- togglelist.vim --
 let g:toggle_list_no_mappings=1
@@ -900,9 +934,9 @@ cmap <M-j> <Plug>CmdlineCompleteForward
 " -- OpenBrowser
 command! OpenBrowserCurrent execute "OpenBrowser" "file:///" . expand('%:p:gs?\\?/?')
 
-" -- Online Thesaurus --
-let g:use_default_key_map = 0
-nnoremap <silent> <leader>T :call thesaurusPy2Vim#Thesaurus_LookCurrentWord()<CR>
+" -- Thesaurus --
+let g:tq_map_keys = 0
+nnoremap <silent> <leader>T :ThesaurusQueryLookupCurrentWord<CR>
 
 " Looks up the provided word(s) in a thesaurus
 command! -nargs=+ -bar Thesaurus call thesaurusPy2Vim#Thesaurus_LookWord('<args>')
@@ -916,8 +950,8 @@ let g:startify_enable_special = 0 " Dont' show <empty buffer> or <quit>
 let g:startify_custom_indices = 'asdfghlcvnmcyturieowpqxz' " Use letters instead of numbers
 let g:startify_files_number = 8
 let g:startify_lists = [
-      \   {'type': 'files',     'header': ['   Recent files']},
       \   {'type': 'sessions',  'header': ['   Sessions']},
+      \   {'type': 'files',     'header': ['   Recent files']},
       \   {'type': 'bookmarks', 'header': ['   Bookmarks']},
       \   {'type': 'commands',  'header': ['   Commands']},
       \ ]
@@ -936,6 +970,7 @@ let g:session_directory = '~/.vim/sessions'
 let g:session_autosave = 'no'
 let g:session_autoload = 'no'
 let g:session_lock_enabled = 0
+nmap <leader><C-q> :SaveSession \| qa<CR>
 
 " -- vim-resize --
 let g:vim_resize_disable_auto_mappings = 1
@@ -994,8 +1029,8 @@ if (!exists('g:bufferline'))
   " Prevents overriding the config on reload of .vimrc
   let g:bufferline = { 'closable': v:false, 'icons': v:false }
 endif
-hi TabLineFill guifg=Normal guibg=#21242b
-hi BufferVisible guifg=#888888
+hi! TabLineFill guifg=Normal guibg=#21242b
+hi! BufferVisible guifg=#888888
 
 map <leader><C-w>   :BufferDelete<CR>
 map <leader><C-M-w> :BufferDelete!<CR>
@@ -1009,8 +1044,8 @@ nnoremap <silent> <Leader>Bl :BufferOrderByLanguage<CR>
 nnoremap <silent> <C-Tab>   :BufferNext<CR>
 nnoremap <silent> <C-S-Tab> :BufferPrevious<CR>
 " Re-order to previous/next
-nnoremap <silent> <Leader>> :BufferMoveNext<CR>
-nnoremap <silent> <Leader>< :BufferMovePrevious<CR>
+nnoremap <silent> >b :BufferMoveNext<CR>
+nnoremap <silent> <b :BufferMovePrevious<CR>
 " Goto buffer in position...
 nnoremap <silent> <A-1> :BufferGoto 1<CR>
 nnoremap <silent> <A-2> :BufferGoto 2<CR>
@@ -1030,6 +1065,23 @@ nnoremap <silent> <Leader>6 :BufferGoto 6<CR>
 nnoremap <silent> <Leader>7 :BufferGoto 7<CR>
 nnoremap <silent> <Leader>8 :BufferGoto 8<CR>
 nnoremap <silent> <Leader>9 :BufferLast<CR>
+
+" -- Nvim-web-devicons --
+lua require'nvim-web-devicons'.setup {
+      \   override = {
+      \     md = {
+      \       icon = '',
+      \       color = '#519aba',
+      \       name = "Markdown"
+      \     },
+      \     tex = {
+      \       icon = '',
+      \       color = '#3D6117',
+      \       name = 'Tex'
+      \     }
+      \   };
+      \   default = true;
+      \ }
 
 if !exists("g:gui_oni") " ----------------------- Oni excluded stuff below -----------------------
 
