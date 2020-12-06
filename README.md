@@ -15,8 +15,9 @@ which downloads and runs [this script](https://raw.githubusercontent.com/Melkste
 If you have `pacman` installed and also want to install all dependencies and additional programs listed [here](.dotfiles/pkglist.txt) as well as some system configurations, run this:
 
 ```sh
-curl -s https://raw.githubusercontent.com/Melkster/dotfiles/master/.dotfiles/install-dependencies.sh | sudo bash
-curl -s https://raw.githubusercontent.com/Melkster/dotfiles/master/.dotfiles/install-dotfiles.sh | bash
+dotfiles_url=https://raw.githubusercontent.com/Melkster/dotfiles/master/.dotfiles/
+curl -s ${dotfiles_url}install-dependencies.sh | sudo bash
+curl -s ${dotfiles_url}install-dotfiles.sh | bash
 ```
 
 # Dependencides
