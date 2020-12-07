@@ -2,7 +2,7 @@
 
 # Installation
 
-To clone and set everything up, run the following bash script:
+To clone and set everything up, run the following script:
 
 ```sh
 echo 'alias dotfiles="/mingw64/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"' >> .bashrc
@@ -21,6 +21,8 @@ vim +PlugInstall +qa
 ```
 
 # Dependencides
+
+These dotfiles assume that you're on Unix. For Windows, check out the [Windows branch](https://github.com/Melkster/dotfiles/tree/windows).
 
 - [git](https://git-scm.com/) (obviously)
 - [python](https://www.python.org/downloads/) for some Vim plugins
