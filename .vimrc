@@ -625,7 +625,10 @@ imap <expr> <NL> pumvisible() ? "\<C-y>" : "\<CR>"
 augroup coc_nvim_custom
   autocmd!
   " TODO: remove this when floating window bug is fixed for coc.nvim
-  autocmd InsertLeave * call coc#float#close_all()
+  autocmd InsertLeave *
+        \ if !bufexists('[Command Line]') |
+        \   call coc#float#close_all() |
+        \ endif
 augroup end
 
 " Use <c-space> to trigger completion.
@@ -1027,7 +1030,7 @@ let g:smoothie_base_speed = 18
 " -- barbar.nvim --
 if (!exists('g:bufferline'))
   " Prevents overriding the config on reload of .vimrc
-  let g:bufferline = { 'closable': v:false, 'icons': v:false }
+  let g:bufferline = { 'closable': v:false, 'icons': 'numbers' }
 endif
 hi! TabLineFill guifg=Normal guibg=#21242b
 hi! BufferVisible guifg=#888888
