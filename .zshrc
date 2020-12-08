@@ -200,20 +200,40 @@ bindkey -M vicmd '\e\C-?' backward-kill-word
 # bindkey -M vivis 's(' vi-visual-surround-parenthesis
 # bindkey -M vivis 's)' vi-visual-surround-parenthesis
 
+# bat config in ~/.config/bat/config
+
+# Fzf
+export FZF_DEFAULT_OPTS="
+  --bind ctrl-j:accept,alt-k:up,alt-j:down
+  --history=$HOME/.fzf_history
+  --height 50%
+  --pointer='▶'
+
+  --color=fg:-1
+  --color=fg+:#61afef
+  --color=bg:-1
+  --color=bg+:#444957
+  --color=hl:#E06C75
+  --color=hl+:#E06C75
+  --color=gutter:-1
+  --color=pointer:#61afef
+  --color=marker:#98C379
+  --color=header:#61afef
+  --color=info:#98C379
+  --color=spinner:#61afef
+  --color=prompt:#c678dd
+"
+
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :100 {}'"
+export FZF_CTRL_T_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_ALT_C_COMMAND='fd --type directory -H --ignore-file ~/.agignore'
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+[ -f /usr/share/fzf/completion.zsh   ] && source /usr/share/fzf/completion.zsh
+
 # Create a new directory and enter it
 function mkcd() {
   mkdir -p "$@" && cd "$@"
 }
-
-# cd to selected directory using FZF using Alt-T
-cdz() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
-  zle reset-prompt
-}
-zle -N cdz{,}
-bindkey '^[t' cdz
 
 alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.vimrc'
@@ -280,31 +300,3 @@ alias gly='git log --since="yesterday"'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dot='dotfiles'
 alias dots='dot status'
-
-# bat config in ~/.config/bat/config
-
-# Fzf
-export FZF_DEFAULT_OPTS="
-  --bind ctrl-j:accept,alt-k:up,alt-j:down
-  --history=$HOME/.fzf_history
-  --height 50%
-
-  --color=fg:-1
-  --color=fg+:#61afef
-  --color=bg:-1
-  --color=bg+:#444957
-  --color=hl:#E06C75
-  --color=hl+:#E06C75
-  --color=gutter:-1
-  --color=pointer:#61afef
-  --color=marker:#98C379
-  --color=header:#61afef
-  --color=info:#98C379
-  --color=spinner:#61afef
-  --color=prompt:#c678dd
-"
-
-export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :100 {}'"
-export FZF_CTRL_T_COMMAND='ag --hidden --ignore .git -g ""'
-[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-[ -f /usr/share/fzf/completion.zsh   ] && source /usr/share/fzf/completion.zsh
