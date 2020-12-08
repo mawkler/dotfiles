@@ -403,12 +403,12 @@ noremap gf :call MarkdownGf()<CR>
 
 " Increases the font zise with `amount`
 function! Zoom(amount) abort
-  call ZoomSet(matchstr(&guifont, '\d\+$') + a:amount)
+  call ZoomSet(matchstr(g:GuiFont, '\d\+$') + a:amount)
 endfunc
 
 " Sets the font size
 function ZoomSet(font_size) abort
-  let &guifont = substitute(&guifont, '\d\+$', a:font_size, '')
+  execute "GuiFont! " . substitute(g:GuiFont, '\d\+$', a:font_size, '')
 endfunc
 
 noremap <silent> <C-=> :call Zoom(v:count1)<CR>
