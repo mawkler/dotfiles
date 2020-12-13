@@ -36,6 +36,7 @@ trash-cli
 tree
 ttf-dejavu-sans-mono-powerline-git
 ufw
+unclutter
 unp
 valgrind
 vifm
