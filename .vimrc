@@ -437,6 +437,7 @@ endif
 " -- Windows specific settings --
 " set shellslash " Use `/` when expanding file names
 " command! -bang Terminal terminal<bang> "/usr/bin/bash"
+lang en " Use english
 
 " -- Language specific settings --
 nnoremap <expr> <Tab> index(['python', 'markdown'], &filetype) >= 0 ?
@@ -606,8 +607,8 @@ map <leader>C <plug>NERDCommenterToEOL
 set updatetime=100
 let g:signify_sign_show_count        = 0
 let g:signify_sign_add               = '┃'
-let g:signify_sign_delete            = '▁'
-let g:signify_sign_delete_first_line = '▔'
+let g:signify_sign_delete            = '_'
+let g:signify_sign_delete_first_line = '‾'
 let g:signify_sign_change            = '┃'
 
 " -- AutoPairs --
