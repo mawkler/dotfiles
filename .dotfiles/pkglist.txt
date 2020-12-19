@@ -1,4 +1,5 @@
 bat
+bfs
 broot
 caprine
 chrome-gnome-shell
