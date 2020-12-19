@@ -253,7 +253,7 @@ alias c='xclip -selection clipboard'
 alias v='xclip -o'
 alias ls='exa -F'
 alias m='make'
-alias tree='tree -C'
+alias tree='tree -C | less -Fn'
 alias installed='yay -Qqe | bat'
 alias remove-non-dependencies='sudo pacman -Rns $(pacman -Qtdq)'
 alias b='bd 1'
@@ -268,7 +268,7 @@ alias yaz-remove='yay -Qeq | fzf -m --preview "yay -Qi {1}" | xargs -ro yay -Rs'
 alias mv='mv -i'
 alias pdf_clip='curl -Ls `xclip -o` | (zathura - &)'
 alias ag="ag --pager='less -R'"
-alias dump-dconf="dconf dump /org/gnome/shell/extensions/ > .dotfiles/gnome-extensions.dconf"
+alias dump-dconf='dconf dump /org/gnome/shell/extensions/ > .dotfiles/gnome-extensions.dconf'
 
 # Git:
 alias g='git'
