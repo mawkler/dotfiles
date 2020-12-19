@@ -12,3 +12,6 @@ export PATH="/home/melker/.local/bin:$PATH"
 
 export DROPBOX="~/Dropbox/"
 export MARKDOWNS="~/Dropbox/Dokument/Markdowns/"
+
+# Unclutter
+unclutter --timeout 2 --fork

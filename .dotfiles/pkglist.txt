@@ -1,4 +1,5 @@
 bat
+bfs
 broot
 caprine
 chrome-gnome-shell
@@ -36,6 +37,7 @@ trash-cli
 tree
 ttf-dejavu-sans-mono-powerline-git
 ufw
+unclutter
 unp
 valgrind
 vifm

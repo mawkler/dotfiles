@@ -162,6 +162,7 @@ bindkey '^I' expand-or-complete-or-cd
 bindkey -s '^[l'   '^Qls^J'    # Alt-L clears text before running `ls`
 bindkey -s '^[L'   '^Qls -a^J' # Alt-Shift-L also shows hidden files
 bindkey -s '^[[2~' '^X^E'      # `Insert` key opens $EDITOR
+bindkey -s '¤'     '$'         # `¤` means `$`
 
 bindkey '^P'     up-line-or-beginning-search
 bindkey '^N'     down-line-or-beginning-search
@@ -199,20 +200,40 @@ bindkey -M vicmd '\e\C-?' backward-kill-word
 # bindkey -M vivis 's(' vi-visual-surround-parenthesis
 # bindkey -M vivis 's)' vi-visual-surround-parenthesis
 
+# bat config in ~/.config/bat/config
+
+# Fzf
+export FZF_DEFAULT_OPTS="
+  --bind ctrl-j:accept,alt-k:up,alt-j:down
+  --history=$HOME/.fzf_history
+  --height 50%
+  --pointer='▶'
+
+  --color=fg:-1
+  --color=fg+:#61afef
+  --color=bg:-1
+  --color=bg+:#444957
+  --color=hl:#E06C75
+  --color=hl+:#E06C75
+  --color=gutter:-1
+  --color=pointer:#61afef
+  --color=marker:#98C379
+  --color=header:#61afef
+  --color=info:#98C379
+  --color=spinner:#61afef
+  --color=prompt:#c678dd
+"
+
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :100 {}'"
+export FZF_CTRL_T_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_ALT_C_COMMAND='fd --type directory -H --ignore-file ~/.agignore'
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+[ -f /usr/share/fzf/completion.zsh   ] && source /usr/share/fzf/completion.zsh
+
 # Create a new directory and enter it
 function mkcd() {
   mkdir -p "$@" && cd "$@"
 }
-
-# cd to selected directory using FZF using Alt-T
-cdz() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
-  zle reset-prompt
-}
-zle -N cdz{,}
-bindkey '^[t' cdz
 
 alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.vimrc'
@@ -232,7 +253,7 @@ alias c='xclip -selection clipboard'
 alias v='xclip -o'
 alias ls='exa -F'
 alias m='make'
-alias tree='tree -C'
+alias tree='tree -C | less -Fn'
 alias installed='yay -Qqe | bat'
 alias remove-non-dependencies='sudo pacman -Rns $(pacman -Qtdq)'
 alias b='bd 1'
@@ -247,7 +268,7 @@ alias yaz-remove='yay -Qeq | fzf -m --preview "yay -Qi {1}" | xargs -ro yay -Rs'
 alias mv='mv -i'
 alias pdf_clip='curl -Ls `xclip -o` | (zathura - &)'
 alias ag="ag --pager='less -R'"
-alias dump-dconf="dconf dump /org/gnome/shell/extensions/ > .dotfiles/gnome-extensions.dconf"
+alias dump-dconf='dconf dump /org/gnome/shell/extensions/ > .dotfiles/gnome-extensions.dconf'
 
 # Git:
 alias g='git'
@@ -269,9 +290,9 @@ alias gmm='git merge master'
 alias gp='git pull'
 alias gb='git branch'
 alias gw='git whatchanged'
-alias gcm='git commit -m'
-alias gcam='git commit -am'
-alias gca='git commit -a'
+alias gcm='git commit -mv'
+alias gcam='git commit -amv'
+alias gca='git commit -av'
 alias gu='git diff HEAD@{1} HEAD'
 alias gly='git log --since="yesterday"'
 
@@ -279,31 +300,3 @@ alias gly='git log --since="yesterday"'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dot='dotfiles'
 alias dots='dot status'
-
-# bat config in ~/.config/bat/config
-
-# Fzf
-export FZF_DEFAULT_OPTS="
-  --bind ctrl-j:accept,alt-k:up,alt-j:down
-  --history=$HOME/.fzf_history
-  --height 50%
-
-  --color=fg:-1
-  --color=fg+:#61afef
-  --color=bg:-1
-  --color=bg+:#444957
-  --color=hl:#E06C75
-  --color=hl+:#E06C75
-  --color=gutter:-1
-  --color=pointer:#61afef
-  --color=marker:#98C379
-  --color=header:#61afef
-  --color=info:#98C379
-  --color=spinner:#61afef
-  --color=prompt:#c678dd
-"
-
-export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :100 {}'"
-export FZF_CTRL_T_COMMAND='ag --hidden --ignore .git -g ""'
-[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-[ -f /usr/share/fzf/completion.zsh   ] && source /usr/share/fzf/completion.zsh

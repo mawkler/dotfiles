@@ -1,6 +1,8 @@
 # Installation
 
-To clone and set everything up, run the following:
+**Without `sudo`:**
+
+To clone the dotfiles and set them up, run the following:
 
 ```sh
 curl -s https://raw.githubusercontent.com/Melkster/dotfiles/master/.dotfiles/install-dotfiles.sh | bash
@@ -8,23 +10,19 @@ curl -s https://raw.githubusercontent.com/Melkster/dotfiles/master/.dotfiles/ins
 
 which downloads and runs [this script](https://raw.githubusercontent.com/Melkster/dotfiles/master/.dotfiles/install-dotfiles.sh) which is based on [this article](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/).
 
-The following is basically what the script does, plus backing up previous dotfiles, adding Vim swap file directories, installing Powerline and removing some unwanted files:
+**With `sudo` and `pacman`:**
+
+If you have `pacman` installed and also want to install all dependencies and additional programs listed [here](.dotfiles/pkglist.txt) as well as some system configurations, run this:
 
 ```sh
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-echo ".dotfiles" >> .gitignore
-git clone --bare https://github.com/Melkster/dotfiles.git $HOME/.dotfiles
-dotfiles checkout
-```
-
-If you have `pacman` installed and want to install all dependencies and additional programs listed [here](.dotfiles/pkglist.txt), run this:
-
-```sh
-curl -s https://raw.githubusercontent.com/Melkster/dotfiles/master/.dotfiles/install-dependencies.sh | sudo bash
-curl -s https://raw.githubusercontent.com/Melkster/dotfiles/master/.dotfiles/install-dotfiles.sh | bash
+dotfiles_url=https://raw.githubusercontent.com/Melkster/dotfiles/master/.dotfiles/
+curl -s ${dotfiles_url}install-dependencies.sh | sudo bash
+curl -s ${dotfiles_url}install-dotfiles.sh | bash
 ```
 
 # Dependencides
+
+These dotfiles assume that you're on Unix. For Windows, check out the [Windows branch](https://github.com/Melkster/dotfiles/tree/windows).
 
 - [git](https://git-scm.com/) (obviously)
 - [python](https://www.python.org/downloads/) for some Vim plugins
