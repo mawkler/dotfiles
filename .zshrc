@@ -192,6 +192,8 @@ bindkey -M vicmd '^N'     down-line-or-beginning-search
 bindkey -M vicmd '^[p'    history-substring-search-up
 bindkey -M vicmd '^[n'    history-substring-search-down
 bindkey -M vicmd '\e\C-?' backward-kill-word
+bindkey -M vicmd 'v'      visual-mode       # Use v for visual mode and V to
+bindkey -M vicmd 'V'      edit-command-line # open current line in $VISUAL
 
 # ZSH-vimode-visual
 # bindkey -M vivis 's ' vi-visual-surround-space
