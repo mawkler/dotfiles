@@ -1,10 +1,12 @@
 #!/bin/sh
 if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 
+USER_HOME=$(eval echo ~${SUDO_USER})
+
 if type pacman &> /dev/null; then
   echo "Installing packages in 'pkglist.txt'";
   yes | sudo -i -u $USER pacman -S yay
-  sudo -i -u $USER yay -S --needed --noconfirm - < ~/.dotfiles/pkglist.txt
+  sudo -u $SUDO_USER yay -S --needed --noconfirm - < $USER_HOME/.dotfiles/pkglist.txt
 fi
 
 echo "Adding npm dependencies";
