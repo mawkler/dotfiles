@@ -23,7 +23,7 @@ touch $HOME/.fzf_history # History file required by fzf-configuration in ~/.zshr
 
 echo "Installing onedark theme for bat"
 mkdir -p "$(bat --config-dir)/themes"
-cp .dotfiles/base16-onedark.tmTheme "$(bat --config-dir)/themes"
+cp $HOME/.dotfiles/base16-onedark.tmTheme "$(bat --config-dir)/themes"
 bat cache --build # Update the binary cache
 
 echo "Installing Powerline.";
