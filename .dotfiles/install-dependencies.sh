@@ -18,7 +18,7 @@ echo "Adding npm dependencies";
 sudo npm install -gy yarn # For coc.nvim
 
 echo "Running install-configuration.sh"
-sudo -u $SUDO_USER $USER_HOME/.dotfiles/install-configuration.sh
+sudo -i -u $SUDO_USER $USER_HOME/.dotfiles/install-configuration.sh
 
 # From https://www.dannyguo.com/blog/remap-caps-lock-to-escape-and-control/
 if type caps2esc &> /dev/null; then
