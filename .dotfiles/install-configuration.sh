@@ -35,7 +35,7 @@ pip install --user powerline-status
 echo "Installing less configuration based on ~/.lesskey";
 lesskey
 
-if [ $XDG_CURRENT_DESKTOP == "GNOME" ]; then
+if [[ $XDG_CURRENT_DESKTOP == "GNOME" ]]; then
   echo "Adding various Gnome settings"
   dconf load /org/gnome/settings-daemon/plugins/media-keys/ < .dotfiles/media-keys.dconf
   dconf load /org/gnome/desktop/wm/keybindings/ < .dotfiles/keybindings.dconf
