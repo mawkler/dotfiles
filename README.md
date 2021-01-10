@@ -16,8 +16,8 @@ If you have `pacman` installed and also want to install all dependencies and add
 
 ```sh
 dotfiles_url=https://raw.githubusercontent.com/Melkster/dotfiles/master/.dotfiles/
-curl -s ${dotfiles_url}install-dependencies.sh | sudo bash
 curl -s ${dotfiles_url}install-dotfiles.sh | bash
+curl -s ${dotfiles_url}install-dependencies.sh | sudo bash
 ```
 
 # Dependencides

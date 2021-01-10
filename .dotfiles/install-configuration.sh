@@ -48,5 +48,3 @@ if [[ $XDG_CURRENT_DESKTOP == "GNOME" ]]; then
 fi
 
 echo "To change shell to ZSH, run 'chsh -s $(which zsh) $USER'."
-
-
