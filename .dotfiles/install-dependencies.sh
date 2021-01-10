@@ -1,16 +1,24 @@
 #!/bin/sh
+
+###
+## Installs programs and configurations that require root privileges
+###
+
 if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 
 USER_HOME=$(eval echo ~${SUDO_USER})
 
 if type pacman &> /dev/null; then
   echo "Installing packages in 'pkglist.txt'";
-  yes | sudo -i -u $USER pacman -S yay
+  yes | sudo pacman -S yay
   sudo -u $SUDO_USER yay -S --needed --noconfirm - < $USER_HOME/.dotfiles/pkglist.txt
 fi
 
 echo "Adding npm dependencies";
-sudo -i -u $USER npm install -gy yarn # For coc.nvim
+sudo npm install -gy yarn # For coc.nvim
+
+echo "Running install-configuration.sh"
+sudo -i -u $SUDO_USER $USER_HOME/.dotfiles/install-configuration.sh
 
 # From https://www.dannyguo.com/blog/remap-caps-lock-to-escape-and-control/
 if type caps2esc &> /dev/null; then
