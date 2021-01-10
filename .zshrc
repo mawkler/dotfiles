@@ -233,37 +233,40 @@ export FZF_ALT_C_COMMAND='fd --type directory -H --ignore-file ~/.agignore'
 [ -f /usr/share/fzf/completion.zsh   ] && source /usr/share/fzf/completion.zsh
 
 # Create a new directory and enter it
-function mkcd() {
-  mkdir -p "$@" && cd "$@"
+mkcd() {
+  mkdir -p $@ && cd $@
+}
+
+# Count the total number of files in directory
+countfiles() {
+  tree $@ | tail -n 1
+}
+
+# Count the number of files in each immediate subdirectory
+countallfiles() {
+  ls -d */ | xargs -d $'\n' sh -c 'for arg do echo $arg `tree $arg | tail -n 1`; done' _ | column -t | sort -Vr -k 4n | tac
 }
 
 alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.vimrc'
 alias src='exec zsh'
-alias ..='cd .. && ls'
 alias grep='grep -Iin --color=always'
-alias grepr='grep -r'
-alias s='search'
-alias search='find . -iname'
-alias countfiles='du -a | cut -d/ -f2 | sort | uniq -c | sort -nr'
 alias listfiles='find . -type f -iname "*"'
 alias xs='xargs -I % sh -c'
-alias mouse-speed='echo 80 | sudo tee /sys/devices/platform/i8042/serio1/serio2/speed && echo 180 | sudo tee /sys/devices/platform/i8042/serio1/serio2/sensitivity'
 alias less='less -m -N -g -i -J --underline-special --SILENT'
 alias xclip='xclip -selection c'
 alias c='xclip -selection clipboard'
 alias v='xclip -o'
 alias ls='exa -F'
 alias m='make'
-alias tree='tree -C | less -Fn'
+alias Tree='tree -C | less -Fn'
 alias installed='yay -Qqe | bat'
 alias remove-non-dependencies='sudo pacman -Rns $(pacman -Qtdq)'
-alias b='bd 1'
 alias open='xdg-open &>/dev/null'
 alias errorlogs='journalctl --since=today'
 alias screenkey='screenkey -t 1.5 -s small'
 alias wifi='nmcli'
-alias bats='bat --pager="less -mgi --underline-special --SILENT"'
+alias Bat='bat --pager="less -mgi --underline-special --SILENT"'
 alias myip='hostname -i'
 alias yaz='yay -Slq | fzf -m --preview "yay -Si {1}"| xargs -ro yay -S --noconfirm'
 alias yaz-remove='yay -Qeq | fzf -m --preview "yay -Qi {1}" | xargs -ro yay -Rs'
