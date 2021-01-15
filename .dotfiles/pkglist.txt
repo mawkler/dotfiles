@@ -19,7 +19,6 @@ neovim
 neovim-qt
 nodejs
 npm
-otf-nerd-fonts-fira-code
 plotinus-git
 powerline
 python-pip
