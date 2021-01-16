@@ -5,7 +5,8 @@ export INFOPATH="/opt/texlive/2020/texmf-dist/doc/info:$INFOPATH"
 source /home/melker/.config/broot/launcher/bash/br
 
 export PATH="/usr/bin/dotnet:$PATH"
-export PATH="/home/melker/.cargo/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 export DROPBOX="~/Dropbox/"
 export MARKDOWNS="~/Dropbox/Dokument/Markdowns/"
