@@ -208,6 +208,7 @@ bindkey -M vicmd 'V'      edit-command-line # open current line in $VISUAL
 export FZF_DEFAULT_OPTS="
   --bind ctrl-j:accept,alt-k:up,alt-j:down
   --history=$HOME/.fzf_history
+  --history-size=10000
   --height 50%
   --pointer='▶'
 
