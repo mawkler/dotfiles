@@ -48,4 +48,11 @@ if [[ $XDG_CURRENT_DESKTOP == "GNOME" ]]; then
   echo "sudo mv /usr/share/themes/Numix-Frost/gtk-3.20/gtk-dark.css /usr/share/themes/Numix-Frost/gtk-3.20/gtk.css"
 fi
 
+echo "Installing FiraCode with stylistic set"
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts
+curl -fLO https://github.com/Melkster/dotfiles/blob/master/.local/share/fonts/OTF/FiraCode-Regular-ss01-ss02-ss03-ss04-ss05-zero.otf
+fc-cache -fv
+cd -
+
 echo "To change shell to ZSH, run 'chsh -s $(which zsh) $USER'."
