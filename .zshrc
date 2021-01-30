@@ -5,6 +5,8 @@ DISABLE_AUTO_UPDATE="true"
 
 source /usr/share/zsh/share/antigen.zsh
 
+autoload -Uz compinit && compinit
+
 antigen use oh-my-zsh # Load the oh-my-zsh's library.
 antigen bundles << EOBUNDLES
   git
