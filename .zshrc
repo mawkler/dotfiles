@@ -36,6 +36,7 @@ HYPHEN_INSENSITIVE="true"            # Use hyphen-insensitive completion
 ENABLE_CORRECTION="true"             # Enables command auto-correction
 COMPLETION_WAITING_DOTS="true"       # Displays red dots whilst waiting for completion
 DISABLE_UNTRACKED_FILES_DIRTY="true" # Speeds up VCS status check in large repositories
+KEYTIMEOUT=1                         # Speeds up mode switching
 
 # Powerline theme (has to come after sourcing oh-my-zsh)
 if [[ -r `python3 -m site --user-site 2> /dev/null`/powerline/bindings/zsh/powerline.zsh ]]; then
@@ -53,10 +54,6 @@ export EDITOR=$VISUAL
 if [[ -r ~/.zshrc.private ]]; then
   source ~/.zshrc.private
 fi
-
-# Vi-mode
-bindkey -v # This is also enabled by vi-mode plugin
-KEYTIMEOUT=1
 
 # Change cursor shape for different vi modes
 function zle-keymap-select {
