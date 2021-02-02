@@ -152,6 +152,7 @@ countallfiles() {
 
 alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.vimrc'
+alias nvim='export NVIM_MINIMAL=1; nvim; unset NVIM_MINIMAL'
 alias src='exec zsh'
 alias grep='grep -Iin --color=always'
 alias listfiles='find . -type f -iname "*"'
