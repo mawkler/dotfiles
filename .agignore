@@ -3,3 +3,15 @@
 *[Cc]ache/
 *-cache*
 .local/
+
+.npm/
+.mozilla/
+.electron/
+.vpython-root/
+.gradle/
+.nuget/
+.cargo/
+.evernote/
+yay/
+
+code/

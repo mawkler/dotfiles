@@ -1,107 +1,100 @@
 " -- plugins --
 call plug#begin('~/.vim/bundle')
+
+if !$NVIM_MINIMAL
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-dispatch'                  " Makes actions like `:Gpush` asynchronous
+  Plug 'tpope/vim-sleuth'
+  Plug 'tpope/vim-eunuch'
+  Plug 'tpope/vim-abolish'
+  Plug 'enricobacis/vim-airline-clock'
+  Plug 'cakebaker/scss-syntax.vim'
+  Plug 'pangloss/vim-javascript'
+  Plug 'vim-scripts/restore_view.vim'        " Automatically restores cursor position and folds
+  Plug 'vim-scripts/git-time-lapse'          " Step through a file's git history
+  Plug 'inkarkat/vim-visualrepeat'           " Allows repeating using `.` over visual selection
+  Plug 'milkypostman/vim-togglelist'         " Adds mapping to toggle QuickFix window
+  Plug 'kana/vim-niceblock'                  " Improves visual mode
+  Plug 'kana/vim-textobj-syntax'
+  Plug 'haya14busa/vim-textobj-function-syntax'
+  Plug 'PeterRincker/vim-argumentative'      " Adds mappings for swapping arguments
+  Plug 'AndrewRadev/splitjoin.vim'
+  Plug 'junegunn/vim-easy-align'
+  Plug 'dkarter/bullets.vim'                 " Autocomplete markdown lists, etc.
+  Plug 'mjbrownie/swapit'                    " For toggling words like `true` to `false`, etc.
+  Plug 'Julian/vim-textobj-variable-segment' " Adds camel case and snake case text objects
+  Plug 'wsdjeg/vim-fetch'                    " Process line and column jump specification in file path
+  Plug 'psliwka/vim-smoothie'                " Smooth scrolling animations
+  Plug 'meain/vim-printer'
+  Plug 'lervag/vimtex'
+  Plug 'rhysd/git-messenger.vim'
+  Plug 'camspiers/lens.vim'                  " An automatic window resizing plugin
+  Plug 'itchyny/vim-highlighturl'            " Highlights URLs everywhere
+  Plug 'Ron89/thesaurus_query.vim'           " Retrieves the synonyms and antonyms of a given word
+  Plug 'mbbill/undotree'
+  Plug 'Melkster/vim-outdated-plugins'       " Gives notification on startup with number of outdated plugins
+  Plug 'Melkster/CommandlineComplete.vim'
+  Plug 'breuckelen/vim-resize'               " For resizing with arrow keys
+endif
 if has('nvim')
   Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'wsdjeg/notifications.vim'
   Plug 'coreyja/fzf.devicon.vim'
   Plug 'Xuyuanp/scrollbar.nvim'
-  Plug 'kyazdani42/nvim-web-devicons'      " Required by barbar.nvim
-  Plug 'romgrk/barbar.nvim'                " Sexiest buffer tabline
+  Plug 'kyazdani42/nvim-web-devicons' " Required by barbar.nvim
+  Plug 'romgrk/barbar.nvim'           " Sexiest buffer tabline
   Plug 'vigoux/LanguageTool.nvim'
   " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Requires C compiler installed
 endif
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-dispatch'                  " Makes actions like `:Gpush` asynchronous
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-commentary'
 Plug 'bling/vim-airline'
-Plug 'enricobacis/vim-airline-clock'
 Plug 'powerline/fonts'
-Plug 'joshdick/onedark.vim'                " Atom dark theme for vim
+Plug 'joshdick/onedark.vim'         " Atom dark theme for vim
 Plug 'scrooloose/nerdcommenter'
 Plug 'unblevable/quick-scope'
-Plug 'andymass/vim-matchup'                " Ads additional `%` commands
-Plug 'jiangmiao/auto-pairs'                " Add matching brackets, quotes, etc
+Plug 'andymass/vim-matchup'         " Ads additional `%` commands
+Plug 'jiangmiao/auto-pairs'         " Add matching brackets, quotes, etc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'rbonvall/snipmate-snippets-bib'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
-Plug 'mhinz/vim-signify'                   " Shows git status for each line
-Plug 'cakebaker/scss-syntax.vim'
+Plug 'mhinz/vim-signify'            " Shows git status for each line
 Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'pangloss/vim-javascript'
 Plug 'magicalbanana/vim-sql-syntax'
-Plug 'vim-scripts/capslock.vim'            " Adds caps lock mapping to insert mode
+Plug 'vim-scripts/capslock.vim'     " Adds caps lock mapping to insert mode
 Plug 'vim-scripts/StripWhiteSpaces'
-Plug 'vim-scripts/restore_view.vim'        " Automatically restores cursor position and folds
-Plug 'vim-scripts/git-time-lapse'          " Step through a file's git history
-Plug 'inkarkat/vim-ingo-library'           " Required by visualrepeat and ConflictMotions
-Plug 'inkarkat/vim-visualrepeat'           " Allows repeating using `.` over visual selection
-Plug 'inkarkat/vim-CountJump'              " Dependency for ConflictMotions
-Plug 'inkarkat/vim-ConflictMotions'        " Adds motions for Git conflicts
-Plug 'milkypostman/vim-togglelist'         " Adds mapping to toggle QuickFix window
+Plug 'inkarkat/vim-ingo-library'    " Required by visualrepeat and ConflictMotions
+Plug 'inkarkat/vim-CountJump'       " Dependency for ConflictMotions
+Plug 'inkarkat/vim-ConflictMotions' " Adds motions for Git conflicts
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-entire'
-Plug 'kana/vim-niceblock'                  " Improves visual mode
-Plug 'kana/vim-textobj-syntax'
-Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'AndrewRadev/dsf.vim'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'wellle/targets.vim'                  " Adds arguments, etc. as text objects
-Plug 'PeterRincker/vim-argumentative'      " Adds mappings for swapping arguments
+Plug 'wellle/targets.vim'           " Adds arguments, etc. as text objects
 Plug 'Yggdroot/indentLine'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'junegunn/vim-easy-align'
-Plug 'romainl/vim-cool'                    " Highlights all search matches until moving cursor
-Plug 'haya14busa/incsearch.vim'            " Better incsearch
-Plug 'dkarter/bullets.vim'                 " Autocomplete markdown lists, etc.
-Plug 'plasticboy/vim-markdown'             " Adds extra features to markdown
+Plug 'romainl/vim-cool'             " Highlights all search matches until moving cursor
+Plug 'plasticboy/vim-markdown'      " Adds extra features to markdown
 Plug 'coachshea/vim-textobj-markdown'
-Plug 'mjbrownie/swapit'                    " For toggling words like `true` to `false`, etc.
-Plug 'tommcdo/vim-exchange'                " For swapping the place of two text objects
-Plug 'Julian/vim-textobj-variable-segment' " Adds camel case and snake case text objects
-Plug 'wsdjeg/vim-fetch'                    " Process line and column jump specification in file path
-Plug 'psliwka/vim-smoothie'                " Smooth scrolling animations
-Plug 'markonm/traces.vim'                  " Better highlighting when searching/replacing
+Plug 'tommcdo/vim-exchange'         " For swapping the place of two text objects
+Plug 'markonm/traces.vim'           " Better highlighting when searching/replacing
 Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'meain/vim-printer'
-Plug 'lervag/vimtex'
-Plug 'rhysd/git-messenger.vim'
-Plug 'camspiers/lens.vim'                  " An automatic window resizing plugin
-Plug 'itchyny/vim-highlighturl'            " Highlights URLs everywhere
-Plug 'AndrewRadev/bufferize.vim'           " Execute a :command and show the output in a temporary buffer
-Plug 'Ron89/thesaurus_query.vim'           " Retrieves the synonyms and antonyms of a given word
-Plug 'mbbill/undotree'
-Plug 'semanser/vim-outdated-plugins'       " Gives notification on startup with number of outdated plugins
-Plug 'j5shi/CommandlineComplete.vim'
+Plug 'ryanoasis/vim-devicons'       " vim-devicond should be loaded last
+Plug 'AndrewRadev/bufferize.vim'    " Execute a :command and show the output in a temporary buffer
+Plug 'xolox/vim-misc'               " Required by vim-session
+Plug 'xolox/vim-session'            " Extened session management
+Plug 'mhinz/vim-startify'           " Nicer start screen
+Plug 'idbrii/vim-jumpmethod'        " Better ]m/[m for C#, C++ and Java
+
+" Windows specific
 Plug 'tyru/open-browser.vim'
-Plug 'xolox/vim-misc'                      " Required by vim-session
-Plug 'xolox/vim-session'                   " Extened session management
-Plug 'mhinz/vim-startify'                  " Nicer start screen
-Plug 'breuckelen/vim-resize'               " For resizing with arrow keys
-Plug 'idbrii/vim-jumpmethod'               " Better ]m/[m for C#, C++ and Java
+
 call plug#end()
-
-" -- File imports --
-if !empty(glob('~/.vim/visual-at.vim'))
-  source ~/.vim/visual-at.vim
-endif
-
-if !empty(glob('~/.vim/markdown-section-object.vim'))
-  source ~/.vim/markdown-section-object.vim
-endif
-
-if !empty(glob('~/.vimrc-private'))
-  source ~/.vimrc-private
-endif
 
 " -- General --
 syntax on
@@ -116,13 +109,12 @@ set showcmd       " Write out commands typed in status line
 set hidden
 set lazyredraw
 set swapfile
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swp//
-set undodir=~/.vim/undo//
+set undofile
 set viewoptions=cursor,folds,slash,unix
 set fileformat=unix " Use Unix eol format
 set spelllang=en,sv " Use both Engligh and Swedish spell check
 set splitright      " Open vertical window splits to the right instead of left
+set nojoinspaces    " Only add one space after a `.`/`?`/`!` when joining lines
 
 set autoread        " Automatically read in the file when changed externally
 augroup filechanged
@@ -174,10 +166,6 @@ vnoremap <S-Tab>          <gv
 imap     <S-Tab>          <C-d>
 nnoremap <M-o>            <C-i>
 map      <S-CR>           <C-w>W
-" nnoremap <M-+>            :call animate#window_delta_height(2)<CR>
-" nnoremap <M-->            :call animate#window_delta_height(-2)<CR>
-" nnoremap +                :call animate#window_delta_width(5)<CR>
-" nnoremap -                :call animate#window_delta_width(-5)<CR>
 map      -                3<C-W><
 map      +                3<C-W>>
 nmap     <M-+>            <C-W>+
@@ -202,8 +190,8 @@ nmap     <M-S-BS>         dw
 imap     <M-S-BS>         <C-o>dw
 map      <M-d>            dw
 imap     <C-j>            <CR>
-imap     <M-p>            <C-r>"
-smap     <M-p>            <C-g>Vp
+map!     <M-p>            <C-r>"
+smap     <M-p>            <C-g>p
 map      <M-a>            v<C-a>
 map      <M-x>            v<C-x>
 " Cursor movement in cmd and insert mode--------
@@ -212,8 +200,6 @@ map!     <M-f>            <C-Right>
 map!     <C-b>            <Left>
 map!     <M-b>            <C-Left>
 map!     <M-h>            <Left>
-map!     <M-j>            <Down>
-map!     <M-k>            <Up>
 map!     <M-l>            <Right>
 map!     <M-w>            <C-Right>
 cmap     <C-a>            <Home>
@@ -232,11 +218,11 @@ map      <C-¨>            <C-]>
 map      <C-w><C-]>       <C-w>v<Plug>(coc-definition)
 map      <C-w>¨           <C-w><C-]>
 nnoremap <C-w>T           :tab split<CR>
+nnoremap <C-w>C           :tabclose<CR>
 map      ¨                ]
 map      å                [
 map      ¨¨               ]]
 map      åå               [[
-map      ^                }
 map      Å                {
 map      ö                ;
 map      gö               g;
@@ -280,18 +266,13 @@ map      <leader>q        qqqqq
 nnoremap §                <C-^>
 nmap     cg*              *Ncgn
 nmap     dg*              *Ndgn
+vmap     gcn              //Ncgn
+vmap     gdn              //Ndgn
 xnoremap g.               .
-nmap     dage             viw<Esc>bhdaw
-nmap     dagE             viw<Esc>bhdaW
-nmap     cage             viw<Esc>bhcaw
-nmap     cagE             viw<Esc>bhcaW
+
 nmap     <leader>K        :vertical Man <C-R><C-W><CR>
 vmap     <leader>K        y:vertical Man <C-R>"<CR>
 
-map  <silent> <leader>; :call VisualAppend(";")<CR>
-map  <silent> <leader>, :call VisualAppend(",")<CR>
-map  <silent> <leader>. :call VisualAppend(".")<CR>
-map  <silent> <leader>? :call VisualAppend("?")<CR>
 map  <silent> <leader>M :Files $DROPBOX/Dokument/Markdowns/<CR>
 map  <silent> <leader>E :cd $DROPBOX/Exjobb/<CR>
 nmap <silent> <leader>F :let @+ = expand("%:p")<CR>:call Print("Yanked file path <C-r>+")<CR>
@@ -325,7 +306,7 @@ function! Print(message)
   endtry
 endf
 
-function PrintError(message)
+function s:print_error(message)
   try
     exe 'Echoerr' a:message
   catch " if notifications.vim is not installed
@@ -343,7 +324,7 @@ augroup dir_changed
   autocmd!
   autocmd DirChanged *
         \ if &runtimepath =~ 'notifications.vim' && index(blacklist, &buftype) < 0 |
-        \   exe 'Echo  ⟶' fnamemodify(getcwd(), ":~") |
+        \   exe 'Echo  ' fnamemodify(getcwd(), ":~") |
         \ endif
 augroup end
 
@@ -360,7 +341,7 @@ function Enter()
     try
       exe "normal! \<CR>"
     catch
-      call PrintError(v:exception)
+      call s:print_error(v:exception)
     endtry
   else
     exe "normal o"
@@ -368,17 +349,14 @@ function Enter()
 endf
 nmap <silent> <C-j> :call Enter()<CR>
 
-augroup vertical_help " Open :help in 80 character wide vertical instead of horizontal split
+augroup vertical_help
+  " Open :help in vertical split instead of horizontal
   autocmd!
-  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | vertical resize 82 | endif
+  autocmd FileType help
+        \ setlocal bufhidden=unload |
+        \ wincmd L |
+        \ vertical resize 79
 augroup END
-
-" Appends `char` to current line or visual selection
-function! VisualAppend(char)
-  exe "normal! m0"
-  exe "normal! A" . a:char
-  exe "normal! `0"
-endfunction
 
 " Prints the syntax highlighting values under cursor
 function! SynStack()
@@ -403,23 +381,18 @@ noremap gf :call MarkdownGf()<CR>
 
 " Increases the font zise with `amount`
 function! Zoom(amount) abort
-  call ZoomSet(matchstr(g:GuiFont, '\d\+$') + a:amount)
+  call ZoomSet(matchlist(g:GuiFont, ':h\(\d\+\)')[1] + a:amount)
 endfunc
 
 " Sets the font size
 function ZoomSet(font_size) abort
-  execute "GuiFont! " . substitute(g:GuiFont, '\d\+$', a:font_size, '')
+  execute 'GuiFont! ' .  substitute(&guifont, ':h\d\+', ':h' . a:font_size, '')
 endfunc
 
 noremap <silent> <C-=> :call Zoom(v:count1)<CR>
 noremap <silent> <C-+> :call Zoom(v:count1)<CR>
 noremap <silent> <C--> :call Zoom(-v:count1)<CR>
-noremap <silent> <C-0> :call ZoomSet(11)<CR>
-
-if has("gui_running") " Gvim specific configuration
-  set lines=999 columns=999 " Start in maximized window
-  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
-endif
+noremap <silent> <C-0> :call ZoomSet(12)<CR>
 
 if has('nvim')
   " Because NeoVim's menu completions are in a vertical pum
@@ -427,7 +400,9 @@ if has('nvim')
   cmap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<Down>"
   cmap <expr> <C-j> pumvisible() ? "\<Down>" : "\<CR>"
   cmap <expr> <C-f> pumvisible() ? "\<C-e>" : "\<Right>"
-  cmap <M-p> <Up><C-p>
+  cmap <M-k> <Up><C-p>
+  set cpoptions-=_ " Makes cw/cW include the white space after the word
+  set shada=!,'1000,<50,s10,h
 endif
 
 if exists('$TMUX')
@@ -447,6 +422,7 @@ vnoremap <expr> <Tab> index(['python', 'markdown'], &filetype) >= 0 ?
 
 " -- Lines and cursor --
 set number relativenumber
+set signcolumn=number
 set cursorline                    " Cursor highlighting
 set scrolloff=8                   " Cursor margin
 set textwidth=0                   " Disable auto line breaking
@@ -456,6 +432,7 @@ set guicursor+=i:ver25-blinkwait0 " And in insert mode
 set mouse=a                       " Enable mouse
 set conceallevel=2                " Hide concealed characters completely
 set concealcursor=nic             " Conceal characters on the cursor line
+set breakindent                   " Respect indent when line wrapping
 
 " -- Tab characters --
 filetype plugin indent on
@@ -464,6 +441,7 @@ set shiftwidth=2                           " Width of indentation
 set tabstop=4                              " Width of <Tab> characters
 set list listchars=tab:\▏\                 " Show line for each tab indentation
 set autoindent                             " Follow previous line's indenting
+set shiftround                             " Round indent to multiple of shiftwdith
 set backspace=indent,eol,start             " Better backspace behaviour
 set cinkeys-=0#                            " Indent lines starting with `#`
 
@@ -480,7 +458,7 @@ command! CDHere cd %:p:h
 command! JSONFormat %!python -m json.tool
 
 " Puts current file in trashcan using trash-cli
-command! -bar -bang Trash
+command! -bar -bang -complete=file Trash
       \ let s:file = fnamemodify(bufname(<q-args>),':p') |
       \ execute 'BufferDelete<bang>' |
       \ execute 'silent !trash ' . s:file |
@@ -493,16 +471,14 @@ augroup vim_plug
 augroup end
 
 " -- Surround --
-vmap   s  <Plug>VSurround
-vmap   S  <Plug>VgSurround
-sunmap s
-sunmap S
+xmap   s  <Plug>VSurround
+xmap   S  <Plug>VgSurround
 nmap   s  ys
 nmap   S  ys$
 omap   ir i]
 omap   ar a]
-vmap   ir i]
-vmap   ar a]
+xmap   ir i]
+xmap   ar a]
 omap   s¤ s$
 
 " surround noun `¤` means `$`
@@ -552,7 +528,6 @@ augroup language_specific
   autocmd FileType markdown,latex,tex,json setlocal concealcursor=""
   " For adding a horizontal line below and entering insert mode below it
   autocmd FileType markdown nnoremap <buffer> <leader>- o<Esc>0Do<Esc>0C---<CR><CR>
-  autocmd FileType markdown set breakindent | set breakindentopt=shift:2
   " Custom filetype indent settings
   autocmd FileType css,python,cs setlocal shiftwidth=4 tabstop=4
   " Start commit buffers in insert mode
@@ -564,6 +539,7 @@ let g:netrw_silent = 1
 " let g:netrw_preview = 1
 let g:netrw_browse_split = 0
 " let g:netrw_altv = 1
+let g:netrw_bufsettings = 'noma nomod nonu nowrap ro bl'
 augroup netrw
   autocmd!
   autocmd FileType netrw nmap <buffer> o <CR>
@@ -628,6 +604,13 @@ com! -complete=file -nargs=* Edit silent! exec "!vim --servername " . v:serverna
 " " -- Targets.vim --
 " let g:targets_nl   = 'nN'   " Uses `N` instead of `l` for moving targeting backwards
 let g:targets_aiAI = 'aIAi' " Swaps meaning of `I` and `i`
+augroup targets
+  autocmd!
+  " Resets ib/ab to Vim's default behaviour
+  autocmd User targets#mappings#user call targets#mappings#extend({
+        \ 'b': {'pair': [{'o':'(', 'c':')'}]}
+        \ })
+augroup end
 
 " -- Vim Fugitive --
 cnoreabbrev Gdiff Gvdiff
@@ -663,7 +646,7 @@ let g:coc_global_extensions = [
   \ 'coc-syntax',
   \ 'coc-tag',
   \ 'coc-snippets',
-  \ 'coc-python',
+  \ 'coc-jedi',
   \ 'coc-java',
   \ 'coc-html',
   \ 'coc-css',
@@ -684,7 +667,7 @@ let g:coc_global_extensions = [
   \ 'coc-terminal',
   \ 'coc-vimlsp',
   \ 'coc-lua',
-  \]
+  \ ]
   " \ 'coc-vimtex', " Clashes with coc-texlab
   " \ 'coc-ccls',
   " \ 'coc-sql'
@@ -702,7 +685,6 @@ function! s:show_documentation()
 endfunction
 
 " coc-explorer
-" noremap <silent> ½ :execute 'CocCommand explorer --file-columns=selection,icon,clip,indent,filename,size ' . expand('%:p:h')<CR>
 noremap <silent> <Leader>§ :execute 'CocCommand explorer'<CR>
 noremap <silent> <Leader>` :execute 'CocCommand explorer'<CR>
 
@@ -714,27 +696,28 @@ command! Snippets CocList snippets
 nmap cm  <Plug>Commentary
 nmap cmm <Plug>CommentaryLine
 
-" -- swapit --
-fun SwapLists()
-  ClearSwapList
-  SwapList BOOLEANS TRUE FALSE
-  SwapList numbers zero one two three four five six seven eight nine ten eleven twelve
-  SwapList Numbers Zero One Two Three Four Five Six Seven Eight Nine Ten Eleven Twelve
-  SwapList nummer noll en ett två tre fyra fem sex sju åtta nio tio elva tolv
-  SwapList Nummer Noll En Ett Två Tre Fyra Fem Sex Sju Åtta Nio Tio Elva Tolv
-  SwapList a a an
-  SwapList andor and or
-  SwapList andorsymbols && ||
-  SwapList is is are
-  SwapList do do does
-  SwapList isnt isn aren
-  SwapList dont don doesn
-endfun
-augroup SwapList
-  autocmd!
-  autocmd BufEnter * call SwapLists()
-augroup end
-
+if !$NVIM_MINIMAL
+  " -- swapit --
+  fun SwapLists()
+    ClearSwapList
+    SwapList BOOLEANS TRUE FALSE
+    SwapList numbers zero one two three four five six seven eight nine ten eleven twelve
+    SwapList Numbers Zero One Two Three Four Five Six Seven Eight Nine Ten Eleven Twelve
+    SwapList nummer noll en ett två tre fyra fem sex sju åtta nio tio elva tolv
+    SwapList Nummer Noll En Ett Två Tre Fyra Fem Sex Sju Åtta Nio Tio Elva Tolv
+    SwapList a a an
+    SwapList andor and or
+    SwapList andorsymbols && ||
+    SwapList is is are
+    SwapList do do does
+    SwapList isnt isn aren
+    SwapList dont don doesn
+  endfun
+  augroup SwapList
+    autocmd!
+    autocmd BufEnter * call SwapLists()
+  augroup end
+endif
 
 " -- textobj-function --
 let g:textobj_function_no_default_key_mappings = 1
@@ -786,13 +769,28 @@ command! -bang -nargs=? History
     \ call fzf#vim#history({'options': ['--info=inline', '--preview', 'cat {}']}, <bang>0)
 
 if has('nvim')
-  let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8, 'highlight': 'SpecialKey', 'border': 'rounded' } }
+  let g:fzf_layout = {
+        \ 'window': {
+        \   'width': 0.9,
+        \   'height': 0.8,
+        \   'highlight': 'SpecialKey',
+        \   'border': 'rounded'
+        \ }}
 endif
 map <silent> <C-p> :Files<CR>
 map <silent> <leader>m :History<CR>
 map <silent> <leader>h :Helptags<CR>
+map          <leader>a :Ag<Space>
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
-let $FZF_DEFAULT_OPTS='--bind ctrl-j:accept,alt-k:up,alt-j:down --multi --prompt ">>> " --info=inline --history=C:/Users/Melker/.fzf_history'
+let $FZF_DEFAULT_OPTS='
+      \ --bind ctrl-j:accept,alt-k:up,alt-j:down
+      \ --multi
+      \ --prompt ">>> "
+      \ --pointer="▶"
+      \ --info=inline
+      \ --history=C:/Users/Melker/.fzf_history
+      \ --history-size=10000
+      \ '
 
 " Disable statusbar, numbers and IndentLines in FZF
 autocmd! FileType fzf              set laststatus=0 ruler! nonumber norelativenumber
@@ -845,12 +843,12 @@ let g:vimtex_toc_config = {
 " Disable custom warnings based on regexp
 let g:vimtex_quickfix_ignore_filters = [
       \ 'Underfull \\hbox',
-      \]
+      \ ]
 " Disables default mappings that start with `t`
 let g:vimtex_mappings_disable = {
       \ 'x': ['tsf', 'tsc', 'tse', 'tsd', 'tsD'],
       \ 'n': ['tsf', 'tsc', 'tse', 'tsd', 'tsD'],
-      \}
+      \ }
 let g:vimtex_toc_config = {
       \ 'todo_sorted': 1,
       \ 'split_width': 30,
@@ -902,8 +900,10 @@ let g:lens#disabled_filetypes = ['coc-explorer', 'fzf', 'fugitiveblame']
 " -- markdown --
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_math = 1
-" Disables default `ge` mapping by overriding the default
+" Disables vim-markdown's default `ge` mapping
 map <F13> <Plug>Markdown_EditUrlUnderCursor
+" Disables vim-markdown's default `]c` mapping
+map <F14> <Plug>Markdown_MoveToCurHeader
 " Make italic words actually look italic in Markdown
 hi htmlItalic cterm=italic gui=italic
 " Underline link names in Markdown in-line links
@@ -973,7 +973,7 @@ let g:skipview_files = ['COMMIT_EDITMSG']
 " -- Startify --
 let g:startify_session_dir = '~/.vim/sessions'
 let g:startify_enable_special = 0 " Dont' show <empty buffer> or <quit>
-let g:startify_custom_indices = 'asdfghlcvnmcyturieowpqxz' " Use letters instead of numbers
+let g:startify_custom_indices = 'asdfghlvnmyturieowpqxz' " Use letters instead of numbers
 let g:startify_files_number = 8
 let g:startify_change_to_dir = 0 " Don't `cd` to selected file's directory
 let g:startify_session_sort = 1  " Sort sessions based on mru rather than name
@@ -1009,20 +1009,16 @@ nnoremap <silent> <Down>  :CmdResizeDown<CR>
 
 " -- vim-smoothie --
 let g:smoothie_base_speed = 18
+let g:smoothie_experimental_mappings = 1 " Enables gg and G
 
 " -- barbar.nvim --
-if (!exists('g:bufferline'))
-  " Prevents overriding the config on reload of .vimrc
-  let g:bufferline = { 'closable': v:false, 'icons': 'numbers' }
-endif
-hi! TabLineFill   guifg=Normal guibg=#21242b
-hi! BufferVisible guifg=#888888
-
-" Preserves highlighting when reloading .vimrc
-" Has to be modified if colorscheme is changed
-hi BufferInactive                guifg=#888888 guibg=#21242b
-hi BufferInactiveSign            guifg=#3b4048 guibg=#21242b
-hi BufferInactiveTarget gui=bold guifg=red     guibg=#21242b
+let g:bufferline = get(g:, 'bufferline', { 'closable': v:false, 'icons': 'numbers' })
+hi! TabLineFill          guifg=#3b4048 guibg=#21242b
+hi! BufferVisible        guifg=#abb2bf guibg=#21242b
+hi! BufferVisibleSign    guifg=#3b4048 guibg=#21242b
+hi! BufferInactive       guifg=#707070 guibg=#21242b
+hi! BufferInactiveSign   guifg=#3b4048 guibg=#21242b
+hi! BufferInactiveTarget guifg=red     guibg=#21242b gui=bold
 
 map <leader><C-w>   :BufferDelete<CR>
 map <leader><C-M-w> :BufferDelete!<CR>
@@ -1154,5 +1150,11 @@ hi link jsStorageClass Keyword
 " ColorScheme corrections
 hi! link Search Visual
 hi! link SpecialKey Directory
+
+" Matchup
+let g:matchup_matchparen_offscreen = {} " Disables displaying off-screen matching pair
+
+" Git-timelapse
+nmap <leader>gt :call TimeLapse() <cr>
 
 endif
