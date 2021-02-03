@@ -8,7 +8,7 @@ if has('nvim')
   Plug 'kyazdani42/nvim-web-devicons'      " Required by barbar.nvim
   Plug 'romgrk/barbar.nvim'                " Sexiest buffer tabline
   Plug 'vigoux/LanguageTool.nvim'
-  Plug 'nvim-treesitter/nvim-treesitter'
+  " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Requires C compiler installed
 endif
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
@@ -648,12 +648,12 @@ augroup coc_nvim_custom
   " TODO: remove this when floating window bug is fixed for coc.nvim
   autocmd InsertLeave *
         \ if !bufexists('[Command Line]') |
-        \   call coc#float#close_all() |
+        \   silent! call coc#float#close_all() |
         \ endif
 augroup end
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+imap <silent><expr> <c-space> coc#refresh()
 set statusline+=%{coc#status()}
 
 let g:coc_snippet_next = '<Tab>'   " Use Tab to jump to next place in snippet
@@ -1119,13 +1119,13 @@ if has('nvim')
         \   default = true;
         \ }
 
-  " -- Treesitter --
-  lua require('nvim-treesitter.configs').setup {
-        \ ensure_installed = "maintained",
-        \   highlight = {
-        \     enable = true,
-        \   },
-        \ }
+  " " -- Treesitter --
+  " lua require('nvim-treesitter.configs').setup {
+  "       \ ensure_installed = "maintained",
+  "       \   highlight = {
+  "       \     enable = true,
+  "       \   },
+  "       \ }
 endif
 
 " -- LanguageTool --

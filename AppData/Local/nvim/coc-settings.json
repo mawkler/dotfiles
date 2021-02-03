@@ -14,7 +14,7 @@
   "coc.preferences.formatOnSaveFiletypes": ["*"],
   "coc.preferences.jumpCommand": "drop",
   "explorer.icon.enableNerdfont": false,
-  "explorer.keyMappings": {
+  "explorer.keyMappings.global": {
     "o": "expand"
   },
   "latex.lint.onSave": false,

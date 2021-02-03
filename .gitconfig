@@ -33,7 +33,7 @@
 	excludesfile = /home/melker/.gitignore-global
 	pager = "if type diff-so-fancy &> /dev/null; then diff-so-fancy --set-defaults | less --tabs=4 -R; else less; fi"
 	eol = lf
-	editor = vim -u NONE -c ':syntax on'
+	editor = vim -u NONE -c 'syntax on | startinsert'
 	autocrlf = input
 [github]
 	user   = Melkster

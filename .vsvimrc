@@ -149,7 +149,8 @@ nnoremap csrB vi]oh<Esc>msvi]l<Esc>cl}<Esc>`scl{<Esc>
 nnoremap csBr viBoh<Esc>msviBl<Esc>cl]<Esc>`scl[<Esc>
 " Surround visual selected text
 vnoremap s" c"<C-r>""<Esc>`[
-vnoremap s' c"<C-r>"'<Esc>`[
+vnoremap s' c'<C-r>"'<Esc>`[
+vnoremap s` c`<C-r>"`<Esc>`[
 vnoremap s) c(<C-r>")<Esc>`[
 vnoremap sb c(<C-r>")<Esc>`[
 vnoremap s] c[<C-r>"]<Esc>`[
@@ -160,3 +161,6 @@ vnoremap s> c<lt><C-r>"><Esc>`[
 vnoremap s< c<lt><C-r>"><Esc>`[
 vnoremap sa c<lt><C-r>"><Esc>`[
 vnoremap s* c/*<C-r>"*/<Esc>`[
+" dsf
+nmap     dsf %dsbdB
+nnoremap csf %vibo<Esc>hcB
