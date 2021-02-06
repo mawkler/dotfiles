@@ -386,7 +386,7 @@ endfunc
 
 " Sets the font size
 function ZoomSet(font_size) abort
-  execute 'GuiFont! ' .  substitute(&guifont, ':h\d\+', ':h' . a:font_size, '')
+  execute 'GuiFont! ' .  substitute(g:GuiFont, ':h\d\+', ':h' . a:font_size, '')
 endfunc
 
 noremap <silent> <C-=> :call Zoom(v:count1)<CR>
