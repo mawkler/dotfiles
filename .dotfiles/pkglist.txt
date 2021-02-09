@@ -1,6 +1,7 @@
 antigen
 bat
 bfs
+brave-bin
 broot
 caprine
 chrome-gnome-shell
@@ -11,7 +12,6 @@ fzf
 gcc
 gdm
 gimp
-google-chrome
 gvim
 interception-caps2esc-nocaps-git
 jdk-openjdk
