@@ -39,9 +39,9 @@ endif
 if has('nvim')
   Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'wsdjeg/notifications.vim'
-  Plug 'coreyja/fzf.devicon.vim'
+  " Plug 'coreyja/fzf.devicon.vim'
   Plug 'Xuyuanp/scrollbar.nvim'
-  Plug 'kyazdani42/nvim-web-devicons' " Required by barbar.nvim
+  " Plug 'kyazdani42/nvim-web-devicons' " Required by barbar.nvim
   Plug 'romgrk/barbar.nvim'           " Sexiest buffer tabline
   Plug 'vigoux/LanguageTool.nvim'
   " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Requires C compiler installed
@@ -84,7 +84,7 @@ Plug 'coachshea/vim-textobj-markdown'
 Plug 'tommcdo/vim-exchange'         " For swapping the place of two text objects
 Plug 'markonm/traces.vim'           " Better highlighting when searching/replacing
 Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'ryanoasis/vim-devicons'       " vim-devicond should be loaded last
+" Plug 'ryanoasis/vim-devicons'       " vim-devicond should be loaded last
 Plug 'AndrewRadev/bufferize.vim'    " Execute a :command and show the output in a temporary buffer
 Plug 'xolox/vim-misc'               " Required by vim-session
 Plug 'xolox/vim-session'            " Extened session management
@@ -1098,22 +1098,22 @@ if has('nvim')
     silent! lua require('scrollbar').clear()
   endf
 
-  " -- Nvim-web-devicons --
-  lua require('nvim-web-devicons').setup {
-        \   override = {
-        \     md = {
-        \       icon = '',
-        \       color = '#519aba',
-        \       name = "Markdown"
-        \     },
-        \     tex = {
-        \       icon = '',
-        \       color = '#3D6117',
-        \       name = 'Tex'
-        \     }
-        \   };
-        \   default = true;
-        \ }
+  " " -- Nvim-web-devicons --
+  " lua require('nvim-web-devicons').setup {
+  "       \   override = {
+  "       \     md = {
+  "       \       icon = '',
+  "       \       color = '#519aba',
+  "       \       name = "Markdown"
+  "       \     },
+  "       \     tex = {
+  "       \       icon = '',
+  "       \       color = '#3D6117',
+  "       \       name = 'Tex'
+  "       \     }
+  "       \   };
+  "       \   default = true;
+  "       \ }
 
   " " -- Treesitter --
   " lua require('nvim-treesitter.configs').setup {
@@ -1139,9 +1139,9 @@ let g:airline_section_x       = '%{&filetype}' " Don't shorten file type on smal
 
 let g:airline#extensions#clock#updatetime = 200 " Has to be greater than updatetime for scrollbar.nvim to work
 
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
 
 " -- Vim-javascript --
 hi clear jsStorageClass " Change color of 'var'

@@ -69,6 +69,47 @@ UseTabs = true
 
 FileStates [
 	[
+		FilePath = D:\Melker\Dropbox\Exjobb\LaTeXs\report\main.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 6
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 121
+		PageNo = 37
+		Zoom = 125
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+		TocState = 2 6 12 17 21
+	]
+	[
+		FilePath = D:\Melker\Dropbox\Dokument\Pengar och sånt\Personliga brev\Ericsson\Brev till ericsson 2 (engelska) 3.pdf
+		Favorites [
+		]
+		IsPinned = false
+		IsMissing = false
+		OpenCount = 2
+		UseDefaultState = false
+		DisplayMode = continuous
+		ScrollPos = -1 192
+		PageNo = 1
+		Zoom = 200
+		Rotation = 0
+		WindowState = 2
+		WindowPos = 2560 92 1280 1024
+		ShowToc = false
+		SidebarDx = 273
+		DisplayR2L = false
+		ReparseIdx = 0
+	]
+	[
 		FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\vmcai05.purity.pdf
 		Favorites [
 		]
@@ -77,7 +118,7 @@ FileStates [
 		OpenCount = 5
 		UseDefaultState = false
 		DisplayMode = continuous
-		ScrollPos = 46 119
+		ScrollPos = -1 119
 		PageNo = 1
 		Zoom = 150
 		Rotation = 0
@@ -94,7 +135,7 @@ FileStates [
 		]
 		IsPinned = false
 		IsMissing = false
-		OpenCount = 6
+		OpenCount = 5
 		UseDefaultState = false
 		DisplayMode = continuous
 		ScrollPos = -1 682
@@ -115,7 +156,7 @@ FileStates [
 		]
 		IsPinned = false
 		IsMissing = false
-		OpenCount = 6
+		OpenCount = 5
 		UseDefaultState = false
 		DisplayMode = continuous
 		ScrollPos = -1 283
@@ -135,11 +176,11 @@ FileStates [
 		]
 		IsPinned = false
 		IsMissing = false
-		OpenCount = 7
+		OpenCount = 5
 		UseDefaultState = false
 		DisplayMode = continuous
-		ScrollPos = 46 71
-		PageNo = 12
+		ScrollPos = -1 23
+		PageNo = 1
 		Zoom = 150
 		Rotation = 0
 		WindowState = 2
@@ -151,33 +192,12 @@ FileStates [
 		TocState = 1
 	]
 	[
-		FilePath = D:\Melker\Dropbox\Exjobb\LaTeXs\report\main.pdf
-		Favorites [
-		]
-		IsPinned = false
-		IsMissing = false
-		OpenCount = 14
-		UseDefaultState = false
-		DisplayMode = continuous
-		ScrollPos = -1 402
-		PageNo = 26
-		Zoom = 125
-		Rotation = 0
-		WindowState = 2
-		WindowPos = 2560 92 1280 1024
-		ShowToc = false
-		SidebarDx = 273
-		DisplayR2L = false
-		ReparseIdx = 0
-		TocState = 2 6 12 17
-	]
-	[
 		FilePath = D:\Skriv ut\Tillgodo.pdf
 		Favorites [
 		]
 		IsPinned = false
 		IsMissing = false
-		OpenCount = 1
+		OpenCount = 0
 		UseDefaultState = false
 		DisplayMode = continuous
 		ScrollPos = 62 40
@@ -258,7 +278,7 @@ FileStates [
 		]
 		IsPinned = false
 		IsMissing = false
-		OpenCount = 1
+		OpenCount = 0
 		UseDefaultState = false
 		DisplayMode = continuous
 		ScrollPos = -1 3
@@ -278,7 +298,7 @@ FileStates [
 		]
 		IsPinned = false
 		IsMissing = false
-		OpenCount = 1
+		OpenCount = 0
 		UseDefaultState = false
 		DisplayMode = continuous
 		ScrollPos = -1 338
@@ -762,20 +782,20 @@ SessionData [
 			[
 				FilePath = D:\Melker\Dropbox\Exjobb\LaTeXs\report\main.pdf
 				DisplayMode = continuous
-				PageNo = 26
+				PageNo = 37
 				Zoom = 125
 				Rotation = 0
-				ScrollPos = -1 402
+				ScrollPos = -1 121
 				ShowToc = false
-				TocState = 2 6 12 17
+				TocState = 2 6 12 17 21
 			]
 			[
 				FilePath = D:\Grejer\Box Sync\Downloads\Beauty\Downloads\purity.pdf
 				DisplayMode = continuous
-				PageNo = 12
+				PageNo = 1
 				Zoom = 150
 				Rotation = 0
-				ScrollPos = 46 71
+				ScrollPos = -1 23
 				ShowToc = false
 				TocState = 1
 			]
@@ -804,8 +824,27 @@ SessionData [
 				PageNo = 1
 				Zoom = 150
 				Rotation = 0
-				ScrollPos = 46 119
+				ScrollPos = -1 119
 				ShowToc = false
+			]
+			[
+				FilePath = D:\Melker\Dropbox\Dokument\Pengar och sånt\Personliga brev\Ericsson\Brev till ericsson 2 (engelska) 3.pdf
+				DisplayMode = continuous
+				PageNo = 1
+				Zoom = 200
+				Rotation = 0
+				ScrollPos = -1 192
+				ShowToc = false
+			]
+			[
+				FilePath = D:\Melker\Dropbox\Exjobb\LaTeXs\report\main.pdf
+				DisplayMode = continuous
+				PageNo = 1
+				Zoom = fit width
+				Rotation = 0
+				ScrollPos = -1 101
+				ShowToc = false
+				TocState = 2 6 12 17 21
 			]
 		]
 		TabIndex = 1
@@ -815,6 +854,6 @@ SessionData [
 	]
 ]
 TimeOfLastUpdateCheck = 0 0
-OpenCountWeek = 512
+OpenCountWeek = 528
 
 # Settings after this line have not been recognized by the current version
