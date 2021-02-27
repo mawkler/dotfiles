@@ -927,6 +927,11 @@ augroup markdown
   autocmd FileType markdown xmap <buffer> aC <plug>(textobj-markdown-Bchunk-a)
   autocmd FileType markdown omap <buffer> iC <plug>(textobj-markdown-Bchunk-i)
   autocmd FileType markdown xmap <buffer> iC <plug>(textobj-markdown-Bchunk-i)
+
+  " Concealed checkoxes
+  autocmd FileType markdown syntax match checkbox '\v(\s+)?-\s\[\s\]'hs=e-4 conceal cchar=
+  autocmd FileType markdown syntax match checkbox '\v(\s+)?-\s\[[xX]\]'hs=e-4 conceal cchar=
+  autocmd FileType markdown hi def link  checkbox NonText
 augroup END
 
 let g:vim_markdown_strikethrough = 1
