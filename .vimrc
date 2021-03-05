@@ -29,12 +29,15 @@ if !$NVIM_MINIMAL
   Plug 'lervag/vimtex'
   Plug 'rhysd/git-messenger.vim'
   Plug 'camspiers/lens.vim'                  " An automatic window resizing plugin
-  Plug 'itchyny/vim-highlighturl'            " Highlights URLs everywhere
   Plug 'Ron89/thesaurus_query.vim'           " Retrieves the synonyms and antonyms of a given word
   Plug 'mbbill/undotree'
   Plug 'Melkster/vim-outdated-plugins'       " Gives notification on startup with number of outdated plugins
   Plug 'Melkster/CommandlineComplete.vim'
   Plug 'breuckelen/vim-resize'               " For resizing with arrow keys
+  Plug 'junegunn/vim-peekaboo'               " Opens preview when selecting register
+  Plug 'RishabhRD/popfix'                    " Required by nvim-cheat.sh
+  Plug 'RishabhRD/nvim-cheat.sh'             " cheat.sh integration for neovim
+  Plug 'RRethy/vim-hexokinase', { 'do': 'make' } " Displays the colours (rgb, etc.) in files
 endif
 if has('nvim')
   Plug 'lukas-reineke/indent-blankline.nvim'
@@ -85,6 +88,7 @@ Plug 'tommcdo/vim-exchange'         " For swapping the place of two text objects
 Plug 'markonm/traces.vim'           " Better highlighting when searching/replacing
 Plug 'MaxMEllon/vim-jsx-pretty'
 " Plug 'ryanoasis/vim-devicons'       " vim-devicond should be loaded last
+Plug 'itchyny/vim-highlighturl'     " Highlights URLs everywhere
 Plug 'AndrewRadev/bufferize.vim'    " Execute a :command and show the output in a temporary buffer
 Plug 'xolox/vim-misc'               " Required by vim-session
 Plug 'xolox/vim-session'            " Extened session management
@@ -102,6 +106,7 @@ set vb t_vb=      " Disable error bells
 set ttyfast       " Speed up drawing
 set shortmess+=A  " Ignores swapfiles when opening file
 set shortmess+=c  " Disable completion menu messages like 'match 1 of 2'
+set shortmess+=s  " Disable 'Search hit BOTTOM, continuing at TOP' messages
 set termguicolors " Use GUI colors in terminal as well
 set noshowmode    " Don't write out `--INSERT--`, etc.
 set linebreak     " Don't break lines in the middle of a word
@@ -213,10 +218,6 @@ map      <M-k>            {
 omap     <M-j>            V}
 omap     <M-k>            V{
 map      <C-Space>        zt
-map      <leader>¨        <C-]>
-map      <C-¨>            <C-]>
-map      <C-w><C-]>       <C-w>v<Plug>(coc-definition)
-map      <C-w>¨           <C-w><C-]>
 nnoremap <C-w>T           :tab split<CR>
 nnoremap <C-w>C           :tabclose<CR>
 map      ¨                ]
@@ -252,8 +253,9 @@ map      gX               :OpenBrowserCurrent<CR>
 nmap     gF               :e <C-r>+<CR>
 xnoremap //               y/<C-R>"<CR>
 noremap  /                ms/
-noremap  *                ms*
-map      '/               `s
+noremap  *                ms*``
+noremap  g*               msg*``
+map      `/               `s
 map      <leader>/        :execute '/\V' . escape(input('/'), '\\/')<CR><C-r>+<CR>
 map      g/               /\<\><Left><Left>
 nmap     <leader>r        :%substitute/<C-R><C-W>//gci<Left><Left><Left><Left>
@@ -283,10 +285,10 @@ map           g(        (ge
 omap <silent> g(        :silent normal vg(oh<CR>
 nmap <silent> <C-W>N    :tabe<CR>
 
-nmap <expr> <leader>z &spell ? "1z=" : ":setlocal spell<CR>1z=:setlocal nospell<CR>"
-nmap <expr> ]s &spell ? "]s" : ":setlocal spell<CR>]s"
-nmap <expr> [s &spell ? "[s" : ":setlocal spell<CR>[s"
-map  <expr> <CR> &modifiable && !bufexists('[Command Line]') ? "<Plug>NERDCommenterToggle" : ":call Enter()<CR>"
+nmap <silent> <expr> <leader>z &spell ? "1z=" : ":setlocal spell<CR>1z=:setlocal nospell<CR>"
+nmap <silent> <expr> ]s &spell ? "]s" : ":setlocal spell<CR>]s"
+nmap <silent> <expr> [s &spell ? "[s" : ":setlocal spell<CR>[s"
+map  <silent> <expr> <CR> &modifiable && !bufexists('[Command Line]') ? "<Plug>NERDCommenterToggle" : ":call Enter()<CR>"
 
 " `;`/`,` always seach forward/backward, respectively
 nnoremap <expr> ; getcharsearch().forward ? ';' : ','
@@ -422,7 +424,6 @@ vnoremap <expr> <Tab> index(['python', 'markdown'], &filetype) >= 0 ?
 
 " -- Lines and cursor --
 set number relativenumber
-set signcolumn=number
 set cursorline                    " Cursor highlighting
 set scrolloff=8                   " Cursor margin
 set textwidth=0                   " Disable auto line breaking
@@ -439,7 +440,7 @@ filetype plugin indent on
 set expandtab                              " Use spaces for indentation
 set shiftwidth=2                           " Width of indentation
 set tabstop=4                              " Width of <Tab> characters
-set list listchars=tab:\▏\                 " Show line for each tab indentation
+set list listchars=tab:▏\ ,nbsp:·          " Show line for tab indentation, and a dot for non-breaking spaces
 set autoindent                             " Follow previous line's indenting
 set shiftround                             " Round indent to multiple of shiftwdith
 set backspace=indent,eol,start             " Better backspace behaviour
@@ -531,7 +532,7 @@ augroup language_specific
   " Custom filetype indent settings
   autocmd FileType css,python,cs setlocal shiftwidth=4 tabstop=4
   " Start commit buffers in insert mode
-  autocmd FileType gitcommit exec 'norm gg' | startinsert!
+  autocmd FileType gitcommit exec 'norm gg' | setlocal spell | startinsert!
 augroup end
 
 " -- netrw --
@@ -560,7 +561,7 @@ let g:indentLine_bufTypeExclude = ['fzf', 'help']
 let g:indent_blankline_buftype_exclude = ['help']
 
 " For toggling caps lock in insert mode
-imap <C-C> <Plug>CapsLockToggle
+imap <S-Esc> <Plug>CapsLockToggle
 
 " -- Vim-easy-align --
 " Start in visual mode (e.g. vipga):
@@ -594,8 +595,9 @@ let g:AutoPairsShortcutFastWrap   = ''
 let g:AutoPairsShortcutJump       = ''
 let g:AutoPairsMoveCharacter      = ''
 let g:AutoPairsMapSpace           = 0
-autocmd FileType markdown let b:AutoPairs = g:AutoPairs | let b:AutoPairs["*"] = "*"
-autocmd FileType tex      let b:AutoPairs = g:AutoPairs | let b:AutoPairs["$"] = "$"
+
+autocmd FileType markdown let b:AutoPairs = {'*': '*'}
+autocmd FileType tex      let b:AutoPairs = {'$': '$'}
 " TODO: Perhaps use snippets instead to allow `$$` and `**`
 
 " -- For editing multiple files with `*` --
@@ -620,8 +622,10 @@ let g:sleuth_automatic = 1
 
 " -- Coc.nvim --
 " let g:coc_config_home = '~/.config/nvim'
-nmap <silent> <C-]> <Plug>(coc-definition)
-nmap <silent> gd    <Plug>(coc-definition)
+nmap <silent> <C-]>   <Plug>(coc-definition)
+nmap <silent> gd      <Plug>(coc-definition)
+map  <silent> <C-w>gd <C-w>v<Plug>(coc-definition)
+
 nmap <silent> <leader>rn <Plug>(coc-rename)
 " Use `<CR>` to confirm completion
 imap <C-j> <NL>
@@ -717,6 +721,9 @@ if !$NVIM_MINIMAL
     autocmd!
     autocmd BufEnter * call SwapLists()
   augroup end
+
+  " Git-timelapse
+  nmap <leader>gt :call TimeLapse() <cr>
 endif
 
 " -- textobj-function --
@@ -830,6 +837,7 @@ augroup latex
   autocmd FileType latex,tex setlocal iskeyword-=:                               " `:` counts as a separator
   autocmd FileType latex,tex let b:surround_{char2nr('c')} = "\\\1command\1{\r}" " Add vim-surround noun `c`
   autocmd FileType latex,tex nmap <buffer> <silent> <leader>t <Plug>(vimtex-toc-open)
+  autocmd FileType latex,tex syntax spell toplevel " Fixes issue with spell check only in comments
 augroup END
 let g:tex_indent_items=0        " Disables indent before new `\item`
 let g:vimtex_indent_enabled = 0 " Disables indent before new `\item` by vimtex
@@ -856,7 +864,7 @@ let g:vimtex_toc_config = {
       \ 'hotkeys_leader': '',
       \ 'show_numbers': 1,
       \ 'hotkeys_enabled': 1,
-      \ 'hotkeys': 'acdeilmnopuvwx',
+      \ 'hotkeys': 'acdeilmopuvwx',
       \ 'show_help': 0,
       \ 'layer_status': { 'label': 0, 'todo': 0},
       \ }
@@ -930,6 +938,8 @@ augroup markdown
   autocmd FileType markdown omap <buffer> iC <plug>(textobj-markdown-Bchunk-i)
   autocmd FileType markdown xmap <buffer> iC <plug>(textobj-markdown-Bchunk-i)
 augroup END
+
+let g:vim_markdown_strikethrough = 1
 
 " -- vim-highlighturl --
 " Disable vim-highlighturl in Markdown files
@@ -1013,13 +1023,33 @@ let g:smoothie_base_speed = 18
 let g:smoothie_experimental_mappings = 1 " Enables gg and G
 
 " -- barbar.nvim --
+" Gets the highlight value of highlight group `name`
+" Set `layer` to either 'fg' or 'bg'
+function GetHiVal(name, layer)
+  return synIDattr(synIDtrans(hlID(a:name)), a:layer . '#')
+endfunc
+
+" Creates highlight group `name` with guifg `guifg`, and guibg g:barbar_bg
+" If a third argument is provided gui is set to that
+function BarbarHi(name, guifg, ...)
+  let gui = a:0 > 0 ? 'gui=' . get(a:, 1, '') : ''
+  exe 'hi!' a:name 'guifg=' a:guifg 'guibg=' g:barbar_bg gui
+endfunc
+
 let g:bufferline = get(g:, 'bufferline', { 'closable': v:false, 'icons': 'numbers' })
-hi! TabLineFill          guifg=#3b4048 guibg=#21242b
-hi! BufferVisible        guifg=#abb2bf guibg=#21242b
-hi! BufferVisibleSign    guifg=#3b4048 guibg=#21242b
-hi! BufferInactive       guifg=#707070 guibg=#21242b
-hi! BufferInactiveSign   guifg=#3b4048 guibg=#21242b
-hi! BufferInactiveTarget guifg=red     guibg=#21242b gui=bold
+let g:barbar_bg  = '#21242b'
+
+let fg_visible  = GetHiVal('Normal', 'fg')     " #abb2bf
+let fg_sign     = GetHiVal('NonText', 'fg')    " #3b4048
+let fg_modified = GetHiVal('WarningMsg', 'fg') " #e5c07b
+
+call BarbarHi('BufferTabpageFill', fg_sign)
+call BarbarHi('BufferVisible', fg_visible)
+call BarbarHi('BufferVisibleSign', fg_sign)
+call BarbarHi('BufferVisibleMod', fg_modified)
+call BarbarHi('BufferInactive', '#707070')
+call BarbarHi('BufferInactiveSign', fg_sign)
+call BarbarHi('BufferInactiveTarget', 'red', 'bold')
 
 map <leader><C-w>   :BufferDelete<CR>
 map <leader><C-M-w> :BufferDelete!<CR>
@@ -1027,8 +1057,8 @@ map <leader><C-M-w> :BufferDelete!<CR>
 " Magic buffer-picking mode
 nnoremap <silent> <C-Space> :BufferPick<CR>
 " Sort automatically by...
-nnoremap <silent> <Leader>Bd :BufferOrderByDirectory<CR>
-nnoremap <silent> <Leader>Bl :BufferOrderByLanguage<CR>
+nnoremap <silent> <Leader>bd :BufferOrderByDirectory<CR>
+nnoremap <silent> <Leader>bl :BufferOrderByLanguage<CR>
 " Move to previous/next
 nnoremap <silent> <C-Tab>         :BufferNext<CR>
 nnoremap <silent> <C-S-Tab>       :BufferPrevious<CR>
@@ -1126,8 +1156,10 @@ if has('nvim')
 endif
 
 " -- LanguageTool --
-let g:languagetool_server_command = '/usr/bin/languagetool'
-let g:languagetool_debug = 1
+let g:languagetool_server_command = '/usr/bin/languagetool --http'
+
+" -- git-messenger --
+map <leader>B <Plug>(git-messenger)
 
 if !exists("g:gui_oni") " ----------------------- Oni excluded stuff below -----------------------
 
@@ -1148,14 +1180,11 @@ let g:airline#extensions#clock#updatetime = 200 " Has to be greater than updatet
 hi clear jsStorageClass " Change color of 'var'
 hi link jsStorageClass Keyword
 
-" ColorScheme corrections
-hi! link Search Visual
+" General highlights
+hi! link Search     Visual
 hi! link SpecialKey Directory
 
 " Matchup
 let g:matchup_matchparen_offscreen = {} " Disables displaying off-screen matching pair
-
-" Git-timelapse
-nmap <leader>gt :call TimeLapse() <cr>
 
 endif
