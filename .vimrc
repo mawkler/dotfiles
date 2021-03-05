@@ -1008,6 +1008,7 @@ nnoremap <silent> <Up>    :CmdResizeUp<CR>
 nnoremap <silent> <Down>  :CmdResizeDown<CR>
 
 " -- vim-smoothie --
+let g:smoothie_enabled = 0               " Disable smoothie on the Windows branch
 let g:smoothie_base_speed = 18
 let g:smoothie_experimental_mappings = 1 " Enables gg and G
 
