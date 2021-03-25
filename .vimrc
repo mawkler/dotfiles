@@ -37,7 +37,7 @@ if !$NVIM_MINIMAL
   Plug 'junegunn/vim-peekaboo'               " Opens preview when selecting register
   Plug 'RishabhRD/popfix'                    " Required by nvim-cheat.sh
   Plug 'RishabhRD/nvim-cheat.sh'             " cheat.sh integration for neovim
-  Plug 'RRethy/vim-hexokinase', { 'do': 'make' } " Displays the colours (rgb, etc.) in files
+  " Plug 'RRethy/vim-hexokinase', { 'do': 'make' } " Displays the colours (rgb, etc.) in files
 endif
 if has('nvim')
   Plug 'lukas-reineke/indent-blankline.nvim'

@@ -1,0 +1,78 @@
+﻿# For documentation, see https://www.sumatrapdfreader.org/settings/settings3.2.html
+# Move to ~/AppData/Local/SumatraPDF/
+
+MainWindowBackground = #282c34
+EscToExit = false
+ReuseInstance = false
+UseSysColors = false
+RestoreSession = true
+TabWidth = 300
+
+FixedPageUI [
+	TextColor = #d0d4db
+	BackgroundColor = #282c34
+	SelectionColor = #f5fc0c
+	WindowMargin = 2 4 2 4
+	PageSpacing = 4 4
+]
+EbookUI [
+	FontName = Georgia
+	FontSize = 12.5
+	TextColor = #5f4b32
+	BackgroundColor = #fbf0d9
+	UseFixedPageUI = false
+]
+ComicBookUI [
+	WindowMargin = 0 0 0 0
+	PageSpacing = 4 4
+	CbxMangaMode = false
+]
+ChmUI [
+	UseFixedPageUI = false
+]
+ExternalViewers [
+]
+ShowMenubar = true
+ReloadModifiedDocuments = true
+FullPathInTitle = false
+ZoomLevels = 8.33 12.5 18 25 33.33 50 66.67 75 100 125 150 200 300 400 600 800 1000 1200 1600 2000 2400 3200 4800 6400
+ZoomIncrement = 0
+
+PrinterDefaults [
+	PrintScale = shrink
+]
+ForwardSearch [
+	HighlightOffset = 0
+	HighlightWidth = 15
+	HighlightColor = #6581ff
+	HighlightPermanent = false
+]
+CustomScreenDPI = 0
+
+RememberStatePerDocument = true
+UiLanguage = en
+ShowToolbar = false
+ShowFavorites = false
+AssociateSilently = false
+CheckForUpdates = true
+RememberOpenedFiles = true
+InverseSearchCmdLine = pythonw C:\Users\Melker\.vim\connect-to-nvim.py "%f" %l
+EnableTeXEnhancements = true
+DefaultDisplayMode = automatic
+DefaultZoom = 200
+WindowState = 2
+WindowPos = 0 0 2560 1440
+ShowToc = true
+SidebarDx = 273
+TocDy = 0
+ShowStartPage = true
+UseTabs = true
+
+FileStates [
+]
+SessionData [
+]
+TimeOfLastUpdateCheck = 0 0
+OpenCountWeek = 533
+
+# Settings after this line have not been recognized by the current version
