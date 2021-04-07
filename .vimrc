@@ -38,15 +38,15 @@ if !$NVIM_MINIMAL
   Plug 'RishabhRD/popfix'                    " Required by nvim-cheat.sh
   Plug 'RishabhRD/nvim-cheat.sh'             " cheat.sh integration for neovim
   " Plug 'RRethy/vim-hexokinase', { 'do': 'make' } " Displays the colours (rgb, etc.) in files
+  Plug 'mhinz/vim-startify'                  " Nicer start screen
 endif
 if has('nvim')
-  Plug 'lukas-reineke/indent-blankline.nvim'
+  Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
   Plug 'wsdjeg/notifications.vim'
   " Plug 'coreyja/fzf.devicon.vim'
   Plug 'Xuyuanp/scrollbar.nvim'
   " Plug 'kyazdani42/nvim-web-devicons' " Required by barbar.nvim
   Plug 'romgrk/barbar.nvim'           " Sexiest buffer tabline
-  Plug 'vigoux/LanguageTool.nvim'
   " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Requires C compiler installed
 endif
 Plug 'tpope/vim-surround'
@@ -80,7 +80,6 @@ Plug 'kana/vim-textobj-entire'
 Plug 'AndrewRadev/dsf.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'wellle/targets.vim'           " Adds arguments, etc. as text objects
-Plug 'Yggdroot/indentLine'
 Plug 'romainl/vim-cool'             " Highlights all search matches until moving cursor
 Plug 'plasticboy/vim-markdown'      " Adds extra features to markdown
 Plug 'coachshea/vim-textobj-markdown'
@@ -92,8 +91,8 @@ Plug 'itchyny/vim-highlighturl'     " Highlights URLs everywhere
 Plug 'AndrewRadev/bufferize.vim'    " Execute a :command and show the output in a temporary buffer
 Plug 'xolox/vim-misc'               " Required by vim-session
 Plug 'xolox/vim-session'            " Extened session management
-Plug 'mhinz/vim-startify'           " Nicer start screen
 Plug 'idbrii/vim-jumpmethod'        " Better ]m/[m for C#, C++ and Java
+Plug 'rhysd/vim-grammarous'         " Grammar checking using LanguageTool
 
 " Windows specific
 Plug 'tyru/open-browser.vim'
@@ -102,18 +101,14 @@ call plug#end()
 
 " -- General --
 syntax on
-set vb t_vb=      " Disable error bells
-set ttyfast       " Speed up drawing
 set shortmess+=A  " Ignores swapfiles when opening file
 set shortmess+=c  " Disable completion menu messages like 'match 1 of 2'
 set shortmess+=s  " Disable 'Search hit BOTTOM, continuing at TOP' messages
 set termguicolors " Use GUI colors in terminal as well
 set noshowmode    " Don't write out `--INSERT--`, etc.
 set linebreak     " Don't break lines in the middle of a word
-set showcmd       " Write out commands typed in status line
 set hidden
 set lazyredraw
-set swapfile
 set undofile
 set viewoptions=cursor,folds,slash,unix
 set fileformat=unix " Use Unix eol format
@@ -121,7 +116,6 @@ set spelllang=en,sv " Use both Engligh and Swedish spell check
 set splitright      " Open vertical window splits to the right instead of left
 set nojoinspaces    " Only add one space after a `.`/`?`/`!` when joining lines
 
-set autoread        " Automatically read in the file when changed externally
 augroup filechanged
   autocmd!
   autocmd FocusGained * silent! checktime " Check if any file has changed when Vim is focused
@@ -129,17 +123,14 @@ augroup end
 
 " -- Menu autocompletion --
 set completeopt=longest,preview
-set wildmenu                    " List and cycle through autocomplete suggestions on Tab
 set wildcharm=<Tab>             " Allows remapping of <Down> in wildmenu
 set wildignorecase              " Case insensitive file- and directory name completion
-set path+=**                    " Let's `find` search recursively into subfolders
+set path+=**                    " Lets `find` search recursively into subfolders
 set cedit=<C-k>                 " Enter Command-line Mode from command-mode (typcailly menu or search)
 
 " -- Searching --
 set ignorecase " Case insensitive searching
 set smartcase  " Except for when searching in CAPS
-set incsearch  " Search while typing
-set hlsearch   " Highligt all search matches
 
 " -- Custom filetypes --
 augroup custom_filetypes
@@ -262,14 +253,13 @@ nmap     <leader>r        :%substitute/<C-R><C-W>//gci<Left><Left><Left><Left>
 nmap     <leader>R        :%substitute/<C-R><C-W>//I<Left><Left>
 vmap     <leader>r        y:<C-U>%substitute/<C-R>0//gci<Left><Left><Left><Left>
 vmap     <leader>R        y:<C-U>%substitute/<C-R>0//I<Left><Left>
-map      <leader>gd       <C-w>v<C-w>lgdzt<C-w><C-p>
 map      Q                @@
 map      <leader>q        qqqqq
 nnoremap §                <C-^>
-nmap     cg*              *Ncgn
-nmap     dg*              *Ndgn
-vmap     gcn              //Ncgn
-vmap     gdn              //Ndgn
+nnoremap cg*              *Ncgn
+nnoremap dg*              *Ndgn
+vnoremap gcn              //Ncgn
+vnoremap gdn              //Ndgn
 xnoremap g.               .
 
 nmap     <leader>K        :vertical Man <C-R><C-W><CR>
@@ -289,6 +279,21 @@ nmap <silent> <expr> <leader>z &spell ? "1z=" : ":setlocal spell<CR>1z=:setlocal
 nmap <silent> <expr> ]s &spell ? "]s" : ":setlocal spell<CR>]s"
 nmap <silent> <expr> [s &spell ? "[s" : ":setlocal spell<CR>[s"
 map  <silent> <expr> <CR> &modifiable && !bufexists('[Command Line]') ? "<Plug>NERDCommenterToggle" : ":call Enter()<CR>"
+
+nmap <silent> ]l :lbelow<CR>
+nmap <silent> [l :labove<CR>
+nmap <silent> ]q :cbelow<CR>
+nmap <silent> [q :cabove<CR>
+
+" -- Git commands --
+map <silent> <leader>gm <Plug>(git-messenger)
+map <silent> <leader>gb :Git blame<CR>
+map <silent> <leader>gd :Gvdiffsplit
+      \\| BufferMovePrevious<CR>:windo set wrap \| wincmd w<CR>
+map <silent> <leader>gs :Gstatus<CR>
+map <silent> <leader>gp :Git pull<CR>
+map          <leader>gP :Git push
+map          <leader>gc :Git commit -va
 
 " `;`/`,` always seach forward/backward, respectively
 nnoremap <expr> ; getcharsearch().forward ? ';' : ','
@@ -346,7 +351,7 @@ function Enter()
       call s:print_error(v:exception)
     endtry
   else
-    exe "normal o"
+    exe "normal o\<C-u>"
   endif
 endf
 nmap <silent> <C-j> :call Enter()<CR>
@@ -426,8 +431,6 @@ vnoremap <expr> <Tab> index(['python', 'markdown'], &filetype) >= 0 ?
 set number relativenumber
 set cursorline                    " Cursor highlighting
 set scrolloff=8                   " Cursor margin
-set textwidth=0                   " Disable auto line breaking
-set nrformats+=hex,bin            " Allow Ctrl-A/X for hex and binary
 set guicursor+=n:blinkwait0       " Disables cursor blinking in normal mode
 set guicursor+=i:ver25-blinkwait0 " And in insert mode
 set mouse=a                       " Enable mouse
@@ -436,14 +439,11 @@ set concealcursor=nic             " Conceal characters on the cursor line
 set breakindent                   " Respect indent when line wrapping
 
 " -- Tab characters --
-filetype plugin indent on
 set expandtab                              " Use spaces for indentation
 set shiftwidth=2                           " Width of indentation
 set tabstop=4                              " Width of <Tab> characters
 set list listchars=tab:▏\ ,nbsp:·          " Show line for tab indentation, and a dot for non-breaking spaces
-set autoindent                             " Follow previous line's indenting
 set shiftround                             " Round indent to multiple of shiftwdith
-set backspace=indent,eol,start             " Better backspace behaviour
 set cinkeys-=0#                            " Indent lines starting with `#`
 
 " Disable toolbar, scrollbar and menubar
@@ -525,7 +525,7 @@ augroup END
 
 augroup language_specific
   autocmd!
-  " Don't conceal current line in some file formatr (LaTeX files' configs don't seem to be overwritten though)
+  " Don't conceal current line in some file formats (LaTeX files' configs don't seem to be overwritten though)
   autocmd FileType markdown,latex,tex,json setlocal concealcursor=""
   " For adding a horizontal line below and entering insert mode below it
   autocmd FileType markdown nnoremap <buffer> <leader>- o<Esc>0Do<Esc>0C---<CR><CR>
@@ -559,6 +559,7 @@ let g:indentLine_setConceal = 0 " Don't overwrite concealcursor and conceallevel
 let g:indentLine_fileTypeExclude = ['json', 'coc-explorer', 'markdown', 'startify']
 let g:indentLine_bufTypeExclude = ['fzf', 'help']
 let g:indent_blankline_buftype_exclude = ['help']
+let g:indent_blankline_show_first_indent_level = v:false
 
 " For toggling caps lock in insert mode
 imap <S-Esc> <Plug>CapsLockToggle
@@ -613,9 +614,6 @@ augroup targets
         \ 'b': {'pair': [{'o':'(', 'c':')'}]}
         \ })
 augroup end
-
-" -- Vim Fugitive --
-cnoreabbrev Gdiff Gvdiff
 
 " -- Vim Sleuth --
 let g:sleuth_automatic = 1
@@ -1019,8 +1017,9 @@ nnoremap <silent> <Down>  :CmdResizeDown<CR>
 
 " -- vim-smoothie --
 let g:smoothie_enabled = 0               " Disable smoothie on the Windows branch
-let g:smoothie_base_speed = 18
-let g:smoothie_experimental_mappings = 1 " Enables gg and G
+let g:smoothie_update_interval = 10
+let g:smoothie_speed_constant_factor = 40
+let g:smoothie_speed_linear_factor = 40
 
 " -- barbar.nvim --
 " Gets the highlight value of highlight group `name`
@@ -1036,22 +1035,27 @@ function BarbarHi(name, guifg, ...)
   exe 'hi!' a:name 'guifg=' a:guifg 'guibg=' g:barbar_bg gui
 endfunc
 
-let g:bufferline = get(g:, 'bufferline', { 'closable': v:false, 'icons': 'numbers' })
+let g:bufferline = get(g:, 'bufferline', {
+      \ 'closable': v:false, 'icons': 'numbers', 'no_name_title': '[No Name]'
+      \ })
 let g:barbar_bg  = '#21242b'
 
 let fg_visible  = GetHiVal('Normal', 'fg')     " #abb2bf
 let fg_sign     = GetHiVal('NonText', 'fg')    " #3b4048
 let fg_modified = GetHiVal('WarningMsg', 'fg') " #e5c07b
+let fg_tabpages = GetHiVal('Directory', 'fg')  " #61AFEF
 
 call BarbarHi('BufferTabpageFill', fg_sign)
+call BarbarHi('BufferTabpages', fg_tabpages, 'bold')
 call BarbarHi('BufferVisible', fg_visible)
 call BarbarHi('BufferVisibleSign', fg_sign)
 call BarbarHi('BufferVisibleMod', fg_modified)
 call BarbarHi('BufferVisibleIndex', fg_sign)
 call BarbarHi('BufferInactive', '#707070')
 call BarbarHi('BufferInactiveSign', fg_sign)
-call BarbarHi('BufferInactiveTarget', 'red', 'bold')
+call BarbarHi('BufferInactiveMod', fg_modified)
 call BarbarHi('BufferInactiveIndex', fg_sign)
+call BarbarHi('BufferInactiveTarget', 'red', 'bold')
 call BarbarHi('BufferModifiedIndex', fg_sign)
 
 map <leader><C-w>   :BufferDelete<CR>
@@ -1158,11 +1162,35 @@ if has('nvim')
   "       \ }
 endif
 
-" -- LanguageTool --
-let g:languagetool_server_command = '/usr/bin/languagetool --http'
+" -- Grammarous --
+let g:grammarous#languagetool_cmd = 'languagetool'
+let g:grammarous#hooks = {}
 
-" -- git-messenger --
-map <leader>B <Plug>(git-messenger)
+function! g:grammarous#hooks.on_check(errs) abort
+  nmap <buffer> ]s <Plug>(grammarous-move-to-next-error)
+  nmap <buffer> [s <Plug>(grammarous-move-to-previous-error)
+endfunc
+
+function! g:grammarous#hooks.on_reset(errs) abort
+  nunmap <buffer> ]s
+  nunmap <buffer> [s
+endfunc
+
+nmap <silent> <leader>gc :GrammarousCheck<CR>
+nmap <leader>gg <Plug>(grammarous-move-to-info-window)
+nmap <leader>gd <Plug>(grammarous-open-info-window)<Plug>(grammarous-move-to-info-window)
+nmap <leader>gQ <Plug>(grammarous-reset)
+nmap <leader>gf <Plug>(grammarous-fixit)
+nmap <leader>gF <Plug>(grammarous-fixall)
+nmap <leader>gq <Plug>(grammarous-close-info-window)
+nmap <leader>gr <Plug>(grammarous-remove-error)
+nmap <leader>gD <Plug>(grammarous-disable-rule)
+
+exe 'hi SpellBad        gui=undercurl guisp=' . GetHiVal('SpellRare', 'fg') . ' guifg=NONE'
+exe 'hi GrammarousError gui=undercurl guisp=' . GetHiVal('Error', 'fg')
+
+" -- Peekaboo --
+let g:peekaboo_delay = 300
 
 if !exists("g:gui_oni") " ----------------------- Oni excluded stuff below -----------------------
 
@@ -1191,3 +1219,4 @@ hi! link SpecialKey Directory
 let g:matchup_matchparen_offscreen = {} " Disables displaying off-screen matching pair
 
 endif
+
