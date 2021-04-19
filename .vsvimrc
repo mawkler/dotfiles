@@ -46,8 +46,8 @@ nmap     <M-S-BS>         dw
 imap     <M-S-BS>         <C-o>dw
 map!     <C-f>            <Right>
 map!     <C-b>            <Left>
-map      <C-j>            o<Esc>
-imap     <C-j>            <CR>
+map      <C-m>            o<Esc>
+imap     <C-m>            <CR>
 imap     <C-m>            <CR>
 imap     <M-p>            <C-R>"
 map      <M-j>            }
