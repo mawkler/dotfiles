@@ -122,11 +122,11 @@ augroup filechanged
 augroup end
 
 " -- Menu autocompletion --
-set completeopt=longest,preview
-set wildcharm=<Tab>             " Allows remapping of <Down> in wildmenu
-set wildignorecase              " Case insensitive file- and directory name completion
-set path+=**                    " Lets `find` search recursively into subfolders
-set cedit=<C-k>                 " Enter Command-line Mode from command-mode (typcailly menu or search)
+set completeopt=menu,preview,noinsert
+set wildcharm=<Tab> " Allows remapping of <Down> in wildmenu
+set wildignorecase  " Case insensitive file- and directory name completion
+set path+=**        " Lets `find` search recursively into subfolders
+set cedit=<C-y>     " Enter Command-line Mode from command-mode
 
 " -- Searching --
 set ignorecase " Case insensitive searching
@@ -166,7 +166,7 @@ map      -                3<C-W><
 map      +                3<C-W>>
 nmap     <M-+>            <C-W>+
 nmap     <M-->            <C-W>-
-imap     <C-k>            <c-o>O
+nmap     <C-j>            o<Esc>
 nmap     g<C-j>           i<CR><Esc>
 nmap     <C-k>            O<Esc>
 nmap     g<C-k>           DO<Esc>P_
@@ -185,7 +185,6 @@ map!     <M-BS>           <C-w>
 nmap     <M-S-BS>         dw
 imap     <M-S-BS>         <C-o>dw
 map      <M-d>            dw
-imap     <C-j>            <CR>
 map!     <M-p>            <C-r>"
 smap     <M-p>            <C-g>p
 map      <M-a>            v<C-a>
@@ -199,8 +198,6 @@ map!     <M-h>            <Left>
 map!     <M-l>            <Right>
 map!     <M-w>            <C-Right>
 cmap     <C-a>            <Home>
-cmap     <C-p>            <Up>
-cmap     <C-n>            <Down>
 imap     <M-o>            <C-o>o
 imap     <M-O>            <C-o>O
 "----------------------------------------------
@@ -234,11 +231,10 @@ map      ÄÖ               @:
 nmap     <C-c>            <Nop>
 map      <leader>v        :source ~/AppData/Local/nvim/init.vim<CR>
 nmap     <Leader><Esc>    <Nop>
-map      <leader>V        :edit ~/.vimrc<CR>
-map      <leader>N        :edit ~/AppData/Local/nvim/init.vim<CR>
-map      <leader>G        :edit ~/.config/nvim/ginit.vim<CR>
-map      <leader>Z        :edit ~/.zshrc<CR>
-map      <leader>I        :edit ~/.dotfiles/install-dotfiles.sh<CR>
+map      <leader>V        :drop ~/.vimrc<CR>
+map      <leader>Ii       :drop ~/AppData/Local/nvim/init.vim<CR>
+map      <leader>Ig       :drop ~/.config/nvim/ginit.vim<CR>
+map      <leader>Z        :drop ~/.zshrc<CR>
 map      <leader>~        :cd ~<CR>
 map      gX               :OpenBrowserCurrent<CR>
 nmap     gF               :e <C-r>+<CR>
@@ -278,7 +274,6 @@ nmap <silent> <C-W>N    :tabe<CR>
 nmap <silent> <expr> <leader>z &spell ? "1z=" : ":setlocal spell<CR>1z=:setlocal nospell<CR>"
 nmap <silent> <expr> ]s &spell ? "]s" : ":setlocal spell<CR>]s"
 nmap <silent> <expr> [s &spell ? "[s" : ":setlocal spell<CR>[s"
-map  <silent> <expr> <CR> &modifiable && !bufexists('[Command Line]') ? "<Plug>NERDCommenterToggle" : ":call Enter()<CR>"
 
 nmap <silent> ]l :lbelow<CR>
 nmap <silent> [l :labove<CR>
@@ -286,14 +281,14 @@ nmap <silent> ]q :cbelow<CR>
 nmap <silent> [q :cabove<CR>
 
 " -- Git commands --
-map <silent> <leader>gm <Plug>(git-messenger)
-map <silent> <leader>gb :Git blame<CR>
-map <silent> <leader>gd :Gvdiffsplit
+map <silent> <leader>Gm <Plug>(git-messenger)
+map <silent> <leader>Gb :Git blame<CR>
+map <silent> <leader>Gd :Gvdiffsplit
       \\| BufferMovePrevious<CR>:windo set wrap \| wincmd w<CR>
-map <silent> <leader>gs :Gstatus<CR>
-map <silent> <leader>gp :Git pull<CR>
-map          <leader>gP :Git push
-map          <leader>gc :Git commit -va
+map <silent> <leader>Gs :Gstatus<CR>
+map <silent> <leader>Gp :Git pull<CR>
+map          <leader>GP :Git push
+map          <leader>Gc :Git commit -va
 
 " `;`/`,` always seach forward/backward, respectively
 nnoremap <expr> ; getcharsearch().forward ? ';' : ','
@@ -334,27 +329,6 @@ augroup dir_changed
         \   exe 'Echo  ' fnamemodify(getcwd(), ":~") |
         \ endif
 augroup end
-
-function Enter()
-  if bufname() == 'Table of contents (vimtex)'
-    call b:toc.activate_current(1)
-  elseif bufname() == 'undotree_2'
-    exe "normal \<Plug>UndotreeEnter"
-  elseif bufname() == '[coc-explorer]-1'
-    exe "normal \<Plug>(coc-explorer-action-n-[cr])"
-  elseif &filetype == 'startify'
-    call startify#open_buffers()
-  elseif !&modifiable || bufexists('[Command Line]')
-    try
-      exe "normal! \<CR>"
-    catch
-      call s:print_error(v:exception)
-    endtry
-  else
-    exe "normal o\<C-u>"
-  endif
-endf
-nmap <silent> <C-j> :call Enter()<CR>
 
 augroup vertical_help
   " Open :help in vertical split instead of horizontal
@@ -403,12 +377,13 @@ noremap <silent> <C-0> :call ZoomSet(12)<CR>
 
 if has('nvim')
   " Because NeoVim's menu completions are in a vertical pum
-  cmap <expr> <C-p> pumvisible() ? "\<C-p>" : "\<Up>"
-  cmap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<Down>"
-  cmap <expr> <C-j> pumvisible() ? "\<Down>" : "\<CR>"
-  cmap <expr> <C-f> pumvisible() ? "\<C-e>" : "\<Right>"
-  cmap <M-k> <Up><C-p>
-  set cpoptions-=_ " Makes cw/cW include the white space after the word
+  cnoremap <expr> <C-k> pumvisible() ? "\<C-p>"       : "\<C-k>"
+  cnoremap <expr> <C-j> pumvisible() ? "\<C-n>"       : "\<Down>"
+  cnoremap <expr> <Tab> pumvisible() ? "\<C-y>"       : "\<Tab>"
+  cnoremap <expr> <C-f> pumvisible() ? "\<C-e>"       : "\<Right>"
+  cnoremap <expr> <C-p> pumvisible() ? "\<Up><C-p>"   : "\<Up>"
+  cnoremap <expr> <C-n> pumvisible() ? "\<C-e><Down>" : "\<Down>"
+  set cpoptions-=_ " Makes cw/cW include the whitespace after the word
   set shada=!,'1000,<50,s10,h
 endif
 
@@ -580,6 +555,9 @@ let g:NERDCustomDelimiters = {
 \ 'javascript': { 'left': '//', 'leftAlt': '<!-- ', 'rightAlt': '-->'}
 \ }
 map <leader>C <plug>NERDCommenterToEOL
+map <silent> <expr> <CR>
+      \ &modifiable && !bufexists('[Command Line]') ?
+      \ "<Plug>NERDCommenterToggle" : "<CR>"
 
 " -- Signify --
 set updatetime=100
@@ -625,9 +603,25 @@ nmap <silent> gd      <Plug>(coc-definition)
 map  <silent> <C-w>gd <C-w>v<Plug>(coc-definition)
 
 nmap <silent> <leader>rn <Plug>(coc-rename)
-" Use `<CR>` to confirm completion
-imap <C-j> <NL>
-imap <expr> <NL> pumvisible() ? "\<C-y>" : "\<CR>"
+
+" Use `<Tab>` to confirm completion, expand snippet, jump to next snippet
+" position, and trigger completion
+inoremap <silent> <expr> <Tab>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ?
+      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <C-k>/<C-j> to move up/down in PUM selection
+imap <silent> <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-o>O"
+imap <silent> <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+
 augroup coc_nvim_custom
   autocmd!
   " TODO: remove this when floating window bug is fixed for coc.nvim
@@ -788,7 +782,6 @@ map <silent> <leader>h :Helptags<CR>
 map          <leader>a :Ag<Space>
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 let $FZF_DEFAULT_OPTS='
-      \ --bind ctrl-j:accept,alt-k:up,alt-j:down
       \ --multi
       \ --prompt ">>> "
       \ --pointer="▶"
@@ -866,6 +859,10 @@ let g:vimtex_toc_config = {
       \ 'show_help': 0,
       \ 'layer_status': { 'label': 0, 'todo': 0},
       \ }
+let g:vimtex_syntax_conceal_cites = {
+      \ 'type': 'icon',
+      \ 'icon': '龎',
+      \}
 
 " -- textobj-entire --
 let g:textobj_entire_no_default_key_mappings = 1
@@ -899,6 +896,12 @@ augroup END
 let g:toggle_list_no_mappings=1
 nmap <script> <silent> <leader>L :call ToggleLocationList()<CR>
 nmap <script> <silent> <leader>Q :call ToggleQuickfixList()<CR>
+augroup quickfix
+  autocmd!
+  " autocmd FileType qf nunmap <buffer> <space>
+  autocmd FileType qf nmap <buffer> <Space> <CR><C-w>p
+augroup END
+" nmap <buffer> <Space> <CR><C-w>p
 
 " -- lens.vim --
 let g:lens#disabled_filetypes = ['coc-explorer', 'fzf', 'fugitiveblame']
@@ -1058,8 +1061,8 @@ call BarbarHi('BufferInactiveIndex', fg_sign)
 call BarbarHi('BufferInactiveTarget', 'red', 'bold')
 call BarbarHi('BufferModifiedIndex', fg_sign)
 
-map <leader><C-w>   :BufferDelete<CR>
-map <leader><C-M-w> :BufferDelete!<CR>
+map <M-w>         :BufferDelete<CR>
+map <leader><M-w> :BufferDelete!<CR>
 
 " Magic buffer-picking mode
 nnoremap <silent> <C-Space> :BufferPick<CR>
@@ -1219,4 +1222,3 @@ hi! link SpecialKey Directory
 let g:matchup_matchparen_offscreen = {} " Disables displaying off-screen matching pair
 
 endif
-
