@@ -12,6 +12,7 @@ fzf
 gcc
 gdm
 gimp
+git-delta
 gvim
 interception-caps2esc-nocaps-git
 jdk-openjdk

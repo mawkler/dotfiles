@@ -192,6 +192,9 @@ function gd() {
   fi
 }
 
+# Delta
+export DELTA_PAGER='less -mgi --underline-special --SILENT'
+
 alias gco='git checkout'
 alias gcom='git checkout master'
 alias gmm='git merge master'
