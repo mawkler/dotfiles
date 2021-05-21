@@ -28,7 +28,7 @@
     "<esc>": "quit"
   },
   "latex.lint.onSave": false,
-  "diagnostic.warningSign": "△",
+  "diagnostic.warningSign": "",
   "list.insertMappings": {
     "<C-j>": "action:open",
     "<C-r>": "do:refresh",
