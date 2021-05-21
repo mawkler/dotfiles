@@ -13,6 +13,7 @@ gcc
 gdm
 gimp
 git-delta
+go
 gvim
 interception-caps2esc-nocaps-git
 jdk-openjdk
