@@ -16,8 +16,8 @@ If you have `pacman` installed and also want to install all dependencies and add
 
 ```sh
 dotfiles_url=https://raw.githubusercontent.com/Melkster/dotfiles/master/.dotfiles/
-curl -s ${dotfiles_url}install-dependencies.sh | sudo bash
 curl -s ${dotfiles_url}install-dotfiles.sh | bash
+curl -s ${dotfiles_url}install-dependencies.sh | sudo bash
 ```
 
 # Dependencides
@@ -28,3 +28,4 @@ These dotfiles assume that you're on Unix. For Windows, check out the [Windows b
 - [python](https://www.python.org/downloads/) for some Vim plugins
 - [powerline](https://github.com/powerline/powerline) and [pip](https://pypi.org/project/pip/) (for installing powerline-status for ZSH)
 - [npm](https://www.npmjs.com/) (for some Vim dependencies)
+- [go](https://golang.org/) (for [vim-hexokinase](https://github.com/RRethy/vim-hexokinase) )

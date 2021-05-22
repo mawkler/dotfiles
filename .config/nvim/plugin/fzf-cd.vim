@@ -1,5 +1,8 @@
 " Select a directory using fzf and cd to it
 
+let default_dirs = [".git", ".local", ".cache"]
+let g:fzf_cd_ignore_dirs = get(g:, 'fzf_cd_ignore_dirs', default_dirs)
+
 function s:fzf_cd(dir) abort
   if empty(a:dir)
     let dir = '~'
@@ -34,3 +37,6 @@ function s:expand_ignores(dirs) abort
 endf
 
 command! -nargs=* -complete=dir Cd call s:fzf_cd(<q-args>)
+
+nnoremap <silent> cd :Cd .<CR>
+nnoremap <silent> cD :Cd ~<CR>

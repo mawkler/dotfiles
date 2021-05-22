@@ -14,6 +14,7 @@
 	l      = log --decorate
 	w      = whatchanged
 	d      = diff
+	diff1  = !git diff | delta --features=one-window
 	g      = grep -ni
 	u      = diff HEAD@{1} HEAD
 	plog   = log --pretty=format:'%Cred%h%Creset %s -%C(yellow)%d%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
@@ -25,18 +26,32 @@
 	prune-local = !git checkout master && git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d
 	countlines = !git ls-files | xargs wc -l
 	panic = pull --ff --rebase
-	unique = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative \
+	unique = !git log --graph \
+		--pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' \
+		--abbrev-commit \
+		--date=relative \
 		$1..$(git rev-parse --abbrev-ref HEAD)
 	make = !make --directory $(git rev-parse --show-toplevel)
 	ls = ls-tree -r HEAD --name-only
 [core]
 	excludesfile = /home/melker/.gitignore-global
-	pager = "if type diff-so-fancy &> /dev/null; then diff-so-fancy --set-defaults | less --tabs=4 -R; else less; fi"
+	pager = "if type delta &> /dev/null; then delta; else less; fi"
 	eol = lf
+[interactive]
+    diffFilter = "if type delta &> /dev/null; then delta --color-only; else less; fi"
+[delta]
+	features = side-by-side line-numbers
+	syntax-theme = Coldark-Dark
+	plus-emph-style = white "#318e02"
+	plus-style = syntax "#1b5100"
+	minus-emph-style = white "#800000"
+	minus-style = syntax "#500000"
+[delta "one-window"]
+	side-by-side = false
 [github]
-	user   = Melkster
+	user = Melkster
 [color]
-	ui     = true
+	ui = true
 [dude]
 	interval = 10
 [credential]

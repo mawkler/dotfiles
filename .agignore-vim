@@ -28,4 +28,6 @@ node_modules/
 *.class
 *.pdb
 *.dll
+*.dat
+*.mca
 __pycache__
