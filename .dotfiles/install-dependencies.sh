@@ -15,7 +15,7 @@ if type pacman &> /dev/null; then
 fi
 
 echo "Adding npm dependencies";
-sudo npm install -gy yarn # For coc.nvim
+sudo npm install -gy prettier
 
 echo "Running install-configuration.sh"
 sudo -i -u $SUDO_USER $USER_HOME/.dotfiles/install-configuration.sh

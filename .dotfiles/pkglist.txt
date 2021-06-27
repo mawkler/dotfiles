@@ -17,6 +17,7 @@ go
 gvim
 interception-caps2esc-nocaps-git
 jdk-openjdk
+lua-format
 make
 neovim
 neovim-qt

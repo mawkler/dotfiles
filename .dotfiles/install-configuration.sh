@@ -12,7 +12,7 @@ else
   vim +PlugInstall +qa 2> /dev/null
 fi
 
-pip install --user autopep8 flake8 # For Python linting and autoformatting
+pip install --user autopep8 flake8 # For Python autoformatting and linting
 pip install --user neovim
 
 echo "Installing Antigen";
