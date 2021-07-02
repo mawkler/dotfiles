@@ -8,8 +8,8 @@ export PATH="/usr/bin/dotnet:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
-export DROPBOX="~/Dropbox/"
-export MARKDOWNS="~/Dropbox/Dokument/Markdowns/"
+export DROPBOX="$HOME/Dropbox/"
+export MARKDOWNS="$HOME/Dropbox/Dokument/Markdowns/"
 
 # Unclutter
 unclutter --timeout 2 --fork
