@@ -211,3 +211,6 @@ alias gly='git log --since="yesterday"'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dot='dotfiles'
 alias dots='dot status'
+
+# Temporary fix to man pages not showing up
+unset MANPATH
