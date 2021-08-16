@@ -49,7 +49,8 @@ if has('nvim')
   Plug 'neovim/nvim-lspconfig'         " Enables built-in LSP
   Plug 'kabouzeid/nvim-lspinstall'     " Adds LspInstall command
   Plug 'glepnir/lspsaga.nvim'          " Various LSP functionality
-  Plug 'hrsh7th/nvim-compe'            " Auto completion
+  " Plug 'hrsh7th/nvim-compe'            " Auto completion
+  Plug 'ms-jpq/coq_nvim'
   Plug 'onsails/lspkind-nvim'          " VSCode-like completion icons
   Plug 'ray-x/lsp_signature.nvim'
   Plug 'hrsh7th/vim-vsnip'             " Snippet engine
