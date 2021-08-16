@@ -2,6 +2,16 @@ local cmd, call, fn = vim.cmd, vim.call, vim.fn
 local o, opt, g, b = vim.o, vim.opt, vim.g, vim.b
 local api = vim.api
 
+---------
+-- Coq --
+---------
+cmd [[
+  augroup coq
+  autocmd!
+  autocmd VimEnter * COQnow -s
+  augroup END
+]]
+
 ----------------
 -- LSPInstall --
 ----------------
@@ -16,9 +26,9 @@ local function make_config()
     on_attach = function()
       require('lsp_signature').on_attach({
         hi_parameter = 'String',
-          handler_opts = {
-            border = 'single'   -- double, single, shadow, none
-          },
+        handler_opts = {
+          border = 'single'   -- double, single, shadow, none
+        },
       })
     end
   }
@@ -39,32 +49,35 @@ for _, server in pairs(servers) do
   if server == 'lua' then
     config.settings = lua_settings
   end
-  require('lspconfig')[server].setup(config)
+
+  require('lspconfig')[server].setup(
+    require('coq')().lsp_ensure_capabilities(config)
+  )
 end
 
 -----------
 -- Compe --
 -----------
 o.completeopt = 'menuone,noselect'
-require('compe').setup {
-  preselect = 'always',
-  source = {
-    path     = true,
-    calc     = true,
-    nvim_lsp = true,
-    nvim_lua = true,
-    buffer   = {kind = '﬘'},
-    vsnip    = {kind = '﬌ Snippet'},
-    tabnine  = {
-      filetypes = {'markdown', 'text', 'tex', 'gitcommit'},
-      priority = 20,
-    }
-  }
-}
+-- require('compe').setup {
+--   preselect = 'always',
+--   source = {
+--     path     = true,
+--     calc     = true,
+--     nvim_lsp = true,
+--     nvim_lua = true,
+--     buffer   = {kind = '﬘'},
+--     vsnip    = {kind = '﬌ Snippet'},
+--     tabnine  = {
+--       filetypes = {'markdown', 'text', 'tex', 'gitcommit'},
+--       priority = 20,
+--     }
+--   }
+-- }
 
-require('nvim-autopairs.completion.compe').setup {
-  map_complete = true -- Auto insert `()` after completing a function or method
-}
+-- require('nvim-autopairs.completion.compe').setup {
+--   map_complete = true -- Auto insert `()` after completing a function or method
+-- }
 
 local function t(str)
   return api.nvim_replace_termcodes(str, true, true, true)
