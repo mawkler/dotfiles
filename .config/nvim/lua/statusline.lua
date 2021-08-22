@@ -164,7 +164,8 @@ table.insert(components.left.active, {
 
 -- Current working directory
 table.insert(components.left.active, {
-  provider = function(component) return component.icon .. get_working_dir() end,
+  -- provider = function(component) return component.icon .. get_working_dir() end,
+  provider = get_working_dir,
   hl = function() return { fg = mode.get_mode_color(), bg = 'line_bg' } end,
   left_sep = '██',
   right_sep = '█',
@@ -228,8 +229,11 @@ table.insert(components.right.active, {
 table.insert(components.right.active, {
   provider = 'git_branch',
   right_sep = ' ',
-  enabled = in_git_repo
-  -- icon = '  '
+  enabled = in_git_repo,
+  icon = {
+    str = '  ',
+    hl = { fg = 'orange' },
+  }
 })
 
 table.insert(components.right.active, {
@@ -261,17 +265,22 @@ table.insert(components.right.active, {
 
 -- Clock
 table.insert(components.right.active, {
-  provider = function(component) return component.icon .. fn.strftime('%H:%M') end,
+  -- provider = function(component) return component.icon .. fn.strftime('%H:%M') end,
+  provider = function() return fn.strftime('%H:%M') end,
   hl = { bg = 'line_bg' },
   right_sep = right_sep,
-  icon = ' '
+  icon = {
+    str = ' ',
+    hl = function() return { fg = mode.get_mode_color(), bg = 'line_bg' } end
+  }
 })
 
 -- Cursor line and column
 table.insert(components.right.active, {
-  provider = function(component)
-    return component.icon .. require('feline.providers.cursor').position()
-  end,
+  -- provider = function(component)
+  --   return component.icon .. require('feline.providers.cursor').position()
+  -- end,
+  provider = require('feline.providers.cursor').position,
   left_sep = function()
     return { str = ' ', hl = { fg = mode.get_mode_color() } }
   end,
