@@ -5,7 +5,8 @@
 ###
 
 echo "Installing vim-plug and plugins for Vim";
-curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 if type nvim &> /dev/null; then
   nvim +PlugInstall +qa 2> /dev/null
 else
