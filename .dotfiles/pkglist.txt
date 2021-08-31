@@ -1,7 +1,7 @@
 antigen
 bat
 bfs
-brave-bin
+brave-browser
 broot
 caprine
 chrome-gnome-shell
@@ -10,7 +10,6 @@ exa
 fd
 fzf
 gcc
-gdm
 gimp
 git-delta
 go
@@ -20,7 +19,7 @@ jdk-openjdk
 lua-format
 make
 neovim
-neovim-qt
+neovim-qt-git
 nodejs
 npm
 plotinus-git
