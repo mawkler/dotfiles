@@ -214,3 +214,5 @@ alias dots='dot status'
 
 # Temporary fix to man pages not showing up
 unset MANPATH
+
+source /home/melker/.config/broot/launcher/bash/br
