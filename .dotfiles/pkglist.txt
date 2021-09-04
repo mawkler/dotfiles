@@ -47,4 +47,5 @@ valgrind
 vifm
 vlc
 xclip
+zathura
 zsh
