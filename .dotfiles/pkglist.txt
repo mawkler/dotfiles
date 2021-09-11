@@ -47,5 +47,5 @@ valgrind
 vifm
 vlc
 xclip
-zathura
+zathura-pdf-mupdf
 zsh
