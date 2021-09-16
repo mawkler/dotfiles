@@ -11,6 +11,7 @@ antigen use oh-my-zsh # Load the oh-my-zsh's library.
 antigen bundles << EOBUNDLES
   git
   pip
+  npm
   lein
   command-not-found
   colorize
@@ -214,5 +215,3 @@ alias dots='dot status'
 
 # Temporary fix to man pages not showing up
 unset MANPATH
-
-source /home/melker/.config/broot/launcher/bash/br

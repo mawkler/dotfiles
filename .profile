@@ -12,3 +12,6 @@ export MARKDOWNS="$HOME/Dropbox/Dokument/Markdowns/"
 
 # Unclutter
 unclutter --timeout 2 --fork
+
+source /home/melker/.config/broot/launcher/bash/br
+source /usr/share/nvm/init-nvm.sh
