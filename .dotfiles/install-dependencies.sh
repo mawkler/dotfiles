@@ -35,7 +35,7 @@ fi
 # From https://dev.to/darksmile92/get-emojis-working-on-arch-linux-with-noto-fonts-emoji-2a9
 echo "Setting up Noto Emoji font"
 sudo pacman -S noto-fonts-emoji --needed
-echo "<?xml version="1.0"?>
+echo '<?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
  <alias>
@@ -68,9 +68,8 @@ echo "<?xml version="1.0"?>
    </prefer>
  </alias>
 </fontconfig>
-
-" > /etc/fonts/local.conf
-# " > ~/.config/fontconfig/fonts.conf # If the privous line doesn't work
+' > /etc/fonts/local.conf
+# ' > ~/.config/fontconfig/fonts.conf # If the privous line doesn't work
 fc-cache
 echo "Noto Emoji Font installed! You may need to restart applications like Chrome. If Chrome displays no symbols or no letters, your default font contains emojis."
 
