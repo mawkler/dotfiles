@@ -38,6 +38,7 @@ ENABLE_CORRECTION="true"             # Enables command auto-correction
 COMPLETION_WAITING_DOTS="true"       # Displays red dots whilst waiting for completion
 DISABLE_UNTRACKED_FILES_DIRTY="true" # Speeds up VCS status check in large repositories
 KEYTIMEOUT=1                         # Speeds up mode switching
+unsetopt autocd                      # Don't CD when typing the name of dirs
 
 # Powerline theme (has to come after sourcing oh-my-zsh)
 if [[ -r `python3 -m site --user-site 2> /dev/null`/powerline/bindings/zsh/powerline.zsh ]]; then
