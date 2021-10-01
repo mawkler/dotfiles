@@ -10,7 +10,7 @@
 	cm     = commit -vm
 	ca     = commit -va
 	cam    = commit -vam
-	com    = checkout master
+	com    = "!if git rev-parse --quiet --verify master > /dev/null; then git checkout master; else git checkout main; fi"
 	l      = log --decorate
 	w      = whatchanged
 	d      = diff
