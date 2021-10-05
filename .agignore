@@ -2,7 +2,6 @@
 .cache/
 *[Cc]ache/
 *-cache*
-.local/
 
 .npm/
 .mozilla/
