@@ -11,6 +11,7 @@ map [fullscreen] u scroll half-up
 map [normal]     u scroll half-up
 map D toggle_page_mode
 map <C-l> toggle_statusbar
+map <A-D> set recolor
 
 set guioptions none
 set highlight-transparency 0.1
