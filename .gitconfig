@@ -4,7 +4,7 @@
 [alias]
 	co     = checkout
 	s      = status
-	p      = pull
+	p      = pull --autostash
 	b      = branch
 	c      = commit -v
 	cm     = commit -vm
