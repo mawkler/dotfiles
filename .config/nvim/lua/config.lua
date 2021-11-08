@@ -128,6 +128,11 @@ require('lspsaga').init_lsp_saga {
   rename_prompt_prefix = 'Rename ➤',
 }
 
+-------------
+-- Renamer --
+-------------
+require('renamer').setup()
+
 --------------
 -- Mappings --
 --------------
@@ -158,7 +163,8 @@ map('n',        'gH',        '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics(
 map('n',        'gD',        '<cmd>lua vim.lsp.buf.implementation()<CR>')
 map('n',        '1gD',       '<cmd>lua vim.lsp.buf.type_definition()<CR>')
 map('n',        'gs',        '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
-map({'n', 'x'}, '<leader>r', '<cmd>lua require("lspsaga.rename").rename()<CR>')
+-- map({'n', 'x'}, '<leader>r', '<cmd>lua require("lspsaga.rename").rename()<CR>')
+map({'n', 'x'}, '<leader>r', '<cmd>lua require("renamer").rename()<CR>')
 map('n',        'gR',        '<cmd>lua vim.lsp.buf.references()<CR>')
 map('n',        'g0',        '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
 map('n',        'gW',        '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')

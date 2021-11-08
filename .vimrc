@@ -75,6 +75,7 @@ if has('nvim')
   Plug 'jbyuki/one-small-step-for-vimkind' " Lua plugin debug adapter
   Plug 'ThePrimeagen/refactoring.nvim'
   Plug 'Darazaki/indent-o-matic'       " Automatic fast indentation detection
+  Plug 'filipdutescu/renamer.nvim'     " Nicer looking LSP rename popup
   Plug 'lewis6991/impatient.nvim'      " Improve startup time for Neovim
 
 endif
