@@ -26,6 +26,7 @@ antigen bundles << EOBUNDLES
   hlissner/zsh-autopair
   unixorn/autoupdate-antigen.zshplugin
   Aloxaf/fzf-tab
+  olets/zsh-abbr
 EOBUNDLES
 
 antigen theme $ZSH_THEME
@@ -208,6 +209,7 @@ alias gcam='git commit -avm'
 alias gca='git commit -av'
 alias gu='git diff HEAD@{1} HEAD'
 alias gly='git log --since="yesterday"'
+alias gr='git rebase'
 
 # Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
