@@ -199,8 +199,31 @@ function gd() {
 # Delta
 export DELTA_PAGER='less -mgi --underline-special --SILENT'
 
+_master_branch() {
+  if git rev-parse --quiet --verify master > /dev/null; then
+    echo 'master'
+  else
+    echo 'main';
+  fi
+}
+
+gcomr() {
+  echo '==> git stash'
+  git stash
+  echo '==> git checkout `_master_branch`'
+  git checkout `_master_branch`
+  echo '==> git pull'
+  git pull
+  echo '==> git checkout -'
+  git checkout -
+  echo '==> git rebase `_master_branch`'
+  git rebase `_master_branch`
+  echo '==> git stash pop'
+  git stash pop
+}
+
 alias gco='git checkout'
-alias gcom='if git rev-parse --quiet --verify master > /dev/null; then git checkout master; else git checkout main; fi'
+alias gcom='git checkout `_master_branch`'
 alias gmm='git merge master'
 alias gp='git pull --autostash'
 alias gb='git branch'
@@ -211,6 +234,8 @@ alias gca='git commit -av'
 alias gu='git diff HEAD@{1} HEAD'
 alias gly='git log --since="yesterday"'
 alias gr='git rebase'
+alias grc='git rebase --continue'
+alias grm='git rebase `_master_branch`'
 
 # Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
