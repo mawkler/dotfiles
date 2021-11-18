@@ -13,5 +13,6 @@
 .evernote/
 .azure-functions-core-tools/
 yay/
+.local/share/Trash/
 
 code/
