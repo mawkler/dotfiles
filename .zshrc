@@ -208,21 +208,6 @@ _master_branch() {
   fi
 }
 
-gcomr() {
-  echo '==> git stash'
-  git stash
-  echo '==> git checkout `_master_branch`'
-  git checkout `_master_branch`
-  echo '==> git pull'
-  git pull
-  echo '==> git checkout -'
-  git checkout -
-  echo '==> git rebase `_master_branch`'
-  git rebase `_master_branch`
-  echo '==> git stash pop'
-  git stash pop
-}
-
 alias gco='git checkout'
 alias gcom='git checkout `_master_branch`'
 alias gmm='git merge master'
@@ -236,7 +221,7 @@ alias gu='git diff HEAD@{1} HEAD'
 alias gly='git log --since="yesterday"'
 alias gr='git rebase'
 alias grc='git rebase --continue'
-alias grm='git rebase `_master_branch`'
+alias grm='git pull --rebase --autostash origin `_master_branch`'
 
 # Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
