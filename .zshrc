@@ -1,5 +1,6 @@
 ZSH_THEME="agnoster" # Backup theme (gets overwritten by Powerline theme if available)
 DISABLE_AUTO_UPDATE="true"
+export ANTIGEN_CACHE=false # Fixes issue with completion for azure-cli not working
 
 # ------------- Antigen -------------
 
@@ -21,6 +22,7 @@ antigen bundles << EOBUNDLES
   zsh-users/zsh-autosuggestions
   zsh-users/zsh-syntax-highlighting
   zsh-users/zsh-history-substring-search
+  zsh-users/zsh-completions
   l4u/zsh-output-highlighting
   Melkster/zsh-bd
   hlissner/zsh-autopair
@@ -55,8 +57,9 @@ fi
 export EDITOR=$VISUAL
 export NVIM_MINIMAL=1 # Load Neovim with less plugins when called from zsh
 
-if [[ -r ~/.zshrc.private ]]; then
-  source ~/.zshrc.private
+# Work config
+if [[ -r '$HOME/.zsh/work.zsh' ]]; then
+  source $HOME/.zsh/work.zsh
 fi
 
 # Change cursor shape for different vi modes
@@ -240,5 +243,7 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dot='dotfiles'
 alias dots='dot status'
 
-# Temporary fix to man pages not showing up
-unset MANPATH
+# Completion for azure-cli
+if [[ -r '/opt/azure-cli/az.completion' ]]; then
+  source /opt/azure-cli/az.completion
+fi

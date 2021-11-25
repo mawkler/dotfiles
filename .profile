@@ -10,8 +10,8 @@ export PATH="$HOME/.local/bin:$PATH"
 export DROPBOX="$HOME/Dropbox/"
 export MARKDOWNS="$HOME/Dropbox/Dokument/Markdowns/"
 
-# Unclutter
-unclutter --timeout 2 --fork
+# Unclutter (hides the mouse cursor)
+unclutter --timeout 1 --fork
 
 source /home/melker/.config/broot/launcher/bash/br
 source /usr/share/nvm/init-nvm.sh
