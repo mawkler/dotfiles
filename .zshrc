@@ -183,6 +183,8 @@ alias pdf_clip='curl -Ls `xclip -o` | (zathura - &)'
 alias ag="ag --hidden --pager='less -R'"
 alias dump-dconf='dconf dump /org/gnome/shell/extensions/ > .dotfiles/gnome-extensions.dconf'
 
+# Abbreviations are in ~/.config/zsh/abbreviations
+
 # Git:
 alias g='git'
 alias gs='git status'
