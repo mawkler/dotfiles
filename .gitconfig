@@ -34,6 +34,7 @@
 	make = !make --directory $(git rev-parse --show-toplevel)
 	ls = ls-tree -r HEAD --name-only
 	pull-all = !ls -D | xargs -I {} sh -c 'echo "Doing git pull in {}..." && git -C {} pull'
+	clone-private = clone --config user.email=melkerosterberg@gmail.com --config github.user=Melkster
 [core]
 	excludesfile = /home/melker/.gitignore-global
 	pager = "if type delta &> /dev/null; then delta; else less; fi"
