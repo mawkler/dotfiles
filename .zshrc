@@ -242,3 +242,16 @@ alias dots='dot status'
 if [[ -r '/opt/azure-cli/az.completion' ]]; then
   source /opt/azure-cli/az.completion
 fi
+
+# Zoxide
+eval "$(zoxide init zsh)"
+
+# Alt-z - Zoxide with fzf
+fzf-zoxide() {
+  eval "zi"
+  zle reset-prompt
+}
+zle -N fzf-zoxide
+bindkey '^[z' fzf-zoxide
+
+alias cd=z
