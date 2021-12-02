@@ -1,5 +1,5 @@
 [user]
-	email  = melkerosterberg@gmail.com
+	email  = melker.osterberg@omegapoint.se
 	name   = Melker Österberg
 [alias]
 	co     = checkout
@@ -52,7 +52,7 @@
 [delta "one-window"]
 	side-by-side = false
 [github]
-	user = Melkster
+	user = melkerosterberg
 [color]
 	ui = true
 [dude]
