@@ -10,7 +10,6 @@ autoload -Uz compinit && compinit
 
 antigen use oh-my-zsh # Load the oh-my-zsh's library.
 antigen bundles << EOBUNDLES
-  git
   pip
   npm
   lein
@@ -208,6 +207,16 @@ _master_branch() {
   fi
 }
 
+ # Pulls to master and then rebases into current branch
+function grm() {
+  if [ git rev-parse --is-inside-work-tree 2>/dev/null ]; then
+    git pull --autostash origin `_master_branch`:`_master_branch`
+    git rebase --autostash `_master_branch`
+  else
+    echo 'Not inside a git repository'
+  fi
+}
+
 alias gco='git checkout'
 alias gcom='git checkout `_master_branch`'
 alias gmm='git merge master'
@@ -221,7 +230,6 @@ alias gu='git diff HEAD@{1} HEAD'
 alias gly='git log --since="yesterday"'
 alias gr='git rebase'
 alias grc='git rebase --continue'
-alias grm='git pull --rebase --autostash origin `_master_branch`'
 
 # Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
