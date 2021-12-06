@@ -232,6 +232,8 @@ alias gu='git diff HEAD@{1} HEAD'
 alias gly='git log --since="yesterday"'
 alias gr='git rebase'
 alias grc='git rebase --continue'
+alias grm='git pull --rebase --autostash origin `_master_branch`'
+alias gru='git pull --rebase --autostash upstream `_master_branch`'
 
 # Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
