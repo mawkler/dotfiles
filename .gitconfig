@@ -59,5 +59,3 @@
 	helper = cache --timeout=1800
 [pull]
 	rebase = true
-[rebase]
-	autoStash = true
