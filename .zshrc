@@ -211,7 +211,7 @@ _master_branch() {
 
  # Pulls to master and then rebases into current branch
 function grm() {
-  if [ git rev-parse --is-inside-work-tree 2>/dev/null ]; then
+  if [[ 'git rev-parse --is-inside-work-tree 2>/dev/null' ]]; then
     git pull --autostash origin `_master_branch`:`_master_branch`
     git rebase --autostash `_master_branch`
   else
@@ -232,7 +232,6 @@ alias gu='git diff HEAD@{1} HEAD'
 alias gly='git log --since="yesterday"'
 alias gr='git rebase'
 alias grc='git rebase --continue'
-alias grm='git pull --rebase --autostash origin `_master_branch`'
 alias gru='git pull --rebase --autostash upstream `_master_branch`'
 
 # Dotfiles
