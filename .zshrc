@@ -233,6 +233,8 @@ alias gly='git log --since="yesterday"'
 alias gr='git rebase'
 alias grc='git rebase --continue'
 alias gru='git pull --rebase --autostash upstream `_master_branch`'
+alias gsp='git stash pop'
+alias gss='git stash show -p'
 
 # Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
