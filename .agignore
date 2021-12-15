@@ -11,8 +11,11 @@
 .nuget/
 .cargo/
 .evernote/
+.zoom/
 .azure-functions-core-tools/
+.config/BraveSoftware/
 yay/
 .local/share/Trash/
+.local/share/nvim/swap/
 
-code/
+code-other/
