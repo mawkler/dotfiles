@@ -152,7 +152,7 @@ countfiles() {
 
 # Count the number of files in each immediate subdirectory
 countallfiles() {
-  ls -d */ | xargs -d $'\n' sh -c 'for arg do echo $arg `tree $arg | tail -n 1`; done' _ | column -t | sort -Vr -k 4n | tac
+  fd -t d --hidden --max-depth=1 | xargs -d $'\n' sh -c 'for arg do echo $arg `tree $arg | tail -n 1`; done' _ | column -t | sort -Vr -k 4n | tac
 }
 
 alias zshrc='nvim ~/.zshrc'
