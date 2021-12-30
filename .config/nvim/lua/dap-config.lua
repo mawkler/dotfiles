@@ -3,12 +3,12 @@ local api = vim.api
 
 local di = require('dap-install')
 di.setup { verbosely_call_debuggers = true }
-di.config('chrome', {})
-di.config('jsnode')
+-- di.config('chrome', {})
+-- di.config('jsnode')
 di.config('python')
 di.config('lua')
 
-require('dap.ext.vscode').load_launchjs()
+-- require('dap.ext.vscode').load_launchjs()
 
 local function map(modes, lhs, rhs, opts)
   if (type(modes) ~= 'table') then modes = {modes} end
@@ -36,8 +36,6 @@ require('dapui').setup()
 
 map('n', '<leader>De',  ':lua require("dapui").eval()<CR>', {silent = true})
 
-
-
 -- local dap = require"dap"
 -- dap.configurations.lua = {
 --   {
@@ -62,3 +60,51 @@ map('n', '<leader>De',  ':lua require("dapui").eval()<CR>', {silent = true})
 -- dap.adapters.nlua = function(callback, config)
 --   callback({ type = 'server', host = config.host, port = config.port })
 -- end
+
+di.config(
+  'jsnode',
+  {
+    type = 'executable',
+    command = 'node',
+    args = {os.getenv('HOME') .. '/.local/share/nvim/dapinstall/jsnode/vscode-node-debug2/src/nodeDebug.ts'},
+  }
+)
+
+-- di.config(
+--   'javascript',
+--   {
+--     configurations = {
+--       {
+--         type = "node2",
+--         name = "node attach",
+--         request = "attach",
+--         program = "${file}",
+--         cwd = vim.fn.getcwd(),
+--         sourceMaps = true,
+--         protocol = "inspector",
+--       },
+--       {
+--         type = "node2",
+--         name = "node launch",
+--         request = "launch",
+--         program = "${workspaceFolder}/${file}",
+--         cwd = "${workspaceFolder}",
+--         sourceMaps = true,
+--         protocol = "inspector",
+--       },
+--       {
+--         type = "chrome",
+--         request = "attach",
+--         name = "chrome",
+--         program = "${file}",
+--         port = 9222,
+--         webRoot = "${workspaceFolder}",
+--         sourceMapPathOverrides = {
+--           -- Sourcemap override for nextjs
+--           ["webpack://_N_E/./*"] = "${webRoot}/*",
+--           ["webpack:///./*"] = "${webRoot}/*",
+--         },
+--       },
+--     }
+--   }
+-- )
