@@ -155,6 +155,10 @@ countallfiles() {
   fd -t d --hidden --max-depth=1 | xargs -d $'\n' sh -c 'for arg do echo $arg `tree $arg | tail -n 1`; done' _ | column -t | sort -Vr -k 4n | tac
 }
 
+tree-pager() {
+  exa --icons --color always --tree $@ | less -Fn
+}
+
 alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.vimrc'
 alias src='exec zsh'
@@ -163,9 +167,10 @@ alias listfiles='find . -type f -iname "*"'
 alias xs='xargs -I % sh -c'
 alias less='less -m -N -g -i -J --underline-special --SILENT'
 alias xclip='xclip -selection c'
-alias ls='lsd'
+alias ls='exa --icons'
 alias m='make'
-alias Tree='tree -C | less -Fn'
+alias tree='exa --icons --tree'
+alias Tree='tree-pager'
 alias installed='yay -Qqe | bat'
 alias remove-non-dependencies='sudo pacman -Rns $(pacman -Qtdq)'
 alias open='xdg-open &>/dev/null'

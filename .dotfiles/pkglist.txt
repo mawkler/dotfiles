@@ -6,6 +6,7 @@ broot
 caprine
 chrome-gnome-shell
 diff-so-fancy
+exa
 fd
 fzf
 gcc
@@ -16,7 +17,6 @@ gvim
 interception-caps2esc-nocaps-git
 jdk-openjdk
 languagetool
-lsd
 lua-format
 make
 neovim
