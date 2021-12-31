@@ -45,4 +45,7 @@ if [[ `cat $HOME/.gitignore 2>/dev/null` = ".dotfiles" ]]; then
   rm $HOME/.gitignore
 fi
 
+echo "Cloning nvim configuration from Melkster/nvim"
+git clone git@github.com:Melkster/nvim.git $HOME/.config/nvim/
+
 echo "Done."
