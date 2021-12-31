@@ -1,3 +1,5 @@
+My Neovim configuration is available at [Melkster/nvim](https://github.com/Melkster/nvim/)
+
 # Installation
 
 **Without `sudo`:**
