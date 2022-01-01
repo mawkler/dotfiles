@@ -23,7 +23,7 @@ antigen bundles << EOBUNDLES
   zsh-users/zsh-history-substring-search
   zsh-users/zsh-completions
   l4u/zsh-output-highlighting
-  Melkster/zsh-bd
+  melkster/zsh-bd
   hlissner/zsh-autopair
   unixorn/autoupdate-antigen.zshplugin
   Aloxaf/fzf-tab
