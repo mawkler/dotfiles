@@ -135,7 +135,7 @@ export FZF_DEFAULT_OPTS="
 # bat config  is in `~/.config/bat/config`
 
 export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :100 {}'"
-export FZF_CTRL_T_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_CTRL_T_COMMAND='rg --hidden --files --no-messages'
 export FZF_ALT_C_COMMAND='fd --type directory -H --ignore-file ~/.agignore'
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh   ] && source /usr/share/fzf/completion.zsh

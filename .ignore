@@ -18,4 +18,5 @@ yay/
 .local/share/Trash/
 .local/share/nvim/swap/
 
-code-other/
+!local.settings.json
+!work.vim

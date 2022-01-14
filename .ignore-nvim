@@ -6,6 +6,7 @@ node_modules/
 .dropbox/
 .dropbox_trashed/
 .local/share/nvim/undo/
+.local/share/Trash/files/
 
 *.py[co]
 *.sw?
@@ -21,11 +22,11 @@ node_modules/
 *.pdf
 *.log
 *.jpg
+*.JPG
 *.jpeg
+*.JPEG
 *.png
-*.tar.gz
-*.tar
-*.zip
+*.PNG
 *.class
 *.pdb
 *.dll
