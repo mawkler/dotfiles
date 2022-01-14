@@ -17,6 +17,7 @@
 yay/
 .local/share/Trash/
 .local/share/nvim/swap/
+.local/share/nvim/undo/
 
 !local.settings.json
 !work.vim
