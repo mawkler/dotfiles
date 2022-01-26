@@ -3,7 +3,6 @@ export PATH="/opt/texlive/2020/bin/x86_64-linux:$PATH"
 export MANPATH="/opt/texlive/2020/texmf-dist/doc/man:$MANPATH"
 export INFOPATH="/opt/texlive/2020/texmf-dist/doc/info:$INFOPATH"
 
-export PATH="/usr/bin/dotnet:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -14,4 +13,3 @@ export MARKDOWNS="$HOME/Dropbox/Dokument/Markdowns/"
 unclutter --timeout 1 --fork
 
 source /home/melker/.config/broot/launcher/bash/br
-source /usr/share/nvm/init-nvm.sh

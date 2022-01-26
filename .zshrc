@@ -28,6 +28,7 @@ antigen bundles << EOBUNDLES
   unixorn/autoupdate-antigen.zshplugin
   Aloxaf/fzf-tab
   olets/zsh-abbr
+  lukechilds/zsh-nvm
 EOBUNDLES
 
 antigen theme $ZSH_THEME
