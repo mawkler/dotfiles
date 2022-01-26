@@ -33,7 +33,7 @@
 		$1..$(git rev-parse --abbrev-ref HEAD)
 	make = !make --directory $(git rev-parse --show-toplevel)
 	ls = ls-tree -r HEAD --name-only
-	pull-all = !ls -D | xargs -I {} sh -c 'echo "Doing git pull in {}..." && git -C {} pull'
+	pull-all = !ls -D | xargs -I {} sh -c 'echo && echo Doing git pull in {}... && git -C {} pull'
 	clone-private = clone --config user.email=melkerosterberg@gmail.com --config github.user=melkster
 	clone-work = clone --config user.email=melker.osterberg@omegapoint.se --config github.user=melkerosterberg
 	diff-branch = !git diff `git merge-base master HEAD` HEAD
@@ -64,3 +64,5 @@
 	rebase = true
 [rebase]
 	autoStash = true
+[rerere]
+	enabled = true

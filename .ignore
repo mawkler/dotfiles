@@ -19,5 +19,7 @@ yay/
 .local/share/nvim/swap/
 .local/share/nvim/undo/
 
+!.config/nvim/sessions/
+!.config/nvim/packages/
 !local.settings.json
 !work.vim

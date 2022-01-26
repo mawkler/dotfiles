@@ -136,7 +136,7 @@ export FZF_DEFAULT_OPTS="
 
 export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :100 {}'"
 export FZF_CTRL_T_COMMAND='rg --hidden --files --no-messages'
-export FZF_ALT_C_COMMAND='fd --type directory -H --ignore-file ~/.agignore'
+export FZF_ALT_C_COMMAND='fd --type directory -H --ignore-file ~/.ignore'
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh   ] && source /usr/share/fzf/completion.zsh
 
@@ -185,6 +185,8 @@ alias yaz-remove='yay -Qeq | fzf -m --preview "yay -Qi {1}" | xargs -ro yay -Rs'
 alias mv='mv -i'
 alias pdf_clip='curl -Ls `xclip -o` | (zathura - &)'
 alias ag="ag --hidden --pager='less -R'"
+alias rg="rg --hidden --smart-case"
+alias fd="fd --hidden"
 alias dump-dconf='dconf dump /org/gnome/shell/extensions/ > .dotfiles/gnome-extensions.dconf'
 
 # Abbreviations are in ~/.config/zsh/abbreviations
@@ -237,7 +239,8 @@ alias gu='git diff HEAD@{1} HEAD'
 alias gly='git log --since="yesterday"'
 alias gr='git rebase'
 alias grc='git rebase --continue'
-alias gdM="git diff \`_master_branch\`"
+alias gra='git rebase --abort'
+alias gdm="git diff \`_master_branch\`"
 alias gru='git pull --rebase --autostash upstream `_master_branch`'
 alias gsp='git stash pop'
 alias gss='git stash show -p'
