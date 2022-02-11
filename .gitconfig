@@ -37,6 +37,7 @@
 	clone-private = clone --config user.email=melkerosterberg@gmail.com --config github.user=melkster
 	clone-work = clone --config user.email=melker.osterberg@omegapoint.se --config github.user=melkerosterberg
 	diff-branch = !git diff `git merge-base master HEAD` HEAD
+	fork-plugin = !gh repo fork && git remote rename origin fork && git remote rename upstream origin
 [core]
 	excludesfile = /home/melker/.gitignore-global
 	pager = "if type delta &> /dev/null; then delta; else less; fi"
