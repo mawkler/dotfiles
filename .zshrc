@@ -1,4 +1,11 @@
-ZSH_THEME="agnoster" # Backup theme (gets overwritten by Powerline theme if available)
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+ZSH_THEME="agnoster" # Backup theme
 DISABLE_AUTO_UPDATE="true"
 export ANTIGEN_CACHE=false # Fixes issue with completion for azure-cli not working
 
@@ -28,10 +35,10 @@ antigen bundles << EOBUNDLES
   unixorn/autoupdate-antigen.zshplugin
   Aloxaf/fzf-tab
   olets/zsh-abbr
-  lukechilds/zsh-nvm
+  lukechilds/zsh-better-npm-completion
 EOBUNDLES
 
-antigen theme $ZSH_THEME
+antigen theme romkatv/powerlevel10k
 antigen apply # Tell Antigen that you're done.
 
 # -----------------------------------
@@ -42,12 +49,6 @@ COMPLETION_WAITING_DOTS="true"       # Displays red dots whilst waiting for comp
 DISABLE_UNTRACKED_FILES_DIRTY="true" # Speeds up VCS status check in large repositories
 KEYTIMEOUT=1                         # Speeds up mode switching
 unsetopt autocd                      # Don't CD when typing the name of dirs
-
-# Powerline theme (has to come after sourcing oh-my-zsh)
-if [[ -r `python3 -m site --user-site 2> /dev/null`/powerline/bindings/zsh/powerline.zsh ]]; then
-  export POWERLINE_SOURCE=`python3 -m site --user-site`/powerline
-  source $POWERLINE_SOURCE/bindings/zsh/powerline.zsh
-fi
 
 if type nvim &> /dev/null; then
   export VISUAL=nvim
@@ -265,9 +266,12 @@ eval "$(zoxide init zsh)"
 # Alt-z - Zoxide with fzf
 fzf-zoxide() {
   eval "zi"
-  zle reset-prompt
+  zle accept-line
 }
 zle -N fzf-zoxide
 bindkey '^[z' fzf-zoxide
 
 alias cd=z
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
