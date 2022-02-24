@@ -79,7 +79,6 @@ zle-line-init() { zle-keymap-select 'beam'} # Start with beam shape cursor on zs
 bindkey -s '^[l'   '^Qls^J'    # Alt-L clears text before running `ls`
 bindkey -s '^[L'   '^Qls -a^J' # Alt-Shift-L also shows hidden files
 bindkey -s '^[[2~' '^X^E'      # `Insert` key opens $EDITOR
-bindkey -s '¤'     '$'         # `¤` means `$`
 
 bindkey '^P'     up-line-or-beginning-search
 bindkey '^N'     down-line-or-beginning-search
