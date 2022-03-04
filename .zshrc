@@ -36,6 +36,7 @@ antigen bundles << EOBUNDLES
   Aloxaf/fzf-tab
   olets/zsh-abbr
   lukechilds/zsh-better-npm-completion
+  wfxr/forgit
 EOBUNDLES
 
 antigen theme romkatv/powerlevel10k
@@ -163,7 +164,7 @@ tree-pager() {
 alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.vimrc'
 alias src='exec zsh'
-alias grep='grep -Iin --color=always'
+alias grep='grep -Ii --color=always'
 alias listfiles='find . -type f -iname "*"'
 alias xs='xargs -I % sh -c'
 alias less='less -m -N -g -i -J --underline-special --SILENT'
@@ -198,7 +199,7 @@ alias gs='git status'
 alias gl='git log --decorate'
 
 # Like git diff, but ignores package-lock.json and yarn.lock in any subdirectory
-function gd() {
+function gD() {
   if  [[ -n "$1" ]]; then
     git diff "$1" -- ':!**/package-lock.json' ':!**/yarn.lock'
   else

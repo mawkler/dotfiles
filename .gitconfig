@@ -40,16 +40,25 @@
 	fork-plugin = !gh repo fork && git remote rename origin fork && git remote rename upstream origin
 [core]
 	excludesfile = /home/melker/.gitignore-global
-	pager = "if type delta &> /dev/null; then delta; else less; fi"
+	pager = "{                                                       \
+		COLUMNS=$(tput cols);                                        \
+		if [ $COLUMNS -ge 160 ] && [ -z $FZF_PREVIEW_COLUMNS ]; then \
+			delta --side-by-side -w $COLUMNS;                        \
+		elif [ $COLUMNS -ge 200 ] && [ $FZF_PREVIEW_COLUMNS ]; then  \
+			delta --side-by-side -w $FZF_PREVIEW_COLUMNS;            \
+		else                                                         \
+			delta --features=one-window;                             \
+		fi                                                           \
+	}"
 	eol = lf
 [interactive]
     diffFilter = "if type delta &> /dev/null; then delta --color-only; else less; fi"
 [delta]
-	features = side-by-side line-numbers
+	features = line-numbers
 	syntax-theme = Coldark-Dark
-	plus-emph-style = white "#318e02"
+	plus-emph-style = syntax "#318e02"
 	plus-style = syntax "#1b5100"
-	minus-emph-style = white "#800000"
+	minus-emph-style = syntax "#800000"
 	minus-style = syntax "#500000"
 [delta "one-window"]
 	side-by-side = false
