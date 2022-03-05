@@ -274,5 +274,13 @@ bindkey '^[z' fzf-zoxide
 
 alias cd=z
 
+# Forgit
+FORGIT_FZF_DEFAULT_OPTS="
+  --cycle
+  --reverse
+  --height '100%'
+  --preview-window=,75%
+"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
