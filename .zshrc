@@ -113,12 +113,7 @@ bindkey -M vicmd 'v'      visual-mode       # Use v for visual mode and V to
 bindkey -M vicmd 'V'      edit-command-line # open current line in $VISUAL
 
 # Fzf
-export FZF_DEFAULT_OPTS="
-  --history=$HOME/.fzf_history
-  --history-size=10000
-  --height 50%
-  --pointer='▶'
-
+FZF_COLORS="
   --color=fg:-1
   --color=fg+:#61afef
   --color=bg:-1
@@ -132,6 +127,15 @@ export FZF_DEFAULT_OPTS="
   --color=info:#98C379
   --color=spinner:#61afef
   --color=prompt:#c678dd
+  --color=border:#798294
+"
+
+export FZF_DEFAULT_OPTS="
+  --history=$HOME/.fzf_history
+  --history-size=10000
+  --height 50%
+  --pointer='▶'
+  ${FZF_COLORS}
 "
 
 # bat config  is in `~/.config/bat/config`
@@ -280,6 +284,7 @@ FORGIT_FZF_DEFAULT_OPTS="
   --reverse
   --height '100%'
   --preview-window=,75%
+  ${FZF_COLORS}
 "
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
