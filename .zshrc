@@ -276,8 +276,6 @@ fzf-zoxide() {
 zle -N fzf-zoxide
 bindkey '^[z' fzf-zoxide
 
-alias cd=z
-
 # Forgit
 FORGIT_FZF_DEFAULT_OPTS="
   --cycle
