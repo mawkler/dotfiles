@@ -4,14 +4,10 @@
 ## Installs configurations that don't require root privileges
 ###
 
-echo "Installing vim-plug and plugins for Vim";
-curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-if type nvim &> /dev/null; then
-  nvim +PlugInstall +qa 2> /dev/null
-else
-  vim +PlugInstall +qa 2> /dev/null
-fi
+echo "Installing packer.nvim and Neovim plugins";
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerInstall'
 
 pip install --user autopep8 flake8 # For Python autoformatting and linting
 pip install --user neovim
