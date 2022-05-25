@@ -289,3 +289,13 @@ FORGIT_FZF_DEFAULT_OPTS="
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+# Tmux
+if command -v tmux &> /dev/null
+  && [ -n "$PS1" ]
+  && [[ ! "$TERM" =~ screen ]]
+  && [[ ! "$TERM" =~ tmux ]]
+  && [ -z "$TMUX" ];
+then
+  exec tmux
+fi
