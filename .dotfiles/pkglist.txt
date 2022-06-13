@@ -29,7 +29,6 @@ neovim-qt-git
 nodejs
 npm
 plotinus-git
-powerline
 python-pip
 ranger
 screenkey

@@ -24,10 +24,8 @@ curl -s ${dotfiles_url}install-dependencies.sh | sudo bash
 
 # Dependencides
 
-These dotfiles assume that you're on Unix. For Windows, check out the [Windows branch](https://github.com/melkster/dotfiles/tree/windows).
+These dotfiles assume that you're on Unix. For Windows, check out the [Windows branch](https://github.com/melkster/dotfiles/tree/windows) (isn't updated that often though).
 
 - [git](https://git-scm.com/) (obviously)
-- [python](https://www.python.org/downloads/) for some Vim plugins
-- [powerline](https://github.com/powerline/powerline) and [pip](https://pypi.org/project/pip/) (for installing powerline-status for ZSH)
-- [npm](https://www.npmjs.com/) (for some Vim dependencies)
+- [python](https://www.python.org/downloads/) for some Neovim plugins
 - [go](https://golang.org/) (for [vim-hexokinase](https://github.com/RRethy/vim-hexokinase) )

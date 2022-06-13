@@ -55,7 +55,7 @@
     diffFilter = "if type delta &> /dev/null; then delta --color-only; else less; fi"
 [delta]
 	features = line-numbers
-	syntax-theme = Coldark-Dark
+	syntax-theme = TwoDark
 	plus-emph-style = syntax "#318e02"
 	plus-style = syntax "#1b5100"
 	minus-emph-style = syntax "#800000"
@@ -79,7 +79,5 @@
 	autoStash = true
 [rerere]
 	enabled = true
-[merge]
-	conflictStyle = diff3
 [diff]
 	algorithm = patience
