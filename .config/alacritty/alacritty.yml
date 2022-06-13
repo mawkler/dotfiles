@@ -4,6 +4,9 @@ font:
     style: Regular
 env:
   TERM: xterm-256color # Fixes issue with Neovim termguicolors in Tmux
+cursor:
+  style:
+    blinking: Never # Disable cursor blinking
 
 # Onedark colorscheme
 colors:
