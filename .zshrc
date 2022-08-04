@@ -194,6 +194,7 @@ alias ag="ag --hidden --pager='less -R'"
 alias rg="rg --hidden --smart-case"
 alias fd="fd --hidden"
 alias dump-dconf='dconf dump /org/gnome/shell/extensions/ > .dotfiles/gnome-extensions.dconf'
+alias fix-screen='xset -dpms'
 
 # Abbreviations are in ~/.config/zsh/abbreviations
 
@@ -236,6 +237,7 @@ alias gco='git checkout'
 alias gcom='git checkout `_master_branch`'
 alias gmm='git merge master'
 alias gp='git pull --autostash'
+alias gP='git push'
 alias gb='git branch'
 alias gw='git whatchanged'
 alias gcm='git commit -mv'
@@ -243,10 +245,10 @@ alias gcam='git commit -avm'
 alias gca='git commit -av'
 alias gu='git diff HEAD@{1} HEAD'
 alias gly='git log --since="yesterday"'
-alias gr='git rebase'
+alias gr='git reset'
 alias grc='git rebase --continue'
 alias gra='git rebase --abort'
-alias gdm='git diff `_master_branch`'
+alias gdm='git diff `_master_branch`..HEAD'
 alias gdu='diff upstream/`_master_branch`'
 alias gru='git pull --rebase --autostash upstream `_master_branch`'
 alias gsp='git stash pop'
