@@ -135,15 +135,24 @@ export FZF_DEFAULT_OPTS="
   --history-size=10000
   --height 50%
   --pointer='▶'
-  ${FZF_COLORS}
+  $FZF_COLORS
+"
+
+EXA_DIR_PREVIEW="exa \
+  --color=always -T \
+  --level=2 \
+  --icons \
+  --git-ignore \
+  --git \
+  --ignore-glob=.git \
 "
 
 # bat config  is in `~/.config/bat/config`
 
 export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :100 {}'"
-export FZF_CTRL_T_COMMAND='rg --hidden --files --no-messages'
-export FZF_ALT_C_COMMAND='fd --type directory -H --ignore-file ~/.ignore'
-export FZF_ALT_C_OPTS="--preview 'exa --color=always -T --level=2 --icons --git-ignore --git --ignore-glob=.git {}'"
+export FZF_CTRL_T_COMMAND="rg --hidden --files --no-messages"
+export FZF_ALT_C_COMMAND="fd --type directory -H --ignore-file ~/.ignore"
+export FZF_ALT_C_OPTS="--preview=\"$EXA_DIR_PREVIEW {}\""
 
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh   ] && source /usr/share/fzf/completion.zsh
@@ -272,13 +281,27 @@ fi
 # Zoxide
 eval "$(zoxide init zsh)"
 
-# Alt-z - Zoxide with fzf
+# Alt-z - Zoxide with Fzf
 fzf-zoxide() {
   eval "zi"
   zle accept-line
 }
 zle -N fzf-zoxide
 bindkey '^[z' fzf-zoxide
+
+# Zoxide's Fzf options
+export _ZO_FZF_OPTS="
+  --no-sort
+  --keep-right
+  --info=inline
+  --layout=reverse
+  --exit-0
+  --select-1
+  --bind=ctrl-z:ignore
+  --preview-window=right
+  --preview=\"$EXA_DIR_PREVIEW {2..} \"
+  $FZF_DEFAULT_OPTS
+"
 
 alias cd=z
 
@@ -288,7 +311,7 @@ FORGIT_FZF_DEFAULT_OPTS="
   --reverse
   --height '100%'
   --preview-window=,75%
-  ${FZF_COLORS}
+  $FZF_COLORS
 "
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
