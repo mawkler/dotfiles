@@ -1,4 +1,4 @@
-My Neovim configuration is available at [melkster/nvim](https://github.com/melkster/nvim/)
+My Neovim configuration is available at [mawkler/nvim](https://github.com/mawkler/nvim/)
 
 # Installation
 
