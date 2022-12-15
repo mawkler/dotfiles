@@ -1,6 +1,6 @@
 [user]
-	email  = melkerosterberg@gmail.com
-	name   = Melker Österberg
+	email  = melker.ulander@gmail.com
+	name   = Melker Ulander
 [alias]
 	co     = checkout
 	s      = status
@@ -34,7 +34,7 @@
 	make = !make --directory $(git rev-parse --show-toplevel)
 	ls = ls-tree -r HEAD --name-only
 	pull-all = !ls -D | xargs -I {} sh -c 'echo && echo Doing git pull in {}... && git -C {} pull'
-	clone-private = clone --config user.email=melkerosterberg@gmail.com --config github.user=melkster
+	clone-private = clone --config user.email=melker.ulander@pm.me --config github.user=mawkler
 	clone-work = clone --config user.email=melker.osterberg@omegapoint.se --config github.user=melkerosterberg
 	diff-branch = !git diff `git merge-base master HEAD` HEAD
 	fork-plugin = !gh repo fork && git remote rename origin fork && git remote rename upstream origin
@@ -51,8 +51,8 @@
 		fi                                                           \
 	}"
 	eol = lf
-[interactive]
-    diffFilter = "if type delta &> /dev/null; then delta --color-only; else less; fi"
+; [interactive]
+;     diffFilter = "if type delta &> /dev/null; then delta --color-only; else less; fi"
 [delta]
 	features = line-numbers
 	syntax-theme = TwoDark
@@ -66,7 +66,7 @@
 [delta "one-window"]
 	side-by-side = false
 [github]
-	user = melkster
+	user = mawkler
 [color]
 	ui = true
 [dude]
@@ -81,3 +81,7 @@
 	enabled = true
 [diff]
 	algorithm = patience
+[init]
+	defaultBranch = main
+[url "git@github.com:"]
+	insteadOf = https://github.com/
