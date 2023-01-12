@@ -1,5 +1,5 @@
 [user]
-	email  = melker.ulander@gmail.com
+	email  = melker.ulander@pm.me
 	name   = Melker Ulander
 [alias]
 	co     = checkout
@@ -35,7 +35,7 @@
 	ls = ls-tree -r HEAD --name-only
 	pull-all = !ls -D | xargs -I {} sh -c 'echo && echo Doing git pull in {}... && git -C {} pull'
 	clone-private = clone --config user.email=melker.ulander@pm.me --config github.user=mawkler
-	clone-work = clone --config user.email=melker.osterberg@omegapoint.se --config github.user=melkerosterberg
+	clone-work = clone --config user.email=melker.ulander@omegapoint.se --config github.user=melkerulander-op
 	diff-branch = !git diff `git merge-base master HEAD` HEAD
 	fork-plugin = !gh repo fork && git remote rename origin fork && git remote rename upstream origin
 [core]
