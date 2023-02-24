@@ -5,6 +5,7 @@ bfs
 bottom
 brave-browser
 broot
+bw
 caprine
 chrome-gnome-shell
 diff-so-fancy
@@ -23,6 +24,7 @@ gvim
 hyperfine
 interception-caps2esc-nocaps-git
 jdk-openjdk
+jless
 languagetool
 lua-format
 make
@@ -30,6 +32,7 @@ neovim
 neovim-qt-git
 nodejs
 npm
+pipx
 plotinus-git
 python-pip
 ranger
