@@ -46,7 +46,8 @@ spotify
 sshfs
 sushi
 terminator
-tldr
+tealdeer
+xh
 tmux
 trash-cli
 tree

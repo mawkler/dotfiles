@@ -30,7 +30,7 @@ antigen bundles << EOBUNDLES
   zsh-users/zsh-history-substring-search
   zsh-users/zsh-completions
   l4u/zsh-output-highlighting
-  melkster/zsh-bd
+  mawkler/zsh-bd
   hlissner/zsh-autopair
   unixorn/autoupdate-antigen.zshplugin
   Aloxaf/fzf-tab
@@ -60,7 +60,7 @@ export EDITOR=$VISUAL
 export NVIM_MINIMAL=1 # Load Neovim with less plugins when called from zsh
 
 # Work config
-if [[ -r '$HOME/.zsh/work.zsh' ]]; then
+if [[ -r $HOME/.zsh/work.zsh ]]; then
   source $HOME/.zsh/work.zsh
 fi
 
