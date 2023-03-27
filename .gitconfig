@@ -56,10 +56,10 @@
 [delta]
 	features = line-numbers
 	syntax-theme = TwoDark
-	plus-emph-style = syntax "#318e02"
-	plus-style = syntax "#1b5100"
-	minus-emph-style = syntax "#800000"
-	minus-style = syntax "#500000"
+	plus-emph-style = syntax "#1e5427"
+	plus-style = syntax "#263731"
+	minus-emph-style = syntax "#731d22"
+	minus-style = syntax "#3d282f"
 	file-decoration-style = blue box
 	hunk-header-decoration-style = box "#444957"
 	hunk-header-style = syntax line-number
