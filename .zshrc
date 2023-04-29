@@ -36,7 +36,6 @@ antigen bundles << EOBUNDLES
   Aloxaf/fzf-tab
   olets/zsh-abbr
   lukechilds/zsh-better-npm-completion
-  wfxr/forgit
 EOBUNDLES
 
 antigen theme romkatv/powerlevel10k
@@ -215,7 +214,7 @@ alias gs='git status'
 alias gl='git log --decorate'
 
 # Like git diff, but ignores package-lock.json and yarn.lock in any subdirectory
-function gD() {
+function gd() {
   if  [[ -n "$1" ]]; then
     git diff "$1" -- ':!**/package-lock.json' ':!**/yarn.lock'
   else
@@ -237,6 +236,7 @@ _master_branch() {
  # Pulls to master and then rebases into current branch
 function grm() {
   if [[ 'git rev-parse --is-inside-work-tree 2>/dev/null' ]]; then
+    echo "Rebasing onto `_master_branch`..."
     git pull --autostash origin `_master_branch`:`_master_branch`
     git rebase --autostash `_master_branch`
   else
@@ -251,6 +251,7 @@ alias gp='git pull --autostash'
 alias gP='git push'
 alias gb='git branch'
 alias gw='git whatchanged'
+alias ga='git add'
 alias gcm='git commit -mv'
 alias gcam='git commit -avm'
 alias gca='git commit -av'
