@@ -216,9 +216,9 @@ alias gl='git log --decorate'
 # Like git diff, but ignores package-lock.json and yarn.lock in any subdirectory
 function gd() {
   if  [[ -n "$1" ]]; then
-    git diff "$1" -- ':!**/package-lock.json' ':!**/yarn.lock'
+    git diff --ignore-space-change "$1" -- ':!**/package-lock.json' ':!**/yarn.lock'
   else
-    git diff -- ':!**/package-lock.json' ':!**/yarn.lock'
+    git diff --ignore-space-change -- ':!**/package-lock.json' ':!**/yarn.lock'
   fi
 }
 
