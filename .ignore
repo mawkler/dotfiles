@@ -1,6 +1,5 @@
 .git/
 .cache/
-*[Cc]ache/
 *-cache*
 
 .npm/
