@@ -28,4 +28,3 @@ These dotfiles assume that you're on Unix. For Windows, check out the [Windows b
 
 - [git](https://git-scm.com/) (obviously)
 - [python](https://www.python.org/downloads/) for some Neovim plugins
-- [go](https://golang.org/) (for [vim-hexokinase](https://github.com/RRethy/vim-hexokinase) )
