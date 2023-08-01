@@ -1,6 +1,7 @@
 set recolor-lightcolor "#282c34" # Use Atom dark theme gray as background in night mode
 set recolor-darkcolor  "#d0d4db"
 set recolor
+set default-bg "#282c34"
 
 set synctex true
 set synctex-editor-command "nvim-qt --remote-silent %f -c %l"
@@ -9,9 +10,9 @@ map [fullscreen] d scroll half-down
 map [normal]     d scroll half-down
 map [fullscreen] u scroll half-up
 map [normal]     u scroll half-up
-map D toggle_page_mode
+map P toggle_page_mode
+map D recolor
 map <C-l> toggle_statusbar
-map <A-D> set recolor
 
 set guioptions none
 set highlight-transparency 0.1
