@@ -90,12 +90,12 @@ link-format = "wiki"
 #link-drop-extension = true
 
 # Enable support for #hashtags.
-hashtags = false
+hashtags = true
 # Enable support for :colon:separated:tags:.
 colon-tags = true
 # Enable support for Bear's #multi-word tags#
 # Hashtags must be enabled for multi-word tags to work.
-multiword-tags = false
+multiword-tags = true
 
 
 # EXTERNAL TOOLS
@@ -111,10 +111,7 @@ multiword-tags = false
 
 # Command used to preview a note during interactive fzf mode.
 # Set it to an empty string "" to disable preview.
-
-# bat is a great tool to render Markdown document with syntax highlighting.
-#https://github.com/sharkdp/bat
-#fzf-preview = "bat -p --color always {-1}"
+fzf-preview = "bat -p --color always {-1}"
 
 
 # LSP
