@@ -9,7 +9,7 @@
 #assume_yes = true
 
 # Disable specific steps - same options as the command line flag
-disable = ["Neovim"]
+disable = ["vim"]
 
 # Ignore failures for these steps
 #ignore_failures = ["powershell"]
