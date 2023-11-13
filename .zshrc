@@ -306,17 +306,8 @@ export _ZO_FZF_OPTS="
   --preview=\"$EXA_DIR_PREVIEW {2..} \"
   $FZF_DEFAULT_OPTS
 "
-
 alias cd=z
-
-# Forgit
-FORGIT_FZF_DEFAULT_OPTS="
-  --cycle
-  --reverse
-  --height '100%'
-  --preview-window=,75%
-  $FZF_COLORS
-"
+alias zoxide-add-directories="fd --type directory --max-depth 1 | xargs zoxide add"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
