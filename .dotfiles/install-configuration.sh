@@ -41,4 +41,9 @@ curl -fLO https://github.com/melkster/dotfiles/blob/master/.local/share/fonts/OT
 fc-cache -fv
 cd -
 
+echo "Generating bitwarden ZSH completion"
+if [ -x "$(command -v bw)" ]; then
+	eval "$(bw completion --shell zsh); compdef _bw bw;"
+fi
+
 echo "To change shell to ZSH, run 'chsh -s $(which zsh) $USER'."
