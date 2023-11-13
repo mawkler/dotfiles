@@ -13,3 +13,13 @@ export MARKDOWNS="$HOME/Dropbox/Dokument/Markdowns/"
 unclutter --timeout 1 --fork
 
 source /home/melker/.config/broot/launcher/bash/br
+
+export NEOVIDE_MULTIGRID="true" # Enable multigrid (smooth scrolling) for Neovide
+
+# Work config
+if [[ -r $HOME/.config/work.sh ]]; then
+	source $HOME/.config/work.sh
+fi
+
+# Zk
+export ZK_NOTEBOOK_DIR=$MARKDOWNS
