@@ -1,20 +1,60 @@
+" Plugins
 set surround
-set multiple-cursors
-set showmode
-set scrolloff=5
-set relativenumber
-set smartcase
+set commentary
+set argtextobj
+set textobj-entire
+set highlightedyank
+set textobj-indent
+set matchit
+set quickscope
 
+" Options
+set showmode
+set scrolloff=10
+set number relativenumber
+set smartcase
+set incsearch
+
+" Mappings
 let mapleader = "\<Space>"
-map <leader>y "+y
-map <leader>Y "+Y
-map <leader>d "+d
-map <leader>D "+D
-map <leader>p "+p
-map <leader>P "+P
+nmap cy "+y
+nmap cY "+Y
+xmap Y  "+Y
+nmap cp "+p
+nmap cP "+P
 nmap <C-j> o<Esc>
 map! <M-j> <Down>
 map! <M-k> <Up>
 map <C-w><C-v> <C-w>v
 map <C-w><C-c> <C-w>c
 map <C-w><C-c> <C-w>c
+
+" JetBrains specific
+map <leader>dc <Action>(Debug)
+map <leader>dq <Action>(Stop)
+map ]e         <Action>(GotoNextError)
+map ]e         <Action>(GotoPrevError)
+
+" vim-surround
+xmap s <Plug>VSurround
+xmap S <Plug>VgSurround
+nmap s ys
+nmap S ys$
+
+" commentary
+nmap cm gcc
+nmap <leader>c gc
+
+" vim-exchange
+nmap sx  <Plug>(Exchange)
+xmap X   <Plug>(Exchange)
+nmap sxc <Plug>(ExchangeClear)
+nmap sxx <Plug>(ExchangeLine)
+
+" highlightedyank
+let g:highlightedyank_highlight_duration = '150'
+
+" vim-quickscope
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+let g:qs_primary_color = '#e06c75'
+let g:qs_secondary_color = '#d19a66'
