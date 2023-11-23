@@ -7,13 +7,15 @@ set highlightedyank
 set textobj-indent
 set matchit
 set quickscope
+set NERDTree
 
 " Options
 set showmode
 set scrolloff=10
 set number relativenumber
-set smartcase
 set incsearch
+set ignorecase
+set smartcase
 
 " Mappings
 let mapleader = "\<Space>"
@@ -33,7 +35,20 @@ map <C-w><C-c> <C-w>c
 map <leader>dc <Action>(Debug)
 map <leader>dq <Action>(Stop)
 map ]e         <Action>(GotoNextError)
-map ]e         <Action>(GotoPrevError)
+map [e         <Action>(GotoPreviousError)
+map gh         <Action>(ShowHoverInfo)
+map gr         <Action>(ShowUsages)
+map <leader>r  <Action>(RenameElement)
+map <M-w>      <Action>(CloseContent)
+map <C-+>      <Action>(EditorIncreaseFontSize)
+map <C-->      <Action>(EditorDecreaseFontSize)
+map <C-p>      <Action>(GotoFile)
+map <leader>a  <Action>(ShowIntentionActions)
+map gi         <Action>(GotoImplementation)
+map <leader>tr <Action>(RerunTest)
+map <leader>tR <Action>(ShowRecentTests)
+map <leader>/  <Action>(SearchEverywhere)
+map <leader>f  <Action>(Find)
 
 " vim-surround
 xmap s <Plug>VSurround
@@ -44,6 +59,7 @@ nmap S ys$
 " commentary
 nmap cm gcc
 nmap <leader>c gc
+xmap <leader>c gc
 
 " vim-exchange
 nmap sx  <Plug>(Exchange)
@@ -58,3 +74,13 @@ let g:highlightedyank_highlight_duration = '150'
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 let g:qs_primary_color = '#e06c75'
 let g:qs_secondary_color = '#d19a66'
+
+" NERDTree
+nmap <leader><leader>` :NERDTreeToggle<CR>
+nmap <leader>`         :NERDTreeFocus<CR>
+nmap <leader>~         :NERDTreeFind<CR>
+" let g:NERDTreeMapQuit = '<Esc>'
+let g:NERDTreeMapActivateNode = 'l'
+let g:NERDTreeMapCloseDir = 'h'
+let g:NERDTreeMapToggleZoom = 'F'
+let g:NERDTreeMapOpenVSplit = '<C-v>'
