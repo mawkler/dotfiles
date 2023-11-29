@@ -21,7 +21,8 @@ set smartcase
 let mapleader = "\<Space>"
 nmap cy "+y
 nmap cY "+Y
-xmap Y  "+Y
+xmap Y  "+y
+xmap P  "+p
 nmap cp "+p
 nmap cP "+P
 nmap <C-j> o<Esc>
@@ -47,8 +48,34 @@ map <leader>a  <Action>(ShowIntentionActions)
 map gi         <Action>(GotoImplementation)
 map <leader>tr <Action>(RerunTest)
 map <leader>tR <Action>(ShowRecentTests)
+map <leader>ts <Action>(GotoSymbol)
 map <leader>/  <Action>(SearchEverywhere)
 map <leader>f  <Action>(Find)
+map <M-l>      <Action>(NextTab)
+map <M-h>      <Action>(PreviousTab)
+map <C-w>gd    <C-w>v<Action>(GotoDeclaration)
+map gD         <Action>(GotoTypeDeclaration)
+map <C-s>      <Action>(SaveAll)
+map <C-s>      <Action>(SaveAll)
+map <leader>bo <Action>(CloseAllEditorsButActive)
+map <F11>      <Action>(ToggleFullScreen)
+
+map <M-1> <Action>(GoToTab1)
+map <M-2> <Action>(GoToTab2)
+map <M-3> <Action>(GoToTab3)
+map <M-4> <Action>(GoToTab4)
+map <M-5> <Action>(GoToTab5)
+map <M-6> <Action>(GoToTab6)
+map <M-7> <Action>(GoToTab7)
+map <M-8> <Action>(GoToTab8)
+map <M-9> <Action>(GoToTab9)
+
+imap <C-j> <Action>(EditorDown)
+imap <C-k> <Action>(EditorUp)
+imap <C-s> <Esc><Action>(SaveAll)
+imap <M-p> <C-r>"
+imap <M-l> <Right>
+imap <M-h> <Left>
 
 " vim-surround
 xmap s <Plug>VSurround
