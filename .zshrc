@@ -207,6 +207,9 @@ alias rg="rg --hidden --smart-case"
 alias fd="fd --hidden"
 alias dump-dconf='dconf dump /org/gnome/shell/extensions/ > .dotfiles/gnome-extensions.dconf'
 alias fix-screen='xset -dpms'
+alias mvc='mullvad connect'
+alias mvd='mullvad disconnect'
+alias mvr='mullvad reconnect'
 
 # Abbreviations are in ~/.config/zsh/abbreviations
 
