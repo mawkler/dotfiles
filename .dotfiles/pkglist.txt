@@ -1,4 +1,5 @@
 antigen
+ascii-image-converter
 bacon
 bat
 bfs
@@ -35,6 +36,7 @@ npm
 pipx
 plotinus-git
 python-pip
+python-pynvim
 ranger
 screenkey
 shutter
@@ -45,9 +47,8 @@ splix
 spotify
 sshfs
 sushi
-terminator
 tealdeer
-xh
+terminator
 tmux
 trash-cli
 tree
@@ -59,5 +60,6 @@ valgrind
 vifm
 vlc
 xclip
+xh
 zathura-pdf-mupdf
 zsh
