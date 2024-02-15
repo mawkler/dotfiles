@@ -1,4 +1,0 @@
-{
-  "ignorePaths": ["**/*.md", "**/node_modules/**"],
-  "words": []
-}
