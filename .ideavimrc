@@ -7,7 +7,9 @@ set highlightedyank
 set textobj-indent
 set matchit
 set quickscope
+set exchange
 set NERDTree
+set ReplaceWithRegister
 
 " Options
 set showmode
@@ -19,6 +21,7 @@ set smartcase
 
 " Mappings
 let mapleader = "\<Space>"
+nmap Y  y$
 nmap cy "+y
 nmap cY "+Y
 xmap Y  "+y
@@ -51,10 +54,10 @@ map <C-p>      <Action>(GotoFile)
 map <leader>a  <Action>(ShowIntentionActions)
 map <leader>e  <Action>(ShowErrorDescription)
 map gi         <Action>(GotoImplementation)
-map <leader>tr <Action>(RerunTest)
+map <leader>tr <Action>(RunClass)
 map <leader>tR <Action>(ShowRecentTests)
 map <leader>ts <Action>(GotoSymbol)
-map <leader>/  <Action>(SearchEverywhere)
+map <leader>/  <Action>(FindInPath)
 map <leader>f  <Action>(Find)
 map <M-l>      <Action>(NextTab)
 map <M-h>      <Action>(PreviousTab)
@@ -63,15 +66,17 @@ map gD         <Action>(GotoTypeDeclaration)
 map <C-s>      <Action>(SaveAll)
 map <C-s>      <Action>(SaveAll)
 map <leader>bo <Action>(CloseAllEditorsButActive)
+map <C-w>C     <Action>(CloseActiveTab)
 map <F11>      <Action>(ToggleFullScreen)
 map <M-S-+>    <Action>(IncrementWindowWidth)
 map <M-S-->    <Action>(DecrementWindowWidth)
+map <C-q>      <Action>(CloseProject)
 map gf         <Action>(GotoFile)
 map >aa        <Action>(MoveElementRight)
 map <aa        <Action>(MoveElementLeft)
 map <leader>dd <Action>(Debug)
 map <leader>db <Action>(ToggleLineBreakpoint)
-map <leader>dB <Action>(RemoveAllBreakpointsInFile)
+map <leader>dB <Action>(Debugger.RemoveAllBreakpointsInFile)
 map <leader>dc <Action>(Resume)
 map <leader>dC <Action>(RunToCursor)
 map <leader>di <Action>(SmartStepInto)
@@ -93,11 +98,18 @@ imap <C-j> <Action>(EditorDown)
 imap <C-k> <Action>(EditorUp)
 imap <C-s> <Esc><Action>(SaveAll)
 imap <M-p> <C-r>"
+cmap <M-p> <C-r>"
 imap <M-l> <Right>
 imap <M-h> <Left>
+imap <C-;> <Esc>m0A;<Esc>`0a
 
 nmap <leader>cA A<Space>//<Space>
+nmap <leader>co o//<Space>
+nmap <leader>cO O//<Space>
 nmap <leader>;  m0A;<Esc>`0
+nmap <leader>,  m0A,<Esc>`0
+map  ]f         ]m
+map  [f         [m
 
 " vim-surround
 xmap s <Plug>VSurround
@@ -109,6 +121,7 @@ nmap S ys$
 nmap cm gcc
 nmap <leader>c gc
 xmap <leader>c gc
+nmap <leader>C gc$
 
 " vim-exchange
 nmap sx  <Plug>(Exchange)
@@ -128,8 +141,16 @@ let g:qs_secondary_color = '#d19a66'
 nmap <leader><leader>` :NERDTreeToggle<CR>
 nmap <leader>`         :NERDTreeFocus<CR>
 nmap <leader>~         :NERDTreeFind<CR>
-" let g:NERDTreeMapQuit = '<Esc>'
 let g:NERDTreeMapActivateNode = 'l'
 let g:NERDTreeMapCloseDir = 'h'
 let g:NERDTreeMapToggleZoom = 'F'
 let g:NERDTreeMapOpenVSplit = '<C-v>'
+
+" ReplaceWithRegister
+nmap  su  <Plug>ReplaceWithRegisterOperator
+xmap  su  <Plug>ReplaceWithRegisterVisual
+nmap  suu <Plug>ReplaceWithRegisterLine
+nmap  sU  su$
+nmap  suc "+su
+xmap  sU  "+su
+unmap grr " Remove default mapping
