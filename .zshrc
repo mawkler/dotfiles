@@ -37,7 +37,7 @@ antigen bundles << EOBUNDLES
   hlissner/zsh-autopair
   unixorn/autoupdate-antigen.zshplugin
   Aloxaf/fzf-tab
-  olets/zsh-abbr
+  olets/zsh-abbr@main
   lukechilds/zsh-better-npm-completion
 EOBUNDLES
 
