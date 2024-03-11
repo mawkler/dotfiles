@@ -1,4 +1,4 @@
-# Launch tmux if there's no tmux sesion already running
+# Launch tmux if there's no tmux session already running
 if [[ ! $(tmux list-sessions 2> /dev/null) ]]; then exec tmux; fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -149,7 +149,7 @@ EXA_DIR_PREVIEW="exa \
   --ignore-glob=.git \
 "
 
-# bat config  is in `~/.config/bat/config`
+# bat config is in `~/.config/bat/config`
 
 export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :100 {}'"
 export FZF_CTRL_T_COMMAND="rg --hidden --files --no-messages"
