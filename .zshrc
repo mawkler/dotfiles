@@ -263,7 +263,7 @@ function grm() {
   fi
 }
 
-alias pull-all='ls | xargs -P10 -I {} sh -c "echo Pulling changes in {}... && git -C {} pull"'
+alias pull-all='ls -d */ | xargs -P10 -I {} sh -c "echo Pulling changes in {}... && git -C {} pull"'
 
 alias gco='git checkout'
 alias gcom='git checkout `_master_branch`'
