@@ -159,6 +159,20 @@ export FZF_ALT_C_OPTS="--preview=\"$EXA_DIR_PREVIEW {}\""
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh   ] && source /usr/share/fzf/completion.zsh
 
+# Alt-T: Like Fzf's Ctrl-T, but lets you select directories instead of files
+fzf_select_directories() {
+  local selected_dirs=$(fd --type directory --exclude .git \
+    2> /dev/null \
+    | fzf --multi --reverse --preview="$EXA_DIR_PREVIEW {}"
+  )
+  LBUFFER+=$(echo $selected_dirs | xargs)
+  zle redisplay
+}
+
+zle     -N             fzf_select_directories
+bindkey          '\et' fzf_select_directories
+bindkey -M vicmd '\et' fzf_select_directories
+
 # Create a new directory and enter it
 mkcd() {
   mkdir -p $@ && cd $@
