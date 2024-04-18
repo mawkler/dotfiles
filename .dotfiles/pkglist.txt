@@ -1,3 +1,4 @@
+alacritty
 antigen
 ascii-image-converter
 bacon
@@ -13,6 +14,7 @@ diff-so-fancy
 duf
 dust
 exa
+eza
 fd
 fx
 fzf
@@ -20,6 +22,7 @@ gcc
 gimp
 git-delta
 git-standup
+github-cli
 go
 gvim
 hyperfine
@@ -29,8 +32,8 @@ jless
 languagetool
 lua-format
 make
+neovide
 neovim
-neovim-qt-git
 nodejs
 npm
 pipx
@@ -38,9 +41,9 @@ plotinus-git
 python-pip
 python-pynvim
 ranger
+rg
 screenkey
 shutter
-silver-searcher-git
 sioyek
 slack-desktop
 splix
@@ -62,4 +65,5 @@ vlc
 xclip
 xh
 zathura-pdf-mupdf
+zoxide
 zsh
