@@ -14,6 +14,10 @@ unclutter --timeout 1 --fork
 
 source /home/melker/.config/broot/launcher/bash/br
 
+export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 # Fixes issue with `func` commands not working
+export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1 # Opt out of telemetry
+export SAM_CLI_TELEMETRY=0                     # Opt out of SAM telemetry
+
 export NEOVIDE_MULTIGRID="true" # Enable multigrid (smooth scrolling) for Neovide
 
 # Work config
@@ -23,3 +27,7 @@ fi
 
 # Zk
 export ZK_NOTEBOOK_DIR=$MARKDOWNS
+
+# Go
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
