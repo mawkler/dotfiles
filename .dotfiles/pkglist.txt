@@ -24,7 +24,6 @@ git-delta
 git-standup
 github-cli
 go
-gvim
 hyperfine
 interception-caps2esc-nocaps-git
 jdk-openjdk
@@ -42,6 +41,7 @@ python-pip
 python-pynvim
 ranger
 rg
+rustup
 screenkey
 shutter
 sioyek
@@ -53,6 +53,7 @@ sushi
 tealdeer
 terminator
 tmux
+tmux-plugin-manager
 trash-cli
 tree
 ttf-dejavu-sans-mono-powerline-git
