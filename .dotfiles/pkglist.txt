@@ -40,7 +40,7 @@ plotinus-git
 python-pip
 python-pynvim
 ranger
-rg
+ripgrep
 rustup
 screenkey
 shutter
