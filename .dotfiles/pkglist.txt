@@ -24,6 +24,7 @@ git-delta
 git-standup
 github-cli
 go
+htop-vim
 hyperfine
 interception-caps2esc-nocaps-git
 jdk-openjdk
