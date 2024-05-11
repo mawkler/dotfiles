@@ -44,6 +44,7 @@ ranger
 ripgrep
 rustup
 screenkey
+shfmt
 shutter
 sioyek
 slack-desktop
@@ -58,6 +59,7 @@ tmux-plugin-manager
 trash-cli
 tree
 ttf-dejavu-sans-mono-powerline-git
+typst
 ufw
 unclutter
 unp
