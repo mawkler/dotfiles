@@ -12,7 +12,9 @@ export MARKDOWNS="$HOME/Dropbox/Dokument/Markdowns/"
 # Unclutter (hides the mouse cursor)
 unclutter --timeout 1 --fork
 
-source /home/melker/.config/broot/launcher/bash/br
+if [[ -x $HOME/.config/broot/launcher/bash/br ]]; then
+  $HOME/.config/broot/launcher/bash/br
+fi
 
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 # Fixes issue with `func` commands not working
 export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1 # Opt out of telemetry
