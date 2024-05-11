@@ -1,0 +1,47 @@
+[[colors.indexed_colors]]
+color = "0xd19a66"
+index = 16
+
+[[colors.indexed_colors]]
+color = "0xf65866"
+index = 17
+
+[cursor.style]
+blinking = "Never" # Disable cursor blinking
+
+[env]
+TERM = "xterm-256color" # Fixes issue with Neovim termguicolors in tmux
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Regular"
+
+# Onedark colorscheme
+
+[colors.bright]
+black = "0x798294"
+blue = "0x61afef"
+cyan = "0x56b6c2"
+green = "0x98c379"
+magenta = "0xc678dd"
+red = "0xe86671"
+white = "0xabb2bf"
+yellow = "0xe5c07b"
+
+[colors.normal]
+black = "0x20232A"
+blue = "0x61afef"
+cyan = "0x56b6c2"
+green = "0x98c379"
+magenta = "0xc678dd"
+red = "0xe86671"
+white = "0x798294"
+yellow = "0xe5c07b"
+
+[colors.primary]
+background = "0x282c34"
+foreground = "0xabb2bf"
+
+[colors.selection]
+background = "0x393f4a"
+text = "CellForeground"
