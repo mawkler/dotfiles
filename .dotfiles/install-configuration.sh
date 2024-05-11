@@ -43,4 +43,8 @@ if [ -x "$(command -v bw)" ]; then
 	eval "$(bw completion --shell zsh); compdef _bw bw;"
 fi
 
+# ~/.profile doesn't seem to get sourced on X
+echo "Symlinking /etc/profile.d/profile.sh to ~/.profile"
+ln -s ~/.profile /etc/profile.d/profile.sh
+
 echo "To change shell to ZSH, run 'chsh -s $(which zsh) $USER'."
