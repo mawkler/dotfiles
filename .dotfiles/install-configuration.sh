@@ -24,6 +24,7 @@ if [[ $XDG_CURRENT_DESKTOP == "GNOME" ]]; then
 	dconf load /org/gnome/desktop/wm/keybindings/ < .dotfiles/keybindings.dconf
 	dconf load /org/gnome/shell/extensions/ < .dotfiles/gnome-extensions.dconf
 	dconf load /org/gnome/shell/window-switcher/ < .dotfiles/window-switcher.dconf
+	dconf load /org/gnome/shell/extensions/paperwm/keybindings/ < .dotfiles/paperwm-keybindings.dconf
 	dconf load /org/gnome/desktop/interface/ < .dotfiles/interface.dconf
 	dconf load /org/gnome/mutter/keybindings/ < .dotfiles/mutter-keybindings.dconf
 
