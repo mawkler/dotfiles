@@ -72,8 +72,3 @@ echo '<?xml version="1.0"?>
 # ' > ~/.config/fontconfig/fonts.conf # If the privous line doesn't work
 fc-cache
 echo "Noto Emoji Font installed! You may need to restart applications like Chrome. If Chrome displays no symbols or no letters, your default font contains emojis."
-
-echo "Installing rust and devicon-lookup"
-sudo pacman -S rust
-cargo install devicon-lookup
-
