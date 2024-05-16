@@ -48,4 +48,16 @@ fi
 echo "Symlinking /etc/profile.d/profile.sh to ~/.profile"
 ln -s ~/.profile /etc/profile.d/profile.sh
 
+echo "Setting up Spicetify"
+sudo chmod a+wr /opt/spotify
+sudo chmod a+wr /opt/spotify/Apps -R
+spicetify
+spicetify backup apply enable-devtools
+spicetify config custom_apps marketplace
+spicetify apply
+# Spicetify extensions
+# - Hazy
+# - keyboard shortcut
+# - Full Screen
+
 echo "To change shell to ZSH, run 'chsh -s $(which zsh) $USER'."

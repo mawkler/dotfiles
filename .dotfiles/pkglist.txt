@@ -29,7 +29,9 @@ hyperfine
 interception-caps2esc-nocaps-git
 jdk-openjdk
 jless
+jq
 languagetool
+lazygit
 lua-format
 make
 neovide
@@ -41,6 +43,7 @@ plotinus-git
 python-pip
 python-pynvim
 ranger
+ripdrag-git
 ripgrep
 rustup
 screenkey
@@ -48,6 +51,8 @@ shfmt
 shutter
 sioyek
 slack-desktop
+slides
+spicetify-cli
 splix
 spotify
 sshfs
