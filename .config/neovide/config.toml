@@ -1,0 +1,6 @@
+[font]
+normal = ["FiraCode Nerd Font"]
+size = 11
+
+[font.features]
+"FiraCode Nerd Font" = [ "+ss01", "+ss02", "+ss03", "+ss04", "+ss05", "+zero"]
