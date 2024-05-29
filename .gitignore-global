@@ -1,2 +1,3 @@
 *.class
 ltex.*.*.txt
+.typos.toml
