@@ -345,3 +345,6 @@ zstyle ':fzf-tab:*' switch-group 'ctrl-B' 'ctrl-F'
 
 # nvm
 source /usr/share/nvm/init-nvm.sh
+
+# Azure CLI
+source /opt/azure-cli/bin/az.completion.sh
