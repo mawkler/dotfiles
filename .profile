@@ -9,11 +9,13 @@ export PATH="$HOME/.local/bin:$PATH"
 export DROPBOX="$HOME/Dropbox/"
 export MARKDOWNS="$HOME/Dropbox/Dokument/Markdowns/"
 
-# Unclutter (hides the mouse cursor)
-unclutter --timeout 1 --fork
+if [[ $XDG_SESSION_TYPE == X11 ]]; then
+	# Hide the mouse cursor on inactivity (only works on X)
+	unclutter --timeout 1 --fork
+fi
 
 if [[ -x $HOME/.config/broot/launcher/bash/br ]]; then
-  $HOME/.config/broot/launcher/bash/br
+	$HOME/.config/broot/launcher/bash/br
 fi
 
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 # Fixes issue with `func` commands not working
