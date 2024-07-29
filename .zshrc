@@ -299,7 +299,7 @@ alias dot='dotfiles'
 alias dots='dot status'
 
 # Completion for azure-cli
-if [[ -r '/opt/az/bin/az.completion.sh' ]]; then
+if [[ -r '/opt/azure-cli/bin/az.completion.sh' ]]; then
   source /opt/azure-cli/bin/az.completion.sh
 fi
 
