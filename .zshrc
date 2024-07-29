@@ -42,7 +42,6 @@ antigen bundles << EOBUNDLES
   Aloxaf/fzf-tab
   olets/zsh-abbr@main
   lukechilds/zsh-better-npm-completion
-  atuinsh/atuin@main
 EOBUNDLES
 
 antigen theme romkatv/powerlevel10k
@@ -347,3 +346,6 @@ zstyle ':fzf-tab:*' switch-group 'ctrl-B' 'ctrl-F'
 
 # nvm
 source /usr/share/nvm/init-nvm.sh
+
+# Atuin
+eval "$(atuin init zsh --disable-up-arrow)"
