@@ -300,7 +300,7 @@ alias dots='dot status'
 
 # Completion for azure-cli
 if [[ -r '/opt/az/bin/az.completion.sh' ]]; then
-  source /opt/az/bin/az.completion.sh
+  source /opt/azure-cli/bin/az.completion.sh
 fi
 
 # Zoxide
@@ -347,6 +347,3 @@ zstyle ':fzf-tab:*' switch-group 'ctrl-B' 'ctrl-F'
 
 # nvm
 source /usr/share/nvm/init-nvm.sh
-
-# Azure CLI
-source /opt/azure-cli/bin/az.completion.sh
