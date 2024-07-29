@@ -1,12 +1,15 @@
 # Launch tmux if there's no tmux session already running
 if [[ ! $(tmux list-sessions 2> /dev/null) ]]; then exec tmux; fi
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
+# Enable Powerlevel10k instant prompt. Should stay close to the top
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+# Load Fzf stuff. `key-bindings.zsh` has to be loaded before Atuin is to
+# prevent Fzf from overriding the `Ctrl-R` key binding
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+[ -f /usr/share/fzf/completion.zsh   ] && source /usr/share/fzf/completion.zsh
 
 ZSH_THEME="agnoster" # Backup theme
 DISABLE_AUTO_UPDATE="true"
@@ -39,6 +42,7 @@ antigen bundles << EOBUNDLES
   Aloxaf/fzf-tab
   olets/zsh-abbr@main
   lukechilds/zsh-better-npm-completion
+  atuinsh/atuin@main
 EOBUNDLES
 
 antigen theme romkatv/powerlevel10k
@@ -155,9 +159,7 @@ export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-ran
 export FZF_CTRL_T_COMMAND="rg --hidden --files --no-messages"
 export FZF_ALT_C_COMMAND="fd --type directory -H --ignore-file ~/.ignore"
 export FZF_ALT_C_OPTS="--preview=\"$EXA_DIR_PREVIEW {}\""
-
-[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-[ -f /usr/share/fzf/completion.zsh   ] && source /usr/share/fzf/completion.zsh
+export FZF_CTRL_R_COMMAND=""
 
 # Alt-T: Like Fzf's Ctrl-T, but lets you select directories instead of files
 fzf_select_directories() {
