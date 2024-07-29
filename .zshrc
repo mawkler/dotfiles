@@ -30,7 +30,6 @@ antigen bundles << EOBUNDLES
   colorize
   colored-man-pages
   extract
-  vi-mode
   zsh-users/zsh-autosuggestions
   zsh-users/zsh-syntax-highlighting
   zsh-users/zsh-history-substring-search
@@ -79,6 +78,8 @@ function zle-keymap-select {
 }
 zle -N zle-keymap-select
 zle-line-init() { zle-keymap-select 'beam'} # Start with beam shape cursor on zsh startup and after every command.
+
+bindkey -v # Enable Vi mode
 
 # Keybindings
 # For list of keybindings run `man zshzle`, `zle -al` or `bindkey`
