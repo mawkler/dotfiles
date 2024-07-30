@@ -118,6 +118,10 @@ bindkey -M vicmd '\e\C-?' backward-kill-word
 bindkey -M vicmd 'v'      visual-mode       # Use v for visual mode and V to
 bindkey -M vicmd 'V'      edit-command-line # open current line in $VISUAL
 
+# Fixes issue with `bindkey -v` making `abbr` not work
+bindkey -M viins " " abbr-expand-and-insert
+bindkey -M viins "^M" abbr-expand-and-accept
+
 # Fzf
 FZF_COLORS="
   --color=fg:-1
