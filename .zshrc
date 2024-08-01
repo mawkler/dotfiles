@@ -122,6 +122,14 @@ bindkey -M vicmd 'V'      edit-command-line # open current line in $VISUAL
 bindkey -M viins " " abbr-expand-and-insert
 bindkey -M viins "^M" abbr-expand-and-accept
 
+paste_from_clipboard() {
+  local paste="$(xclip -o -selection clipboard)"
+  zle -U "$paste"
+}
+
+zle -N paste_from_clipboard
+bindkey '\eP' paste_from_clipboard # Alt-shift-P
+
 # Fzf
 FZF_COLORS="
   --color=fg:-1
