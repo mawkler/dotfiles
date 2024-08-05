@@ -63,6 +63,8 @@
 	file-decoration-style = blue box
 	hunk-header-decoration-style = box "#444957"
 	hunk-header-style = syntax line-number
+	navigate = true
+	tabs = 4
 [delta "one-window"]
 	side-by-side = false
 [github]
