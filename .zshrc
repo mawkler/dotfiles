@@ -156,10 +156,10 @@ export FZF_DEFAULT_OPTS="
   $FZF_COLORS
 "
 
-EXA_DIR_PREVIEW="exa \
+EXA_DIR_PREVIEW="eza \
   --color=always -T \
   --level=2 \
-  --icons \
+  --icons auto \
   --git-ignore \
   --git \
   --ignore-glob=.git \
@@ -203,7 +203,7 @@ countallfiles() {
 }
 
 tree-pager() {
-  exa --icons --color always --tree $@ | less -Fn
+  eza --icons auto --color always --tree $@ | less -Fn
 }
 
 alias zshrc='nvim ~/.zshrc'
@@ -213,9 +213,9 @@ alias listfiles='find . -type f -iname "*"'
 alias xs='xargs -I % sh -c'
 alias less='less -mgiJr --underline-special --SILENT'
 alias xclip='xclip -selection c'
-alias ls='exa --icons'
+alias ls='eza --icons auto'
 alias m='make'
-alias tree='exa --icons --tree'
+alias tree='eza --icons never --tree'
 alias Tree='tree-pager'
 alias installed='yay -Qqe | bat'
 alias remove-non-dependencies='sudo pacman -Rns $(pacman -Qtdq)'
