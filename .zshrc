@@ -156,7 +156,7 @@ export FZF_DEFAULT_OPTS="
   $FZF_COLORS
 "
 
-EXA_DIR_PREVIEW="eza \
+EZA_DIR_PREVIEW="eza \
   --color=always -T \
   --level=2 \
   --icons auto \
@@ -170,14 +170,14 @@ EXA_DIR_PREVIEW="eza \
 export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :100 {}'"
 export FZF_CTRL_T_COMMAND="rg --hidden --files --no-messages"
 export FZF_ALT_C_COMMAND="fd --type directory -H --ignore-file ~/.ignore"
-export FZF_ALT_C_OPTS="--preview=\"$EXA_DIR_PREVIEW {}\""
+export FZF_ALT_C_OPTS="--preview=\"$EZA_DIR_PREVIEW {}\""
 export FZF_CTRL_R_COMMAND=""
 
 # Alt-T: Like Fzf's Ctrl-T, but lets you select directories instead of files
 fzf_select_directories() {
   local selected_dirs=$(fd --type directory --exclude .git \
     2> /dev/null \
-    | fzf --multi --reverse --preview="$EXA_DIR_PREVIEW {}"
+    | fzf --multi --reverse --preview="$EZA_DIR_PREVIEW {}"
   )
   LBUFFER+=$(echo $selected_dirs | xargs)
   zle redisplay
@@ -329,7 +329,7 @@ export _ZO_FZF_OPTS="
   --select-1
   --bind=ctrl-z:ignore
   --preview-window=right
-  --preview=\"$EXA_DIR_PREVIEW {2..} \"
+  --preview=\"$EZA_DIR_PREVIEW {2..} \"
   $FZF_DEFAULT_OPTS
 "
 alias cd=z
@@ -345,8 +345,8 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 # set list-colors to enable filename colorizing
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 # switch group using `ctr-B` and `ctrl-F`
 zstyle ':fzf-tab:*' switch-group 'ctrl-B' 'ctrl-F'
 
