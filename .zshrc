@@ -206,6 +206,8 @@ tree-pager() {
   eza --icons auto --color always --tree $@ | less -Fn
 }
 
+# Abbreviations are in ~/.config/zsh/abbreviations
+
 alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.vimrc'
 alias src='exec zsh'
@@ -215,7 +217,7 @@ alias less='less -mgiJr --underline-special --SILENT'
 alias xclip='xclip -selection c'
 alias ls='eza --icons auto'
 alias m='make'
-alias tree='eza --icons never --tree'
+alias tree='eza --icons never --tree --git-ignore'
 alias Tree='tree-pager'
 alias installed='yay -Qqe | bat'
 alias remove-non-dependencies='sudo pacman -Rns $(pacman -Qtdq)'
@@ -239,25 +241,10 @@ alias mvc='mullvad connect'
 alias mvd='mullvad disconnect'
 alias mvr='mullvad reconnect'
 
-# Abbreviations are in ~/.config/zsh/abbreviations
-
-# Git:
-alias g='git'
-alias gs='git status'
-alias gl='git log --decorate'
-
-# Like git diff, but ignores package-lock.json and yarn.lock in any subdirectory
-function gd() {
-  if  [[ -n "$1" ]]; then
-    git diff --ignore-space-change "$1" -- ':!**/package-lock.json' ':!**/yarn.lock'
-  else
-    git diff --ignore-space-change -- ':!**/package-lock.json' ':!**/yarn.lock'
-  fi
-}
-
 # Delta
 export DELTA_PAGER='less -mgi --underline-special --SILENT'
 
+# Git:
 _master_branch() {
   if git rev-parse --quiet --verify master > /dev/null; then
     echo 'master'
@@ -279,6 +266,11 @@ function grm() {
 
 alias pull-all='ls -d */ | xargs -P10 -I {} sh -c "echo Pulling changes in {}... && git -C {} pull"'
 
+alias g='git'
+alias gs='git status'
+alias gl='git log --decorate'
+alias gd='git diff -- :!package-lock.json :!yarn.lock :!Cargo.lock'
+alias gds='git diff --staged -- :!package-lock.json :!yarn.lock :!Cargo.lock'
 alias gco='git checkout'
 alias gcom='git checkout `_master_branch`'
 alias gmm='git merge master'
