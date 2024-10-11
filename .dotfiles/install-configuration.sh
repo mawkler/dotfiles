@@ -60,4 +60,9 @@ spicetify apply
 # - keyboard shortcut
 # - Full Screen
 
+echo "Swapping numbers and symbols on 'Swedish (US)' keyboard layout"
+# Diff was generated with this command:
+#   diff -u /usr/share/X11/xkb/symbols/se.backup /usr/share/X11/xkb/symbols/se > ~/.dotfiles/swap-numbers-and-symbols.diff
+sudo patch /usr/share/X11/xkb/symbols/se < ~/.dotfiles/swap-numbers-and-symbols.diff
+
 echo "To change shell to ZSH, run 'chsh -s $(which zsh) $USER'."
