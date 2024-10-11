@@ -35,3 +35,6 @@ export ZK_NOTEBOOK_DIR=$MARKDOWNS
 # Go
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
+
+# Neovide
+export NEOVIDE_FORK=true # Launch Neovide in a fork
