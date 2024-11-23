@@ -46,7 +46,7 @@ fi
 
 # ~/.profile doesn't seem to get sourced on X
 echo "Symlinking /etc/profile.d/profile.sh to ~/.profile"
-ln -s ~/.profile /etc/profile.d/profile.sh
+sudo ln -s ~/.profile /etc/profile.d/profile.sh
 
 echo "Setting up Spicetify"
 sudo chmod a+wr /opt/spotify
