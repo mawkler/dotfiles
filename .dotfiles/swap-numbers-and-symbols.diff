@@ -1,0 +1,21 @@
+--- /usr/share/X11/xkb/symbols/se.backup	2024-10-11 15:20:39.433869557 +0200
++++ /usr/share/X11/xkb/symbols/se	2024-10-11 15:26:45.558685123 +0200
+@@ -302,6 +302,18 @@
+     key <AC10> {[ any, any,  odiaeresis, Odiaeresis ]};
+     key <AC11> {[ any, any,  adiaeresis, Adiaeresis ]};
+ 
++    // Swap numbers and symbols on the number row
++    key <AE01> {[ exclam,      1 ]};
++    key <AE02> {[ at,          2 ]};
++    key <AE03> {[ numbersign,  3 ]};
++    key <AE04> {[ dollar,      4 ]};
++    key <AE05> {[ percent,     5 ]};
++    key <AE06> {[ asciicircum, 6 ]};
++    key <AE07> {[ ampersand,   7 ]};
++    key <AE08> {[ asterisk,    8 ]};
++    key <AE09> {[ parenleft,   9 ]};
++    key <AE10> {[ parenright,  0 ]};
++
+     include "level3(ralt_switch)"
+ };
+ 
