@@ -120,7 +120,6 @@ bindkey -M vicmd 'V'      edit-command-line # open current line in $VISUAL
 
 # Fixes issue with `bindkey -v` making `abbr` not work
 bindkey -M viins " " abbr-expand-and-insert
-bindkey -M viins "^M" abbr-expand-and-accept
 
 paste_from_clipboard() {
   local paste="$(xclip -o -selection clipboard)"
