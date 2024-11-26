@@ -14,6 +14,16 @@ if type pacman &> /dev/null; then
   sudo -u $SUDO_USER yay -S --needed --noconfirm - < $USER_HOME/.dotfiles/pkglist.txt
 fi
 
+if type cargo &> /dev/null; then
+  echo "Installing Cargo packages in 'cargo-pkglist.txt'";
+  xargs cargo install < ~/.dotfiles/cargo-pkglist.txt
+fi
+
+if type tmux && [ -x /usr/share/tmux-plugin-manager/bin/install_plugins ] &> /dev/null; then
+  echo "Installing Tmux plugins"
+  /usr/share/tmux-plugin-manager/bin/install_plugins
+fi
+
 echo "Adding npm dependencies";
 sudo npm install -gy prettier
 
