@@ -4,11 +4,12 @@ ascii-image-converter
 atuin
 bacon
 bat
+beeper-latest-bin
 bfs
+bitwarden-cli
 bottom
 brave-browser
 broot
-bw
 chrome-gnome-shell
 diff-so-fancy
 duf
@@ -23,6 +24,7 @@ git-standup
 github-cli
 go
 htop-vim
+hurl
 hyperfine
 jless
 jq
@@ -30,6 +32,7 @@ languagetool
 lazygit
 lua-format
 make
+mission-center
 neovide
 neovim
 nodejs
@@ -58,6 +61,7 @@ sushi
 tealdeer
 tmux
 tmux-plugin-manager
+topgrade
 trash-cli
 tree
 tree-sitter-cli
