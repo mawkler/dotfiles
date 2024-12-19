@@ -46,6 +46,7 @@ quicktype
 ranger
 ripdrag-git
 ripgrep
+ruby
 rustup
 screenkey
 shfmt
@@ -76,3 +77,4 @@ xh
 zathura-pdf-mupdf
 zoxide
 zsh
+zsh-theme-powerlevel10k
