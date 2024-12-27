@@ -1,0 +1,7 @@
+font-family = "FiraCode Nerd Font"
+font-family-bold = "Fira Code Bold"
+font-family-italic = "Liberation Mono Italic"
+font-family-bold-italic = "Liberation Mono Bold Italic"
+
+background-opacity = 0.96
+window-decoration = false
