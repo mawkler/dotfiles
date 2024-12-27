@@ -5,3 +5,5 @@ font-family-bold-italic = "Liberation Mono Bold Italic"
 
 background-opacity = 0.96
 window-decoration = false
+
+keybind = ctrl+)=reset_font_size
