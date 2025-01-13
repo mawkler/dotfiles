@@ -8,3 +8,4 @@ window-decoration = false
 theme = onedark
 
 keybind = ctrl+)=reset_font_size
+keybind = ctrl+enter=ignore
