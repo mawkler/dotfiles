@@ -349,8 +349,5 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 # switch group using `ctr-B` and `ctrl-F`
 zstyle ':fzf-tab:*' switch-group 'ctrl-B' 'ctrl-F'
 
-# nvm
-source /usr/share/nvm/init-nvm.sh
-
 # Atuin
 eval "$(atuin init zsh --disable-up-arrow)"
