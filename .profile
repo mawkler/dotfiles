@@ -8,6 +8,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 export DROPBOX="$HOME/Dropbox/"
 export MARKDOWNS="$HOME/Dropbox/Dokument/Markdowns/"
+export BROWSER=brave
 
 if [[ $XDG_SESSION_TYPE == X11 ]]; then
 	# Hide the mouse cursor on inactivity (only works on X)
