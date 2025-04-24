@@ -79,7 +79,10 @@ function zle-keymap-select {
 zle -N zle-keymap-select
 zle-line-init() { zle-keymap-select 'beam'} # Start with beam shape cursor on zsh startup and after every command.
 
-bindkey -v # Enable Vi mode
+# For editable-term.nvim in Neovim
+if [ -z "$NVIM" ]; then
+    bindkey -v # Enable Vi mode
+fi
 
 # Keybindings
 # For list of keybindings run `man zshzle`, `zle -al` or `bindkey`
