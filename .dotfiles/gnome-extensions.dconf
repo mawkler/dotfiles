@@ -64,8 +64,62 @@ pressure-timeout=1
 shortcut-delay=10.0
 shortcut-keybind=@as []
 
+[paperwm]
+last-used-display-server='Wayland'
+open-window-position=0
+restore-attach-modal-dialogs='true'
+restore-edge-tiling='true'
+restore-keybinds='{"cancel-input-capture":{"bind":"[\\"<Super><Shift>Escape\\"]","schema_id":"org.gnome.mutter.keybindings"},"restore-shortcuts":{"bind":"[\\"<Super>Escape\\"]","schema_id":"org.gnome.mutter.wayland.keybindings"},"switch-to-workspace-last":{"bind":"[\\"<Super>End\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"switch-panels":{"bind":"[\\"<Control><Alt>Tab\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"switch-group-backward":{"bind":"[\\"<Shift><Super>Above_Tab\\",\\"<Shift><Alt>Above_Tab\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"unmaximize":{"bind":"[\\"<Super>Down\\",\\"<Alt>F5\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"close":{"bind":"[\\"<Super>q\\",\\"<Alt>F4\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"switch-to-workspace-1":{"bind":"[\\"<Super>Home\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"move-to-monitor-left":{"bind":"[\\"<Super><Shift>Left\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"move-to-monitor-down":{"bind":"[\\"<Super><Shift>Down\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"switch-to-workspace-left":{"bind":"[\\"<Super>Page_Up\\",\\"<Super><Alt>Left\\",\\"<Control><Alt>Left\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"switch-group":{"bind":"[\\"<Super>Above_Tab\\",\\"<Alt>Above_Tab\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"move-to-workspace-left":{"bind":"[\\"<Super><Shift>Page_Up\\",\\"<Super><Shift><Alt>Left\\",\\"<Control><Shift><Alt>Left\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"move-to-workspace-right":{"bind":"[\\"<Super><Shift>Page_Down\\",\\"<Super><Shift><Alt>Right\\",\\"<Control><Shift><Alt>Right\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"switch-panels-backward":{"bind":"[\\"<Shift><Control><Alt>Tab\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"move-to-workspace-up":{"bind":"[\\"<Control><Shift><Alt>Up\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"switch-to-workspace-right":{"bind":"[\\"<Super>Page_Down\\",\\"<Super><Alt>Right\\",\\"<Control><Alt>Right\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"move-to-workspace-down":{"bind":"[\\"<Control><Shift><Alt>Down\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"switch-applications":{"bind":"[\\"<Super>Tab\\",\\"<Alt>Tab\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"maximize":{"bind":"[\\"<Super>Up\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"move-to-monitor-right":{"bind":"[\\"<Super><Shift>Right\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"switch-applications-backward":{"bind":"[\\"<Shift><Super>Tab\\",\\"<Shift><Alt>Tab\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"minimize":{"bind":"[\\"<Super>h\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"move-to-monitor-up":{"bind":"[\\"<Super><Shift>Up\\"]","schema_id":"org.gnome.desktop.wm.keybindings"},"shift-overview-up":{"bind":"[\\"<Super><Alt>Up\\"]","schema_id":"org.gnome.shell.keybindings"},"shift-overview-down":{"bind":"[\\"<Super><Alt>Down\\"]","schema_id":"org.gnome.shell.keybindings"},"focus-active-notification":{"bind":"[\\"<Super>n\\"]","schema_id":"org.gnome.shell.keybindings"},"screensaver":{"bind":"[\\"<Super>l\\"]","schema_id":"org.gnome.settings-daemon.plugins.media-keys"},"rotate-video-lock-static":{"bind":"[\\"<Super>o\\",\\"XF86RotationLockToggle\\"]","schema_id":"org.gnome.settings-daemon.plugins.media-keys"},"switch-monitor":{"bind":"[\\"<Super>p\\",\\"XF86Display\\"]","schema_id":"org.gnome.mutter.keybindings"}}'
+restore-workspaces-only-on-primary='true'
+winprops=['{"wm_class":"","title":"GPaste 45.2","scratch_layer":true}']
+
+[paperwm/keybindings]
+center-vertically=['']
+close-window=['<Super>q']
+move-down=['<Control><Super>Down']
+move-down-workspace=['<Control><Super>Page_Down', '<Shift><Super>j']
+move-left=['<Control><Super>comma', '<Shift><Super>comma', '<Control><Super>Left', '<Shift><Super>h']
+move-monitor-above=['<Shift><Control><Super>Up', '<Shift><Control><Super>k']
+move-monitor-below=['<Shift><Control><Super>Down', '<Shift><Control><Super>j']
+move-monitor-left=['<Shift><Control><Super>Left', '<Shift><Control><Super>h']
+move-monitor-right=['<Shift><Control><Super>Right', '<Shift><Control><Super>l']
+move-right=['<Control><Super>period', '<Shift><Super>period', '<Control><Super>Right', '<Shift><Super>l']
+move-space-monitor-left=['<Shift><Control><Alt>Left', '<Control><Alt><Super>h']
+move-space-monitor-right=['<Shift><Control><Alt>Right', '<Control><Alt><Super>l']
+move-up=['<Control><Super>Up']
+move-up-workspace=['<Control><Super>Page_Up', '<Shift><Super>k']
+new-window=['<Super>Return']
+switch-down-or-else-workspace=['<Super>j']
+switch-global-down=['<Control><Super>j']
+switch-global-up=['<Control><Super>k']
+switch-left=['']
+switch-monitor-above=['<Shift><Super>Up', '<Control><Super>k']
+switch-monitor-below=['<Shift><Super>Down', '<Control><Super>j']
+switch-monitor-left=['<Shift><Super>Left', '<Control><Super>h']
+switch-monitor-right=['<Shift><Super>Right', '<Control><Super>l']
+switch-next=['<Super>l']
+switch-previous=['<Super>h']
+switch-right=['']
+switch-up=['<Super>Up']
+switch-up-or-else-workspace=['<Super>k']
+take-window=['<Super>p']
+
 [redshift]
 active=true
+
+[tophat]
+cpu-show-cores=true
+mem-abs-units=true
+mem-display='both'
+meter-fg-color='rgb(153,193,241)'
+mount-to-monitor='/'
+network-usage-unit='bytes'
+position-in-panel='left'
+refresh-rate='medium'
+show-disk=false
+show-fs=false
+show-icons=true
+use-system-accent=false
 
 [unite]
 desktop-name-text='Desktop'
