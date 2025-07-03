@@ -270,6 +270,7 @@ alias pull-all='ls -d */ | xargs -P10 -I {} sh -c "echo Pulling changes in {}...
 
 alias g='git'
 alias gs='git status'
+alias gS='git show'
 alias gl='git log --decorate'
 alias gd='git diff -- :!package-lock.json :!yarn.lock :!Cargo.lock'
 alias gds='git diff --staged -- :!package-lock.json :!yarn.lock :!Cargo.lock'
