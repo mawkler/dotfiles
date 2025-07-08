@@ -129,7 +129,7 @@ bindkey -M vicmd 'V'      edit-command-line # open current line in $VISUAL
 bindkey -M viins " " abbr-expand-and-insert
 
 paste_from_clipboard() {
-  zle -U $(wl-paste)
+  zle -U "$(wl-paste)"
 }
 
 zle -N paste_from_clipboard
@@ -211,40 +211,10 @@ tree-pager() {
   eza --icons auto --color always --tree $@ | less -Fn
 }
 
-# Abbreviations are in ~/.config/zsh/abbreviations
-
-alias zshrc='nvim ~/.zshrc'
-alias vimrc='nvim ~/.vimrc'
-alias src='exec zsh'
-alias listfiles='find . -type f -iname "*"'
-alias xs='xargs -I % sh -c'
-alias less='less -mgiJr --underline-special --SILENT'
-alias xclip='xclip -selection c'
-alias ls='eza --icons auto'
-alias m='make'
-alias tree='eza --icons never --tree --git-ignore'
+alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias Tree='tree-pager'
-alias installed='yay -Qqe | bat'
-alias remove-non-dependencies='sudo pacman -Rns $(pacman -Qtdq)'
-alias open='xdg-open &>/dev/null'
-alias errorlogs='journalctl --since=today'
-alias screenkey='screenkey -t 1.5 -s small'
-alias wifi='nmcli'
-alias n='nmcli device wifi connect'
-alias Bat='bat --pager="less -mgi --underline-special --SILENT"'
-alias myip='hostname -i'
-alias yaz='yay -Slq | fzf -m --preview "yay -Si {1}"| xargs -ro yay -S --noconfirm'
-alias yaz-remove='yay -Qeq | fzf -m --preview "yay -Qi {1}" | xargs -ro yay -Rs'
-alias mv='mv -i'
-alias pdf_clip='curl -Ls `xclip -o` | (zathura - &)'
-alias ag="ag --hidden --pager='less -R'"
-alias rg="rg --hidden --smart-case"
-alias fd="fd --hidden"
-alias dump-dconf='dconf dump /org/gnome/shell/extensions/ > .dotfiles/gnome-extensions.dconf'
-alias fix-screen='xset -dpms'
-alias mvc='mullvad connect'
-alias mvd='mullvad disconnect'
-alias mvr='mullvad reconnect'
+alias pull-all='ls -d */ | xargs -P10 -I {} sh -c "echo Pulling changes in {}... && git -C {} pull"'
+
 
 # Delta
 export DELTA_PAGER='less -mgi --underline-special --SILENT'
@@ -268,44 +238,6 @@ function grm() {
     echo 'Not inside a git repository'
   fi
 }
-
-alias pull-all='ls -d */ | xargs -P10 -I {} sh -c "echo Pulling changes in {}... && git -C {} pull"'
-
-alias g='git'
-alias gs='git status'
-alias gl='git log --decorate'
-alias gd='git diff -- :!package-lock.json :!yarn.lock :!Cargo.lock'
-alias gds='git diff --staged -- :!package-lock.json :!yarn.lock :!Cargo.lock'
-alias gco='git checkout'
-alias gcom='git checkout `_master_branch`'
-alias gmm='git merge master'
-alias gp='git pull --autostash'
-alias gP='git push'
-alias gb='git branch'
-alias gw='git whatchanged'
-alias ga='git add'
-alias gcm='git commit -mv'
-alias gcam='git commit -avm'
-alias gca='git commit -av'
-alias gcaa='git commit -av --amend'
-alias gcA='git commit -v --amend'
-alias gu='git diff HEAD@{1} HEAD'
-alias gly='git log --since="yesterday"'
-alias gr='git reset'
-alias grc='git rebase --continue'
-alias gra='git rebase --abort'
-alias gdm='git diff `_master_branch`..HEAD'
-alias gdu='diff upstream/`_master_branch`'
-alias gru='git pull --rebase --autostash upstream `_master_branch`'
-alias gsp='git stash pop'
-alias gss='git stash show -p'
-alias glm='git log `_master_branch`'
-alias gldm='git log --decorate --oneline `_master_branch`..'
-alias gds='git diff --staged'
-
-# Dotfiles
-alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias dots='dot status'
 
 # Completion for azure-cli
 if [[ -r '/opt/azure-cli/bin/az.completion.sh' ]]; then
@@ -336,6 +268,7 @@ export _ZO_FZF_OPTS="
   --preview=\"$EZA_DIR_PREVIEW {2..} \"
   $FZF_DEFAULT_OPTS
 "
+
 alias cd=z
 alias zoxide-add-directories="fd --type directory --max-depth 1 | xargs zoxide add"
 
