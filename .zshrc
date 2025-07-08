@@ -1,6 +1,8 @@
 # Launch tmux if there's no tmux session already running
 if [[ ! $(tmux list-sessions 2> /dev/null) ]]; then exec tmux; fi
 
+if [[ ! -f "/etc/NIXOS" ]]; then
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -45,6 +47,8 @@ EOBUNDLES
 
 antigen theme romkatv/powerlevel10k
 antigen apply # Tell Antigen that you're done.
+
+fi
 
 # -----------------------------------
 
@@ -301,8 +305,7 @@ alias gldm='git log --decorate --oneline `_master_branch`..'
 alias gds='git diff --staged'
 
 # Dotfiles
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias dot='dotfiles'
+alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dots='dot status'
 
 # Completion for azure-cli
