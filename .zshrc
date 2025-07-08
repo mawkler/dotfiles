@@ -8,11 +8,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Load Fzf stuff. `key-bindings.zsh` has to be loaded before Atuin is to
-# prevent Fzf from overriding the `Ctrl-R` key binding
-[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-[ -f /usr/share/fzf/completion.zsh   ] && source /usr/share/fzf/completion.zsh
-
 ZSH_THEME="agnoster" # Backup theme
 DISABLE_AUTO_UPDATE="true"
 export ANTIGEN_CACHE=false # Fixes issue with completion for azure-cli not working
@@ -136,6 +131,8 @@ zle -N paste_from_clipboard
 bindkey '\eP' paste_from_clipboard # Alt-shift-P
 
 # Fzf
+[[ -x $(command -v fzf) ]] && eval "$(fzf --zsh)"
+
 FZF_COLORS="
   --color=fg:-1
   --color=fg+:#61afef
