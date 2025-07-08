@@ -189,7 +189,7 @@
 
   #################################[ os_icon: os identifier ]##################################
   # OS identifier color.
-  if [[ $(lsb_release -i | cut -f 2-) == 'EndeavourOS' ]]; then
+  if [[ -x $(command -v lsb_release) && $(lsb_release -i | cut -f 2-) == 'EndeavourOS' ]]; then
     typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=#7e3ebe
   fi
   # Custom icon.
