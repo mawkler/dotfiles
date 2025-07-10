@@ -211,10 +211,10 @@ tree-pager() {
 alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias Tree='tree-pager'
 alias pull-all='ls -d */ | xargs -P10 -I {} sh -c "echo Pulling changes in {}... && git -C {} pull"'
-alias ls = "eza --icons auto";
-alias tree = "eza --icons never --tree --git-ignore";
-alias open = "xdg-open &>/dev/null";
-alias less = "less -mgiJr --underline-special --SILENT";
+alias ls="eza --icons auto"
+alias tree="eza --icons never --tree --git-ignore"
+alias open="xdg-open &>/dev/null"
+alias less="less -mgiJr --underline-special --SILENT"
 
 
 # Delta
