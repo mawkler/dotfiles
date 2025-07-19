@@ -124,7 +124,7 @@ bindkey -M vicmd 'V'      edit-command-line # open current line in $VISUAL
 bindkey -M viins " " abbr-expand-and-insert
 
 paste_from_clipboard() {
-  zle -U "$(wl-paste)"
+  zle -U "$(wl-paste --no-newline)"
 }
 
 zle -N paste_from_clipboard
