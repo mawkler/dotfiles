@@ -5,13 +5,13 @@ log_level = "warn"
 # active: the status bar will be displayed on the active output, example: outputs = "Active"
 # list of outputs: the status bar will be displayed on the outputs listed here, example: outputs = { Targets = ["DP-1", "eDP-1"] }
 # if the outputs is not available the bar will be displayed in the active output
-outputs = "All"
+outputs = "Active"
 # Bar position, possible values Top | Bottom.
 position = "Top"
 # App launcher command, it will be used to open the launcher,
 # without a value the related button will not appear
 # optional, default None
-app_launcher_cmd = "~/.config/rofi/launcher.sh"
+app_launcher_cmd = "rofi -normal-window -show combi"
 # Clipboard command, it will be used to open the clipboard menu,
 # without a value the related button will not appear
 # optional, default None
@@ -35,23 +35,13 @@ clipboard_cmd = "cliphist-rofi-img | wl-copy"
 # optional, the following is the default configuration
 [modules]
 # The modules that will be displayed on the left side of the status bar
-left = [ "Workspaces" ]
+left = [ "Workspaces", "WindowTitle", "SystemInfo" ]
 # The modules that will be displayed in the center of the status bar
-center = [ "WindowTitle" ]
+center = [ "Clock"  ]
 # The modules that will be displayed on the right side of the status bar
 # The nested modules array will form a group sharing the same element in the status bar
 # You can also use custom modules to extend the normal set of options, see configuration below
-right = [ "SystemInfo", [ "Clock", "Privacy", "Settings" ], "CustomNotifications" ]
-
-# Update module configuration.
-# Without a value the related button will not appear.
-# optional, default None
-[updates]
-# The check command will be used to retrieve the update list.
-# It should return something like `package_name version_from -> version_to\n`
-check_cmd = "checkupdates; paru -Qua"
-# The update command is used to init the OS update process
-update_cmd = 'alacritty -e bash -c "paru; echo Done - Press enter to exit; read" &'
+right = [ "MediaPlayer", "Clipboard", "CustomNotifications", "Tray", [ "Privacy", "Settings" ]]
 
 # Workspaces module configuration, optional
 [workspaces]
@@ -86,7 +76,7 @@ mode = "Title"
 # Maximum number of chars that can be present in the window title
 # after that the title will be truncated
 # optional, default 150
-truncate_title_after_length = 150
+truncate_title_after_length = 100
 
 
 # keyboardLayout module configuration
@@ -114,7 +104,7 @@ truncate_title_after_length = 150
 # If for example you want to dispay the usage of the root and home partition
 # you can use the following configuration
 # systemInfo = [ { disk = "/" }, { disk = "/home" } ]
-indicators = [ "Cpu", "Memory", "Temperature" ]
+indicators = [ "Cpu", "Memory", "Temperature", "DownloadSpeed", "UploadSpeed" ]
 
 # CPU indicator thresholds
 # optional
