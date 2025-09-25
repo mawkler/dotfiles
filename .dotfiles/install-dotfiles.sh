@@ -8,7 +8,7 @@ cd
 echo ".dotfiles" >> $HOME/.gitignore
 
 echo "Cloning dotfiles repo."
-yes | git clone --bare https://github.com/mawkler/dotfiles.git $HOME/.dotfiles 2> /dev/null
+yes | git clone --branch nixos --bare https://github.com/mawkler/dotfiles.git $HOME/.dotfiles 2> /dev/null
 
 function dotfiles {
   git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
