@@ -1,20 +1,17 @@
 #!/bin/sh
 
 ###
-## Downloads and installs dotfiles from github.com/melkster/dotfiles
+## Downloads and installs dotfiles from github.com/mawkler/dotfiles
 ###
 
 cd
 echo ".dotfiles" >> $HOME/.gitignore
 
 echo "Cloning dotfiles repo."
-yes | git clone --bare git@github.com:melkster/dotfiles.git $HOME/.dotfiles 2> /dev/null
-if [ $? -ne 0 ]; then # If cloning with SSH doesn't work, use HTTP
-  git clone --bare https://github.com/melkster/dotfiles.git $HOME/.dotfiles
-fi
+yes | git clone --bare https://github.com/mawkler/dotfiles.git $HOME/.dotfiles 2> /dev/null
 
 function dotfiles {
-  /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+  git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
 }
 
 backup_dir="$HOME/.dotfiles-backup/"
@@ -45,7 +42,7 @@ if [[ `cat $HOME/.gitignore 2>/dev/null` = ".dotfiles" ]]; then
   rm $HOME/.gitignore
 fi
 
-echo "Cloning nvim configuration from melkster/nvim"
-git clone git@github.com:melkster/nvim.git $HOME/.config/nvim/
+echo "Cloning nvim configuration from mawkler/nvim"
+git clone https://github.com/mawkler/nvim.git $HOME/.config/nvim/
 
 echo "Done."
