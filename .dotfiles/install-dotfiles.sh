@@ -44,5 +44,8 @@ fi
 
 echo "Cloning nvim configuration from mawkler/nvim"
 git clone https://github.com/mawkler/nvim.git $HOME/.config/nvim/
+git clone --depth 1 --filter=blob:none --branch=stable \
+   https://github.com/folke/lazy.nvim.git \
+   ~/.local/share/nvim/lazy/lazy.nvim
 
 echo "Done."
