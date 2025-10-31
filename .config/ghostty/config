@@ -11,3 +11,5 @@ title = Ghostty
 
 keybind = ctrl+)=reset_font_size
 keybind = ctrl+enter=ignore
+
+custom-shader = shaders/cursor_warp.glsl
