@@ -247,6 +247,7 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 // spawn-at-startup "caelestia-shell"
+spawn-at-startup "maestral_qt"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -338,11 +339,6 @@ binds {
 
     Super+Return { spawn-sh "vicinae toggle"; }
 
-    // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
-
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
     // For example, this is a standard bind to toggle the screen reader (orca).
@@ -373,21 +369,17 @@ binds {
     Mod+Q repeat=false { close-window; }
 
     Mod+H     { focus-column-left; }
-    Mod+J     { focus-window-down; }
-    Mod+K     { focus-window-up; }
     Mod+L     { focus-column-right; }
-
-    Mod+Shift+H     { move-column-left; }
-    Mod+Shift+J     { move-window-down; }
-    Mod+Shift+K     { move-window-up; }
-    Mod+Shift+L     { move-column-right; }
 
     // Alternative commands that move across workspaces when reaching
     // the first or last window in a column.
-    // Mod+J     { focus-window-or-workspace-down; }
-    // Mod+K     { focus-window-or-workspace-up; }
-    // Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
-    // Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
+    Mod+J     { focus-window-or-workspace-down; }
+    Mod+K     { focus-window-or-workspace-up; }
+
+    Mod+Shift+H     { move-column-left; }
+    Mod+Shift+L     { move-column-right; }
+    Mod+Shift+J     { move-window-down-or-to-workspace-down; }
+    Mod+Shift+K     { move-window-up-or-to-workspace-up; }
 
     Mod+Home { focus-column-first; }
     Mod+End  { focus-column-last; }
@@ -545,7 +537,7 @@ binds {
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
     // rather than stacked on top of each other.
-    Mod+W { toggle-column-tabbed-display; }
+    Mod+Shift+W { toggle-column-tabbed-display; }
 
     // Actions to switch layouts.
     // Note: if you uncomment these, make sure you do NOT have
@@ -575,4 +567,24 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+
+    // Raisin - raise or run program
+    Mod+W hotkey-overlay-title="Launch/focus Brave" { spawn "raisin" "brave"; }
+    Mod+N hotkey-overlay-title="Launch/focus Neovide" { spawn "raisin" "neovide"; }
+    Mod+T hotkey-overlay-title="Launch/focus Ghostty" { spawn "raisin" "ghostty"; }
+    Mod+B hotkey-overlay-title="Launch/focus Beeper" { spawn "raisin" "beeper"; }
+    Mod+S hotkey-overlay-title="Launch/focus Spotify" { spawn "raisin" "spotify"; }
+    Mod+D hotkey-overlay-title="Launch/focus ONLYOFFICE" { spawn "raisin" "ONLYOFFICE" "onlyoffice-desktopeditors"; }
+    Mod+Z hotkey-overlay-title="Launch/focus Zen" { spawn "raisin" "zen"; }
+    Mod+E hotkey-overlay-title="Launch/focus Files" { spawn "raisin" "nautilus"; }
+
+    // Force run program
+    Mod+Ctrl+W hotkey-overlay-title=null { spawn "brave"; }
+    Mod+Ctrl+N hotkey-overlay-title=null { spawn "neovide"; }
+    Mod+Ctrl+T hotkey-overlay-title=null { spawn "ghostty"; }
+    Mod+Ctrl+B hotkey-overlay-title=null { spawn "beeper"; }
+    Mod+Ctrl+S hotkey-overlay-title=null { spawn "spotify"; }
+    Mod+Ctrl+D hotkey-overlay-title=null { spawn "onlyoffice-desktopeditors"; }
+    Mod+Ctrl+Z hotkey-overlay-title=null { spawn "zen"; }
+    Mod+Ctrl+E hotkey-overlay-title=null { spawn "nautilus"; }
 }
