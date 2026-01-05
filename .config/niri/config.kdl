@@ -255,7 +255,7 @@ spawn-at-startup "ghostty"
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
-    // skip-at-startup
+    skip-at-startup
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -572,6 +572,7 @@ binds {
     Mod+D hotkey-overlay-title="Launch/focus ONLYOFFICE" { spawn "raisin" "ONLYOFFICE" "onlyoffice-desktopeditors"; }
     Mod+Z hotkey-overlay-title="Launch/focus Zen" { spawn "raisin" "zen"; }
     Mod+E hotkey-overlay-title="Launch/focus Files" { spawn "raisin" "nautilus"; }
+    Mod+A hotkey-overlay-title="Launch/focus Anytype" { spawn "raisin" "anytype"; }
 
     // Force run program
     Mod+Ctrl+W hotkey-overlay-title=null { spawn "brave"; }
